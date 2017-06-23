@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog4net", "Backlog4net.csproj", "{76F4D5AA-2E12-4AC0-B4ED-19C4660BAD19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog4net", "Backlog4net\Backlog4net.csproj", "{76F4D5AA-2E12-4AC0-B4ED-19C4660BAD19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

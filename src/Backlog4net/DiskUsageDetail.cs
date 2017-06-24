@@ -9,24 +9,18 @@ namespace Backlog4net
     /// <summary>
     /// Backlog disk usage data.
     /// </summary>
-    public sealed class DiskUsageDetail
+    public interface DiskUsageDetail
     {
-        [JsonProperty]
-        public long ProjectId { get; private set; }
+        long ProjectId { get; }
 
-        [JsonProperty]
-        public long Issue { get; private set; }
+        long Issue { get; }
 
-        [JsonProperty]
-        public long Wiki { get; private set; }
+        long Wiki { get; }
 
-        [JsonProperty]
-        public long File { get; private set; }
+        long File { get; }
 
-        [JsonProperty]
-        public long Subversion { get; private set; }
+        long Subversion { get; }
 
-        [JsonProperty]
-        public long Git { get; private set; }
+        long Git { get; }
     }
 }

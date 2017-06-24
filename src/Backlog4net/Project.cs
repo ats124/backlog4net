@@ -9,33 +9,26 @@ namespace Backlog4net
     /// <summary>
     /// Backlog project data.
     /// </summary>
-    public sealed class Project
+    public interface Project
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public string ProjectKey { get; private set; }
+        string ProjectKey { get; }
 
-        [JsonProperty]
-        public string Name { get; private set; }
+        string Name { get; }
 
-        [JsonProperty("chartEnabled")]
-        public bool IsChartEnabled { get; private set; }
+        bool IsChartEnabled { get; }
 
-        [JsonProperty("subtaskingEnabled")]
-        public bool IsSubtaskingEnabled { get; private set; }
+        bool IsSubtaskingEnabled { get; }
 
-        [JsonProperty]
-        public TextFormattingRule TextFormattingRule { get; private set; }
+        TextFormattingRule TextFormattingRule { get; }
 
         [JsonProperty("archived")]
-        public bool IsArchived { get; private set; }
+        bool IsArchived { get; }
 
-        [JsonProperty]
-        public long DisplayOrder { get; private set; }
+        long DisplayOrder { get; }
     }
 
     public enum TextFormattingRule

@@ -9,27 +9,21 @@ namespace Backlog4net
     /// <summary>
     /// Backlog activity data.
     /// </summary>
-    public sealed class Activity
+    public interface Activity
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public Project Project { get; private set; }
+        Project Project { get; }
 
-        [JsonProperty]
-        public ActivityType Type { get; private set; }
+        ActivityType Type { get; }
 
-        [JsonProperty]
-        public Content Content { get; private set; }
+        Content Content { get; }
 
-        [JsonProperty]
-        public User CreatedUser { get; private set; }
+        User CreatedUser { get; }
 
-        [JsonProperty]
-        public DateTime Created { get; private set; }
+        DateTime Created { get; }
     }
     public enum ActivityType
     {

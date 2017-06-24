@@ -6,14 +6,12 @@ using Newtonsoft.Json;
 
 namespace Backlog4net
 {
-    public sealed class AttributeInfo
+    public interface AttributeInfo
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public string Type { get; private set; }
+        string Type { get; }
     }
 }

@@ -9,14 +9,12 @@ namespace Backlog4net
     /// <summary>
     /// Backlog comment data.
     /// </summary>
-    public sealed class Comment
+    public interface Comment
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public string Content { get; private set; }
+        string Content { get; }
     }
 }

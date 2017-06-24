@@ -6,9 +6,8 @@ using Newtonsoft.Json;
 
 namespace Backlog4net
 {
-    public sealed class Count
+    public interface Count
     {
-        [JsonProperty("count")]
-        public int CountValue { get; private set; }
+        int CountValue { get; }
     }
 }

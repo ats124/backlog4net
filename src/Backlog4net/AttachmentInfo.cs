@@ -9,30 +9,14 @@ namespace Backlog4net
     /// <summary>
     /// Backlog attachment file.
     /// </summary>
-    public sealed class AttachmentInfo
+    public interface AttachmentInfo
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public string Name { get; private set; }
+        string Name { get; }
 
-        private static readonly string[] imageExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-        public bool IsImage
-        {
-            get
-            {
-                var lowerCase = Name.ToLowerInvariant();
-                return imageExtensions.Any(x => lowerCase.EndsWith(x));
-            }
-        }
-
-        public override bool Equals(object obj) => 
-            obj is AttachmentInfo info && (this.Id, this.Name).Equals((info.Id, info.Name));
-
-        public override int GetHashCode() => (this.Id, this.Name).GetHashCode();
-
+        bool IsImage { get; }
     }
 }

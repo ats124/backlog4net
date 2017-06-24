@@ -9,18 +9,14 @@ namespace Backlog4net
     /// <summary>
     /// Backlog change data.
     /// </summary>
-    public sealed class Change
+    public interface Change
     {
-        [JsonProperty]
-        public long Field { get; private set; }
+        long Field { get; }
 
-        [JsonProperty("new_value")]
-        public string NewValue { get; private set; }
+        string NewValue { get; }
 
-        [JsonProperty("old_value")]
-        public string OldValue { get; private set; }
+        string OldValue { get; }
 
-        [JsonProperty]
-        public string Type { get; private set; }
+        string Type { get; }
     }
 }

@@ -5,6 +5,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Internal\Activity.cs" />
+    <Compile Remove="Internal\Attachment.cs" />
+    <Compile Remove="Internal\AttachmentInfo.cs" />
+    <Compile Remove="Internal\AttributeInfo.cs" />
+    <Compile Remove="Internal\Category.cs" />
+    <Compile Remove="Internal\Change.cs" />
+    <Compile Remove="Internal\ChangeLog.cs" />
+    <Compile Remove="Internal\Comment.cs" />
+    <Compile Remove="Internal\Content.cs" />
+    <Compile Remove="Internal\Count.cs" />
+    <Compile Remove="Internal\DiskUsage.cs" />
+    <Compile Remove="Internal\DiskUsageDetail.cs" />
+    <Compile Remove="Internal\Group.cs" />
+    <Compile Remove="Internal\GroupProjectActivity.cs" />
+    <Compile Remove="Internal\NotificationInfo.cs" />
+    <Compile Remove="Internal\Project.cs" />
+    <Compile Remove="Internal\User.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Internal\Json\CategoryJsonImpl.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="System.ValueTuple" Version="4.3.1" />
   </ItemGroup>

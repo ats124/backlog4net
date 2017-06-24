@@ -9,24 +9,18 @@ namespace Backlog4net
     /// <summary>
     /// Backlog changeLog data.
     /// </summary>
-    public sealed class ChangeLog
+    public interface ChangeLog
     {
-        [JsonProperty]
-        public long Field { get; private set; }
+        long Field { get; }
 
-        [JsonProperty]
-        public string NewValue { get; private set; }
+        string NewValue { get; }
 
-        [JsonProperty]
-        public string OriginalValue { get; private set; }
+        string OriginalValue { get; }
 
-        [JsonProperty]
-        public AttachmentInfo AttachmentInfo { get; private set; }
+        AttachmentInfo AttachmentInfo { get; }
 
-        [JsonProperty]
-        public AttributeInfo AttributeInfo { get; private set; }
+        AttributeInfo AttributeInfo { get; }
 
-        [JsonProperty]
-        public NotificationInfo NotificationInfo { get; private set; }
+        NotificationInfo NotificationInfo { get; }
     }
 }

@@ -9,32 +9,24 @@ namespace Backlog4net
     /// <summary>
     /// Backlog group data.
     /// </summary>
-    public sealed class Group
+    public interface Group
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public string Name { get; private set; }
+        string Name { get; }
 
-        [JsonProperty]
-        public User[] Members { get; private set; }
+        User[] Members { get; }
 
-        [JsonProperty]
-        public long DisplayOrder { get; private set; }
+        long DisplayOrder { get; }
 
-        [JsonProperty]
-        public User CreatedUser { get; private set; }
+        User CreatedUser { get; }
 
-        [JsonProperty]
-        public DateTime Created { get; private set; }
+        DateTime Created { get; }
 
-        [JsonProperty]
-        public User UpdatedUser { get; private set; }
+        User UpdatedUser { get; }
 
-        [JsonProperty]
-        public DateTime Updated { get; private set; }
+        DateTime Updated { get; }
     }
 }

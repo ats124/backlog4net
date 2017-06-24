@@ -9,14 +9,12 @@ namespace Backlog4net
     /// <summary>
     /// Backlog group project activity data.
     /// </summary>
-    public sealed class GroupProjectActivity
+    public interface GroupProjectActivity
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public ActivityType Type { get; private set; }
+        ActivityType Type { get; }
     }
 }

@@ -6,9 +6,8 @@ using Newtonsoft.Json;
 
 namespace Backlog4net
 {
-    public sealed class NotificationInfo
+    public interface NotificationInfo
     {
-        [JsonProperty]
-        public string Type { get; private set; }
+        string Type { get; }
     }
 }

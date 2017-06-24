@@ -9,14 +9,12 @@ namespace Backlog4net
     /// <summary>
     /// Backlog category data.
     /// </summary>
-    public sealed class Category
+    public interface Category
     {
-        [JsonProperty]
-        public long Id { get; private set; }
+        long Id { get; }
 
-        public string IdAsString => Id.ToString();
+        string IdAsString { get; }
 
-        [JsonProperty]
-        public string Name { get; private set; }
+        string Name { get; }
     }
 }

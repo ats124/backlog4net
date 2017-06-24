@@ -1,6 +1,6 @@
 ﻿﻿using System;
 using Newtonsoft.Json;
-namespace Backlog4net.Internal.Json.customFields
+namespace Backlog4net.Internal.Json.CustomFields
 {
     public abstract class CustomFieldJsonImpl : CustomField
     {

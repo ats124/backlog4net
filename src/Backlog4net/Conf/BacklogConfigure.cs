@@ -10,8 +10,7 @@ namespace Backlog4net.Conf
     {
         public AccessToken AccessToken { get; set; }
         public string ApiKey { get; set; }
-        public int ConnectionTimeout { get; set; }
-        public int ReadTimeout { get; set; }
+        public int Timeout { get; set; }
         public abstract string OAuthAuthorizationUrl { get; }
         public abstract string OAuthAccessTokenUrl { get; }
         public abstract string RestBaseUrl { get; }

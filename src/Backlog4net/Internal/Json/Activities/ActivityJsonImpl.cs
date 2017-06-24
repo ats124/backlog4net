@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Backlog4net.Internal.Json
+namespace Backlog4net.Internal.Json.Activities
 {
-    public sealed class ActivityJsonImpl : Activity
+    public abstract class ActivityJsonImpl : Activity
     {
-        internal class JsonConverter : InterfaceConverter<Activity, ActivityJsonImpl> { }
-
         [JsonProperty]
         public long Id { get; private set; }
 

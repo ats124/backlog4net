@@ -12,14 +12,12 @@ namespace Backlog4net
     public class BacklogApiException : BacklogException
     {
         public BacklogApiException() { }
-        public BacklogApiException(string message) : base(message)
+        public BacklogApiException(string message) : base(message) { }
+        public BacklogApiException(string message, Exception inner) : base(message, inner) { }
+        public BacklogApiException(string message, int statusCode, BacklogApiError apiError) : base(message)
         {
-            Decode(message);
-        }
-        public BacklogApiException(string message, Exception inner, int statusCode) : base(message, inner)
-        {
-            Decode(message);
             this.StatusCode = statusCode;
+            this.BacklogApiError = apiError;
         }
 
         public BacklogApiErrorType? ErrorType { get; private set; }
@@ -53,12 +51,6 @@ namespace Backlog4net
                 }
                 return strBuilder.ToString();
             }
-        }
-
-        protected void Decode(string str)
-        {
-            if (!string.IsNullOrEmpty(str) && str.StartsWith("{"))
-                this.BacklogApiError = JsonConvert.DeserializeObject<BacklogApiError>(str);
         }
     }
 }

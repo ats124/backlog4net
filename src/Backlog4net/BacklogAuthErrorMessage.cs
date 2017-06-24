@@ -14,5 +14,10 @@ namespace Backlog4net
         public string Error { get; private set; }
         [JsonProperty("error_description")]
         public string Description { get; private set; }
+
+        internal static BacklogAuthErrorMessage Decode(string str) =>
+            !string.IsNullOrEmpty(str) && str.StartsWith("{")
+                ? JsonConvert.DeserializeObject<BacklogAuthErrorMessage>(str)
+                : null;
     }
 }

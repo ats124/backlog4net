@@ -12,14 +12,14 @@ namespace Backlog4net
     public class BacklogAuthException : BacklogException
     {
         public BacklogAuthException() { }
-        public BacklogAuthException(string message) : base(message)
+        public BacklogAuthException(string message) : base(message) { }
+
+        public BacklogAuthException(string message, Exception inner) : base(message, inner) { }
+
+        public BacklogAuthException(string message, int statusCode, BacklogAuthErrorMessage authError) : this(message)
         {
-            Decode(message);
-        }
-        public BacklogAuthException(string message, Exception inner, int statusCode) : base(message, inner)
-        {
-            Decode(message);
             this.StatusCode = statusCode;
+            this.BacklogAuthErrorMessage = authError;
         }
 
         public BacklogAuthErrorMessage BacklogAuthErrorMessage { get; private set; }
@@ -44,12 +44,6 @@ namespace Backlog4net
                 }
                 return strBuilder.ToString();
             }
-        }
-
-        protected void Decode(string str)
-        {
-            if (!string.IsNullOrEmpty(str) && str.StartsWith("{"))
-                this.BacklogAuthErrorMessage = JsonConvert.DeserializeObject<BacklogAuthErrorMessage>(str);
         }
     }
 }

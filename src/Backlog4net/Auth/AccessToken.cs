@@ -4,18 +4,11 @@ using System.Text;
 
 namespace Backlog4net.Auth
 {
-    public class AccessToken
+    public interface AccessToken
     {
-        public string Type { get; private set; }
-        public string Token { get; private set; }
-        public long Expires { get; private set; }
-        public string Refresh { get; private set; }
-
-        public AccessToken(string token, long expires, string refresh)
-        {
-            this.Token = token;
-            this.Expires = expires;
-            this.Refresh = refresh;
-        }
+        string Type { get; }
+        string Token { get; }
+        long Expires { get; }
+        string Refresh { get; }
     }
 }

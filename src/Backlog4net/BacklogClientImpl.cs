@@ -11,11 +11,14 @@ namespace Backlog4net
     using Auth;
     using Conf;
     using Http;
+    using Internal;
+    using Internal.Json;
 
     partial class BacklogClientImpl : BacklogClient
     {
         protected BacklogHttpClient HttpClient { get; private set; }
         protected BacklogConfigure Configure { get; private set; }
+        protected InternalFactory Factory { get; } = new InternalFactoryJsonImpl();
         protected OAuthSupport OAuthSupport { get; private set; }
         protected BacklogEndPointSupport BacklogEndPointSupport { get; private set; }
 

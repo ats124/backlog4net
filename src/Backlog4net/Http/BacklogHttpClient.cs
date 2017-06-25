@@ -226,7 +226,7 @@ namespace Backlog4net.Http
             foreach (var param in getParams)
             {
                 if (sb.Length > 0 && sb[sb.Length - 1] != '?') sb.Append("&");
-                sb.Append(WebUtility.UrlEncode(param.Key)).Append("=").Append(WebUtility.UrlEncode(param.Value));                
+                sb.Append(WebUtility.UrlEncode(param.Name)).Append("=").Append(WebUtility.UrlEncode(param.Value));                
             }
         }
 

@@ -53,15 +53,16 @@ namespace Backlog4net.Http
 
         public async Task<HttpResponseMessage> Get(string endpoint, ICollection<KeyValuePair<string, string>> getParams, ICollection<KeyValuePair<string, string>> queryParams, CancellationToken? token = null)
         {
-            bool paramExists;
-            var sb = new StringBuilder(GetUrl(endpoint, out paramExists));
-            SetParamString(sb, paramExists, (getParams ?? new KeyValuePair<string, string>[0]).Concat(queryParams ?? new KeyValuePair<string, string>[0]));
-
             try
             {
+                bool paramExists;
+                var url = new StringBuilder(GetUrl(endpoint, out paramExists));
+                SetParamString(url, paramExists, (getParams ?? new KeyValuePair<string, string>[0]).Concat(queryParams ?? new KeyValuePair<string, string>[0]));
+
+                using (var request = CreateRequestMessage(HttpMethod.Get, url.ToString()))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
-                    return await HttpClient.GetAsync(sb.ToString(), HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
+                    return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
             }
             catch (Exception ex)
@@ -76,9 +77,10 @@ namespace Backlog4net.Http
             try
             {
                 using (var content = new FormUrlEncodedContent(postParams))
+                using (var request = CreateRequestMessage(HttpMethod.Post, url, content))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
-                    return await HttpClient.PostAsync(url, content, tokenHelper.Token);
+                    return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
             }
             catch (Exception ex)
@@ -93,10 +95,10 @@ namespace Backlog4net.Http
             try
             {
                 using (var content = new FormUrlEncodedContent(patchParams))
-                using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), url) { Content = content })
+                using (var request = CreateRequestMessage(new HttpMethod("PATCH"), url, content))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
-                    return await HttpClient.SendAsync(request, tokenHelper.Token);
+                    return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
             }
             catch (Exception ex)
@@ -111,9 +113,10 @@ namespace Backlog4net.Http
             try
             {
                 using (var content = new FormUrlEncodedContent(putParams))
+                using (var request = CreateRequestMessage(HttpMethod.Put, url, content))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
-                    return await HttpClient.PutAsync(url, content, tokenHelper.Token);
+                    return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
             }
             catch (Exception ex)
@@ -200,6 +203,16 @@ namespace Backlog4net.Http
                 if (sb.Length > 0 && sb[sb.Length - 1] != '?') sb.Append("&");
                 sb.Append(WebUtility.UrlEncode(param.Key)).Append("=").Append(WebUtility.UrlEncode(param.Value));                
             }
+        }
+
+        private HttpRequestMessage CreateRequestMessage(HttpMethod method, string url, HttpContent content = null)
+        {
+            var request = new HttpRequestMessage(method, url);
+            if (ApiKey == null && BearerToken != null)
+                request.Properties["Authorization"] = $"Bearer {BearerToken}";
+            if (content != null)
+                request.Content = content;
+            return request;
         }
     }
 }

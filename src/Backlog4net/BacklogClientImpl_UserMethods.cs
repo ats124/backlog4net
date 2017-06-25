@@ -8,7 +8,7 @@ namespace Backlog4net
 {
     partial class BacklogClientImpl
     {
-        public async Task<ResponseList<User>> GetUsers(CancellationToken? token)
+        public async Task<ResponseList<User>> GetUsers(CancellationToken? token = null)
             => await Factory.CreateUserList(await Get(BuildEndpoint("users")));
     }
 }

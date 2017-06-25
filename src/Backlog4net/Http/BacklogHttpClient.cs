@@ -19,7 +19,7 @@ namespace Backlog4net.Http
             private CancellationTokenSource csc;
             private CancellationToken token;
 
-            public CancellationTokenHelper(CancellationToken? orgToken, int timeout)
+            public CancellationTokenHelper(CancellationToken? orgToken, TimeSpan timeout)
             {
                 if (orgToken.HasValue)
                 {
@@ -49,7 +49,7 @@ namespace Backlog4net.Http
 
         public string ApiKey { get; set; }
         public string BearerToken { get; set; }
-        public int Timeout { get; set; }
+        public TimeSpan Timeout { get; set; }
 
         public async Task<HttpResponseMessage> Get(string endpoint, ICollection<KeyValuePair<string, string>> getParams, ICollection<KeyValuePair<string, string>> queryParams, CancellationToken? token = null)
         {

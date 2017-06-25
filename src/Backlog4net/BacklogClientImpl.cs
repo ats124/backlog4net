@@ -11,6 +11,7 @@ namespace Backlog4net
     using Auth;
     using Conf;
     using Http;
+    using Api.Option;
     using Internal;
     using Internal.Json;
 
@@ -37,19 +38,22 @@ namespace Backlog4net
 
         protected string BuildEndpoint(string connection) => this.Configure.RestBaseUrl + (string.IsNullOrEmpty(connection) ? "" : "/" + connection);
 
-        protected async Task<HttpResponseMessage> Get(string endpoint, ICollection<KeyValuePair<string, string>> getParams = null, CancellationToken? token = null)
+        protected async Task<HttpResponseMessage> Get(string endpoint, GetParams getParams = null, QueryParams queryParams = null, CancellationToken? token = null)
         {
-            var response = await HttpClient.Get(endpoint, getParams, null, token);
+            var response = await HttpClient.Get(endpoint, getParams, queryParams, token);
             if (NeedTokenRefresh(response))
             {
                 RefreshToken();
-                response = await HttpClient.Get(endpoint, getParams, null, token);
+                response = await HttpClient.Get(endpoint, getParams, queryParams, token);
             }
             await CheckError(response);
             return response;
         }
 
-        protected async Task<HttpResponseMessage> Post(string endpoint, ICollection<KeyValuePair<string, string>> postParams = null, CancellationToken? token = null)
+        protected Task<HttpResponseMessage> Post(string endpoint, PostParams postParams = null, CancellationToken? token = null) => 
+            Post(endpoint, postParams?.Parameters ?? new NameValuePair[0], token);
+
+        protected async Task<HttpResponseMessage> Post(string endpoint, ICollection<NameValuePair> postParams, CancellationToken? token = null)
         {
             var response = await HttpClient.Post(endpoint, postParams, token);
             if (NeedTokenRefresh(response))
@@ -61,7 +65,10 @@ namespace Backlog4net
             return response;
         }
 
-        protected async Task<HttpResponseMessage> Patch(string endpoint, ICollection<KeyValuePair<string, string>> patchParams, CancellationToken? token = null)
+        protected Task<HttpResponseMessage> Patch(string endpoint, PatchParams patchParams, CancellationToken? token = null) =>
+            Patch(endpoint, patchParams?.Parameters ?? new NameValuePair[0], token);
+
+        protected async Task<HttpResponseMessage> Patch(string endpoint, ICollection<NameValuePair> patchParams, CancellationToken? token = null)
         {
             var response = await HttpClient.Patch(endpoint, patchParams, token);
             if (NeedTokenRefresh(response))
@@ -73,7 +80,7 @@ namespace Backlog4net
             return response;
         }
 
-        protected async Task<HttpResponseMessage> Put(string endpoint, ICollection<KeyValuePair<string, string>> putParams, CancellationToken? token = null)
+        protected async Task<HttpResponseMessage> Put(string endpoint, ICollection<NameValuePair> putParams, CancellationToken? token = null)
         {
             var response = await HttpClient.Put(endpoint, putParams, token);
             if (NeedTokenRefresh(response))
@@ -85,13 +92,13 @@ namespace Backlog4net
             return response;
         }
 
-        protected async Task<HttpResponseMessage> Delete(string endpoint, ICollection<KeyValuePair<string, string>> deleteParams = null, CancellationToken? token = null)
+        protected async Task<HttpResponseMessage> Delete(string endpoint, NameValuePair deleteParam = null, CancellationToken? token = null)
         {
-            var response = await HttpClient.Put(endpoint, deleteParams, token);
+            var response = await HttpClient.Delete(endpoint, deleteParam, token);
             if (NeedTokenRefresh(response))
             {
                 RefreshToken();
-                response = await HttpClient.Put(endpoint, deleteParams, token);
+                response = await HttpClient.Delete(endpoint, deleteParam, token);
             }
             await CheckError(response);
             return response;

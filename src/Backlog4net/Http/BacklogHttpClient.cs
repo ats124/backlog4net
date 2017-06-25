@@ -9,6 +9,8 @@ using System.Net.Http;
 
 namespace Backlog4net.Http
 {
+    using Api.Option;
+
     public class BacklogHttpClient
     {
         /// <summary>
@@ -51,13 +53,13 @@ namespace Backlog4net.Http
         public string BearerToken { get; set; }
         public TimeSpan Timeout { get; set; }
 
-        public async Task<HttpResponseMessage> Get(string endpoint, ICollection<KeyValuePair<string, string>> getParams, ICollection<KeyValuePair<string, string>> queryParams, CancellationToken? token = null)
+        public async Task<HttpResponseMessage> Get(string endpoint, GetParams getParams, QueryParams queryParams, CancellationToken? token = null)
         {
             try
             {
                 bool paramExists;
                 var url = new StringBuilder(GetUrl(endpoint, out paramExists));
-                SetParamString(url, paramExists, (getParams ?? new KeyValuePair<string, string>[0]).Concat(queryParams ?? new KeyValuePair<string, string>[0]));
+                SetParamString(url, paramExists, (getParams?.Parameters ?? new NameValuePair[0]).Concat(queryParams?.Parameters ?? new NameValuePair[0]));
 
                 using (var request = CreateRequestMessage(HttpMethod.Get, url.ToString()))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
@@ -75,12 +77,12 @@ namespace Backlog4net.Http
             }
         }
 
-        public async Task<HttpResponseMessage> Post(string endpoint, ICollection<KeyValuePair<string, string>> postParams, CancellationToken? token = null)
+        public async Task<HttpResponseMessage> Post(string endpoint, ICollection<NameValuePair> postParams, CancellationToken? token = null)
         {
             var url = GetUrl(endpoint, out var _);
             try
             {
-                using (var content = new FormUrlEncodedContent(postParams))
+                using (var content = new FormUrlEncodedContent(postParams.AsKeyValuePairs()))
                 using (var request = CreateRequestMessage(HttpMethod.Post, url, content))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
@@ -97,12 +99,12 @@ namespace Backlog4net.Http
             }
         }
 
-        public async Task<HttpResponseMessage> Patch(string endpoint, ICollection<KeyValuePair<string, string>> patchParams, CancellationToken? token = null)
+        public async Task<HttpResponseMessage> Patch(string endpoint, ICollection<NameValuePair> patchParams, CancellationToken? token = null)
         {
             var url = GetUrl(endpoint, out var _);
             try
             {
-                using (var content = new FormUrlEncodedContent(patchParams))
+                using (var content = new FormUrlEncodedContent(patchParams.AsKeyValuePairs()))
                 using (var request = CreateRequestMessage(new HttpMethod("PATCH"), url, content))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
@@ -119,12 +121,12 @@ namespace Backlog4net.Http
             }
         }
 
-        public async Task<HttpResponseMessage> Put(string endpoint, ICollection<KeyValuePair<string, string>> putParams, CancellationToken? token = null)
+        public async Task<HttpResponseMessage> Put(string endpoint, ICollection<NameValuePair> putParams, CancellationToken? token = null)
         {
             var url = GetUrl(endpoint, out var _);
             try
             {
-                using (var content = new FormUrlEncodedContent(putParams))
+                using (var content = new FormUrlEncodedContent(putParams.AsKeyValuePairs()))
                 using (var request = CreateRequestMessage(HttpMethod.Put, url, content))
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
@@ -141,13 +143,16 @@ namespace Backlog4net.Http
             }
         }
 
-        public async Task<HttpResponseMessage> Delete(string endpoint, ICollection<KeyValuePair<string, string>> deleteParams, CancellationToken? token = null)
+        public async Task<HttpResponseMessage> Delete(string endpoint, NameValuePair deleteParam, CancellationToken? token = null)
         {
             var url = GetUrl(endpoint, out var _);
             try
             {
-                using (var content = new FormUrlEncodedContent(deleteParams))
-                using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), url) { Content = content })
+                var forms = deleteParam != null
+                    ? new[] { deleteParam }.AsKeyValuePairs()
+                    : new KeyValuePair<string, string>[0];
+                using (var content = new FormUrlEncodedContent(forms))
+                using (var request = new HttpRequestMessage(new HttpMethod("DELETE"), url) { Content = content })
                 using (var tokenHelper = new CancellationTokenHelper(token, Timeout))
                 {
                     return await HttpClient.SendAsync(request, tokenHelper.Token);
@@ -213,7 +218,7 @@ namespace Backlog4net.Http
             }
         }
 
-        private static void SetParamString(StringBuilder sb, bool paramExists, IEnumerable<KeyValuePair<string, string>> getParams)
+        private static void SetParamString(StringBuilder sb, bool paramExists, IEnumerable<NameValuePair> getParams)
         {
             if (getParams == null || !getParams.Any()) return;
             if (sb.Length == 0 || sb[sb.Length - 1] != '?') sb.Append("?");

@@ -2,9 +2,17 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-.NET wrapper for the Nulab's Backlog API.
+Backlog4net is a port of Backlog4j.
 
-http://developer.nulab-inc.com/docs/backlog
+* Backlog 
+    * [http://backlog.jp](http://backlog.jp)
+    * [http://backlogtool.com](http:///backlogtool.com)
+
+* Backlog API version 2
+    * [http://developer.nulab-inc.com/docs/backlog/api/2/](http://developer.nulab-inc.com/docs/backlog/api/2/)
+
+* Backlog4j
+    * [https://github.com/nulab/backlog4j](https://github.com/nulab/backlog4j)
 
 ## License
 

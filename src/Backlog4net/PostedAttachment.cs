@@ -2,16 +2,16 @@
 namespace Backlog4net
 {
     /// <summary>
-    /// The interface for Backlog status data.
+    /// The interface for Backlog attachment file.
     /// </summary>
-    public interface Status
+    public interface PostedAttachment
     {
-        int Id { get; }
+        long Id { get; }
 
         string IdAsString { get; }
 
         string Name { get; }
 
-        IssueStatusType StatusType { get; }
+        long Size { get; }
     }
 }

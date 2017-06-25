@@ -65,7 +65,7 @@ namespace Backlog4net
         Star[] Starts { get; }
     }
 
-    public enum StatusType
+    public enum IssueStatusType
     {
         Open = 1,
         InProgress = 2,

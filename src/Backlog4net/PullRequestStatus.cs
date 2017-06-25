@@ -2,9 +2,9 @@
 namespace Backlog4net
 {
     /// <summary>
-    /// The interface for Backlog status data.
+    /// The interface for Backlog pullrequest status data.
     /// </summary>
-    public interface Status
+    public interface PullRequestStatus
     {
         int Id { get; }
 
@@ -12,6 +12,6 @@ namespace Backlog4net
 
         string Name { get; }
 
-        IssueStatusType StatusType { get; }
+        PullRequestStatusType Status { get; }
     }
 }

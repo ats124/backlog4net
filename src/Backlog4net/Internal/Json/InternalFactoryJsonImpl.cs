@@ -10,7 +10,7 @@ namespace Backlog4net.Internal.Json
 {
     class InternalFactoryJsonImpl : InternalFactory
     {
-        public async Task<ResponseList<User>> CreateUserList(HttpResponseMessage res) => CreateObjectList<User, UserJsonImpl>(await res.Content.ReadAsStringAsync());
+        public async Task<ResponseList<User>> CreateUserListAsync(HttpResponseMessage res) => CreateObjectList<User, UserJsonImpl>(await res.Content.ReadAsStringAsync());
 
         private ResponseList<T1> CreateObjectList<T1, T2>(string content) where T2 : T1
             => new ResponseListImpl<T1>(JsonConvert.DeserializeObject<T2[]>(content).Cast<T1>());

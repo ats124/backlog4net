@@ -38,7 +38,7 @@ namespace Backlog4net.Internal
 
         //IssueComment CreateIssueComment(HttpResponseMessage res);
 
-        Task<ResponseList<User>> CreateUserList(HttpResponseMessage res);
+        Task<ResponseList<User>> CreateUserListAsync(HttpResponseMessage res);
 
         //User CreateUser(HttpResponseMessage res);
 

@@ -11,6 +11,6 @@ namespace Backlog4net.Api
     /// </summary>
     public interface UserMethods
     {
-        Task<ResponseList<User>> GetUsers(CancellationToken? token = null);
+        Task<ResponseList<User>> GetUsersAsync(CancellationToken? token = null);
     }
 }

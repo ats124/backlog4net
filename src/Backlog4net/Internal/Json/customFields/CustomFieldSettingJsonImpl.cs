@@ -22,6 +22,6 @@ namespace Backlog4net.Internal.Json.CustomFields
         public bool IsRequired { get; private set; }
 
         public abstract int FieldTypeId { get; }
-        public abstract FieldType Type { get; }
+        public abstract CustomFieldType Type { get; }
     }
 }

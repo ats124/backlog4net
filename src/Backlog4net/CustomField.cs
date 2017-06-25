@@ -7,10 +7,10 @@ namespace Backlog4net
         string IdAsString { get; }
         string Name { get; }
         int FieldTypeId { get; }
-        FieldType Type { get; }
+        CustomFieldType Type { get; }
     }
 
-	public enum FieldType
+	public enum CustomFieldType
 	{
 		Text = 1,
 		TextArea = 2,

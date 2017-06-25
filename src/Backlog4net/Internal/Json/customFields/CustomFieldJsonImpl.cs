@@ -16,6 +16,6 @@ namespace Backlog4net.Internal.Json.CustomFields
         public int FieldTypeId { get; private set; }
 
         [JsonProperty]
-        public FieldType Type => throw new NotImplementedException();
+        public CustomFieldType Type => throw new NotImplementedException();
     }
 }

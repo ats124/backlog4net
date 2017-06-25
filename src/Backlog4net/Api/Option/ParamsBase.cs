@@ -21,7 +21,7 @@ namespace Backlog4net.Api.Option
         protected void AddNewParamValue(object value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
             => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), (value ?? string.Empty).ToString()));
 
-        protected void AddNewArrayParamValue(IEnumerable<string> values, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        protected void AddNewArrayParamStringValues(IEnumerable<string> values, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             if (values != null && values.Any())
             {
@@ -30,7 +30,7 @@ namespace Backlog4net.Api.Option
             }
         }
 
-        protected void AddNewArrayParamValue<T>(IEnumerable<T> values, Func<T, string> convFunc = null, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        protected void AddNewArrayParamValues<T>(IEnumerable<T> values, Func<T, string> convFunc = null, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             if (values != null && values.Any())
             {

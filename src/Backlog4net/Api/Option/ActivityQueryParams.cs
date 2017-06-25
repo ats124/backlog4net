@@ -9,6 +9,6 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class ActivityQueryParams : QueryParams
     {
-        public IList<ActivityType> ActivityType { set => AddNewArrayParamValue(value, x => x.ToString("D"), "activityTypeId"); }
+        public IList<ActivityType> ActivityType { set => AddNewArrayParamValues(value, x => x.ToString("D"), "activityTypeId"); }
     }
 }

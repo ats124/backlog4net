@@ -45,7 +45,7 @@ namespace Backlog4net.Http
             }
         }
 
-        protected static readonly HttpClient HttpClient = new HttpClient();
+        protected static readonly HttpClient HttpClient = new HttpClient() { Timeout = System.Threading.Timeout.InfiniteTimeSpan }; // CancellationTokenでタイムアウトを指定するので
 
         public string ApiKey { get; set; }
         public string BearerToken { get; set; }
@@ -65,6 +65,10 @@ namespace Backlog4net.Http
                     return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
             }
+            catch (BacklogException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new BacklogApiException("backlog api request failed.", ex);
@@ -82,6 +86,10 @@ namespace Backlog4net.Http
                 {
                     return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
+            }
+            catch (BacklogException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -101,6 +109,10 @@ namespace Backlog4net.Http
                     return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
             }
+            catch (BacklogException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new BacklogApiException("backlog api request failed.", ex);
@@ -119,6 +131,10 @@ namespace Backlog4net.Http
                     return await HttpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, tokenHelper.Token);
                 }
             }
+            catch (BacklogException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new BacklogApiException("backlog api request failed.", ex);
@@ -136,6 +152,10 @@ namespace Backlog4net.Http
                 {
                     return await HttpClient.SendAsync(request, tokenHelper.Token);
                 }
+            }
+            catch (BacklogException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

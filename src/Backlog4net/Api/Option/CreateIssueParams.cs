@@ -48,6 +48,38 @@ namespace Backlog4net.Api.Option
         /// </summary>
         public IList<object> AttachmentIds { set => AddNewArrayParams("attachmentId[]", value); }
 
+        public IList<CustomField> CustomFields
+        {
+            set
+            {
+                if (value == null) return;
+                foreach (var field in value)
+                {
+                    var name = "customField_" + field.CustomFieldId;
+                    switch (field)
+                    {
+                        case CustomFieldValue fieldValue:
+                            if (fieldValue.IsOtherValue) name = name + "_otherValue";
+                            switch (fieldValue.Value)
+                            {
+                                case null: AddNewParam(name, ""); break;
+                                case string strValue: AddNewParam(name, strValue); break;
+                                case decimal decValue: AddNewParam(name, Math.Round(decValue, 2, MidpointRounding.AwayFromZero).ToString("F4")); break;
+                                default: AddNewParam(name, fieldValue.Value); break;
+                            }
+                            break;
+                        case CustomFieldItem fieldItem:
+                            AddNewParam(name, fieldItem.CustomFieldItemId);
+                            break;
+                        case CustomFieldItems fieldItems:
+                            foreach (var itemId in fieldItems.CustomFieldItemIds) AddNewParam(name, itemId);
+                            break;
+                    }
+                }
+            }
+        }
+
+        #region backlog4j
         //public CustomFiledValue TextCustomField { set => AddNewParam($"customField_{value.CustomFieldId}", value.CustomFieldValue); }
 
         //public IList<CustomFiledValue> TextCustomFields
@@ -114,5 +146,6 @@ namespace Backlog4net.Api.Option
         //        foreach (var field in value) TextCustomField = field;
         //    }
         //}
+        #endregion
     }
 }

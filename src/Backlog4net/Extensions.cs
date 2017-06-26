@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Backlog4net
 {
-    public static class Extensions
+    internal static class Extensions
     {
         public static string ToStartLower(this string @this)
         {

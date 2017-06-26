@@ -75,12 +75,12 @@ namespace Backlog4net
 
     public enum IssueResolutionType
     {
-        NotSet = -1,
-        FIxed = 0,
+        //NotSet = -1, Nullableで表現
+        Fixed = 0,
         WontFix = 1,
         Invalid = 2,
-        Dupulication = 3,
-        CannnotReproduce = 4,
+        Duplication = 3,
+        CannotReproduce = 4,
     }
 
     public enum IssuePriorityType

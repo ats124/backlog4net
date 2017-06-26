@@ -52,14 +52,14 @@ namespace Backlog4net.Api.Option
         private string GetDefaultParamName(string memberName)
         {
             var sb = new StringBuilder(memberName, memberName.Length);
-            sb[0] = char.ToUpperInvariant(sb[0]);
+            sb[0] = char.ToLowerInvariant(sb[0]);
             return sb.ToString();
         }
 
         private string GetDefaultArrayParamName(string memberName)
         {
             var sb = new StringBuilder(memberName, memberName.Length + 2);
-            sb[0] = char.ToUpperInvariant(sb[0]);
+            sb[0] = char.ToLowerInvariant(sb[0]);
             sb.Append("[]");
             return sb.ToString();
         }

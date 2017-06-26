@@ -15,7 +15,7 @@ namespace Backlog4net.Api.Option
 
         protected void AddNewParam(string name, object value) => Parameters.Add(new NameValuePair(name, (value ?? string.Empty).ToString()));
 
-        protected void AddNewArrayStringParams(string name, IEnumerable<string> values, bool isEmptySetBlack = false)
+        protected void AddNewArrayStringParams(string name, IEnumerable<string> values, bool isEmptySetBlank = false)
         {
             if (values != null && values.Any())
             {
@@ -23,11 +23,11 @@ namespace Backlog4net.Api.Option
             }
             else
             {
-                if (isEmptySetBlack) AddNewParam(name, "");
+                if (isEmptySetBlank) AddNewParam(name, "");
             }
         }
 
-        protected void AddNewArrayParams<T>(string name, IEnumerable<T> values, Func<T, string> convFunc = null, bool isEmptySetBlack = false)
+        protected void AddNewArrayParams<T>(string name, IEnumerable<T> values, Func<T, string> convFunc = null, bool isEmptySetBlank = false)
         {
             if (values != null || values.Any())
             {
@@ -35,7 +35,7 @@ namespace Backlog4net.Api.Option
             }
             else
             {
-                if (isEmptySetBlack) AddNewParam(name, "");
+                if (isEmptySetBlank) AddNewParam(name, "");
             }
         }
 
@@ -45,7 +45,7 @@ namespace Backlog4net.Api.Option
         protected void AddNewParamValue(object value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
             => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), (value ?? string.Empty).ToString()));
 
-        protected void AddNewArrayStringParamValues(IEnumerable<string> values, bool isEmptySetBlack = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        protected void AddNewArrayStringParamValues(IEnumerable<string> values, bool isEmptySetBlank = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             var name = GetDefaultArrayParamName(memberName);
             if (values != null && values.Any())
@@ -54,11 +54,11 @@ namespace Backlog4net.Api.Option
             }
             if (values != null && values.Any())
             {
-                if (isEmptySetBlack) AddNewParam(name, "");
+                if (isEmptySetBlank) AddNewParam(name, "");
             }
         }
 
-        protected void AddNewArrayParamValues<T>(IEnumerable<T> values, Func<T, string> convFunc = null, bool isEmptySetBlack = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        protected void AddNewArrayParamValues<T>(IEnumerable<T> values, Func<T, string> convFunc = null, bool isEmptySetBlank = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             var name = GetDefaultArrayParamName(memberName);
             if (values != null && values.Any())
@@ -67,7 +67,7 @@ namespace Backlog4net.Api.Option
             }
             else
             {
-                if (isEmptySetBlack) AddNewParam(name, "");
+                if (isEmptySetBlank) AddNewParam(name, "");
             }
         }
 

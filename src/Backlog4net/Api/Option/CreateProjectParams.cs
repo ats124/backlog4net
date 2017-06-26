@@ -12,7 +12,7 @@ namespace Backlog4net.Api.Option
             AddNewParam("key", projectKey);
             AddNewParam("chartEnabled", chartEnabled);
             AddNewParam("subtaskingEnabled", subtaskingEnabled);
-            AddNewParam("textFormattingRule", textFormattingRule);
+            AddNewParam("textFormattingRule", textFormattingRule.ToString().ToStartLower());
         }
     }
 }

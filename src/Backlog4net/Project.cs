@@ -36,4 +36,18 @@ namespace Backlog4net
         Markdown,
         Backlog,
     }
+
+    public static class IssueTypeColors
+    {
+        public const string Color1 = "#e30000";
+        public const string Color2 = "#990000";
+        public const string Color3 = "#934981";
+        public const string Color4 = "#814fbc";
+        public const string Color5 = "#2779ca";
+        public const string Color6 = "#007e9a";
+        public const string Color7 = "#7ea800";
+        public const string Color8 = "#ff9200";
+        public const string Color9 = "#ff3265";
+        public const string Color10 = "#666665";
+    }
 }

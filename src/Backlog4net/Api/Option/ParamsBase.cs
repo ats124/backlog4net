@@ -55,6 +55,7 @@ namespace Backlog4net.Api.Option
             sb[0] = char.ToUpperInvariant(sb[0]);
             return sb.ToString();
         }
+
         private string GetDefaultArrayParamName(string memberName)
         {
             var sb = new StringBuilder(memberName, memberName.Length + 2);

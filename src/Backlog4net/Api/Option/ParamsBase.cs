@@ -15,14 +15,28 @@ namespace Backlog4net.Api.Option
 
         protected void AddNewParam(string name, object value) => Parameters.Add(new NameValuePair(name, (value ?? string.Empty).ToString()));
 
-        protected void AddNewArrayStringParams(string name, IEnumerable<string> values)
+        protected void AddNewArrayStringParams(string name, IEnumerable<string> values, bool isEmptySetBlack = false)
         {
-            foreach (var val in values) AddNewParam(name, val);
+            if (values != null && values.Any())
+            {
+                foreach (var val in values) AddNewParam(name, val);
+            }
+            else
+            {
+                if (isEmptySetBlack) AddNewParam(name, "");
+            }
         }
 
-        protected void AddNewArrayParams<T>(string name, IEnumerable<T> values, Func<T, string> convFunc = null)
+        protected void AddNewArrayParams<T>(string name, IEnumerable<T> values, Func<T, string> convFunc = null, bool isEmptySetBlack = false)
         {
-            foreach (var val in values) AddNewParam(name, convFunc != null ? convFunc(val) : Convert.ToString(val));
+            if (values != null || values.Any())
+            {
+                foreach (var val in values) AddNewParam(name, convFunc != null ? convFunc(val) : Convert.ToString(val));
+            }
+            else
+            {
+                if (isEmptySetBlack) AddNewParam(name, "");
+            }
         }
 
         protected void AddNewParamValue(string value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
@@ -31,21 +45,29 @@ namespace Backlog4net.Api.Option
         protected void AddNewParamValue(object value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
             => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), (value ?? string.Empty).ToString()));
 
-        protected void AddNewArrayStringParamValues(IEnumerable<string> values, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        protected void AddNewArrayStringParamValues(IEnumerable<string> values, bool isEmptySetBlack = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
+            var name = GetDefaultArrayParamName(memberName);
             if (values != null && values.Any())
             {
-                var name = GetDefaultArrayParamName(memberName);
                 foreach (var val in values) AddNewParam(name, val);
+            }
+            if (values != null && values.Any())
+            {
+                if (isEmptySetBlack) AddNewParam(name, "");
             }
         }
 
-        protected void AddNewArrayParamValues<T>(IEnumerable<T> values, Func<T, string> convFunc = null, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        protected void AddNewArrayParamValues<T>(IEnumerable<T> values, Func<T, string> convFunc = null, bool isEmptySetBlack = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
+            var name = GetDefaultArrayParamName(memberName);
             if (values != null && values.Any())
             {
-                var name = GetDefaultArrayParamName(memberName);
                 foreach (var val in values) AddNewParam(name, convFunc != null ? convFunc(val) : Convert.ToString(val));
+            }
+            else
+            {
+                if (isEmptySetBlack) AddNewParam(name, "");
             }
         }
 

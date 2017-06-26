@@ -19,7 +19,7 @@ namespace Backlog4net.Test
                 Count = 10,
                 MinId = 1,
                 MaxId = 100,
-                Order = QueryOrder.Asc,
+                Order = Order.Asc,
             };
 
             var parameters = param.Parameters;

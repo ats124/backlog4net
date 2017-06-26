@@ -14,12 +14,6 @@ namespace Backlog4net.Api.Option
 
         public int Count { set => AddNewParamValue(value); }
 
-        public QueryOrder Order { set => AddNewParamValue(value.ToString().ToLower()); }
-    }
-
-    public enum QueryOrder
-    {
-        Asc,
-        Desc,
+        public Order Order { set => AddNewParamValue(value.ToString().ToLower()); }
     }
 }

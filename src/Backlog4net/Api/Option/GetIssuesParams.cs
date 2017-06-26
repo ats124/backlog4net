@@ -37,7 +37,7 @@ namespace Backlog4net.Api.Option
 
         public GetIssuesSortKey Sort { set => AddNewParamValue(value.ToString().ToStartLower()); }
 
-        public GetIssuesOrder Order { set => AddNewParamValue(value.ToString().ToStartLower()); }
+        public Order Order { set => AddNewParamValue(value.ToString().ToStartLower()); }
 
         public long Offset { set => AddNewParamValue(value); }
 
@@ -101,11 +101,5 @@ namespace Backlog4net.Api.Option
         EstimatedHours,
         ActualHours,
         ChildIssue,
-    }
-
-    public enum GetIssuesOrder
-    {
-        Asc,
-        Desc,
     }
 }

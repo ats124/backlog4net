@@ -13,7 +13,7 @@ namespace Backlog4net.Api.Option
 
         public GetWikisSortKey Sort { set => AddNewParamValue(value.ToString().ToStartLower()); }
 
-        public GetWikisGetOrder Order { set => AddNewParamValue(value.ToString().ToStartLower()); }
+        public Order Order { set => AddNewParamValue(value.ToString().ToStartLower()); }
     }
 
     public enum GetWikisSortKey
@@ -21,11 +21,5 @@ namespace Backlog4net.Api.Option
         Name,
         Created,
         Updated,
-    }
-
-    public enum GetWikisGetOrder
-    {
-        Asc,
-        Desc,
     }
 }

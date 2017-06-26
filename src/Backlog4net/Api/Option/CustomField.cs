@@ -39,7 +39,6 @@ namespace Backlog4net.Api.Option
 
     public sealed class CustomFieldItem : CustomField
     {
-        private object customFieldId;
         private object customFieldItemId;
 
         internal CustomFieldItem(object customFieldId, object customFieldItemId)
@@ -54,8 +53,6 @@ namespace Backlog4net.Api.Option
 
     public sealed class CustomFieldItems : CustomField
     {
-        private object customFieldId;
-
         internal CustomFieldItems(object customFieldId, IList<object> customFieldItemIds)
             : base(customFieldId)
         {
@@ -68,7 +65,6 @@ namespace Backlog4net.Api.Option
 
     public sealed class CustomFieldValue : CustomField
     {
-        private object customFieldId;
         private object customFieldValue;
         internal CustomFieldValue(object customFieldId, object customFieldValue, bool isOtherValue = false)
             : base(customFieldId)

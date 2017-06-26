@@ -26,7 +26,7 @@ namespace Backlog4net.Api.Option
         }
 
         protected void AddNewParamValue(string value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
-            => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), value));
+            => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), value ?? string.Empty));
 
         protected void AddNewParamValue(object value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
             => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), (value ?? string.Empty).ToString()));

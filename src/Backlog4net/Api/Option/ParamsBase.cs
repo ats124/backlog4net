@@ -15,13 +15,23 @@ namespace Backlog4net.Api.Option
 
         protected void AddNewParam(string name, object value) => Parameters.Add(new NameValuePair(name, (value ?? string.Empty).ToString()));
 
+        protected void AddNewArrayStringParams(string name, IEnumerable<string> values)
+        {
+            foreach (var val in values) AddNewParam(name, val);
+        }
+
+        protected void AddNewArrayParams<T>(string name, IEnumerable<T> values, Func<T, string> convFunc = null)
+        {
+            foreach (var val in values) AddNewParam(name, convFunc != null ? convFunc(val) : Convert.ToString(val));
+        }
+
         protected void AddNewParamValue(string value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
             => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), value));
 
         protected void AddNewParamValue(object value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
             => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), (value ?? string.Empty).ToString()));
 
-        protected void AddNewArrayParamStringValues(IEnumerable<string> values, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+        protected void AddNewArrayStringParamValues(IEnumerable<string> values, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             if (values != null && values.Any())
             {

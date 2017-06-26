@@ -11,7 +11,7 @@ namespace Backlog4net.Api.Option
         public AddWikiAttachmentParams(object wikiId, IList<object> attachmentIds)
         {
             this.wikiId = wikiId;
-            AddNewArrayParamValues(attachmentIds, memberName: "attachmentId");
+            AddNewArrayParams("attachmentId[]", attachmentIds);
         }
 
         public string WikiId => wikiId.ToString();

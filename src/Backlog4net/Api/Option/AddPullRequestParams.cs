@@ -36,11 +36,11 @@ namespace Backlog4net.Api.Option
         /// <summary>
         /// Sets the notified users.
         /// </summary>
-        public IList<object> NotifiedUserIds { set => AddNewArrayParamValues(value, memberName: "notifiedUserId"); }
+        public IList<object> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
 
         /// <summary>
         /// Sets the attachment files.
         /// </summary>
-        public IList<object> AttachmentIds { set => AddNewArrayParamValues(value, memberName: "attachmentId"); }
+        public IList<object> AttachmentIds { set => AddNewArrayParams("attachmentId[]", value); }
     }
 }

@@ -15,7 +15,7 @@ namespace Backlog4net.Api.Option
         {
         }
 
-        public IList<string> Items { set => AddNewArrayParamStringValues(value); }
+        public IList<string> Items { set => AddNewArrayStringParamValues(value); }
 
         public bool AllowInput { set => AddNewParamValue(value); }
 

@@ -12,6 +12,6 @@ namespace Backlog4net
 
         string Name { get; }
 
-        ResolutionType ResolutionType { get; }
+        IssueResolutionType ResolutionType { get; }
     }
 }

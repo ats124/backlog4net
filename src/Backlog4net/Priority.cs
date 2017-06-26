@@ -12,6 +12,6 @@ namespace Backlog4net
 
         string Name { get; }
 
-        PriorityType PriorityType { get; }
+        IssuePriorityType PriorityType { get; }
     }
 }

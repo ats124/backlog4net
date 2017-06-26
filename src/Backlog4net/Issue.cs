@@ -73,7 +73,7 @@ namespace Backlog4net
         Closed = 4,
     }
 
-    public enum ResolutionType
+    public enum IssueResolutionType
     {
         NotSet = -1,
         FIxed = 0,
@@ -83,7 +83,7 @@ namespace Backlog4net
         CannnotReproduce = 4,
     }
 
-    public enum PriorityType
+    public enum IssuePriorityType
     {
         High = 2,
         Normal = 3,

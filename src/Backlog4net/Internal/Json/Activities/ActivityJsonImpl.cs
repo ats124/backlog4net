@@ -14,6 +14,11 @@ namespace Backlog4net.Internal.Json.Activities
                 base("type", new Dictionary<string, Type>
                 {
                     { ActivityType.FileAdded.ToString("D"), typeof(FileAddedActivity) },
+                    { ActivityType.FileDeleted.ToString("D"), typeof(FileDeletedActivity) },
+                    { ActivityType.FileUpdated.ToString("D"), typeof(FileUpdatedActivity) },
+                    { ActivityType.GitPushed.ToString("D"), typeof(GitPushedActivity) },
+                    { ActivityType.GitRepositoryCreated.ToString("D"), typeof(GitRepositoryCreatedActivity) },
+                    { ActivityType.IssueCommented.ToString("D"), typeof(IssueCommentedActivity) },
                 }, typeof(UndefinedActivity))
             {
             }

@@ -113,5 +113,59 @@ namespace Backlog4net.Test
             Assert.IsTrue(obj is UndefinedActivity);
 
         }
+
+
+        [TestMethod]
+        public void TestGitPushedActivity()
+        {
+            var json =
+@"{
+    id: 1, 
+    type:12, 
+    content: {
+        change_type: ""test-change"",
+        ref: ""test-ref"",
+        revision_type: ""test-revision"",
+        repository: {
+            id: 2},
+        revisions:[
+            { rev: ""test-rev-1"", comment:""test-comment-1""},
+            { rev: ""test-rev-2"", comment:""test-comment-2""}],
+        revision_count: 2},
+    project: {
+        id: 2, 
+        projectKey:""test-key"",
+        name: ""test-name"",
+        chartEnabled: true,
+        subtaskingEnabled: true, 
+        textFormattingRule: ""backlog"", 
+        archived: true, 
+        displayOrder:99 },
+    createdUser: {
+        id: 3,
+        name: ""test-name"",
+        userId: ""test-id"",
+        roleType: 3,
+        lang: ""ja"",
+        mailAddress: ""test-mail""},
+    created: ""2008-07-06T15:00:00Z""
+}";
+
+            var obj = JsonConvert.DeserializeObject<Activity>(json, new ActivityJsonImplBase.JsonConverter());
+            Assert.IsNotNull(obj);
+            Assert.IsTrue(obj is GitPushedActivity);
+            var gitPushed = (GitPushedActivity)obj;
+            Assert.IsNotNull(gitPushed.Content);
+            Assert.AreEqual(gitPushed.Content.ChangeType, "test-change");
+            Assert.AreEqual(gitPushed.Content.Ref, "test-ref");
+            Assert.AreEqual(gitPushed.Content.RevisionType, "test-revision");
+            Assert.IsNotNull(gitPushed.Content.Revisions);
+            Assert.AreEqual(gitPushed.Content.Revisions.Length, 2);
+            Assert.AreEqual(gitPushed.Content.Revisions[0].Rev, "test-rev-1");
+            Assert.AreEqual(gitPushed.Content.Revisions[0].Comment, "test-comment-1");
+            Assert.AreEqual(gitPushed.Content.Revisions[1].Rev, "test-rev-2");
+            Assert.AreEqual(gitPushed.Content.Revisions[1].Comment, "test-comment-2");
+            Assert.AreEqual(gitPushed.Content.RevisionCount, 2);
+        }
     }
 }

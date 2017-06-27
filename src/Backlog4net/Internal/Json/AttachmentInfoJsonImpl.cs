@@ -12,20 +12,15 @@ namespace Backlog4net.Internal.Json
 
         [JsonProperty]
         public long Id { get; private set; }
-
+        
+        [JsonIgnore]
         public string IdAsString => Id.ToString();
 
         [JsonProperty]
         public string Name { get; private set; }
 
         private static readonly string[] imageExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
-        public bool IsImage
-        {
-            get
-            {
-                var lowerCase = Name.ToLowerInvariant();
-                return imageExtensions.Any(x => lowerCase.EndsWith(x));
-            }
-        }
+        [JsonIgnore]
+        public bool IsImage => Extensions.IsImageName(Name);
     }
 }

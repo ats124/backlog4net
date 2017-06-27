@@ -5,6 +5,8 @@ using System.Text;
 
 namespace Backlog4net.Api.Option
 {
+    using Internal.Json.CustomFields;
+    
     /// <summary>
     /// Parameters for add date type custom field API.
     /// </summary>
@@ -18,5 +20,11 @@ namespace Backlog4net.Api.Option
         public string Min { set => AddNewParamValue(value); }
 
         public string Max { set => AddNewParamValue(value); }
+
+        public DateCustomFieldInitialValueType InitialValueType { set => AddNewParamValue(value.ToString("D")); }
+
+        public string InitialDate { set => AddNewParamValue(value); }
+
+        public int InitialShift { set => AddNewParamValue(value); }
     }
 }

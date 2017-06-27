@@ -33,7 +33,7 @@ namespace Backlog4net.Internal.Json.Activities
         [JsonProperty(ItemConverterType = typeof(AttachmentJsonImpl.JsonConverter))]
         public List<Attachment> Attachments { get; private set; }
 
-        [JsonProperty(ItemConverterType = typeof(SharedFileJsonImpl.JsonConverter))]
+        [JsonProperty("shared_files", ItemConverterType = typeof(SharedFileJsonImpl.JsonConverter))]
         public List<SharedFile> SharedFiles { get; private set; }
     }
 }

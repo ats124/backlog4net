@@ -17,6 +17,6 @@ namespace Backlog4net
 
         private static readonly string[] imageExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
         public static bool IsImageName(string name) => 
-            string.IsNullOrEmpty(name) && imageExtensions.Any(x => string.Equals(x, name, StringComparison.OrdinalIgnoreCase));
+            !string.IsNullOrEmpty(name) && imageExtensions.Any(x => name.EndsWith(x, StringComparison.OrdinalIgnoreCase));
     }
 }

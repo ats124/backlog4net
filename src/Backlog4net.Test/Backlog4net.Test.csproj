@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiOptionsTest.cs" />
+    <Compile Include="ActivityJsonImplTest.cs" />
     <Compile Include="CustomFieldsJsonImplTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

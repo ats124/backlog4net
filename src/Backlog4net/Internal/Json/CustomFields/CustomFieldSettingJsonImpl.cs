@@ -11,7 +11,14 @@ namespace Backlog4net.Internal.Json.CustomFields
             public JsonConverter() :
                 base("fieldTypeId", new Dictionary<string, Type>
                 {
-                    { CustomFieldType.CheckBox.ToString("D"), typeof(CheckBoxCustomFieldSetting) }
+                    { CustomFieldType.Text.ToString("D"), typeof(TextCustomFieldSetting) },
+                    { CustomFieldType.TextArea.ToString("D"), typeof(TextAreaCustomFieldSetting) },
+                    { CustomFieldType.Numeric.ToString("D"), typeof(NumericCustomFieldSetting) },
+                    { CustomFieldType.Date.ToString("D"), typeof(DateCustomFieldSetting) },
+                    { CustomFieldType.SingleList.ToString("D"), typeof(SingleListCustomFieldSetting) },
+                    { CustomFieldType.MultipleList.ToString("D"), typeof(MultipleListCustomFieldSetting) },
+                    { CustomFieldType.CheckBox.ToString("D"), typeof(CheckBoxCustomFieldSetting) },
+                    { CustomFieldType.Radio.ToString("D"), typeof(RadioCustomFieldSetting) },
                 })
             {
             }

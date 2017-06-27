@@ -6,8 +6,7 @@ namespace Backlog4net
         long Id { get; }
         string IdAsString { get; }
         string Name { get; }
-        int FieldTypeId { get; }
-        CustomFieldType Type { get; }
+        CustomFieldType FieldType { get; }
     }
 
 	public enum CustomFieldType
@@ -18,7 +17,7 @@ namespace Backlog4net
 		Date = 4,
 		SingleList = 5,
 		MultipleList = 6,
-		ChexkBox = 7,
+		CheckBox = 7,
 		Radio = 8
 	}
 }

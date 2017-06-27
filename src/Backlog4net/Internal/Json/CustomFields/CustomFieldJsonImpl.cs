@@ -1,21 +1,33 @@
 ﻿﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace Backlog4net.Internal.Json.CustomFields
 {
     public abstract class CustomFieldJsonImpl : CustomField
     {
-        [JsonProperty]
-        public long Id {get; private set;}
+        internal class JsonConverter : MultiTypeConverter<CustomField>
+        {
+            public JsonConverter() : 
+                base("fieldTypeId", new Dictionary<string, Type>
+                {
+                    { CustomFieldType.CheckBox.ToString("D"), typeof(CheckBoxCustomField) }
+                })
+            {
+            }
+        }
 
+        [JsonProperty]
+        public long Id { get; private set;}
+
+        [JsonIgnore]
         public string IdAsString => Id.ToString();
 
         [JsonProperty]
         public string Name { get; private set; }
 
-        [JsonProperty]
-        public int FieldTypeId { get; private set; }
-
-        [JsonProperty]
-        public CustomFieldType Type => throw new NotImplementedException();
+        [JsonProperty("fieldTypeId")]
+        public abstract CustomFieldType FieldType { get; }
     }
 }

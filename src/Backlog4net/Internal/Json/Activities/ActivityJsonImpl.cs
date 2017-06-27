@@ -19,6 +19,20 @@ namespace Backlog4net.Internal.Json.Activities
                     { ActivityType.GitPushed.ToString("D"), typeof(GitPushedActivity) },
                     { ActivityType.GitRepositoryCreated.ToString("D"), typeof(GitRepositoryCreatedActivity) },
                     { ActivityType.IssueCommented.ToString("D"), typeof(IssueCommentedActivity) },
+                    { ActivityType.IssueCreated.ToString("D"), typeof(IssueCreatedActivity) },
+                    { ActivityType.IssueDeleted.ToString("D"), typeof(IssueDeletedActivity) },
+                    { ActivityType.IssueMultiUpdated.ToString("D"), typeof(IssueMultiUpdatedActivity) },
+                    { ActivityType.IssueUpdated.ToString("D"), typeof(IssueUpdatedActivity) },
+                    { ActivityType.NotifyAdded.ToString("D"), typeof(NotificationAddedActivity) },
+                    { ActivityType.ProjectUserAdded.ToString("D"), typeof(ProjectUserAddedActivity) },
+                    { ActivityType.ProjectUserRemoved.ToString("D"), typeof(ProjectUserRemovedActivity) },
+                    { ActivityType.PullRequestAdded.ToString("D"), typeof(PullRequestAddedActivity) },
+                    { ActivityType.PullRequestCommented.ToString("D"), typeof(PullRequestCommentedActivity) },
+                    { ActivityType.PullRequestUpdated.ToString("D"), typeof(PullRequestUpdatedActivity) },
+                    { ActivityType.SvnCommitted.ToString("D"), typeof(SvnCommittedActivity) },
+                    { ActivityType.WikiCreated.ToString("D"), typeof(WikiCreatedActivity) },
+                    { ActivityType.WikiDeleted.ToString("D"), typeof(WikiDeletedActivity) },
+                    { ActivityType.WikiUpdated.ToString("D"), typeof(WikiUpdatedActivity) },
                 }, typeof(UndefinedActivity))
             {
             }

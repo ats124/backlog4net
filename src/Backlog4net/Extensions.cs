@@ -8,6 +8,7 @@ namespace Backlog4net
     {
         public static string ToStartLower(this string @this)
         {
+            if (string.IsNullOrEmpty(@this)) return @this;
             var sb = new StringBuilder(@this, @this.Length);
             sb[0] = char.ToLowerInvariant(sb[0]);
             return sb.ToString();

@@ -31,7 +31,7 @@ namespace Backlog4net.Internal.Json
         [JsonIgnore]
         public string ProjectIdAsString => ProjectId.ToString();
 
-        [JsonProperty]
+        [JsonProperty, JsonConverter(typeof(IssutTypeJsonImpl.JsonConverter))]
         public IssueType IssueType { get; private set; }
 
         [JsonProperty]

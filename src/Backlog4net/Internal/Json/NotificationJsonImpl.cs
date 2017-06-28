@@ -12,14 +12,14 @@ namespace Backlog4net.Internal.Json
         [JsonIgnore]
         public string IdAsString => Id.ToString();
 
-        [JsonProperty]
+        [JsonProperty("alreadyRead")]
         public bool IsAlreadyRead { get; private set; }
 
         [JsonProperty]
         public Reason Reason { get; private set; }
 
-        [JsonProperty]
-        public bool ResouceAlreadyRead { get; private set; }
+        [JsonProperty("resourceAlreadyRead")]
+        public bool IsResourceAlreadyRead { get; private set; }
 
         [JsonProperty, JsonConverter(typeof(UserJsonImpl.JsonConverter))]
         public User Sender { get; private set; }
@@ -31,6 +31,18 @@ namespace Backlog4net.Internal.Json
         public Project Project { get; private set; }
 
         [JsonProperty, JsonConverter(typeof(IssueJsonImpl.JsonConverter))]
+        public Issue Issue { get; private set; }
 
-	}
+        [JsonProperty, JsonConverter(typeof(IssueCommentJsonImpl.JsonConverter))]
+        public IssueComment Comment { get; private set; }
+
+        [JsonProperty, JsonConverter(typeof(PullRequestJsonImpl.JsonConverter))]
+        public PullRequest PullRequest { get; private set; }
+
+        [JsonProperty, JsonConverter(typeof(PullRequestCommentJsonImpl.JsonConverter))]
+        public PullRequestComment PullRequestComment { get; private set; }
+
+        [JsonProperty]
+        public DateTime Created { get; private set; }
+    }
 }

@@ -12,7 +12,7 @@ namespace Backlog4net
 
         long ProjectId { get; }
 
-        string PtojectIdAsString { get; }
+        string ProjectIdAsString { get; }
 
         long RepositoryId { get; }
 

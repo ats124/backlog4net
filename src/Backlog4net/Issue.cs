@@ -38,21 +38,23 @@ namespace Backlog4net
 
         Version[] Versions { get; }
 
-        Milestone[] MileStone { get; }
+        Milestone[] Milestone { get; }
 
         DateTime StartDate { get; }
 
         DateTime DueDate { get; }
 
-        Decimal EstimateHours { get; }
+        decimal EstimatedHours { get; }
 
-        Decimal ActualHours { get; }
+        decimal ActualHours { get; }
 
         long ParentIssueId { get; }
 
         User CreatedUser { get; }
 
-        DateTime UpdatedUser { get; }
+        DateTime Created { get; }
+
+        User UpdatedUser { get; }
 
         DateTime Updated { get; }
 
@@ -62,7 +64,7 @@ namespace Backlog4net
 
         SharedFile[] SharedFiles { get; }
 
-        Star[] Starts { get; }
+        Star[] Stars { get; }
     }
 
     public enum IssueStatusType

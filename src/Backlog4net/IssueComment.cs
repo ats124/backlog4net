@@ -4,7 +4,7 @@ namespace Backlog4net
     /// <summary>
     /// The interface for Backlog issue comment data.
     /// </summary>
-    public interface IssueComment
+    public interface IssueComment : Comment
     {
         ChangeLog[] ChangeLog { get; }
 
@@ -14,7 +14,7 @@ namespace Backlog4net
 
         DateTime Updated { get; }
 
-        Star[] Starts { get; }
+        Star[] Stars { get; }
 
         Notification[] Notifications { get; }
     }

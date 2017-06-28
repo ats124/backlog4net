@@ -22,7 +22,7 @@ namespace Backlog4net
 
         Attachment[] Attachments { get; }
 
-        SharedFile[] SharedFiled { get; }
+        SharedFile[] SharedFiles { get; }
 
         Star[] Stars { get; }
 

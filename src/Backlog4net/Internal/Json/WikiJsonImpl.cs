@@ -22,16 +22,16 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public string Content { get; private set; }
 
-        [JsonProperty, JsonConverter(typeof(WikiTagJsonImpl.JsonConverter))]
+        [JsonProperty(ItemConverterType = typeof(WikiTagJsonImpl.JsonConverter))]
         public WikiTag[] Tags { get; private set; }
 
-        [JsonProperty, JsonConverter(typeof(AttachmentJsonImpl.JsonConverter))]
+        [JsonProperty(ItemConverterType = typeof(AttachmentJsonImpl.JsonConverter))]
         public Attachment[] Attachments { get; private set; }
 
-        [JsonProperty, JsonConverter(typeof(SharedFileJsonImpl.JsonConverter))]
+        [JsonProperty(ItemConverterType = typeof(SharedFileJsonImpl.JsonConverter))]
         public SharedFile[] SharedFiles { get; private set; }
 
-        [JsonProperty, JsonConverter(typeof(StarJsonImpl.JsonConverter))]
+        [JsonProperty(ItemConverterType = typeof(StarJsonImpl.JsonConverter))]
         public Star[] Stars { get; private set; }
 
         [JsonProperty]

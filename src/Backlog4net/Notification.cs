@@ -10,11 +10,11 @@ namespace Backlog4net
 
         string IdAsString { get; }
 
-        bool AlreadyRead { get; }
+        bool IsAlreadyRead { get; }
 
         Reason Reason { get; }
 
-        bool ResourceAlreadyRead { get; }
+        bool IsResourceAlreadyRead { get; }
 
         User Sender { get; }
 

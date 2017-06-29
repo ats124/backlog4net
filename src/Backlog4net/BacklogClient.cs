@@ -7,7 +7,7 @@ namespace Backlog4net
     using Api;
     using Auth;
 
-    public interface BacklogClient : UserMethods
+    public interface BacklogClient //: UserMethods
     {
         void SetOAuthSupport(OAuthSupport oAuthSupport);
     }

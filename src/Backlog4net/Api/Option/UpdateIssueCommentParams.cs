@@ -12,6 +12,7 @@ namespace Backlog4net.Api.Option
         public UpdateIssueCommentParams(object issueIdOrKey, object commentId, string content)
         {
             this.issueIdOrKey = issueIdOrKey;
+            this.commentId = commentId;
             AddNewParam("content", content);
         }
 

@@ -7,6 +7,8 @@ namespace Backlog4net.Internal.Json
 {
     public class WatchJsonImpl : Watch
     {
+        internal class JsonConverter : InterfaceConverter<Watch, WatchJsonImpl> { }
+
         [JsonProperty]
         public long Id { get; private set; }
 

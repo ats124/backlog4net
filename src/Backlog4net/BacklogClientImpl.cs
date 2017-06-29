@@ -43,7 +43,7 @@ namespace Backlog4net
             var response = await HttpClient.Get(endpoint, getParams, queryParams, token);
             if (NeedTokenRefresh(response))
             {
-                RefreshToken();
+                await RefreshToken();
                 response = await HttpClient.Get(endpoint, getParams, queryParams, token);
             }
             await CheckError(response);
@@ -58,7 +58,7 @@ namespace Backlog4net
             var response = await HttpClient.Post(endpoint, postParams, token);
             if (NeedTokenRefresh(response))
             {
-                RefreshToken();
+                await RefreshToken();
                 response = await HttpClient.Post(endpoint, postParams, token);
             }
             await CheckError(response);
@@ -73,7 +73,7 @@ namespace Backlog4net
             var response = await HttpClient.Patch(endpoint, patchParams, token);
             if (NeedTokenRefresh(response))
             {
-                RefreshToken();
+                await RefreshToken();
                 response = await HttpClient.Patch(endpoint, patchParams, token);
             }
             await CheckError(response);
@@ -85,7 +85,7 @@ namespace Backlog4net
             var response = await HttpClient.Put(endpoint, putParams, token);
             if (NeedTokenRefresh(response))
             {
-                RefreshToken();
+                await RefreshToken();
                 response = await HttpClient.Put(endpoint, putParams, token);
             }
             await CheckError(response);
@@ -97,7 +97,7 @@ namespace Backlog4net
             var response = await HttpClient.Delete(endpoint, deleteParam, token);
             if (NeedTokenRefresh(response))
             {
-                RefreshToken();
+                await RefreshToken();
                 response = await HttpClient.Delete(endpoint, deleteParam, token);
             }
             await CheckError(response);
@@ -129,9 +129,9 @@ namespace Backlog4net
                     Configure.AccessToken != null;
         }
 
-        private void RefreshToken()
+        private async Task RefreshToken(CancellationToken? token = null)
         {
-            var accessToken = OAuthSupport.RefreshOAuthAccessToken();
+            var accessToken = await OAuthSupport.RefreshOAuthAccessTokenAsync(token);
             Configure.AccessToken = accessToken;
             ConfigureHttpClient();
         }

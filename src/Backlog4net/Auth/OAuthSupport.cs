@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Auth
 {
@@ -8,9 +10,9 @@ namespace Backlog4net.Auth
     {
         void SetOAuthClientId(string clientId, string clientSecret);
         void SetOAuthRedirectUrl(string redirectUrl);
-        string GetOAuthAuthorizationURL();
-        AccessToken GetOAuthAccessToken(string oauthCode);
-        AccessToken RefreshOAuthAccessToken();
+        string GetOAuthAuthorizationUrl();
+        Task<AccessToken> GetOAuthAccessTokenAsync(string oauthCode, CancellationToken? token = null);
+        Task<AccessToken> RefreshOAuthAccessTokenAsync(CancellationToken? token = null);
         event EventHandler<AccessToken> OnAccessTokenRefresh;
     }
 }

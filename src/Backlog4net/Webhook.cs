@@ -12,7 +12,7 @@ namespace Backlog4net
 
         string Name { get; }
 
-        string Descriptin { get; }
+        string Description { get; }
 
         string HookUrl { get; }
 
@@ -24,7 +24,7 @@ namespace Backlog4net
 
         DateTime Created { get; }
 
-        User UpdateUser { get; }
+        User UpdatedUser { get; }
 
         DateTime Updated { get; }
     }

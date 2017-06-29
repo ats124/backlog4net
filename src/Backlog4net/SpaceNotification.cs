@@ -6,7 +6,7 @@ namespace Backlog4net
     /// </summary>
     public interface SpaceNotification
     {
-        string content { get; }
+        string Content { get; }
 
         DateTime Updated { get; }
     }

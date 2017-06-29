@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
+
 namespace Backlog4net.Internal.File
 {
-    public class IconImpl : Icon
+    public class AttachmentDataImpl : AttachmentData
     {
-        public IconImpl(string filename, Stream content)
+        public AttachmentDataImpl(string filename, Stream content)
         {
             this.FileName = filename;
             this.Content = content;

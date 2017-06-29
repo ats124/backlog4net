@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.IO;
+
 namespace Backlog4net.Internal.File
 {
-    public class IconImpl : Icon
+    public class SharedFileDataImpl : SharedFileData
     {
-        public IconImpl(string filename, Stream content)
+        public SharedFileDataImpl(string filename, Stream content)
         {
             this.FileName = filename;
             this.Content = content;

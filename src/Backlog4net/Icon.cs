@@ -7,7 +7,7 @@ namespace Backlog4net
 	/// </summary>
 	public interface Icon
     {
-        string Filename { get; }
+        string FileName { get; }
 
         Stream Content { get; }
     }

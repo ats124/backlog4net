@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Api
 {
@@ -13,30 +15,30 @@ namespace Backlog4net.Api
         /// Adds a star to the issue.
         /// </summary>
         /// <param name="issueId">the issue identifier</param>
-        void AddStarToIssue(object issueId);
+        Task AddStarToIssueAsync(object issueId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the issue comment.
         /// </summary>
         /// <param name="commentId">comment identifier</param>
-        void AddStarToComment(object commentId);
+        Task AddStarToCommentAsync(object commentId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the wiki.
         /// </summary>
         /// <param name="wikiId">the wiki identifier</param>
-        void AddStarToWiki(object wikiId);
+        Task AddStarToWikiAsync(object wikiId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the pull request.
         /// </summary>
         /// <param name="pullRequestId">the pull request identifier</param>
-        void AddStarToPullRequest(object pullRequestId);
+        Task AddStarToPullRequestAsync(object pullRequestId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the pull request comment.
         /// </summary>
         /// <param name="pullRequestCommentId">the pull request comment identifier</param>
-        void AddStarToPullRequestComment(object pullRequestCommentId);
+        Task AddStarToPullRequestCommentAsync(object pullRequestCommentId, CancellationToken? token = null);
     }
 }

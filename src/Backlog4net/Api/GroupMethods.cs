@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Api
 {
@@ -15,41 +17,41 @@ namespace Backlog4net.Api
         /// Returns all the groups.
         /// </summary>
         /// <returns>the groups in a list.</returns>
-        ResponseList<Group> GetGroups();
+        Task<ResponseList<Group>> GetGroupsAsync(CancellationToken? token = null);
 
         /// <summary>
         /// Returns all the groups.
         /// </summary>
         /// <param name="params">the offset parameters</param>
         /// <returns>the groups in a list.</returns>
-        ResponseList<Group> GetGroups(OffsetParams @params);
+        Task<ResponseList<Group>> GetGroupsAsync(OffsetParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Creates a group.
         /// </summary>
         /// <param name="params">the group creating parameters</param>
         /// <returns>the created Group</returns>
-        Group CreateGroup(CreateGroupParams @params);
+        Task<Group> CreateGroupAsync(CreateGroupParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the groups identified by the group's id.
         /// </summary>
         /// <param name="groupId">the group identifier</param>
         /// <returns>the Group.</returns>
-        Group GetGroup(object groupId);
+        Task<Group> GetGroupAsync(object groupId, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing group.
         /// </summary>
         /// <param name="params">the group updating parameters</param>
         /// <returns>the updated Group.</returns>
-        Group UpdateGroup(UpdateGroupParams @params);
+        Task<Group> UpdateGroupAsync(UpdateGroupParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes the existing groups.
         /// </summary>
         /// <param name="groupId">the group identifier</param>
         /// <returns>the deleted Group.</returns>
-        Group DeleteGroup(object groupId);
+        Task<Group> DeleteGroupAsync(object groupId, CancellationToken? token = null);
     }
 }

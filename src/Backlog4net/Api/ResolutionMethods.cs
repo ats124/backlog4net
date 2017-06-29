@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Api
 {
@@ -13,6 +15,6 @@ namespace Backlog4net.Api
         /// Returns the resolutions.
         /// </summary>
         /// <returns>the resolutions in a list</returns>
-        ResponseList<Resolution> GetResolutions();
+        Task<ResponseList<Resolution>> GetResolutionsAsync(CancellationToken? token = null);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Api
 {
@@ -11,10 +13,10 @@ namespace Backlog4net.Api
     /// </summary>
     public interface ImportMethods
     {
-        Issue ImportIssue(ImportIssueParams @params);
+        Task<Issue> ImportIssueAsync(ImportIssueParams @params, CancellationToken? token = null);
 
-        Issue ImportUpdateIssue(ImportUpdateIssueParams @params);
+        Task<Issue> ImportUpdateIssueAsync(ImportUpdateIssueParams @params, CancellationToken? token = null);
 
-        Wiki ImportWiki(ImportWikiParams @params);
+        Task<Wiki> ImportWikiAsync(ImportWikiParams @params, CancellationToken? token = null);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Api
 {
@@ -16,7 +18,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="watchingId">watchingId</param>
         /// <returns>the Watch</returns>
-        Watch GetWatch(long watchingId);
+        Task<Watch> GetWatchAsync(long watchingId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a watching to the issue.
@@ -24,26 +26,26 @@ namespace Backlog4net.Api
         /// <param name="watchingId">the issue identifier</param>
         /// <param name="note">note</param>
         /// <returns></returns>
-        Watch AddWatchToIssue(object watchingId, String note);
+        Task<Watch> AddWatchToIssueAsync(object watchingId, String note, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing watching.
         /// </summary>
         /// <param name="params">the updating project parameters</param>
         /// <returns>the updated Watching</returns>
-        Watch UpdateWatch(UpdateWatchParams @params);
+        Task<Watch> UpdateWatchAsync(UpdateWatchParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes the existing watching.
         /// </summary>
         /// <param name="watchingId">the watching identifier</param>
         /// <returns>the deleted watching</returns>
-        Watch DeleteWatch(object watchingId);
+        Task<Watch> DeleteWatchAsync(object watchingId, CancellationToken? token = null);
 
         /// <summary>
         /// Marks the watching as already read.
         /// </summary>
         /// <param name="numericUserId">Marks the watching as already read.</param>
-        void MarkAsCheckedUserWatches(object numericUserId);
+        Task MarkAsCheckedUserWatchesAsync(object numericUserId, CancellationToken? token = null);
     }
 }

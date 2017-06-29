@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Api
 {
@@ -15,52 +17,52 @@ namespace Backlog4net.Api
         /// Returns the Space.
         /// </summary>
         /// <returns>the Space</returns>
-        Space GetSpace();
+        Task<Space> GetSpaceAsync(CancellationToken? token = null);
 
         /// <summary>
         /// Returns the activities in the space.
         /// </summary>
         /// <returns>the activities in a list</returns>
-        ResponseList<Activity> GetSpaceActivities();
+        Task<ResponseList<Activity>> GetSpaceActivitiesAsync(CancellationToken? token = null);
 
         /// <summary>
         /// Returns the activities in the space.
         /// </summary>
         /// <param name="params">the query parameters</param>
         /// <returns>the activities in a list</returns>
-        ResponseList<Activity> GetSpaceActivities(ActivityQueryParams @params);
+        Task<ResponseList<Activity>> GetSpaceActivitiesAsync(ActivityQueryParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the space icon.
         /// </summary>
         /// <returns>the Icon</returns>
-        Icon GetSpaceIcon();
+        Task<Icon> GetSpaceIconAsync(CancellationToken? token = null);
 
         /// <summary>
         /// Returns the space information.
         /// </summary>
         /// <returns>the SpaceNotification</returns>
-        SpaceNotification GetSpaceNotification();
+        Task<SpaceNotification> GetSpaceNotificationAsync(CancellationToken? token = null);
 
         /// <summary>
         /// Updates the space information.
         /// </summary>
         /// <param name="content">information</param>
         /// <returns>the updated space information</returns>
-        SpaceNotification UpdateSpaceNotification(string content);
+        Task<SpaceNotification> UpdateSpaceNotificationAsync(string content, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the disk usage of the project.
         /// </summary>
         /// <returns>the DiskUsage</returns>
-        DiskUsage GetSpaceDiskUsage();
+        Task<DiskUsage> GetSpaceDiskUsageAsync(CancellationToken? token = null);
 
         /// <summary>
         /// Posts the attachment file for issue or wiki.
         /// </summary>
         /// <param name="attachmentData">the attachment file data</param>
         /// <returns></returns>
-        Attachment PostAttachment(AttachmentData attachmentData);
+        Task<Attachment> PostAttachmentAsync(AttachmentData attachmentData, CancellationToken? token = null);
 
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Backlog4net.Api
 {
@@ -16,14 +18,14 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">the project key</param>
         /// <returns>the webhooks in a list.</returns>
-        ResponseList<Webhook> GetWebhooks(object projectIdOrKey);
+        Task<ResponseList<Webhook>> GetWebhooksAsync(object projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Create a webhook.
         /// </summary>
         /// <param name="params">the creating webhook parameters.</param>
         /// <returns>the created webhook</returns>
-        Webhook CreateWebhook(CreateWebhookParams @params);
+        Task<Webhook> CreateWebhookAsync(CreateWebhookParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the webhook.
@@ -31,14 +33,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="webhookId">the webhook identifier</param>
         /// <returns>the Webhook</returns>
-        Webhook GetWebhook(object projectIdOrKey, object webhookId);
+        Task<Webhook> GetWebhookAsync(object projectIdOrKey, object webhookId, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing webhook.
         /// </summary>
         /// <param name="params">the updating webhook parameters</param>
         /// <returns>the updated Webhook</returns>
-        Webhook UpdateWebhook(UpdateWebhookParams @params);
+        Task<Webhook> UpdateWebhookAsync(UpdateWebhookParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes the existing webhook.
@@ -46,6 +48,6 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project key</param>
         /// <param name="webhookId">the webhook identifier</param>
         /// <returns>the deleted webhook</returns>
-        Webhook DeleteWebhook(object projectIdOrKey, object webhookId);
+        Task<Webhook> DeleteWebhookAsync(object projectIdOrKey, object webhookId, CancellationToken? token = null);
     }
 }

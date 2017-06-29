@@ -9,6 +9,8 @@ namespace Backlog4net.Internal.Json.Auth
 
     public class AccessTokenJsonImpl : AccessToken
     {
+        internal class JsonConverter : InterfaceConverter<AccessToken, AccessTokenJsonImpl> { }
+
         [JsonProperty("token_type")]
         public string Type { get; private set; }
 

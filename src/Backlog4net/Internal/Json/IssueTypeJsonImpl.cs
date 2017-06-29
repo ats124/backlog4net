@@ -5,9 +5,9 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json
 {
-    public class IssutTypeJsonImpl : IssueType
+    public class IssueTypeJsonImpl : IssueType
     {
-        internal class JsonConverter : InterfaceConverter<IssueType, IssutTypeJsonImpl> { }
+        internal class JsonConverter : InterfaceConverter<IssueType, IssueTypeJsonImpl> { }
 
         [JsonProperty]
         public long Id { get; private set; }

@@ -7,6 +7,8 @@ namespace Backlog4net.Internal.Json
 {
     public class WebhookJsonImpl : Webhook
     {
+        internal class JsonConverter : InterfaceConverter<Webhook, WebhookJsonImpl> { }
+
         [JsonProperty]
         public long Id { get; private set; }
 

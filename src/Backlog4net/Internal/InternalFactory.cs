@@ -10,122 +10,122 @@ namespace Backlog4net.Internal
 
     interface InternalFactory
     {
-        //AccessToken CreateAccessToken(HttpResponseMessage res);
+        Task<AccessToken> CreateAccessTokenAsync(HttpResponseMessage res);
 
-        //Space CreateSpace(HttpResponseMessage res);
+        Task<Space> CreateSpaceAsync(HttpResponseMessage res);
 
-        //SpaceNotification CreateSpaceNotification(HttpResponseMessage res);
+        Task<SpaceNotification> CreateSpaceNotificationAsync(HttpResponseMessage res);
 
-        //DiskUsage CreateDiskUsage(HttpResponseMessage res);
+        Task<DiskUsage> CreateDiskUsageAsync(HttpResponseMessage res);
 
-        //DiskUsageDetail CreateDiskUsageDetail(HttpResponseMessage res);
+        Task<DiskUsageDetail> CreateDiskUsageDetailAsync(HttpResponseMessage res);
 
-        //ResponseList<Project> CreateProjectList(HttpResponseMessage res);
+        Task<ResponseList<Project>> CreateProjectListAsync(HttpResponseMessage res);
 
-        //Project CreateProject(HttpResponseMessage res);
+        Task<Project> CreateProjectAsync(HttpResponseMessage res);
 
-        //ResponseList<Activity> CreateActivityList(HttpResponseMessage res);
+        Task<ResponseList<Activity>> CreateActivityListAsync(HttpResponseMessage res);
 
-        //Activity CreateActivity(HttpResponseMessage res);
+        Task<Activity> CreateActivityAsync(HttpResponseMessage res);
 
-        //ResponseList<Issue> CreateIssueList(HttpResponseMessage res);
+        Task<ResponseList<Issue>> CreateIssueListAsync(HttpResponseMessage res);
 
-        //Issue CreateIssue(HttpResponseMessage res);
+        Task<Issue> CreateIssueAsync(HttpResponseMessage res);
 
-        //Issue importIssue(HttpResponseMessage res);
+        Task<Issue> ImportIssueAsync(HttpResponseMessage res);
 
-        //ResponseList<IssueComment> CreateIssueCommentList(HttpResponseMessage res);
+        Task<ResponseList<IssueComment>> CreateIssueCommentListAsync(HttpResponseMessage res);
 
-        //IssueComment CreateIssueComment(HttpResponseMessage res);
+        Task<IssueComment> CreateIssueCommentAsync(HttpResponseMessage res);
 
         Task<ResponseList<User>> CreateUserListAsync(HttpResponseMessage res);
 
-        //User CreateUser(HttpResponseMessage res);
+        Task<User> CreateUserAsync(HttpResponseMessage res);
 
-        //ResponseList<IssueType> CreateIssueTypeList(HttpResponseMessage res);
+        Task<ResponseList<IssueType>> CreateIssueTypeListAsync(HttpResponseMessage res);
 
-        //IssueType CreateIssueType(HttpResponseMessage res);
+        Task<IssueType> CreateIssueTypeAsync(HttpResponseMessage res);
 
-        //ResponseList<Category> CreateCategoryList(HttpResponseMessage res);
+        Task<ResponseList<Category>> CreateCategoryListAsync(HttpResponseMessage res);
 
-        //Category CreateCategory(HttpResponseMessage res);
+        Task<Category> CreateCategoryAsync(HttpResponseMessage res);
 
-        //ResponseList<CustomFieldSetting> CreateCustomFieldList(HttpResponseMessage res);
+        Task<ResponseList<CustomFieldSetting>> CreateCustomFieldListAsync(HttpResponseMessage res);
 
-        //CustomFieldSetting CreateCustomField(HttpResponseMessage res);
+        Task<CustomFieldSetting> CreateCustomFieldAsync(HttpResponseMessage res);
 
-        //ResponseList<Priority> CreatePriorityList(HttpResponseMessage res);
+        Task<ResponseList<Priority>> CreatePriorityListAsync(HttpResponseMessage res);
 
-        //ResponseList<Resolution> CreateResolutionList(HttpResponseMessage res);
+        Task<ResponseList<Resolution>> CreateResolutionListAsync(HttpResponseMessage res);
 
-        //ResponseList<Status> CreateStatusList(HttpResponseMessage res);
+        Task<ResponseList<Status>> CreateStatusListAsync(HttpResponseMessage res);
 
-        //ResponseList<Star> CreateStarList(HttpResponseMessage res);
+        Task<ResponseList<Star>> CreateStarListAsync(HttpResponseMessage res);
 
-        //Star CreateStar(HttpResponseMessage res);
+        Task<Star> CreateStarAsync(HttpResponseMessage res);
 
-        //Count CreateCount(HttpResponseMessage res);
+        Task<Count> CreateCountAsync(HttpResponseMessage res);
 
-        //ResponseList<Version> CreateVersionList(HttpResponseMessage res);
+        Task<ResponseList<Version>> CreateVersionListAsync(HttpResponseMessage res);
 
-        //Version CreateVersion(HttpResponseMessage res);
+        Task<Version> CreateVersionAsync(HttpResponseMessage res);
 
-        //ResponseList<Milestone> CreateMilestoneList(HttpResponseMessage res);
+        Task<ResponseList<Milestone>> CreateMilestoneListAsync(HttpResponseMessage res);
 
-        //Milestone CreateMilestone(HttpResponseMessage res);
+        Task<Milestone> CreateMilestoneAsync(HttpResponseMessage res);
 
-        //Wiki CreateWiki(HttpResponseMessage res);
+        Task<Wiki> CreateWikiAsync(HttpResponseMessage res);
 
-        //Wiki importWiki(HttpResponseMessage res);
+        Task<Wiki> ImportWikiAsync(HttpResponseMessage res);
 
-        //ResponseList<Wiki> CreateWikiList(HttpResponseMessage res);
+        Task<ResponseList<Wiki>> CreateWikiListAsync(HttpResponseMessage res);
 
-        //ResponseList<WikiTag> CreateWikiTagList(HttpResponseMessage res);
+        Task<ResponseList<WikiTag>> CreateWikiTagListAsync(HttpResponseMessage res);
 
-        //WikiHistory CreateWikiHistory(HttpResponseMessage res);
+        Task<WikiHistory> CreateWikiHistoryAsync(HttpResponseMessage res);
 
-        //WikiTag CreateWikiTag(HttpResponseMessage res);
+        Task<WikiTag> CreateWikiTagAsync(HttpResponseMessage res);
 
-        //ResponseList<WikiHistory> CreateWikiHistoryList(HttpResponseMessage res);
+        Task<ResponseList<WikiHistory>> CreateWikiHistoryListAsync(HttpResponseMessage res);
 
-        //ResponseList<Notification> CreateNotificationList(HttpResponseMessage res);
+        Task<ResponseList<Notification>> CreateNotificationListAsync(HttpResponseMessage res);
 
-        //Repository CreateRepository(HttpResponseMessage res);
+        Task<Repository> CreateRepositoryAsync(HttpResponseMessage res);
 
-        //ResponseList<Repository> CreateRepositoryList(HttpResponseMessage res);
+        Task<ResponseList<Repository>> CreateRepositoryListAsync(HttpResponseMessage res);
 
-        //PullRequest CreatePullRequest(HttpResponseMessage res);
+        Task<PullRequest> CreatePullRequestAsync(HttpResponseMessage res);
 
-        //ResponseList<PullRequest> CreatePullRequestList(HttpResponseMessage res);
+        Task<ResponseList<PullRequest>> CreatePullRequestListAsync(HttpResponseMessage res);
 
-        //PullRequestComment CreatePullRequestComment(HttpResponseMessage res);
+        Task<PullRequestComment> CreatePullRequestCommentAsync(HttpResponseMessage res);
 
-        //ResponseList<PullRequestComment> CreatePullRequestCommentList(HttpResponseMessage res);
+        Task<ResponseList<PullRequestComment>> CreatePullRequestCommentListAsync(HttpResponseMessage res);
 
-        //ResponseList<ViewedIssue> CreateViewedIssueList(HttpResponseMessage res);
+        Task<ResponseList<ViewedIssue>> CreateViewedIssueListAsync(HttpResponseMessage res);
 
-        //ResponseList<ViewedProject> CreateViewedProjectList(HttpResponseMessage res);
+        Task<ResponseList<ViewedProject>> CreateViewedProjectListAsync(HttpResponseMessage res);
 
-        //ResponseList<ViewedWiki> CreateViewedWikiList(HttpResponseMessage res);
+        Task<ResponseList<ViewedWiki>> CreateViewedWikiListAsync(HttpResponseMessage res);
 
-        //ResponseList<SharedFile> CreateSharedFileList(HttpResponseMessage res);
+        Task<ResponseList<SharedFile>> CreateSharedFileListAsync(HttpResponseMessage res);
 
-        //SharedFile CreateSharedFile(HttpResponseMessage res);
+        Task<SharedFile> CreateSharedFileAsync(HttpResponseMessage res);
 
-        //ResponseList<Attachment> CreateAttachmentList(HttpResponseMessage res);
+        Task<ResponseList<Attachment>> CreateAttachmentListAsync(HttpResponseMessage res);
 
-        //Attachment CreateAttachment(HttpResponseMessage res);
+        Task<Attachment> CreateAttachmentAsync(HttpResponseMessage res);
 
-        //Group CreateGroup(HttpResponseMessage res);
+        Task<Group> CreateGroupAsync(HttpResponseMessage res);
 
-        //ResponseList<Group> CreateGroupList(HttpResponseMessage res);
+        Task<ResponseList<Group>> CreateGroupListAsync(HttpResponseMessage res);
 
-        //ResponseList<Webhook> CreateWebhookList(HttpResponseMessage res);
+        Task<ResponseList<Webhook>> CreateWebhookListAsync(HttpResponseMessage res);
 
-        //Webhook CreateWebhook(HttpResponseMessage res);
+        Task<Webhook> CreateWebhookAsync(HttpResponseMessage res);
 
-        //Watch CreateWatch(HttpResponseMessage res);
+        Task<Watch> CreateWatchAsync(HttpResponseMessage res);
 
-        //ResponseList<Watch> CreateWatchList(HttpResponseMessage res);
+        Task<ResponseList<Watch>> CreateWatchListAsync(HttpResponseMessage res);
     }
 }

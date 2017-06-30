@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ namespace Backlog4net
 {
     using Api;
     using Api.Option;
+    using Backlog4net.Http;
 
     partial class BacklogClientImpl
     {
@@ -73,67 +75,120 @@ namespace Backlog4net
 
         public async Task<ResponseList<Attachment>> GetIssueAttachmentsAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/attachments"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateAttachmentListAsync(response);
+            }
         }
 
-        public Task<IssueComment> GetIssueCommentAsync(object issueIdOrKey, object commentId, CancellationToken? token = default(CancellationToken?))
+        public async Task<IssueComment> GetIssueCommentAsync(object issueIdOrKey, object commentId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/comments/{commentId}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueCommentAsync(response);
+            }
         }
 
-        public Task<int> GetIssueCommentCountAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetIssueCommentCountAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/comments/count"), token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateCountAsync(response)).CountValue;
+            }
         }
 
-        public Task<ResponseList<Notification>> GetIssueCommentNotificationsAsync(object issueIdOrKey, object commentId, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Notification>> GetIssueCommentNotificationsAsync(object issueIdOrKey, object commentId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/comments/{commentId}/notifications"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateNotificationListAsync(response);
+            }
         }
 
-        public Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrkey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/comments"), token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateIssueCommentListAsync(response));
+            }
         }
 
-        public Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrkey, QueryParams queryParams, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, QueryParams queryParams, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/comments"), queryParams, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateIssueCommentListAsync(response));
+            }
         }
 
-        public Task<ResponseList<Issue>> GetIssuesAsync(GetIssuesParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Issue>> GetIssuesAsync(GetIssuesParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateIssueListAsync(response));
+            }
         }
 
-        public Task<int> GetIssuesCountAsync(GetIssuesCountParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetIssuesCountAsync(GetIssuesCountParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/count"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateCountAsync(response)).CountValue;
+            }
         }
 
-        public Task<ResponseList<SharedFile>> GetIssueSharedFilesAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<SharedFile>> GetIssueSharedFilesAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/sharedFiles"), token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateSharedFileListAsync(response));
+            }
         }
 
-        public Task<ResponseList<SharedFile>> LinkIssueSharedFileAsync(object issueIdOrKey, object[] fileIds, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<SharedFile>> LinkIssueSharedFileAsync(object issueIdOrKey, object[] fileIds, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = fileIds.Select(x => new NameValuePair("fileId[]", x.ToString())).ToArray();
+            using (var response = await Post(BuildEndpoint($"issues/{issueIdOrKey}/sharedFiles"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateSharedFileListAsync(response));
+            }
         }
 
-        public Task<SharedFile> UnlinkIssueSharedFileAsync(object issueIdOrKey, object fileId, CancellationToken? token = default(CancellationToken?))
+        public async Task<SharedFile> UnlinkIssueSharedFileAsync(object issueIdOrKey, object fileId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Delete(BuildEndpoint($"issues/{issueIdOrKey}/sharedFiles/{fileId}"), token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateSharedFileAsync(response));
+            }
         }
 
-        public Task<Issue> UpdateIssueAsync(UpdateIssueParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Issue> UpdateIssueAsync(UpdateIssueParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateIssueAsync(response));
+            }
         }
 
-        public Task<IssueComment> UpdateIssueCommentAsync(UpdateIssueCommentParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<IssueComment> UpdateIssueCommentAsync(UpdateIssueCommentParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/comments/{@params.CommentId}"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateIssueCommentAsync(response));
+            }
         }
     }
 }

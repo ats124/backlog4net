@@ -11,42 +11,67 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<IssueComment> AddIssueCommentAsync(AddIssueCommentParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<IssueComment> AddIssueCommentAsync(AddIssueCommentParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/comments"), @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueCommentAsync(response);
+            }
         }
 
-        public Task<IssueComment> AddIssueCommentNotificationAsync(AddIssueCommentNotificationParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<IssueComment> AddIssueCommentNotificationAsync(AddIssueCommentNotificationParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/comments/{@params.CommentId}/notifications"), @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueCommentAsync(response);
+            }
         }
 
-        public Task<Issue> CreateIssueAsync(CreateIssueParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Issue> CreateIssueAsync(CreateIssueParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint("issues"), @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueAsync(response);
+            }
         }
 
-        public Task<Issue> DeleteIssueAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<Issue> DeleteIssueAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Delete(BuildEndpoint($"issues/{issueIdOrKey}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueAsync(response);
+            }
         }
 
-        public Task<Attachment> DeleteIssueAttachmentAsync(object issueIdOrKey, object attachmentId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Attachment> DeleteIssueAttachmentAsync(object issueIdOrKey, object attachmentId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Delete(BuildEndpoint($"issues/{issueIdOrKey}/attachments/{attachmentId}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateAttachmentAsync(response);
+            }
         }
 
-        public Task<AttachmentData> DownloadIssueAttachmentAsync(object issueIdOrKey, object attachmentId, CancellationToken? token = default(CancellationToken?))
+        public async Task<AttachmentData> DownloadIssueAttachmentAsync(object issueIdOrKey, object attachmentId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var response = await Get(BacklogEndPointSupport.IssueAttachmentEndpoint(issueIdOrKey, attachmentId));
+            return await Internal.File.AttachmentDataImpl.CreateaAsync(response);
         }
 
-        public Task<Issue> GetIssueAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<Issue> GetIssueAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueAsync(response);
+            }
         }
 
-        public Task<ResponseList<Attachment>> GetIssueAttachmentsAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Attachment>> GetIssueAttachmentsAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             throw new NotImplementedException();
         }

@@ -11,9 +11,13 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<ResponseList<Priority>> GetPrioritiesAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Priority>> GetPrioritiesAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint("priorities"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreatePriorityListAsync(response);
+            }
         }
     }
 }

@@ -11,34 +11,58 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<Group> CreateGroupAsync(CreateGroupParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Group> CreateGroupAsync(CreateGroupParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint("groups"), @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateGroupAsync(response);
+            }
         }
 
-        public Task<Group> DeleteGroupAsync(object groupId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Group> DeleteGroupAsync(object groupId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Delete(BuildEndpoint($"groups/{groupId}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateGroupAsync(response);
+            }
         }
 
-        public Task<Group> GetGroupAsync(object groupId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Group> GetGroupAsync(object groupId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"groups/{groupId}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateGroupAsync(response);
+            }
         }
 
-        public Task<ResponseList<Group>> GetGroupsAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Group>> GetGroupsAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"groups"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateGroupListAsync(response);
+            }
         }
 
-        public Task<ResponseList<Group>> GetGroupsAsync(OffsetParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Group>> GetGroupsAsync(OffsetParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"groups"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateGroupListAsync(response);
+            }
         }
 
-        public Task<Group> UpdateGroupAsync(UpdateGroupParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Group> UpdateGroupAsync(UpdateGroupParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Patch(BuildEndpoint($"groups/{@params.GroupId}"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateGroupAsync(response);
+            }
         }
     }
 }

@@ -11,29 +11,45 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<int> GetNotificationCountAsync(GetNotificationCountParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetNotificationCountAsync(GetNotificationCountParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint("notifications/count"), token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateCountAsync(response)).CountValue;
+            }
         }
 
-        public Task<ResponseList<Notification>> GetNotificationsAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Notification>> GetNotificationsAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint("notifications"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateNotificationListAsync(response);
+            }
         }
 
-        public Task<ResponseList<Notification>> GetNotificationsAsync(QueryParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Notification>> GetNotificationsAsync(QueryParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint("notifications"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateNotificationListAsync(response);
+            }
         }
 
-        public Task MarkAsReadNotificationAsync(object notificationId, CancellationToken? token = default(CancellationToken?))
+        public async Task MarkAsReadNotificationAsync(object notificationId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            (await Post(BuildEndpoint($"notifications/{notificationId}/markAsRead"), token: token)).Dispose();
         }
 
-        public Task<int> ResetNotificationCountAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<int> ResetNotificationCountAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint("notifications/markAsRead"), token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateCountAsync(response)).CountValue;
+            }
         }
     }
 }

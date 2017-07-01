@@ -11,14 +11,23 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<ResponseList<Repository>> GetGitRepositoriesAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Repository>> GetGitRepositoriesAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = new GetRepositoriesParams(projectIdOrKey.ToString());
+            using (var response = await Get(BuildEndpoint("git/repositories"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateRepositoryListAsync(response);
+            }
         }
 
-        public Task<Repository> GetGitRepositoryAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = default(CancellationToken?))
+        public async Task<Repository> GetGitRepositoryAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/git/repositories/{repoIdOrName}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateRepositoryAsync(response);
+            }
         }
     }
 }

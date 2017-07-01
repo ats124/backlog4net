@@ -11,19 +11,31 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<Issue> ImportIssueAsync(ImportIssueParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Issue> ImportIssueAsync(ImportIssueParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint($"issues/import"), @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueAsync(response);
+            }
         }
 
-        public Task<Issue> ImportUpdateIssueAsync(ImportUpdateIssueParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Issue> ImportUpdateIssueAsync(ImportUpdateIssueParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/import"), @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateIssueAsync(response);
+            }
         }
 
-        public Task<Wiki> ImportWikiAsync(ImportWikiParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Wiki> ImportWikiAsync(ImportWikiParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint($"wikis/import"), @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateWikiAsync(response);
+            }
         }
     }
 }

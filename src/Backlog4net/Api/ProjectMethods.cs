@@ -171,9 +171,9 @@ namespace Backlog4net.Api
         /// Removes the Category from the project
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="CategoryId">the Category identifier</param>
+        /// <param name="categoryId">the Category identifier</param>
         /// <returns>the removed Category</returns>
-        Task<Category> RemoveCategoryAsync(object projectIdOrKey, object CategoryId, CancellationToken? token = null);
+        Task<Category> RemoveCategoryAsync(object projectIdOrKey, object categoryId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the versions in the project.

@@ -356,37 +356,37 @@ namespace Backlog4net.Api
         /// Removes the Custom filed from the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="CustomFieldId">the Custom field identifier</param>
+        /// <param name="customFieldId">the Custom field identifier</param>
         /// <returns>the removed Custom filed</returns>
-        Task<CustomFieldSetting> RemoveCustomFieldAsync(object projectIdOrKey, object CustomFieldId, CancellationToken? token = null);
+        Task<CustomFieldSetting> RemoveCustomFieldAsync(object projectIdOrKey, object customFieldId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a item to the list type Custom field.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="CustomFieldId">the Custom field identifier</param>
+        /// <param name="customFieldId">the Custom field identifier</param>
         /// <param name="name">name of the adding item</param>
         /// <returns>the added Custom filed item</returns>
-        Task<CustomFieldSetting> AddListCustomFieldItemAsync(object projectIdOrKey, object CustomFieldId, string name, CancellationToken? token = null);
+        Task<CustomFieldSetting> AddListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, string name, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing item of list type Custom field.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="CustomFieldId">the Custom field identifier</param>
+        /// <param name="customFieldId">the Custom field identifier</param>
         /// <param name="itemId">the item identifier</param>
         /// <param name="name">name of the updating item</param>
         /// <returns>the updated CustomFieldSetting</returns>
-        Task<CustomFieldSetting> UpdateListCustomFieldItemAsync(object projectIdOrKey, object CustomFieldId, object itemId, string name, CancellationToken? token = null);
+        Task<CustomFieldSetting> UpdateListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, object itemId, string name, CancellationToken? token = null);
 
         /// <summary>
         /// Removes the item of list type Custom field.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="CustomFieldId">the Custom field identifier</param>
+        /// <param name="customFieldId">the Custom field identifier</param>
         /// <param name="itemId">the item identifier</param>
         /// <returns>the removed CustomFieldSetting</returns>
-        Task<CustomFieldSetting> RemoveListCustomFieldItemAsync(object projectIdOrKey, object CustomFieldId, object itemId, CancellationToken? token = null);
+        Task<CustomFieldSetting> RemoveListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, object itemId, CancellationToken? token = null);
 
         /// <summary>
         /// Removes the item of list type Custom field.

@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class GetIssuesCountParams : GetParams
     {
-        public GetIssuesCountParams(IList<object> projectIds)
+        public GetIssuesCountParams(params object[] projectIds)
         {
             AddNewArrayParams("projectId[]", projectIds);
         }

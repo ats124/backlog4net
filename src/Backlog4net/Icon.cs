@@ -5,7 +5,7 @@ namespace Backlog4net
 	/// <summary>
 	/// The interface for Backlog icon data.
 	/// </summary>
-	public interface Icon
+	public interface Icon : IDisposable
     {
         string FileName { get; }
 

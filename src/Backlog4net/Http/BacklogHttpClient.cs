@@ -221,7 +221,7 @@ namespace Backlog4net.Http
         private static void SetParamString(StringBuilder sb, bool paramExists, IEnumerable<NameValuePair> getParams)
         {
             if (getParams == null || !getParams.Any()) return;
-            if (sb.Length == 0 || sb[sb.Length - 1] != '?') sb.Append("?");
+            if (!paramExists) sb.Append("?");
 
             foreach (var param in getParams)
             {

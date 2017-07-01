@@ -33,7 +33,7 @@ namespace Backlog4net
                 var strBuilder = new StringBuilder(base.Message);
                 if (StatusCode > 0)
                 {
-                    strBuilder.AppendLine().AppendFormat("status code - {0]", StatusCode);
+                    strBuilder.AppendLine().AppendFormat("status code - {0}", StatusCode);
                 }
                 if (BacklogAuthErrorMessage != null)
                 {

@@ -104,6 +104,18 @@ namespace Backlog4net
             return response;
         }
 
+        protected async Task<HttpResponseMessage> PostMultiPart(string endpoint, ICollection<KeyValuePair<string, object>> postParams, CancellationToken? token = null)
+        {
+            var response = await HttpClient.PostMultiPart(endpoint, postParams, token);
+            if (NeedTokenRefresh(response))
+            {
+                await RefreshToken();
+                response = await HttpClient.PostMultiPart(endpoint, postParams, token);
+            }
+            await CheckError(response);
+            return response;
+        }
+
         private void ConfigureHttpClient()
         {
             if (Configure.ApiKey != null)

@@ -27,7 +27,7 @@ namespace Backlog4net.Api.Option
         /// </summary>
         public string ProjectIdOrKeyString => projectIdOrKey.ToString();
 
-        public string RepoIdOrNameString => repoIdOrName.ToString();
+        public string RepoIdOrName => repoIdOrName.ToString();
 
         public object IssueId { set => AddNewParamValue(value); }
 

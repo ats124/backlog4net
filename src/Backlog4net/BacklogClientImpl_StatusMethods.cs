@@ -11,9 +11,13 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<ResponseList<Status>> GetStatusesAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Status>> GetStatusesAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint("statuses"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateStatusListAsync(response);
+            }
         }
     }
 }

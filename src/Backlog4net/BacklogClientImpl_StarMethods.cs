@@ -8,32 +8,53 @@ namespace Backlog4net
 {
     using Api;
     using Api.Option;
+    using Http;
 
     partial class BacklogClientImpl
     {
-        public Task AddStarToCommentAsync(object commentId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToIssueAsync(object issueId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = new[] { new NameValuePair("issueId", issueId.ToString()) };
+            using (var response = await Post("stars", @params, token))
+            {
+                response.Content.Dispose();
+            }
         }
 
-        public Task AddStarToIssueAsync(object issueId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToCommentAsync(object commentId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = new[] { new NameValuePair("commentId", commentId.ToString()) };
+            using (var response = await Post("stars", @params, token))
+            {
+                response.Content.Dispose();
+            }
         }
 
-        public Task AddStarToPullRequestAsync(object pullRequestId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToWikiAsync(object wikiId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = new[] { new NameValuePair("wikiId", wikiId.ToString()) };
+            using (var response = await Post("stars", @params, token))
+            {
+                response.Content.Dispose();
+            }
         }
 
-        public Task AddStarToPullRequestCommentAsync(object pullRequestCommentId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToPullRequestAsync(object pullRequestId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = new[] { new NameValuePair("pullRequestId", pullRequestId.ToString()) };
+            using (var response = await Post("stars", @params, token))
+            {
+                response.Content.Dispose();
+            }
         }
 
-        public Task AddStarToWikiAsync(object wikiId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToPullRequestCommentAsync(object pullRequestCommentId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = new[] { new NameValuePair("pullRequestCommentId", pullRequestCommentId.ToString()) };
+            using (var response = await Post("stars", @params, token))
+            {
+                response.Content.Dispose();
+            }
         }
     }
 }

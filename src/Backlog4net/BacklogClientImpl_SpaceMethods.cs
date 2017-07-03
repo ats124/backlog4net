@@ -8,47 +8,80 @@ namespace Backlog4net
 {
     using Api;
     using Api.Option;
+    using Backlog4net.Http;
+    using Backlog4net.Internal.File;
 
     partial class BacklogClientImpl
     {
+        public async Task<Space> GetSpaceAsync(CancellationToken? token = default(CancellationToken?))
+        {
+            var url = BuildEndpoint("space");
+            using (var response = await Get(url, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateSpaceAsync(response);
+            }
+        }
+
         public Task<ResponseList<Activity>> GetSpaceActivitiesAsync(CancellationToken? token = default(CancellationToken?))
+            => GetSpaceActivitiesAsync(null, token);
+
+        public async Task<ResponseList<Activity>> GetSpaceActivitiesAsync(ActivityQueryParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var url = BuildEndpoint("space/activities");
+            using (var response = await Get(url, @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateActivityListAsync(response);
+            }
         }
 
-        public Task<ResponseList<Activity>> GetSpaceActivitiesAsync(ActivityQueryParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<Icon> GetSpaceIconAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var response = await Get(BacklogEndPointSupport.SpaceIconEndpoint);
+            return await IconImpl.CreateaAsync(response);
         }
 
-        public Task<Space> GetSpaceAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<SpaceNotification> GetSpaceNotificationAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var url = BuildEndpoint("space/notification");
+            using (var response = await Get(url, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateSpaceNotificationAsync(response);
+            }
         }
 
-        public Task<DiskUsage> GetSpaceDiskUsageAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<SpaceNotification> UpdateSpaceNotificationAsync(string content, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var @params = new[] { new NameValuePair("content", content) };
+            var url = BuildEndpoint("space/notification");
+            using (var response = await Put(url, @params, token: token))
+            using (var _ = response.Content)
+            {
+                return await Factory.CreateSpaceNotificationAsync(response);
+            }
         }
 
-        public Task<Icon> GetSpaceIconAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<DiskUsage> GetSpaceDiskUsageAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var url = BuildEndpoint("space/diskUsage");
+            using (var response = await Get(url, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateDiskUsageAsync(response);
+            }
         }
 
-        public Task<SpaceNotification> GetSpaceNotificationAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<Attachment> PostAttachmentAsync(AttachmentData attachmentData, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Attachment> PostAttachmentAsync(AttachmentData attachmentData, CancellationToken? token = default(CancellationToken?))
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<SpaceNotification> UpdateSpaceNotificationAsync(string content, CancellationToken? token = default(CancellationToken?))
-        {
-            throw new NotImplementedException();
+            var @params = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("file", attachmentData) };
+            var url = BuildEndpoint("space/attachment");
+            using (var response = await PostMultiPart(url, @params, token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateAttachmentAsync(response);
+            }
         }
     }
 }

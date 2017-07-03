@@ -62,31 +62,31 @@ namespace Backlog4net.Internal.Json
         public Milestone[] Milestone { get; private set; }
 
         [JsonProperty]
-        public DateTime StartDate { get; private set; }
+        public DateTime? StartDate { get; private set; }
 
         [JsonProperty]
-        public DateTime DueDate { get; private set; }
+        public DateTime? DueDate { get; private set; }
 
         [JsonProperty]
-        public decimal EstimatedHours { get; private set; }
+        public decimal? EstimatedHours { get; private set; }
 
         [JsonProperty]
-        public decimal ActualHours { get; private set; }
+        public decimal? ActualHours { get; private set; }
 
         [JsonProperty]
-        public long ParentIssueId { get; private set; }
+        public long? ParentIssueId { get; private set; }
 
         [JsonProperty, JsonConverter(typeof(UserJsonImpl.JsonConverter))]
         public User CreatedUser { get; private set; }
 
         [JsonProperty]
-        public DateTime Created { get; private set; }
+        public DateTime? Created { get; private set; }
 
         [JsonProperty, JsonConverter(typeof(UserJsonImpl.JsonConverter))]
         public User UpdatedUser { get; private set; }
 
         [JsonProperty]
-        public DateTime Updated { get; private set; }
+        public DateTime? Updated { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(CustomFieldJsonImpl.JsonConverter))]
         public CustomField[] CustomFields { get; private set; }

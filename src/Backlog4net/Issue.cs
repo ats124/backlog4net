@@ -40,23 +40,23 @@ namespace Backlog4net
 
         Milestone[] Milestone { get; }
 
-        DateTime StartDate { get; }
+        DateTime? StartDate { get; }
 
-        DateTime DueDate { get; }
+        DateTime? DueDate { get; }
 
-        decimal EstimatedHours { get; }
+        decimal? EstimatedHours { get; }
 
-        decimal ActualHours { get; }
+        decimal? ActualHours { get; }
 
-        long ParentIssueId { get; }
+        long? ParentIssueId { get; }
 
         User CreatedUser { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
 
         User UpdatedUser { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
 
         CustomField[] CustomFields { get; }
 

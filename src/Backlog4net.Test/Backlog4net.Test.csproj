@@ -66,11 +66,20 @@
     <Compile Include="ApiOptionsTest.cs" />
     <Compile Include="ActivityJsonImplTest.cs" />
     <Compile Include="CustomFieldsJsonImplTest.cs" />
+    <Compile Include="ProjectMethodsTest.cs" />
+    <Compile Include="IssueMethodsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestConfig\GeneralConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="TestConfig\general.sample.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestConfig\general.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Backlog4net\Backlog4net.csproj">
@@ -78,9 +87,7 @@
       <Name>Backlog4net</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestConfig\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

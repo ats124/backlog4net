@@ -22,8 +22,8 @@ namespace Backlog4net
 
         string TextFormattingRule { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

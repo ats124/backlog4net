@@ -31,9 +31,9 @@ namespace Backlog4net.Internal.Json
         public Issue Issue { get; private set; }
 
         [JsonProperty]
-        public DateTime Created { get; private set; }
+        public DateTime? Created { get; private set; }
 
         [JsonProperty]
-        public DateTime Updated { get; private set; }
+        public DateTime? Updated { get; private set; }
     }
 }

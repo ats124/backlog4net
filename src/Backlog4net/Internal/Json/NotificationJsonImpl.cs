@@ -43,6 +43,6 @@ namespace Backlog4net.Internal.Json
         public PullRequestComment PullRequestComment { get; private set; }
 
         [JsonProperty]
-        public DateTime Created { get; private set; }
+        public DateTime? Created { get; private set; }
     }
 }

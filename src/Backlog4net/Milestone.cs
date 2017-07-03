@@ -18,9 +18,9 @@ namespace Backlog4net
 
         string Description { get; }
 
-        DateTime StartDate { get; }
+        DateTime? StartDate { get; }
 
-        DateTime ReleaseDueDate { get; }
+        DateTime? ReleaseDueDate { get; }
 
         bool Archived { get; }
     }

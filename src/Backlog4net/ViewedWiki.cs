@@ -8,6 +8,6 @@ namespace Backlog4net
     {
         Wiki Page { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

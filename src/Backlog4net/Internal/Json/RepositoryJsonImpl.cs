@@ -40,18 +40,18 @@ namespace Backlog4net.Internal.Json
         public long DisplayOrder { get; private set; }
 
         [JsonProperty]
-        public DateTime PushedAt { get; private set; }
+        public DateTime? PushedAt { get; private set; }
 
         [JsonProperty, JsonConverter(typeof(UserJsonImpl.JsonConverter))]
         public User CreatedUser { get; private set; }
 
         [JsonProperty]
-        public DateTime Created { get; private set; }
+        public DateTime? Created { get; private set; }
 
         [JsonProperty, JsonConverter(typeof(UserJsonImpl.JsonConverter))]
         public User UpdatedUser { get; private set; }
 
         [JsonProperty]
-        public DateTime Updated { get; private set; }
+        public DateTime? Updated { get; private set; }
     }
 }

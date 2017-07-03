@@ -18,10 +18,10 @@ namespace Backlog4net
 
         User CreatedUser { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
 
         User UpdatedUser { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

@@ -25,6 +25,6 @@ namespace Backlog4net.Internal.Json
         public User Presenter { get; private set; }
 
         [JsonProperty]
-        public DateTime Created { get; private set; }
+        public DateTime? Created { get; private set; }
     }
 }

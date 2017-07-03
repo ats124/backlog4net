@@ -30,7 +30,7 @@ namespace Backlog4net
 
         PullRequestComment PullRequestComment { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
 
     }
 

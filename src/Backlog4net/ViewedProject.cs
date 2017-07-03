@@ -8,6 +8,6 @@ namespace Backlog4net
     {
         Project Project { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

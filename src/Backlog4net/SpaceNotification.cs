@@ -8,6 +8,6 @@ namespace Backlog4net
     {
         string Content { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

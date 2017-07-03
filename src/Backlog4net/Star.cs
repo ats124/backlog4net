@@ -15,6 +15,6 @@ namespace Backlog4net
 
         User Presenter { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
     }
 }

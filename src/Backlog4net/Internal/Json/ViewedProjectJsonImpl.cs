@@ -13,6 +13,6 @@ namespace Backlog4net.Internal.Json
         public Project Project { get; private set; }
     
         [JsonProperty]
-        public DateTime Updated { get; private set; }
+        public DateTime? Updated { get; private set; }
     }
 }

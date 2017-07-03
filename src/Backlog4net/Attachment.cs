@@ -23,6 +23,6 @@ namespace Backlog4net
 
         User CreatedUser { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
     }
 }

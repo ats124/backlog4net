@@ -8,6 +8,6 @@ namespace Backlog4net
     {
         Issue Issue { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

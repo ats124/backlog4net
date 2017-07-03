@@ -34,9 +34,9 @@ namespace Backlog4net.Internal.Json
         public string TextFormattingRule { get; private set; }
 
         [JsonProperty]
-        public DateTime Updated { get; private set; }
+        public DateTime? Updated { get; private set; }
 
         [JsonProperty]
-        public DateTime Created { get; private set; }
+        public DateTime? Created { get; private set; }
     }
 }

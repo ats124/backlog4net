@@ -25,10 +25,10 @@ namespace Backlog4net.Internal.Json
         public string Description { get; private set; }
 
         [JsonProperty]
-        public DateTime StartDate { get; private set; }
+        public DateTime? StartDate { get; private set; }
 
         [JsonProperty]
-        public DateTime ReleaseDueDate { get; private set; }
+        public DateTime? ReleaseDueDate { get; private set; }
 
         [JsonProperty]
         public bool Archived { get; private set; }

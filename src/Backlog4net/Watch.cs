@@ -20,8 +20,8 @@ namespace Backlog4net
 
         Issue Issue { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

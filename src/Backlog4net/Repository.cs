@@ -26,14 +26,14 @@ namespace Backlog4net
 
         long DisplayOrder { get; }
 
-        DateTime PushedAt { get; }
+        DateTime? PushedAt { get; }
 
         User CreatedUser { get; }
 
-        DateTime Created { get; }
+        DateTime? Created { get; }
 
         User UpdatedUser { get; }
 
-        DateTime Updated { get; }
+        DateTime? Updated { get; }
     }
 }

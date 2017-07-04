@@ -127,16 +127,9 @@ namespace Backlog4net.Api
         /// Returns history of the Wiki page.
         /// </summary>
         /// <param name="wikiId">the Wiki page identifier</param>
-        /// <returns>the wiki histories in a list</returns>
-        Task<ResponseList<WikiHistory>> GetWikiHistoriesAsync(object wikiId, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns history of the Wiki page.
-        /// </summary>
-        /// <param name="wikiId">the Wiki page identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the wiki histories in a list</returns>
-        Task<ResponseList<WikiHistory>> GetWikiHistoriesAsync(object wikiId, QueryParams queryParams, CancellationToken? token = null);
+        Task<ResponseList<WikiHistory>> GetWikiHistoriesAsync(object wikiId, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns list of stars received on the Wiki page.

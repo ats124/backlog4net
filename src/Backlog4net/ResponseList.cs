@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Backlog4net
 {
@@ -7,5 +8,6 @@ namespace Backlog4net
     /// </summary>
     public interface ResponseList<T> : IList<T>
     {
+        void Sort(Comparison<T> comparison);
     }
 }

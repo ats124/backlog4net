@@ -57,23 +57,9 @@ namespace Backlog4net.Api
         /// Returns the user recently updates
         /// </summary>
         /// <param name="numericUserId">the user identifier</param>
-        /// <returns>the updates in a list</returns>
-        Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the user recently updates
-        /// </summary>
-        /// <param name="numericUserId">the user identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the updates in a list</returns>
-        Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, ActivityQueryParams queryParams, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the received stars
-        /// </summary>
-        /// <param name="numericUserId">the user identifier</param>
-        /// <returns>the stars in a list</returns>
-        Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, CancellationToken? token = null);
+        Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, ActivityQueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the received stars
@@ -81,7 +67,7 @@ namespace Backlog4net.Api
         /// <param name="numericUserId">the user identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the stars in a list</returns>
-        Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, QueryParams queryParams, CancellationToken? token = null);
+        Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the received star count
@@ -94,41 +80,23 @@ namespace Backlog4net.Api
         /// <summary>
         /// Returns the recently viewed issues
         /// </summary>
-        /// <returns>the issues in a list</returns>
-        Task<ResponseList<ViewedIssue>> GetRecentlyViewedIssuesAsync(CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the recently viewed issues
-        /// </summary>
         /// <param name="params">the offset parameters</param>
         /// <returns>the issues in a list</returns>
-        Task<ResponseList<ViewedIssue>> GetRecentlyViewedIssuesAsync(OffsetParams @params, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the recently viewed projects
-        /// </summary>
-        /// <returns>the projects in a list</returns>
-        Task<ResponseList<ViewedProject>> GetRecentlyViewedProjectsAsync(CancellationToken? token = null);
+        Task<ResponseList<ViewedIssue>> GetRecentlyViewedIssuesAsync(OffsetParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the recently viewed projects
         /// </summary>
         /// <param name="params">the offset parameters</param>
         /// <returns>the projects in a list</returns>
-        Task<ResponseList<ViewedProject>> GetRecentlyViewedProjectsAsync(OffsetParams @params, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the recently viewed wikis
-        /// </summary>
-        /// <returns>the wikis in a list</returns>
-        Task<ResponseList<ViewedWiki>> GetRecentlyViewedWikisAsync(CancellationToken? token = null);
+        Task<ResponseList<ViewedProject>> GetRecentlyViewedProjectsAsync(OffsetParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the recently viewed wikis
         /// </summary>
         /// <param name="params">the offset parameters</param>
         /// <returns>the wikis in a list</returns>
-        Task<ResponseList<ViewedWiki>> GetRecentlyViewedWikisAsync(OffsetParams @params, CancellationToken? token = null);
+        Task<ResponseList<ViewedWiki>> GetRecentlyViewedWikisAsync(OffsetParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the received watch count

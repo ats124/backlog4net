@@ -23,10 +23,10 @@ namespace Backlog4net.Api
         /// <summary>
         /// Adds a watching to the issue.
         /// </summary>
-        /// <param name="watchingId">the issue identifier</param>
+        /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="note">note</param>
         /// <returns></returns>
-        Task<Watch> AddWatchToIssueAsync(object watchingId, String note, CancellationToken? token = null);
+        Task<Watch> AddWatchToIssueAsync(object issueIdOrKey, String note, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing watching.

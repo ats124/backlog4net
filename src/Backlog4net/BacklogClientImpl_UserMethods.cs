@@ -8,104 +8,132 @@ namespace Backlog4net
 {
     using Api;
     using Api.Option;
+    using Internal.File;
 
     partial class BacklogClientImpl
     {
-        //public async Task<ResponseList<User>> GetUsersAsync(CancellationToken? token = null)
-        //    => await Factory.CreateUserListAsync(await Get(BuildEndpoint("users")));
-        public Task<User> CreateUserAsync(CreateUserParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<User>> GetUsersAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint("users"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateUserListAsync(response);
+            }
         }
 
-        public Task<User> DeleteUserAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> GetUserAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/{numericUserId}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateUserAsync(response);
+            }
         }
 
-        public Task<User> GetMyselfAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<User> CreateUserAsync(CreateUserParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Post(BuildEndpoint($"users"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateUserAsync(response);
+            }
         }
 
-        public Task<ResponseList<ViewedIssue>> GetRecentlyViewedIssuesAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<User> DeleteUserAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Delete(BuildEndpoint($"users/{numericUserId}"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateUserAsync(response);
+            }
         }
 
-        public Task<ResponseList<ViewedIssue>> GetRecentlyViewedIssuesAsync(OffsetParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> GetMyselfAsync(CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint("users/myself"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateUserAsync(response);
+            }
         }
 
-        public Task<ResponseList<ViewedProject>> GetRecentlyViewedProjectsAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<Icon> GetUserIconAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            var response = await Get(BacklogEndPointSupport.UserIconEndpoint(numericUserId));
+            return await IconImpl.CreateaAsync(response);
         }
 
-        public Task<ResponseList<ViewedProject>> GetRecentlyViewedProjectsAsync(OffsetParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, ActivityQueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/{numericUserId}/activities"), queryParams, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateActivityListAsync(response);
+            }
         }
 
-        public Task<ResponseList<ViewedWiki>> GetRecentlyViewedWikisAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, QueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/{numericUserId}/stars"), queryParams, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateStarListAsync(response);
+            }
         }
 
-        public Task<ResponseList<ViewedWiki>> GetRecentlyViewedWikisAsync(OffsetParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetUserStarCountAsync(object numericUserId, GetStarsParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/{numericUserId}/stars/count"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateCountAsync(response)).CountValue;
+            }
         }
 
-        public Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<ViewedIssue>> GetRecentlyViewedIssuesAsync(OffsetParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/myself/recentlyViewedIssues"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateViewedIssueListAsync(response);
+            }
         }
 
-        public Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, ActivityQueryParams queryParams, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<ViewedProject>> GetRecentlyViewedProjectsAsync(OffsetParams @params = null, CancellationToken? token = null)
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/myself/recentlyViewedProjects"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateViewedProjectListAsync(response);
+            }
         }
 
-        public Task<User> GetUserAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+
+        public async Task<ResponseList<ViewedWiki>> GetRecentlyViewedWikisAsync(OffsetParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/myself/recentlyViewedWikis"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateViewedWikiListAsync(response);
+            }
         }
 
-        public Task<Icon> GetUserIconAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetUserWatchCountAsync(object numericUserId, GetWatchesParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/{numericUserId}/watchings/count"), @params, token: token))
+            using (var content = response.Content)
+            {
+                return (await Factory.CreateCountAsync(response)).CountValue;
+            }
         }
 
-        public Task<ResponseList<User>> GetUsersAsync(CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Watch>> GetUserWatchesAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> GetUserStarCountAsync(object numericUserId, GetStarsParams @params, CancellationToken? token = default(CancellationToken?))
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, QueryParams queryParams, CancellationToken? token = default(CancellationToken?))
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<int> GetUserWatchCountAsync(object numericUserId, GetWatchesParams @params, CancellationToken? token = default(CancellationToken?))
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ResponseList<Watch>> GetUserWatchesAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
-        {
-            throw new NotImplementedException();
+            using (var response = await Get(BuildEndpoint($"users/{numericUserId}/watchings"), token: token))
+            using (var content = response.Content)
+            {
+                return await Factory.CreateWatchListAsync(response);
+            }
         }
     }
 }

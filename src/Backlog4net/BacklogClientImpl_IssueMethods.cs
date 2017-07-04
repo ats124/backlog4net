@@ -109,16 +109,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, CancellationToken? token = default(CancellationToken?))
-        {
-            using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/comments"), token: token))
-            using (var content = response.Content)
-            {
-                return (await Factory.CreateIssueCommentListAsync(response));
-            }
-        }
-
-        public async Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, QueryParams queryParams, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, QueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"issues/{issueIdOrKey}/comments"), queryParams, token: token))
             using (var content = response.Content)

@@ -14,17 +14,11 @@ namespace Backlog4net.Api
     public interface NotificationMethods
     {
         /// <summary>
-        ///  Returns the notifications.
-        /// </summary>
-        /// <returns>the notifications in a list.</returns>
-        Task<ResponseList<Notification>> GetNotificationsAsync(CancellationToken? token = null);
-
-        /// <summary>
         /// Returns the notifications.
         /// </summary>
         /// <param name="params">the query parameters</param>
         /// <returns>the notifications in a list.</returns>
-        Task<ResponseList<Notification>> GetNotificationsAsync(QueryParams @params, CancellationToken? token = null);
+        Task<ResponseList<Notification>> GetNotificationsAsync(QueryParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the count of the notifications.

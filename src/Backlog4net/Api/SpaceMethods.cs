@@ -22,15 +22,9 @@ namespace Backlog4net.Api
         /// <summary>
         /// Returns the activities in the space.
         /// </summary>
-        /// <returns>the activities in a list</returns>
-        Task<ResponseList<Activity>> GetSpaceActivitiesAsync(CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the activities in the space.
-        /// </summary>
         /// <param name="params">the query parameters</param>
         /// <returns>the activities in a list</returns>
-        Task<ResponseList<Activity>> GetSpaceActivitiesAsync(ActivityQueryParams @params, CancellationToken? token = null);
+        Task<ResponseList<Activity>> GetSpaceActivitiesAsync(ActivityQueryParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the space icon.

@@ -16,15 +16,9 @@ namespace Backlog4net.Api
         /// <summary>
         /// Returns all the groups.
         /// </summary>
-        /// <returns>the groups in a list.</returns>
-        Task<ResponseList<Group>> GetGroupsAsync(CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns all the groups.
-        /// </summary>
         /// <param name="params">the offset parameters</param>
         /// <returns>the groups in a list.</returns>
-        Task<ResponseList<Group>> GetGroupsAsync(OffsetParams @params, CancellationToken? token = null);
+        Task<ResponseList<Group>> GetGroupsAsync(OffsetParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Creates a group.

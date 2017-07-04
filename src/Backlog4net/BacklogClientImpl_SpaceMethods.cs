@@ -23,10 +23,7 @@ namespace Backlog4net
             }
         }
 
-        public Task<ResponseList<Activity>> GetSpaceActivitiesAsync(CancellationToken? token = default(CancellationToken?))
-            => GetSpaceActivitiesAsync(null, token);
-
-        public async Task<ResponseList<Activity>> GetSpaceActivitiesAsync(ActivityQueryParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Activity>> GetSpaceActivitiesAsync(ActivityQueryParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
             var url = BuildEndpoint("space/activities");
             using (var response = await Get(url, @params, token: token))

@@ -176,16 +176,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
-        {
-            using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/activities"), token: token))
-            using (var content = response.Content)
-            {
-                return await Factory.CreateActivityListAsync(response);
-            }
-        }
-
-        public async Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, ActivityQueryParams query, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, ActivityQueryParams query = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/activities"), query, token: token))
             using (var content = response.Content)
@@ -245,10 +236,7 @@ namespace Backlog4net
             }
         }
 
-        public Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, CancellationToken? token = default(CancellationToken?))
-            => GetSharedFilesAsync(projectIdOrKey, path, new QueryParams(), token);
-
-        public async Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, QueryParams queryParams, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, QueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
         {
             var encodedPath = WebUtility.UrlEncode(path);
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/files/metadata/{encodedPath}"), queryParams, token: token))

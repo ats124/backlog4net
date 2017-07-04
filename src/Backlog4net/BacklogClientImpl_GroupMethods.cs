@@ -38,16 +38,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Group>> GetGroupsAsync(CancellationToken? token = default(CancellationToken?))
-        {
-            using (var response = await Get(BuildEndpoint($"groups"), token: token))
-            using (var content = response.Content)
-            {
-                return await Factory.CreateGroupListAsync(response);
-            }
-        }
-
-        public async Task<ResponseList<Group>> GetGroupsAsync(OffsetParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Group>> GetGroupsAsync(OffsetParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"groups"), @params, token: token))
             using (var content = response.Content)

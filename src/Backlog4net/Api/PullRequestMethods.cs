@@ -18,25 +18,9 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="repoIdOrName">the repository name</param>
-        /// <returns>the git pull requests in a list.</returns>
-        Task<ResponseList<PullRequest>> GetPullRequestsAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the pull requests of the repository.
-        /// </summary>
-        /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="repoIdOrName">the repository name</param>
         /// <param name="params">the finding pull request parameters.</param>
         /// <returns>the git pull requests in a list.</returns>
-        Task<ResponseList<PullRequest>> GetPullRequestsAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the count of the pull requests.
-        /// </summary>
-        /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="repoIdOrName">the repository name</param>
-        /// <returns>the git pull request.</returns>
-        Task<int> GetPullRequestCountAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = null);
+        Task<ResponseList<PullRequest>> GetPullRequestsAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the count of the pull requests.
@@ -45,7 +29,7 @@ namespace Backlog4net.Api
         /// <param name="repoIdOrName">the repository name</param>
         /// <param name="params">the finding pull request parameters.</param>
         /// <returns>the git pull request.</returns>
-        Task<int> GetPullRequestCountAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params, CancellationToken? token = null);
+        Task<int> GetPullRequestCountAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Add a pull request.

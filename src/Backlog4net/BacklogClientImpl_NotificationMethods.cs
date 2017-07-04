@@ -20,16 +20,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Notification>> GetNotificationsAsync(CancellationToken? token = default(CancellationToken?))
-        {
-            using (var response = await Get(BuildEndpoint("notifications"), token: token))
-            using (var content = response.Content)
-            {
-                return await Factory.CreateNotificationListAsync(response);
-            }
-        }
-
-        public async Task<ResponseList<Notification>> GetNotificationsAsync(QueryParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Notification>> GetNotificationsAsync(QueryParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint("notifications"), @params, token: token))
             using (var content = response.Content)

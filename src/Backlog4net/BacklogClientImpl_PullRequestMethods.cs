@@ -12,17 +12,7 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public async Task<ResponseList<PullRequest>> GetPullRequestsAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = default(CancellationToken?))
-        {
-            var url = BuildEndpoint($"projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests");
-            using (var response = await Get(url, token: token))
-            using (var content = response.Content)
-            {
-                return await Factory.CreatePullRequestListAsync(response);
-            }
-        }
-
-        public async Task<ResponseList<PullRequest>> GetPullRequestsAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<PullRequest>> GetPullRequestsAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
             var url = BuildEndpoint($"projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests");
             using (var response = await Get(url, @params, token: token))
@@ -32,17 +22,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<int> GetPullRequestCountAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = default(CancellationToken?))
-        {
-            var url = BuildEndpoint($"projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests/count");
-            using (var response = await Get(url, token: token))
-            using (var content = response.Content)
-            {
-                return (await Factory.CreateCountAsync(response)).CountValue;
-            }
-        }
-
-        public async Task<int> GetPullRequestCountAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetPullRequestCountAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
             var url = BuildEndpoint($"projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests/count");
             using (var response = await Get(url, @params, token: token))

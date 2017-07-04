@@ -59,16 +59,9 @@ namespace Backlog4net.Api
         /// Returns the issue comments.
         /// </summary>
         /// <param name="issueIdOrKey">the issue identifier</param>
-        /// <returns>the issue's comments in a list.</returns>
-        Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the issue comments.
-        /// </summary>
-        /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the issue's comments in a list.</returns>
-        Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, QueryParams queryParams, CancellationToken? token = null);
+        Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a issue comment.

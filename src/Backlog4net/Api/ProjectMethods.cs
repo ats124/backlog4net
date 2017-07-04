@@ -58,17 +58,10 @@ namespace Backlog4net.Api
         /// <summary>
         /// Returns the activities on the project.
         /// </summary>
-        /// <param name="projectIdOrKey"> the project identifier</param>
-        /// <returns>the activities in a list</returns>
-        Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, CancellationToken? token = null);
-
-        /// <summary>
-        /// Returns the activities on the project.
-        /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="query">the query parameters</param>
         /// <returns>the activities in a list</returns>
-        Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, ActivityQueryParams query, CancellationToken? token = null);
+        Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, ActivityQueryParams query = null, CancellationToken? token = null);
 
         /// <summary>
         /// Adds the user to the project.
@@ -389,21 +382,13 @@ namespace Backlog4net.Api
         Task<CustomFieldSetting> RemoveListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, object itemId, CancellationToken? token = null);
 
         /// <summary>
-        /// Removes the item of list type Custom field.
-        /// </summary>
-        /// <param name="projectIdOrKey">the project identifier</param>
-        /// <param name="path">path of the shared file directory</param>
-        /// <returns>the shared files in a list</returns>
-        Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, CancellationToken? token = null);
-
-        /// <summary>
         /// Returns the shared files in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="path">path of the shared file directory</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the shared files in a list</returns>
-        Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, QueryParams queryParams, CancellationToken? token = null);
+        Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the shared file data in the project.

@@ -77,6 +77,9 @@ namespace Backlog4net.Test
             var deletedCategory = await client.RemoveCategoryAsync(generalConfig.ProjectKey, updatedCategory.Id);
             Assert.AreEqual(deletedCategory.Id, updatedCategory.Id);
             Assert.AreEqual(deletedCategory.Name, updatedCategory.Name);
+
+            categories = await client.GetCategoriesAsync(generalConfig.ProjectKey);
+            Assert.IsFalse(categories.Any(x => x.Id == updatedCategory.Id && x.Name == updatedCategory.Name));
         }
     }
 }

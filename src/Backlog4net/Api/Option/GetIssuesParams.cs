@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -65,19 +66,41 @@ namespace Backlog4net.Api.Option
 
         public string Keyword { set => AddNewParamValue(value); }
 
-        private void AddNewParamValueCustomField((object CustomFieldId, object value) x, string postfix) => AddNewParam("customField_" + x.CustomFieldId + postfix, x.value);
+        public IList<GetIssuesCustomField> CustomFields
+        {
+            set
+            {
+                if (value != null)
+                {
+                    foreach (var param in value.SelectMany(x => x.Parameters)) { this.Parameters.Add(param); }
+                }
+            }
+        }
+    }
 
-        public (object CustomFieldId, string Keyword) KeywordByCustomFiled { set => AddNewParamValueCustomField(value, ""); }
+    public class GetIssuesCustomField : ParamsBase
+    {
+        public object CustomFieldId { get; private set; }
 
-        public (object CustomFieldId, float min) MinNumOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
+        public GetIssuesCustomField(object customFieldId)
+        {
+            this.CustomFieldId = customFieldId;
+        }
 
-        public (object CustomFieldId, float max) MaxNumOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
+        private void AddNewParamValueCustomField(object value, string postfix) => AddNewParam("customField_" + CustomFieldId + postfix, value);
 
-        public (object CustomFieldId, string min) MinDateOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
+        public string KeywordByCustomFiled { set => AddNewParamValueCustomField(value, ""); }
 
-        public (object CustomFieldId, string max) MaxDateOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
+        public float MinNumOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
 
-        public (object CustomFieldId, IList<object> itemIds) ItemsOfCustomField { set => AddNewArrayParams("customField_" + value.CustomFieldId + "[]", value.itemIds); }
+        public float MaxNumOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
+
+        public string MinDateOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
+
+        public string MaxDateOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
+
+        public IList<object> ItemsOfCustomField { set => AddNewArrayParams("customField_" + CustomFieldId + "[]", value); }
+
     }
 
     public enum GetIssuesSortKey

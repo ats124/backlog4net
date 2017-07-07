@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -57,19 +58,16 @@ namespace Backlog4net.Api.Option
 
         public string Keyword { set => AddNewParamValue(value); }
 
-        private void AddNewParamValueCustomField((object CustomFieldId, object value) x, string postfix) => AddNewParam("customField_" + x.CustomFieldId + postfix, x.value);
-
-        public (object CustomFieldId, string Keyword) KeywordByCustomFiled { set => AddNewParamValueCustomField(value, ""); }
-
-        public (object CustomFieldId, float min) MinNumOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
-
-        public (object CustomFieldId, float max) MaxNumOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
-
-        public (object CustomFieldId, string min) MinDateOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
-
-        public (object CustomFieldId, string max) MaxDateOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
-
-        public (object CustomFieldId, IList<object> itemIds) ItemsOfCustomField { set => AddNewArrayParams("customField_" + value.CustomFieldId + "[]", value.itemIds); }
+        public IList<GetIssuesCustomField> CustomFields
+        {
+            set
+            {
+                if (value != null)
+                {
+                    foreach (var param in value.SelectMany(x => x.Parameters)) { this.Parameters.Add(param); }
+                }
+            }
+        }
     }
 
     public enum GetIssuesParentChildType

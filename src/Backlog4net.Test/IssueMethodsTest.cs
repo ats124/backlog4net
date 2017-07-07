@@ -17,14 +17,20 @@ namespace Backlog4net.Test
     {        
         private static BacklogClient client;
         private static GeneralConfig generalConfig;
+        private static object projectId;
+        private static IList<IssueType> issueTypes;
 
         [ClassInitialize]
-        public static void SetupClient(TestContext context)
+        public static async Task SetupClient(TestContext context)
         {
             generalConfig = GeneralConfig.Instance.Value;
             var conf = new BacklogJpConfigure(generalConfig.SpaceKey);
             conf.ApiKey = generalConfig.ApiKey;
             client = new BacklogClientFactory(conf).NewClient();
+
+            var project = await client.GetProjectAsync(generalConfig.ProjectKey);
+            projectId = project.Id;
+            issueTypes = await client.GetIssueTypesAsync(projectId);
         }
 
         [TestMethod]
@@ -33,5 +39,14 @@ namespace Backlog4net.Test
             var count = await client.GetIssuesCountAsync(new GetIssuesCountParams(55947));
             Assert.IsTrue(count > 0);
         }
+
+        //[TestMethod]
+        //public async Task AddUpdateGetDeleteIssueAsync()
+        //{
+        //    var createParams = new CreateIssueParams(projectId, "summary-test", issueTypes.First(), IssuePriorityType.High)
+        //    {
+                
+        //    };
+        //}
     }
 }

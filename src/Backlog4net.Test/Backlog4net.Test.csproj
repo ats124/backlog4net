@@ -69,11 +69,15 @@
     <Compile Include="ProjectMethodsTest.cs" />
     <Compile Include="IssueMethodsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestConfig\ProjectsConfig.cs" />
     <Compile Include="TestConfig\GeneralConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="TestConfig\projects.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestConfig\general.sample.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -294,3 +294,4 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 src/Backlog4net.Test/TestConfig/general.json
+src/Backlog4net.Test/TestConfig/projects.json

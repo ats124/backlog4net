@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog4net", "src\Backlog4net\Backlog4net.csproj", "{76F4D5AA-2E12-4AC0-B4ED-19C4660BAD19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backlog4net.Test", "src\Backlog4net.Test\Backlog4net.Test.csproj", "{3650E05C-A140-4C2D-A814-83C14054FE50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{76F4D5AA-2E12-4AC0-B4ED-19C4660BAD19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76F4D5AA-2E12-4AC0-B4ED-19C4660BAD19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76F4D5AA-2E12-4AC0-B4ED-19C4660BAD19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3650E05C-A140-4C2D-A814-83C14054FE50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3650E05C-A140-4C2D-A814-83C14054FE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3650E05C-A140-4C2D-A814-83C14054FE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3650E05C-A140-4C2D-A814-83C14054FE50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

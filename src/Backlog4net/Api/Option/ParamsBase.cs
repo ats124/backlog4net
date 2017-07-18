@@ -13,7 +13,26 @@ namespace Backlog4net.Api.Option
 
         protected void AddNewParam(string name, string value) => Parameters.Add(new NameValuePair(name, value));
 
-        protected void AddNewParam(string name, object value) => Parameters.Add(new NameValuePair(name, (value ?? string.Empty).ToString()));
+        protected void AddNewParam(string name, object value)
+        {
+            string strValue;
+            switch (value)
+            {
+                case string s:
+                    strValue = s;
+                    break;
+                case bool b:
+                    strValue = b ? "true" : "false";
+                    break;
+                case null:
+                    strValue = "";
+                    break;
+                default:
+                    strValue = value.ToString();
+                    break;
+            }
+            Parameters.Add(new NameValuePair(name, strValue));
+        }
 
         protected void AddNewArrayStringParams(string name, IEnumerable<string> values, bool isEmptySetBlank = false)
         {
@@ -40,10 +59,10 @@ namespace Backlog4net.Api.Option
         }
 
         protected void AddNewParamValue(string value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
-            => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), value ?? string.Empty));
+            => AddNewParam(GetDefaultParamName(memberName), value);
 
-        protected void AddNewParamValue(object value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "") 
-            => Parameters.Add(new NameValuePair(GetDefaultParamName(memberName), (value ?? string.Empty).ToString()));
+        protected void AddNewParamValue(object value, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
+            => AddNewParam(GetDefaultParamName(memberName), value);
 
         protected void AddNewArrayStringParamValues(IEnumerable<string> values, bool isEmptySetBlank = false, [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {

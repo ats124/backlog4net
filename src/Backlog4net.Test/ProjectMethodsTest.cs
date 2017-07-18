@@ -117,5 +117,42 @@ namespace Backlog4net.Test
             milestones = await client.GetMilestonesAsync(generalConfig.ProjectKey);
             Assert.IsFalse(milestones.Any(x => x.Id == updatedMilestone.Id && x.Name == updatedMilestone.Name));
         }
+
+        [TestMethod]
+        public async Task VersionAsyncTest()
+        {
+            var version = await client.AddVersionAsync(
+                new AddVersionParams(generalConfig.ProjectKey, "TestVersion")
+                {
+                    StartDate = new DateTime(2017, 7, 1),
+                    ReleaseDueDate = null,
+                    Description = "TestDescription",
+                });
+            Assert.AreEqual(version.Name, "TestVersion");
+            Assert.AreEqual(version.StartDate, new DateTime(2017, 7, 1));
+            Assert.IsNull(version.ReleaseDueDate);
+            Assert.AreEqual(version.Description, "TestDescription");
+
+            var updatedVersion = await client.UpdateVersionAsync(
+                new UpdateVersionParams(generalConfig.ProjectKey, version.Id, "TestMilestoneUpdate")
+                {
+                    StartDate = null,
+                    ReleaseDueDate = new DateTime(2017, 7, 12),
+                    Description = "TestDescriptionUpdated",
+                });
+            Assert.IsNull(updatedVersion.StartDate);
+            Assert.AreEqual(updatedVersion.ReleaseDueDate, new DateTime(2017, 7, 12));
+            Assert.AreEqual(updatedVersion.Description, "TestDescriptionUpdated");
+
+            var versions = await client.GetVersionsAsync(generalConfig.ProjectKey);
+            Assert.IsTrue(versions.Any(x => x.Id == updatedVersion.Id && x.Name == updatedVersion.Name));
+
+            var deletedVersion = await client.RemoveMilestoneAsync(generalConfig.ProjectKey, updatedVersion.Id);
+            Assert.AreEqual(deletedVersion.Id, updatedVersion.Id);
+            Assert.AreEqual(deletedVersion.Name, updatedVersion.Name);
+
+            versions = await client.GetVersionsAsync(generalConfig.ProjectKey);
+            Assert.IsFalse(versions.Any(x => x.Id == updatedVersion.Id && x.Name == updatedVersion.Name));
+        }
     }
 }

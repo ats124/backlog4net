@@ -81,5 +81,41 @@ namespace Backlog4net.Test
             categories = await client.GetCategoriesAsync(generalConfig.ProjectKey);
             Assert.IsFalse(categories.Any(x => x.Id == updatedCategory.Id && x.Name == updatedCategory.Name));
         }
+
+        [TestMethod]
+        public async Task MilestoneAsyncTest()
+        {
+            var milestone = await client.AddMilestoneAsync(
+                new AddMilestoneParams(generalConfig.ProjectKey, "TestMilestone")
+                {
+                    StartDate = new DateTime(2017, 7, 1),
+                    ReleaseDueDate = new DateTime(2017, 7, 2),
+                    Description = "TestDescription",
+                });
+            Assert.AreEqual(milestone.Name, "TestMilestone");
+            Assert.AreEqual(milestone.StartDate, new DateTime(2017, 7, 1));
+            Assert.AreEqual(milestone.ReleaseDueDate, new DateTime(2017, 7, 2));
+            Assert.AreEqual(milestone.Description, "TestDescription");
+
+            var updatedMilestone = await client.UpdateMilestoneAsync(
+                new UpdateMilestoneParams(generalConfig.ProjectKey, milestone.Id, "TestMilestoneUpdate")
+                {
+                    StartDate = new DateTime(2017, 7, 11),
+                    ReleaseDueDate = null,
+                    Description = "TestDescriptionUpdated",
+                });
+            Assert.AreEqual(updatedMilestone.StartDate, new DateTime(2017, 7, 11));
+            Assert.IsNull(updatedMilestone.ReleaseDueDate);
+
+            var milestones = await client.GetMilestonesAsync(generalConfig.ProjectKey);
+            Assert.IsTrue(milestones.Any(x => x.Id == updatedMilestone.Id && x.Name == updatedMilestone.Name));
+
+            var deletedMilestone = await client.RemoveMilestoneAsync(generalConfig.ProjectKey, updatedMilestone.Id);
+            Assert.AreEqual(deletedMilestone.Id, updatedMilestone.Id);
+            Assert.AreEqual(deletedMilestone.Name, updatedMilestone.Name);
+
+            milestones = await client.GetMilestonesAsync(generalConfig.ProjectKey);
+            Assert.IsFalse(milestones.Any(x => x.Id == updatedMilestone.Id && x.Name == updatedMilestone.Name));
+        }
     }
 }

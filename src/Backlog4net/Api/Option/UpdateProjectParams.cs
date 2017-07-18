@@ -17,7 +17,7 @@ namespace Backlog4net.Api.Option
 
         public string Name { set => AddNewParamValue(value); }
 
-        public string ProjectKey { set => AddNewParamValue(value); }
+        public string ProjectKey { set => AddNewParam("key", value); }
 
         public bool ChartEnabled { set => AddNewParamValue(value); }
 

@@ -33,12 +33,40 @@ namespace Backlog4net.Test
         }
 
         [TestMethod]
-        public async Task GetProjectsAsyncTest()
+        public async Task ProjectAsyncTest()
         {
+            var project = await client.CreateProjectAsync(new CreateProjectParams("TestProject", "TESTPRJ", true, true, TextFormattingRule.Backlog));
+            Assert.AreEqual(project.Name, "TestProject");
+            Assert.AreEqual(project.ProjectKey, "TESTPRJ");
+            Assert.AreEqual(project.IsChartEnabled, true);
+            Assert.AreEqual(project.IsSubtaskingEnabled, true);
+            Assert.AreEqual(project.TextFormattingRule, TextFormattingRule.Backlog);
+
+            var updatedProject = await client.UpdateProjectAsync(new UpdateProjectParams(project.Id)
+            {
+                Name = "TestProjectUpdated",
+                ChartEnabled = false,
+                SubtaskingEnabled = false,
+                TextFormattingRule = TextFormattingRule.Markdown,
+                Archived = true,
+                ProjectKey = "TESTPRJU",
+            });
+            Assert.AreEqual(updatedProject.Name, "TestProjectUpdated");
+            Assert.AreEqual(updatedProject.ProjectKey, "TESTPRJU");
+            Assert.AreEqual(updatedProject.IsChartEnabled, false);
+            Assert.AreEqual(updatedProject.IsSubtaskingEnabled, false);
+            Assert.AreEqual(updatedProject.TextFormattingRule, TextFormattingRule.Markdown);
+            Assert.AreEqual(updatedProject.IsArchived, true);
+
             var projects = await client.GetProjectsAsync();
-            Assert.IsNotNull(projects);
-            Assert.IsTrue(projects.Count > 0);
-            Assert.IsFalse(string.IsNullOrEmpty(projects[0].Name));
+            Assert.IsTrue(projects.Any(x => x.Id == updatedProject.Id && x.Name == "TestProjectUpdated"));
+
+            var deletedProject = await client.DeleteProjectAsync(updatedProject.Id);
+            Assert.AreEqual(deletedProject.Id, updatedProject.Id);
+            Assert.AreEqual(deletedProject.Name, updatedProject.Name);
+
+            projects = await client.GetProjectsAsync();
+            Assert.IsFalse(projects.Any(x => x.Id == updatedProject.Id && x.Name == "TestProjectUpdated"));
         }
 
         [TestMethod]

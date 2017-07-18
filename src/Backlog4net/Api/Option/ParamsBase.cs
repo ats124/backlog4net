@@ -85,5 +85,8 @@ namespace Backlog4net.Api.Option
             sb.Append("[]");
             return sb.ToString();
         }
+
+        protected static string ToDateString(DateTime? date)
+            => date.HasValue ? date.Value.ToString("yyyy-MM-dd") : string.Empty;
     }
 }

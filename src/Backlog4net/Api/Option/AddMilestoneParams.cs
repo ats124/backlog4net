@@ -21,8 +21,8 @@ namespace Backlog4net.Api.Option
 
         public string Description { set => AddNewParamValue(value); }
 
-        public string StartDate { set => AddNewParamValue(value); }
+        public DateTime StartDate { set => AddNewParamValue(ToDateString(value)); }
 
-        public string ReleaseDueDate { set => AddNewParamValue(value); }
+        public DateTime ReleaseDueDate { set => AddNewParamValue(ToDateString(value)); }
     }
 }

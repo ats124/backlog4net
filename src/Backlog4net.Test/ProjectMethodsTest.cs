@@ -182,5 +182,35 @@ namespace Backlog4net.Test
             versions = await client.GetVersionsAsync(generalConfig.ProjectKey);
             Assert.IsFalse(versions.Any(x => x.Id == updatedVersion.Id && x.Name == updatedVersion.Name));
         }
+
+        [TestMethod]
+        public async Task SharedFileAsyncTest()
+        {
+            var sharedFiles = await client.GetSharedFilesAsync(generalConfig.ProjectKey, projectConfig.SharedFileDirectory, new QueryParams() { Count = 1, Order = Order.Asc });
+            Assert.AreEqual(sharedFiles.Count, 1);
+
+            sharedFiles = await client.GetSharedFilesAsync(generalConfig.ProjectKey, projectConfig.SharedFileDirectory);
+            var sharedFile1 = sharedFiles.First(x => x.Name == projectConfig.SharedFile1);
+            Assert.IsTrue(sharedFile1.Dir.Contains(projectConfig.SharedFileDirectory));
+            Assert.AreNotEqual(sharedFile1.Size, 0L);
+
+            var created = sharedFile1.Created.Value;
+            created = new DateTime(created.Year, created.Month, created.Day, created.Hour, created.Minute, 0);
+            var checkCreated = projectConfig.SharedFile1Created.ToUniversalTime();
+            checkCreated = new DateTime(checkCreated.Year, checkCreated.Month, checkCreated.Day, checkCreated.Hour, checkCreated.Minute, 0);
+            Assert.AreEqual(created, checkCreated);
+
+            var sharedImageFile1 = sharedFiles.First(x => x.Name == projectConfig.SharedImageFile1);
+            Assert.IsTrue(sharedImageFile1.IsImage);
+
+            var memStream = new System.IO.MemoryStream();
+            using (var sharedFile1Data = await client.DownloadSharedFileAsync(generalConfig.ProjectKey, sharedFile1.Id))
+            {
+                Assert.AreEqual(sharedFile1Data.FileName, projectConfig.SharedFile1);
+                memStream.SetLength(0);
+                await sharedFile1Data.Content.CopyToAsync(memStream);
+                Assert.AreEqual(memStream.Length, sharedFile1.Size);
+            }
+        }
     }
 }

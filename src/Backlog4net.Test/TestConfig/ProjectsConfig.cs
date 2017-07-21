@@ -15,6 +15,18 @@ namespace Backlog4net.Test.TestConfig
 
         [JsonProperty]
         public string AnotherUserId { get; private set; }
+
+        [JsonProperty]
+        public string SharedFileDirectory { get; private set; }
+
+        [JsonProperty]
+        public string SharedFile1 { get; private set; }
+
+        [JsonProperty]
+        public DateTime SharedFile1Created { get; private set; }
+
+        [JsonProperty]
+        public string SharedImageFile1 { get; private set; }
     }
 
 }

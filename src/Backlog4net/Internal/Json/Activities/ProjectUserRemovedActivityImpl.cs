@@ -5,20 +5,22 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.Activities
 {
-    public class ProjectUserRemovedActivity : ActivityJsonImpl<ProjectUserRemovedContent>
+    public class ProjectUserRemovedActivityImpl : ActivityJsonImpl<ProjectUserRemovedContentImpl>, ProjectUserRemovedActivity
     {
         public override ActivityType Type => ActivityType.ProjectUserRemoved;
+
+        ProjectUserRemovedContent ProjectUserRemovedActivity.Content => this.Content;
     }
 
-    public class ProjectUserRemovedContent : Content
+    public class ProjectUserRemovedContentImpl : ProjectUserRemovedContent
     {
         [JsonProperty(ItemConverterType = typeof(UserJsonImpl.JsonConverter))]
-        public User[] Users { get; private set; }
+        public IList<User> Users { get; private set; }
 
         [JsonProperty]
         public string Comment { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(GroupProjectActivityJsonImpl.JsonConverter))]
-        public GroupProjectActivity[] GroupProjectActivities { get; private set; }
+        public IList<GroupProjectActivity> GroupProjectActivities { get; private set; }
     }
 }

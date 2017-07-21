@@ -20,8 +20,8 @@ namespace Backlog4net.Internal.File
             {
                 var obj = new T();
                 obj.response = response;
+                obj.FileName = content.Headers.ContentDisposition.FileNameStar ?? content.Headers.ContentDisposition.FileName;
                 obj.Content = await content.ReadAsStreamAsync();
-                obj.FileName = content.Headers.ContentDisposition.FileName;
                 return obj;
             }
             catch (Exception)

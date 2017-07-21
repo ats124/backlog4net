@@ -212,5 +212,17 @@ namespace Backlog4net.Test
                 Assert.AreEqual(memStream.Length, sharedFile1.Size);
             }
         }
+
+        [TestMethod]
+        public async Task ProjectIconTest()
+        {
+            var memStream = new System.IO.MemoryStream();
+            using (var icon = await client.GetProjectIconAsync(generalConfig.ProjectKey))
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(icon.FileName));
+                await icon.Content.CopyToAsync(memStream);
+                Assert.AreNotEqual(memStream.Length, 0);
+            }
+        }
     }
 }

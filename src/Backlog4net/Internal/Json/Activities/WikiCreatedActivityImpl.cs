@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.Activities
 {
-    public class WikiCreatedActivity : ActivityJsonImpl<WikiCreatedContent>
+    public class WikiCreatedActivityImpl : ActivityJsonImpl<WikiCreatedContentImpl>, WikiCreatedActivity
     {
         public override ActivityType Type => ActivityType.WikiCreated;
+
+        WikiCreatedContent WikiCreatedActivity.Content => this.Content;
     }
 
-    public class WikiCreatedContent : Content
+    public class WikiCreatedContentImpl : WikiCreatedContent
     {
         [JsonProperty]
         public long Id { get; private set; }
@@ -28,9 +30,9 @@ namespace Backlog4net.Internal.Json.Activities
         public int Version { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(AttachmentJsonImpl.JsonConverter))]
-        public List<Attachment> Attachments { get; private set; }
+        public IList<Attachment> Attachments { get; private set; }
 
         [JsonProperty("shared_files", ItemConverterType = typeof(SharedFileJsonImpl.JsonConverter))]
-        public List<SharedFile> SharedFiles { get; private set; }
+        public IList<SharedFile> SharedFiles { get; private set; }
     }
 }

@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.Activities
 {
-    public class GitPushedActivity : ActivityJsonImpl<GitPushedContent>
+    public class GitPushedActivityImpl : ActivityJsonImpl<GitPushedContentImpl>, GitPushedActivity
     {
         public override ActivityType Type => ActivityType.GitPushed;
+
+        GitPushedContent GitPushedActivity.Content => this.Content;
     }
 
-    public class GitPushedContent : Content
+    public class GitPushedContentImpl : GitPushedContent
     {
         [JsonProperty("change_type")]
         public string ChangeType { get; private set; }
@@ -25,7 +27,7 @@ namespace Backlog4net.Internal.Json.Activities
         public Repository Repository { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(RevisionJsonImpl.JsonConverter))]
-        public Revision[] Revisions { get; private set; }
+        public IList<Revision> Revisions { get; private set; }
 
         [JsonProperty("revision_count")]
         public long RevisionCount { get; private set; }

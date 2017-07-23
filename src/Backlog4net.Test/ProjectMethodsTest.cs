@@ -316,5 +316,35 @@ namespace Backlog4net.Test
             Assert.AreEqual(issueMultiUpdated.Content.Changes[4].Type, "standard");
 
         }
+
+        [TestMethod]
+        public void ProjectActivitiesWikiTest()
+        {
+            var wikiActivities = JsonConvert.DeserializeObject<Activity[]>(File.ReadAllText(@"TestData\activity-wiki.json"), new ActivityJsonImplBase.JsonConverter());
+
+            var wikiCreated = (WikiCreatedActivity)wikiActivities.First(x => x.Id == 18062171);
+            Assert.AreEqual(wikiCreated.Type, ActivityType.WikiCreated);
+            Assert.AreEqual(wikiCreated.Content.Id, 177370L);
+            Assert.AreEqual(wikiCreated.Content.Name, "WikiCreatedTestTitle");
+            Assert.AreEqual(wikiCreated.Content.Content, "WikiCreatedContent");
+
+            var wikiUpdated = (WikiUpdatedActivity)wikiActivities.First(x => x.Id == 18062174);
+            Assert.AreEqual(wikiUpdated.Type, ActivityType.WikiUpdated);
+            Assert.AreEqual(wikiUpdated.Content.Id, 177370L);
+            Assert.AreEqual(wikiUpdated.Content.Name, "WikiCreatedTestTitleUpdated");
+            Assert.AreEqual(wikiUpdated.Content.Content, "WikiCreatedContentUpdated");
+            Assert.AreEqual(wikiUpdated.Content.Diff, "1c1\n<WikiCreatedContentUpdated---\n>WikiCreatedContent");
+            Assert.AreEqual(wikiUpdated.Content.Version, 2);
+
+            var wikiUpdated2 = (WikiUpdatedActivity)wikiActivities.First(x => x.Id == 18062278);
+            Assert.AreEqual(wikiUpdated2.Content.Attachments[0].Id, 46346L);
+            Assert.AreEqual(wikiUpdated2.Content.Attachments[0].Name, "TestFile3.txt");
+            Assert.AreEqual(wikiUpdated2.Content.Attachments[0].Size, 12L);
+
+            var wikiDeleted = (WikiDeletedActivity)wikiActivities.First(x => x.Id == 18062177);
+            Assert.AreEqual(wikiDeleted.Type, ActivityType.WikiDeleted);
+            Assert.AreEqual(wikiDeleted.Content.Name, "WikiCreatedTestTitleUpdated");
+            Assert.AreEqual(wikiDeleted.Content.Content, "WikiCreatedContentUpdated");
+        }
     }
 }

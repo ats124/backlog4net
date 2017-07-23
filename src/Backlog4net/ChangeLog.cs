@@ -11,7 +11,7 @@ namespace Backlog4net
     /// </summary>
     public interface ChangeLog
     {
-        long Field { get; }
+        string Field { get; }
 
         string NewValue { get; }
 

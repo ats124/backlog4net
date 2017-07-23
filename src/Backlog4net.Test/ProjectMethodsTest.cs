@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,7 +10,10 @@ namespace Backlog4net.Test
 {
     using Api;
     using Api.Option;
+    using Backlog4net.Internal.Json;
+    using Backlog4net.Internal.Json.Activities;
     using Conf;
+    using Newtonsoft.Json;
     using TestConfig;
 
     [TestClass]
@@ -223,6 +227,94 @@ namespace Backlog4net.Test
                 await icon.Content.CopyToAsync(memStream);
                 Assert.AreNotEqual(memStream.Length, 0);
             }
+        }
+
+        [TestMethod]
+        public async Task ProjectActivitiesIssueTestAsync()
+        {
+            await ProjectUserAsyncTest();
+            var activities = await client.GetProjectActivitiesAsync(generalConfig.ProjectKey, new ActivityQueryParams() { ActivityType = new[] { ActivityType.ProjectUserAdded, ActivityType.ProjectUserRemoved } });
+            Assert.IsTrue(activities.Count > 0);
+            activities.Any(x => x.Type == ActivityType.ProjectUserAdded);
+            activities.Any(x => x.Type == ActivityType.ProjectUserRemoved);
+
+            var issueActivities = JsonConvert.DeserializeObject<Activity[]>(File.ReadAllText(@"TestData\activity-issue.json"), new ActivityJsonImplBase.JsonConverter());
+
+            var issueCreated = (IssueCreatedActivity)issueActivities.First(x => x.Id == 18059501);
+            Assert.AreEqual(issueCreated.Type, ActivityType.IssueCreated);
+            Assert.AreEqual(issueCreated.Project.ProjectKey, "BLG4NT");
+            Assert.AreEqual(issueCreated.Content.Id, 2670276L);
+            Assert.AreEqual(issueCreated.Content.KeyId, 1L);
+            Assert.AreEqual(issueCreated.Content.Summary, "TestIssueCreatedSummary");
+            Assert.AreEqual(issueCreated.Content.Description, "TestIssueCreatedDescription\n");
+            Assert.AreEqual(issueCreated.CreatedUser.Id, 127017L);
+            Assert.AreEqual(issueCreated.Created, new DateTime(2017, 7, 23, 6, 29, 35, DateTimeKind.Utc));
+
+            var issueUpdated = (IssueUpdatedActivity)issueActivities.First(x => x.Id == 18059594);
+            Assert.AreEqual(issueUpdated.Type, ActivityType.IssueUpdated);
+            Assert.AreEqual(issueUpdated.Project.ProjectKey, "BLG4NT");
+            Assert.AreEqual(issueUpdated.Content.Id, 2670276L);
+            Assert.AreEqual(issueUpdated.Content.KeyId, 1L);
+            Assert.AreEqual(issueUpdated.Content.Summary, "TestIssueCreatedSummaryUpdated");
+            Assert.AreEqual(issueUpdated.Content.Description, "TestIssueCreatedDescriptionUpdated\n");
+            Assert.AreEqual(issueUpdated.Content.Comment.Id, 12748076L);
+            Assert.AreEqual(issueUpdated.Content.Comment.Content, "TestIssueCreatedComment");
+            Assert.AreEqual(issueUpdated.Content.Changes[0].Field, "attachment");
+            Assert.AreEqual(issueUpdated.Content.Changes[0].NewValue, "TestFile3.txt");
+            Assert.AreEqual(issueUpdated.Content.Changes[0].OldValue, "");
+            Assert.AreEqual(issueUpdated.Content.Changes[0].Type, "standard");
+            Assert.AreEqual(issueUpdated.Content.Attachments[0].Id, 1283213L);
+            Assert.AreEqual(issueUpdated.Content.Attachments[0].Name, "TestFile3.txt");
+            Assert.AreEqual(issueUpdated.Content.Attachments[0].Size, 12L);
+
+            var issueCommented = (IssueCommentedActivity)issueActivities.First(x => x.Id == 18060339);
+            Assert.AreEqual(issueCommented.Type, ActivityType.IssueCommented);
+            Assert.AreEqual(issueCommented.Project.ProjectKey, "BLG4NT");
+            Assert.AreEqual(issueCommented.Content.Id, 2670276L);
+            Assert.AreEqual(issueCommented.Content.KeyId, 1L);
+            Assert.AreEqual(issueCommented.Content.Summary, "TestIssueCreatedSummaryUpdated");
+            Assert.AreEqual(issueCommented.Content.Description, "TestIssueCreatedDescriptionUpdated\n");
+            Assert.AreEqual(issueCommented.Content.Comment.Id, 12748626L);
+            Assert.AreEqual(issueCommented.Content.Comment.Content, "IssueCommentTest");
+            Assert.AreEqual(issueCommented.Content.Changes[0].Field, "attachment");
+            Assert.AreEqual(issueCommented.Content.Changes[0].NewValue, "TestFile3.txt");
+            Assert.AreEqual(issueCommented.Content.Changes[0].OldValue, "");
+            Assert.AreEqual(issueCommented.Content.Changes[0].Type, "standard");
+            Assert.AreEqual(issueCommented.Content.Attachments[0].Id, 1283270L);
+            Assert.AreEqual(issueCommented.Content.Attachments[0].Name, "TestFile3.txt");
+            Assert.AreEqual(issueCommented.Content.Attachments[0].Size, 12L);
+
+            var issueDeleted = (IssueDeletedActivity)issueActivities.First(x => x.Id == 18060490);
+            Assert.AreEqual(issueDeleted.Type, ActivityType.IssueDeleted);
+            Assert.AreEqual(issueDeleted.Content.Id, 2670276L);
+            Assert.AreEqual(issueDeleted.Content.KeyId, 1L);
+
+            var issueMultiUpdated = (IssueMultiUpdatedActivity)issueActivities.First(x => x.Id == 18061933);
+            Assert.AreEqual(issueMultiUpdated.Type, ActivityType.IssueMultiUpdated);
+            Assert.AreEqual(issueMultiUpdated.Content.TxId, 87469L);
+            Assert.AreEqual(issueMultiUpdated.Content.Comment.Content, "IssueMultiUpdatedTestComment");
+            Assert.AreEqual(issueMultiUpdated.Content.Link[0].Id, 2670780L);
+            Assert.AreEqual(issueMultiUpdated.Content.Link[0].KeyId, 2L);
+            Assert.AreEqual(issueMultiUpdated.Content.Link[0].Title, "IssueMultiUpdatedTestSummary1");
+            Assert.AreEqual(issueMultiUpdated.Content.Link[1].Id, 2670781L);
+            Assert.AreEqual(issueMultiUpdated.Content.Link[1].KeyId, 3L);
+            Assert.AreEqual(issueMultiUpdated.Content.Link[1].Title, "IssueMultiUpdatedTestSummary2");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[0].Field, "milestone");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[0].NewValue, "TestM");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[0].Type, "standard");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[1].Field, "limitDate");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[1].NewValue, "2017/07/23");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[1].Type, "standard");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[2].Field, "assigner");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[2].NewValue, "ats124");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[2].Type, "standard");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[3].Field, "resolution");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[3].NewValue, "0");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[3].Type, "standard");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[4].Field, "status");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[4].NewValue, "4");
+            Assert.AreEqual(issueMultiUpdated.Content.Changes[4].Type, "standard");
+
         }
     }
 }

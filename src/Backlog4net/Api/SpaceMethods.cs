@@ -54,9 +54,9 @@ namespace Backlog4net.Api
         /// <summary>
         /// Posts the attachment file for issue or wiki.
         /// </summary>
-        /// <param name="attachmentData">the attachment file data</param>
-        /// <returns></returns>
-        Task<Attachment> PostAttachmentAsync(AttachmentData attachmentData, CancellationToken? token = null);
+        /// <param name="@params">file post parameters</param>
+        /// <returns>the Attachment</returns>
+        Task<Attachment> PostAttachmentAsync(PostAttachmentParams @params, CancellationToken? token = null);
 
     }
 }

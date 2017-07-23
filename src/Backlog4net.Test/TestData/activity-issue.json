@@ -1,0 +1,466 @@
+﻿[
+  {
+    "id": 18061933,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 14,
+    "content": {
+      "tx_id": 87469,
+      "comment": {
+        "content": "IssueMultiUpdatedTestComment"
+      },
+      "link": [
+        {
+          "id": 2670780,
+          "key_id": 2,
+          "title": "IssueMultiUpdatedTestSummary1",
+          "comment": {
+            "id": 12749829,
+            "content": "IssueMultiUpdatedTestComment"
+          }
+        },
+        {
+          "id": 2670781,
+          "key_id": 3,
+          "title": "IssueMultiUpdatedTestSummary2",
+          "comment": {
+            "id": 12749828,
+            "content": "IssueMultiUpdatedTestComment"
+          }
+        }
+      ],
+      "changes": [
+        {
+          "field": "milestone",
+          "new_value": "TestM",
+          "type": "standard"
+        },
+        {
+          "field": "limitDate",
+          "new_value": "2017/07/23",
+          "type": "standard"
+        },
+        {
+          "field": "assigner",
+          "new_value": "ats124",
+          "type": "standard"
+        },
+        {
+          "field": "resolution",
+          "new_value": "0",
+          "type": "standard"
+        },
+        {
+          "field": "status",
+          "new_value": "4",
+          "type": "standard"
+        }
+      ]
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T11:50:57Z"
+  },
+  {
+    "id": 18060490,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 4,
+    "content": {
+      "id": 2670276,
+      "key_id": 1
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T08:28:24Z"
+  },
+  {
+    "id": 18060406,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 3,
+    "content": {
+      "id": 2670276,
+      "key_id": 1,
+      "summary": "TestIssueCreatedSummaryUpdated",
+      "description": "TestIssueCreatedDescriptionUpdated\n",
+      "comment": {
+        "id": 12748675,
+        "content": "IssueCommentTest"
+      },
+      "changes": [
+        {
+          "field": "attachment",
+          "field_text": "lbl.changelog.attachment",
+          "new_value": "TestFile3.txt",
+          "old_value": "",
+          "type": "standard"
+        }
+      ],
+      "attachments": [
+        {
+          "id": 1283278,
+          "name": "TestFile3.txt",
+          "size": 12
+        }
+      ],
+      "shared_files": []
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T08:19:26Z"
+  },
+  {
+    "id": 18060398,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 3,
+    "content": {
+      "id": 2670276,
+      "key_id": 1,
+      "summary": "TestIssueCreatedSummaryUpdated",
+      "description": "TestIssueCreatedDescriptionUpdated\n",
+      "comment": {
+        "id": 12748670,
+        "content": "IssueCommentTest"
+      },
+      "changes": [
+        {
+          "field": "attachment",
+          "field_text": "lbl.changelog.attachment",
+          "new_value": "TestFile3.txt",
+          "old_value": "",
+          "type": "standard"
+        }
+      ],
+      "attachments": [
+        {
+          "id": 1283277,
+          "name": "TestFile3.txt",
+          "size": 12
+        }
+      ],
+      "shared_files": []
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T08:18:40Z"
+  },
+  {
+    "id": 18060339,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 3,
+    "content": {
+      "id": 2670276,
+      "key_id": 1,
+      "summary": "TestIssueCreatedSummaryUpdated",
+      "description": "TestIssueCreatedDescriptionUpdated\n",
+      "comment": {
+        "id": 12748626,
+        "content": "IssueCommentTest"
+      },
+      "changes": [
+        {
+          "field": "attachment",
+          "field_text": "lbl.changelog.attachment",
+          "new_value": "TestFile3.txt",
+          "old_value": "",
+          "type": "standard"
+        }
+      ],
+      "attachments": [
+        {
+          "id": 1283270,
+          "name": "TestFile3.txt",
+          "size": 12
+        }
+      ],
+      "shared_files": []
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T08:10:05Z"
+  },
+  {
+    "id": 18059594,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 2,
+    "content": {
+      "id": 2670276,
+      "key_id": 1,
+      "summary": "TestIssueCreatedSummaryUpdated",
+      "description": "TestIssueCreatedDescriptionUpdated\n",
+      "comment": {
+        "id": 12748076,
+        "content": "TestIssueCreatedComment"
+      },
+      "changes": [
+        {
+          "field": "attachment",
+          "field_text": "lbl.changelog.attachment",
+          "new_value": "TestFile3.txt",
+          "old_value": "",
+          "type": "standard"
+        }
+      ],
+      "attachments": [
+        {
+          "id": 1283213,
+          "name": "TestFile3.txt",
+          "size": 12
+        }
+      ],
+      "shared_files": []
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T06:40:30Z"
+  },
+  {
+    "id": 18059572,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 2,
+    "content": {
+      "id": 2670276,
+      "key_id": 1,
+      "summary": "TestIssueCreatedSummaryUpdated",
+      "description": "TestIssueCreatedDescriptionUpdated\n",
+      "comment": {
+        "id": 12748058,
+        "content": "TestComment"
+      },
+      "changes": [
+        {
+          "field": "summary",
+          "field_text": "lbl.changelog.summary",
+          "new_value": "TestIssueCreatedSummaryUpdated",
+          "old_value": "TestIssueCreatedSummary",
+          "type": "standard"
+        },
+        {
+          "field": "description",
+          "field_text": "lbl.changelog.description",
+          "new_value": "TestIssueCreatedDescriptionUpdated\n",
+          "old_value": "TestIssueCreatedDescription\n",
+          "type": "standard"
+        },
+        {
+          "field": "status",
+          "field_text": "lbl.changelog.status",
+          "new_value": "4",
+          "old_value": "1",
+          "type": "standard"
+        },
+        {
+          "field": "assigner",
+          "field_text": "lbl.changelog.assigner",
+          "new_value": "ats124",
+          "old_value": "",
+          "type": "standard"
+        },
+        {
+          "field": "startDate",
+          "field_text": "lbl.changelog.startDate",
+          "new_value": "2017-07-24",
+          "old_value": "",
+          "type": "standard"
+        },
+        {
+          "field": "limitDate",
+          "field_text": "lbl.changelog.limitDate",
+          "new_value": "2017-07-24",
+          "old_value": "",
+          "type": "standard"
+        },
+        {
+          "field": "resolution",
+          "field_text": "lbl.changelog.resolution",
+          "new_value": "0",
+          "old_value": "",
+          "type": "standard"
+        },
+        {
+          "field": "estimatedHours",
+          "field_text": "lbl.changelog.estimatedHours",
+          "new_value": "1",
+          "old_value": "",
+          "type": "standard"
+        },
+        {
+          "field": "actualHours",
+          "field_text": "lbl.changelog.actualHours",
+          "new_value": "2",
+          "old_value": "",
+          "type": "standard"
+        }
+      ],
+      "attachments": [],
+      "shared_files": []
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T06:37:59Z"
+  },
+  {
+    "id": 18059501,
+    "project": {
+      "id": 58039,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": true,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "type": 1,
+    "content": {
+      "id": 2670276,
+      "key_id": 1,
+      "summary": "TestIssueCreatedSummary",
+      "description": "TestIssueCreatedDescription\n"
+    },
+    "notifications": [],
+    "createdUser": {
+      "id": 127017,
+      "userId": "ats124",
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": "ats124@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-07-23T06:29:35Z"
+  }
+]

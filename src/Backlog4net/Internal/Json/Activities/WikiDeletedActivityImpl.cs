@@ -27,7 +27,7 @@ namespace Backlog4net.Internal.Json.Activities
         public string Diff { get; private set; }
 
         [JsonProperty]
-        public int Version { get; private set; }
+        public int? Version { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(AttachmentJsonImpl.JsonConverter))]
         public IList<Attachment> Attachments { get; private set; }

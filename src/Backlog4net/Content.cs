@@ -208,7 +208,7 @@ namespace Backlog4net
 
         string Diff { get; }
 
-        int Version { get; }
+        int? Version { get; }
 
         IList<Attachment> Attachments { get; }
 
@@ -225,7 +225,7 @@ namespace Backlog4net
 
         string Diff { get; }
 
-        int Version { get; }
+        int? Version { get; }
 
         IList<Attachment> Attachments { get; }
 
@@ -242,7 +242,7 @@ namespace Backlog4net
 
         string Diff { get; }
 
-        int Version { get; }
+        int? Version { get; }
 
         IList<Attachment> Attachments { get; }
 

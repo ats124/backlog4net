@@ -385,5 +385,29 @@ namespace Backlog4net.Test
             Assert.AreEqual(svnComitted.Content.Comment, "Test Commit 2");
 
         }
+
+        [TestMethod]
+        public void ProjectActivitiesGitTest()
+        {
+            var gitActivities = JsonConvert.DeserializeObject<Activity[]>(File.ReadAllText(@"TestData\activity-git.json"), new ActivityJsonImplBase.JsonConverter());
+
+            var gitPushed = (GitPushedActivity)gitActivities.First(x => x.Id == 18153475);
+            Assert.AreEqual(gitPushed.Type, ActivityType.GitPushed);
+            Assert.AreEqual(gitPushed.Content.Repository.Id, 15203L);
+            Assert.AreEqual(gitPushed.Content.Repository.Name, "test");
+            Assert.AreEqual(gitPushed.Content.ChangeType, "create");
+            Assert.AreEqual(gitPushed.Content.RevisionType, "commit");
+            Assert.AreEqual(gitPushed.Content.Ref, "refs/heads/master");
+            Assert.AreEqual(gitPushed.Content.RevisionCount, 1);
+            Assert.AreEqual(gitPushed.Content.Revisions[0].Rev, "640cce73754865ae856fc1c9b31ab7eed8c321cd");
+            Assert.AreEqual(gitPushed.Content.Revisions[0].Comment, "test commit");
+
+            var gitRepoCreated = (GitRepositoryCreatedActivity)gitActivities.First(x => x.Id == 18153443);
+            Assert.AreEqual(gitRepoCreated.Type, ActivityType.GitRepositoryCreated);
+            Assert.AreEqual(gitRepoCreated.Content.Repository.Id, 15203L);
+            Assert.AreEqual(gitRepoCreated.Content.Repository.Name, "test");
+            Assert.AreEqual(gitRepoCreated.Content.Repository.Description, "test repository");
+        }
+
     }
 }

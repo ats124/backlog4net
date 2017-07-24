@@ -346,5 +346,32 @@ namespace Backlog4net.Test
             Assert.AreEqual(wikiDeleted.Content.Name, "WikiCreatedTestTitleUpdated");
             Assert.AreEqual(wikiDeleted.Content.Content, "WikiCreatedContentUpdated");
         }
+
+        [TestMethod]
+        public void ProjectActivitiesFileTest()
+        {
+            var fileActivities = JsonConvert.DeserializeObject<Activity[]>(File.ReadAllText(@"TestData\activity-file.json"), new ActivityJsonImplBase.JsonConverter());
+
+            var fileAdded = (FileAddedActivity)fileActivities.First(x => x.Id == 18109978);
+            Assert.AreEqual(fileAdded.Type, ActivityType.FileAdded);
+            Assert.AreEqual(fileAdded.Content.Id, 1957758L);
+            Assert.AreEqual(fileAdded.Content.Dir, "/テストディレクトリ１/");
+            Assert.AreEqual(fileAdded.Content.Name, "TestFile3.txt");
+            Assert.AreEqual(fileAdded.Content.Size, 12);
+
+            var fileUpdated = (FileUpdatedActivity)fileActivities.First(x => x.Id == 18110130);
+            Assert.AreEqual(fileUpdated.Type, ActivityType.FileUpdated);
+            Assert.AreEqual(fileUpdated.Content.Id, 1957758L);
+            Assert.AreEqual(fileUpdated.Content.Dir, "/テストディレクトリ１/");
+            Assert.AreEqual(fileUpdated.Content.Name, "TestFile4.txt");
+            Assert.AreEqual(fileUpdated.Content.Size, 17);
+
+            var fileDeleted = (FileDeletedActivity)fileActivities.First(x => x.Id == 18110161);
+            Assert.AreEqual(fileDeleted.Type, ActivityType.FileDeleted);
+            Assert.AreEqual(fileDeleted.Content.Id, 1957758L);
+            Assert.AreEqual(fileDeleted.Content.Dir, "/テストディレクトリ１/");
+            Assert.AreEqual(fileDeleted.Content.Name, "TestFile4.txt");
+            Assert.AreEqual(fileDeleted.Content.Size, 17);
+        }
     }
 }

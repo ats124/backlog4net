@@ -1,0 +1,200 @@
+﻿[
+	{
+		"id": 18110161,
+		"project": {
+			"id": 58039,
+			"projectKey": "BLG4NT",
+			"name": "Backlog4net-Test",
+			"chartEnabled": true,
+			"subtaskingEnabled": true,
+			"projectLeaderCanEditProjectLeader": true,
+			"useWikiTreeView": true,
+			"textFormattingRule": "backlog",
+			"archived": false,
+			"displayOrder": 2147483646
+		},
+		"type": 10,
+		"content": {
+			"id": 1957758,
+			"dir": "/テストディレクトリ１/",
+			"name": "TestFile4.txt",
+			"size": 17
+		},
+		"notifications": [],
+		"createdUser": {
+			"id": 127017,
+			"userId": "ats124",
+			"name": "ats124",
+			"roleType": 1,
+			"lang": null,
+			"mailAddress": "ats124@section-9.tech",
+			"nulabAccount": null
+		},
+		"created": "2017-07-24T06:14:01Z"
+	},
+	{
+		"id": 18110130,
+		"project": {
+			"id": 58039,
+			"projectKey": "BLG4NT",
+			"name": "Backlog4net-Test",
+			"chartEnabled": true,
+			"subtaskingEnabled": true,
+			"projectLeaderCanEditProjectLeader": true,
+			"useWikiTreeView": true,
+			"textFormattingRule": "backlog",
+			"archived": false,
+			"displayOrder": 2147483646
+		},
+		"type": 9,
+		"content": {
+			"id": 1957758,
+			"dir": "/テストディレクトリ１/",
+			"name": "TestFile4.txt",
+			"size": 17
+		},
+		"notifications": [],
+		"createdUser": {
+			"id": 127017,
+			"userId": "ats124",
+			"name": "ats124",
+			"roleType": 1,
+			"lang": null,
+			"mailAddress": "ats124@section-9.tech",
+			"nulabAccount": null
+		},
+		"created": "2017-07-24T06:13:47Z"
+	},
+	{
+		"id": 18110030,
+		"project": {
+			"id": 58039,
+			"projectKey": "BLG4NT",
+			"name": "Backlog4net-Test",
+			"chartEnabled": true,
+			"subtaskingEnabled": true,
+			"projectLeaderCanEditProjectLeader": true,
+			"useWikiTreeView": true,
+			"textFormattingRule": "backlog",
+			"archived": false,
+			"displayOrder": 2147483646
+		},
+		"type": 9,
+		"content": {
+			"id": 1957758,
+			"dir": "/テストディレクトリ１/",
+			"name": "TestFile4.txt",
+			"size": 12
+		},
+		"notifications": [],
+		"createdUser": {
+			"id": 127017,
+			"userId": "ats124",
+			"name": "ats124",
+			"roleType": 1,
+			"lang": null,
+			"mailAddress": "ats124@section-9.tech",
+			"nulabAccount": null
+		},
+		"created": "2017-07-24T06:13:21Z"
+	},
+	{
+		"id": 18109978,
+		"project": {
+			"id": 58039,
+			"projectKey": "BLG4NT",
+			"name": "Backlog4net-Test",
+			"chartEnabled": true,
+			"subtaskingEnabled": true,
+			"projectLeaderCanEditProjectLeader": true,
+			"useWikiTreeView": true,
+			"textFormattingRule": "backlog",
+			"archived": false,
+			"displayOrder": 2147483646
+		},
+		"type": 8,
+		"content": {
+			"id": 1957758,
+			"dir": "/テストディレクトリ１/",
+			"name": "TestFile3.txt",
+			"size": 12
+		},
+		"notifications": [],
+		"createdUser": {
+			"id": 127017,
+			"userId": "ats124",
+			"name": "ats124",
+			"roleType": 1,
+			"lang": null,
+			"mailAddress": "ats124@section-9.tech",
+			"nulabAccount": null
+		},
+		"created": "2017-07-24T06:13:02Z"
+	},
+	{
+		"id": 18008131,
+		"project": {
+			"id": 58039,
+			"projectKey": "BLG4NT",
+			"name": "Backlog4net-Test",
+			"chartEnabled": true,
+			"subtaskingEnabled": true,
+			"projectLeaderCanEditProjectLeader": true,
+			"useWikiTreeView": true,
+			"textFormattingRule": "backlog",
+			"archived": false,
+			"displayOrder": 2147483646
+		},
+		"type": 8,
+		"content": {
+			"id": 1949166,
+			"dir": "/テストディレクトリ１/",
+			"name": "テストファイル２.jpg",
+			"size": 21367
+		},
+		"notifications": [],
+		"createdUser": {
+			"id": 127017,
+			"userId": "ats124",
+			"name": "ats124",
+			"roleType": 1,
+			"lang": null,
+			"mailAddress": "ats124@section-9.tech",
+			"nulabAccount": null
+		},
+		"created": "2017-07-21T06:26:02Z"
+	},
+	{
+		"id": 18007724,
+		"project": {
+			"id": 58039,
+			"projectKey": "BLG4NT",
+			"name": "Backlog4net-Test",
+			"chartEnabled": true,
+			"subtaskingEnabled": true,
+			"projectLeaderCanEditProjectLeader": true,
+			"useWikiTreeView": true,
+			"textFormattingRule": "backlog",
+			"archived": false,
+			"displayOrder": 2147483646
+		},
+		"type": 8,
+		"content": {
+			"id": 1949146,
+			"dir": "/テストディレクトリ１/",
+			"name": "テストファイル１.txt",
+			"size": 63
+		},
+		"notifications": [],
+		"createdUser": {
+			"id": 127017,
+			"userId": "ats124",
+			"name": "ats124",
+			"roleType": 1,
+			"lang": null,
+			"mailAddress": "ats124@section-9.tech",
+			"nulabAccount": null
+		},
+		"created": "2017-07-21T06:22:38Z"
+	}
+]

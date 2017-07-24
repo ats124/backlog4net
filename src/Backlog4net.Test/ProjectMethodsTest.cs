@@ -373,5 +373,17 @@ namespace Backlog4net.Test
             Assert.AreEqual(fileDeleted.Content.Name, "TestFile4.txt");
             Assert.AreEqual(fileDeleted.Content.Size, 17);
         }
+
+        [TestMethod]
+        public void ProjectActivitiesSvnTest()
+        {
+            var svnActivities = JsonConvert.DeserializeObject<Activity[]>(File.ReadAllText(@"TestData\activity-svn.json"), new ActivityJsonImplBase.JsonConverter());
+
+            var svnComitted = (SvnCommittedActivity)svnActivities.First(x => x.Id == 18152632);
+            Assert.AreEqual(svnComitted.Type, ActivityType.SvnCommitted);
+            Assert.AreEqual(svnComitted.Content.Rev, 2L);
+            Assert.AreEqual(svnComitted.Content.Comment, "Test Commit 2");
+
+        }
     }
 }

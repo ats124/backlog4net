@@ -87,6 +87,9 @@
     <None Include="TestConfig\general.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\activity-git.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\activity-svn.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

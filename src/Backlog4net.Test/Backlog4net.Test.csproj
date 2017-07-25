@@ -75,18 +75,14 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="TestConfig\general.sample.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="TestConfig\ForCIAndSample\general.json" />
     <None Include="TestConfig\projects.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="TestConfig\general.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="TestConfig\projects.sample.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="TestConfig\ForCIAndSample\projects.json" />
     <None Include="TestData\activity-user.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

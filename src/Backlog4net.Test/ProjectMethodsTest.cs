@@ -472,5 +472,27 @@ namespace Backlog4net.Test
             Assert.AreEqual(diskUsage.Subversion, 4L);
             Assert.AreEqual(diskUsage.Git, 5L);
         }
+
+        [TestMethod]
+        public async Task AdministratorTestAsync()
+        {
+            await client.AddProjectUserAsync(generalConfig.ProjectKey, numericAnotherUserId);
+
+            var administrator = await client.AddProjectAdministratorAsync(generalConfig.ProjectKey, numericAnotherUserId);
+            Assert.AreEqual(administrator.UserId, projectConfig.AnotherUserId);
+            Assert.IsFalse(string.IsNullOrEmpty(administrator.Name));
+            Assert.IsFalse(string.IsNullOrEmpty(administrator.MailAddress));
+
+            var administrators = await client.GetProjectAdministratorsAsync(generalConfig.ProjectKey);
+            Assert.IsTrue(administrators.Any(x => x.Id == numericAnotherUserId && x.UserId == projectConfig.AnotherUserId));
+
+            var deleteaAministrator = await client.RemoveProjectAdministratorAsync(generalConfig.ProjectKey, numericAnotherUserId);
+            Assert.AreEqual(deleteaAministrator.UserId, projectConfig.AnotherUserId);
+
+            administrators = await client.GetProjectAdministratorsAsync(generalConfig.ProjectKey);
+            Assert.IsFalse(administrators.Any(x => x.Id == numericAnotherUserId && x.UserId == projectConfig.AnotherUserId));
+
+            await client.RemoveProjectUserAsync(generalConfig.ProjectKey, numericAnotherUserId);
+        }
     }
 }

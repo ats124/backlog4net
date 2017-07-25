@@ -429,5 +429,34 @@ namespace Backlog4net.Test
             Assert.AreEqual(userRemoved.Content.Users[0].MailAddress, "ats124+2@section-9.tech");
 
         }
+
+        [TestMethod]
+        public async Task IssueTypeTestAsync()
+        {
+            var issueType = await client.AddIssueTypeAsync(new AddIssueTypeParams(generalConfig.ProjectKey, "TestIssueType", IssueTypeColors.Color10));
+            Assert.AreNotEqual(issueType.ProjectId, 0L);
+            Assert.AreNotEqual(issueType.Id, 0L);
+            Assert.AreEqual(issueType.Name, "TestIssueType");
+            Assert.AreEqual(issueType.Color, IssueTypeColors.Color10);
+
+            var updatedIssueType = await client.UpdateIssueTypeAsync(new UpdateIssueTypeParams(generalConfig.ProjectKey, issueType.Id) { Name = "TestIssueTypeUpdated", Color = IssueTypeColors.Color5 });
+            Assert.AreNotEqual(updatedIssueType.ProjectId, 0L);
+            Assert.AreEqual(updatedIssueType.Id, issueType.Id);
+            Assert.AreEqual(updatedIssueType.Name, "TestIssueTypeUpdated");
+            Assert.AreEqual(updatedIssueType.Color, IssueTypeColors.Color5);
+
+            var issueTypes = await client.GetIssueTypesAsync(generalConfig.ProjectKey);
+            Assert.IsTrue(issueTypes.Any(x => x.Id == updatedIssueType.Id && x.Name == updatedIssueType.Name));
+
+            var substituteIssueTypeId = issueTypes.First(x => x.Id != updatedIssueType.Id).Id;
+            var removedIssueType = await client.RemoveIssueTypeAsync(generalConfig.ProjectKey, updatedIssueType.Id, substituteIssueTypeId);
+            Assert.AreNotEqual(removedIssueType.ProjectId, 0L);
+            Assert.AreEqual(removedIssueType.Id, issueType.Id);
+            Assert.AreEqual(removedIssueType.Name, "TestIssueTypeUpdated");
+            Assert.AreEqual(removedIssueType.Color, IssueTypeColors.Color5);
+
+            issueTypes = await client.GetIssueTypesAsync(generalConfig.ProjectKey);
+            Assert.IsFalse(issueTypes.Any(x => x.Id == updatedIssueType.Id));
+        }
     }
 }

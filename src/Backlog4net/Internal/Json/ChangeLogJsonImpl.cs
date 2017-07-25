@@ -11,7 +11,7 @@ namespace Backlog4net.Internal.Json
         internal class JsonConverter : InterfaceConverter<ChangeLog, ChangeLogJsonImpl> { }
 
         [JsonProperty]
-        public long Field { get; private set; }
+        public string Field { get; private set; }
 
         [JsonProperty]
         public string NewValue { get; private set; }

@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.Activities
 {
-    public class SvnCommittedActivity : ActivityJsonImpl<SvnCommittedContent>
+    public class SvnCommittedActivityImpl : ActivityJsonImpl<SvnCommittedContentImpl>, SvnCommittedActivity
     {
         public override ActivityType Type => ActivityType.SvnCommitted;
+
+        SvnCommittedContent SvnCommittedActivity.Content => this.Content;
     }
 
-    public class SvnCommittedContent : Content
+    public class SvnCommittedContentImpl : SvnCommittedContent
     {
         [JsonProperty]
         public string Comment { get; private set; }

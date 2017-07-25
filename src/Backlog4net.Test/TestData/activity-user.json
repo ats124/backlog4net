@@ -1,0 +1,86 @@
+﻿[
+    {
+        "id": 18062025,
+        "project": {
+            "id": 58039,
+            "projectKey": "BLG4NT",
+            "name": "Backlog4net-Test",
+            "chartEnabled": true,
+            "subtaskingEnabled": true,
+            "projectLeaderCanEditProjectLeader": true,
+            "useWikiTreeView": true,
+            "textFormattingRule": "backlog",
+            "archived": false,
+            "displayOrder": 2147483646
+        },
+        "type": 16,
+        "content": {
+            "users": [
+                {
+                    "id": 128937,
+                    "userId": "ats124_2",
+                    "name": "ats124_2",
+                    "roleType": 2,
+                    "lang": null,
+                    "mailAddress": "ats124+2@section-9.tech",
+                    "nulabAccount": null
+                }
+            ],
+            "group_project_activities": [],
+            "comment": ""
+        },
+        "notifications": [],
+        "createdUser": {
+            "id": 127017,
+            "userId": "ats124",
+            "name": "ats124",
+            "roleType": 1,
+            "lang": null,
+            "mailAddress": "ats124@section-9.tech",
+            "nulabAccount": null
+        },
+        "created": "2017-07-23T12:04:17Z"
+    },
+    {
+        "id": 18062024,
+        "project": {
+            "id": 58039,
+            "projectKey": "BLG4NT",
+            "name": "Backlog4net-Test",
+            "chartEnabled": true,
+            "subtaskingEnabled": true,
+            "projectLeaderCanEditProjectLeader": true,
+            "useWikiTreeView": true,
+            "textFormattingRule": "backlog",
+            "archived": false,
+            "displayOrder": 2147483646
+        },
+        "type": 15,
+        "content": {
+            "users": [
+                {
+                    "id": 128937,
+                    "userId": "ats124_2",
+                    "name": "ats124_2",
+                    "roleType": 2,
+                    "lang": null,
+                    "mailAddress": "ats124+2@section-9.tech",
+                    "nulabAccount": null
+                }
+            ],
+            "group_project_activities": [],
+            "comment": ""
+        },
+        "notifications": [],
+      "createdUser": {
+        "id": 127017,
+        "userId": "ats124",
+        "name": "ats124",
+        "roleType": 1,
+        "lang": null,
+        "mailAddress": "ats124@section-9.tech",
+        "nulabAccount": null
+      },
+        "created": "2017-07-23T12:04:16Z"
+    }
+]

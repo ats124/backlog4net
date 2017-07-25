@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.Activities
 {
-    public class FileUpdatedActivity : ActivityJsonImpl<FileUpdatedContent>
+    public class FileDeletedActivityImpl : ActivityJsonImpl<FileDeletedContentImpl>, FileDeletedActivity
     {
-        public override ActivityType Type => ActivityType.FileUpdated;
+        public override ActivityType Type => ActivityType.FileDeleted;
+
+        FileDeletedContent FileDeletedActivity.Content => this.Content;
     }
 
-    public class FileUpdatedContent : Content
+    public class FileDeletedContentImpl : FileDeletedContent
     {
         [JsonProperty]
         public long Id { get; private set; }

@@ -70,9 +70,8 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Attachment> PostAttachmentAsync(AttachmentData attachmentData, CancellationToken? token = default(CancellationToken?))
+        public async Task<Attachment> PostAttachmentAsync(PostAttachmentParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            var @params = new KeyValuePair<string, object>[] { new KeyValuePair<string, object>("file", attachmentData) };
             var url = BuildEndpoint("space/attachment");
             using (var response = await PostMultiPart(url, @params, token))
             using (var content = response.Content)

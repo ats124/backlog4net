@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.Activities
 {
-    public class WikiDeletedActivity : ActivityJsonImpl<WikiDeletedContetn>
+    public class WikiCreatedActivityImpl : ActivityJsonImpl<WikiCreatedContentImpl>, WikiCreatedActivity
     {
-        public override ActivityType Type => ActivityType.WikiDeleted;
+        public override ActivityType Type => ActivityType.WikiCreated;
+
+        WikiCreatedContent WikiCreatedActivity.Content => this.Content;
     }
 
-    public class WikiDeletedContetn : Content
+    public class WikiCreatedContentImpl : WikiCreatedContent
     {
         [JsonProperty]
         public long Id { get; private set; }
@@ -25,12 +27,12 @@ namespace Backlog4net.Internal.Json.Activities
         public string Diff { get; private set; }
 
         [JsonProperty]
-        public int Version { get; private set; }
+        public int? Version { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(AttachmentJsonImpl.JsonConverter))]
-        public List<Attachment> Attachments { get; private set; }
+        public IList<Attachment> Attachments { get; private set; }
 
         [JsonProperty("shared_files", ItemConverterType = typeof(SharedFileJsonImpl.JsonConverter))]
-        public List<SharedFile> SharedFiles { get; private set; }
+        public IList<SharedFile> SharedFiles { get; private set; }
     }
 }

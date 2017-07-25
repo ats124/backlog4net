@@ -47,8 +47,8 @@ namespace Backlog4net.Test
 
             var obj = JsonConvert.DeserializeObject<Activity>(json, new ActivityJsonImplBase.JsonConverter());
             Assert.IsNotNull(obj);
-            Assert.IsTrue(obj is FileAddedActivity);
-            var file = (FileAddedActivity)obj;
+            Assert.IsTrue(obj is FileAddedActivityImpl);
+            var file = (FileAddedActivityImpl)obj;
             Assert.AreEqual(file.Id, 1);
             Assert.AreEqual(file.Type, ActivityType.FileAdded);
 
@@ -110,7 +110,7 @@ namespace Backlog4net.Test
 
             var obj = JsonConvert.DeserializeObject<Activity>(json, new ActivityJsonImplBase.JsonConverter());
             Assert.IsNotNull(obj);
-            Assert.IsTrue(obj is UndefinedActivity);
+            Assert.IsTrue(obj is UndefinedActivityImpl);
 
         }
 
@@ -153,14 +153,14 @@ namespace Backlog4net.Test
 
             var obj = JsonConvert.DeserializeObject<Activity>(json, new ActivityJsonImplBase.JsonConverter());
             Assert.IsNotNull(obj);
-            Assert.IsTrue(obj is GitPushedActivity);
-            var gitPushed = (GitPushedActivity)obj;
+            Assert.IsTrue(obj is GitPushedActivityImpl);
+            var gitPushed = (GitPushedActivityImpl)obj;
             Assert.IsNotNull(gitPushed.Content);
             Assert.AreEqual(gitPushed.Content.ChangeType, "test-change");
             Assert.AreEqual(gitPushed.Content.Ref, "test-ref");
             Assert.AreEqual(gitPushed.Content.RevisionType, "test-revision");
             Assert.IsNotNull(gitPushed.Content.Revisions);
-            Assert.AreEqual(gitPushed.Content.Revisions.Length, 2);
+            Assert.AreEqual(gitPushed.Content.Revisions.Count, 2);
             Assert.AreEqual(gitPushed.Content.Revisions[0].Rev, "test-rev-1");
             Assert.AreEqual(gitPushed.Content.Revisions[0].Comment, "test-comment-1");
             Assert.AreEqual(gitPushed.Content.Revisions[1].Rev, "test-rev-2");

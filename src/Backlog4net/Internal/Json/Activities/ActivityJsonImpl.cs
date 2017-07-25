@@ -13,27 +13,27 @@ namespace Backlog4net.Internal.Json.Activities
             public JsonConverter() :
                 base("type", new Dictionary<string, Type>
                 {
-                    { ActivityType.FileAdded.ToString("D"), typeof(FileAddedActivity) },
-                    { ActivityType.FileDeleted.ToString("D"), typeof(FileDeletedActivity) },
-                    { ActivityType.FileUpdated.ToString("D"), typeof(FileUpdatedActivity) },
-                    { ActivityType.GitPushed.ToString("D"), typeof(GitPushedActivity) },
-                    { ActivityType.GitRepositoryCreated.ToString("D"), typeof(GitRepositoryCreatedActivity) },
-                    { ActivityType.IssueCommented.ToString("D"), typeof(IssueCommentedActivity) },
-                    { ActivityType.IssueCreated.ToString("D"), typeof(IssueCreatedActivity) },
-                    { ActivityType.IssueDeleted.ToString("D"), typeof(IssueDeletedActivity) },
-                    { ActivityType.IssueMultiUpdated.ToString("D"), typeof(IssueMultiUpdatedActivity) },
-                    { ActivityType.IssueUpdated.ToString("D"), typeof(IssueUpdatedActivity) },
-                    { ActivityType.NotifyAdded.ToString("D"), typeof(NotificationAddedActivity) },
-                    { ActivityType.ProjectUserAdded.ToString("D"), typeof(ProjectUserAddedActivity) },
-                    { ActivityType.ProjectUserRemoved.ToString("D"), typeof(ProjectUserRemovedActivity) },
-                    { ActivityType.PullRequestAdded.ToString("D"), typeof(PullRequestAddedActivity) },
-                    { ActivityType.PullRequestCommented.ToString("D"), typeof(PullRequestCommentedActivity) },
-                    { ActivityType.PullRequestUpdated.ToString("D"), typeof(PullRequestUpdatedActivity) },
-                    { ActivityType.SvnCommitted.ToString("D"), typeof(SvnCommittedActivity) },
-                    { ActivityType.WikiCreated.ToString("D"), typeof(WikiCreatedActivity) },
-                    { ActivityType.WikiDeleted.ToString("D"), typeof(WikiDeletedActivity) },
-                    { ActivityType.WikiUpdated.ToString("D"), typeof(WikiUpdatedActivity) },
-                }, typeof(UndefinedActivity))
+                    { ActivityType.FileAdded.ToString("D"), typeof(FileAddedActivityImpl) },
+                    { ActivityType.FileDeleted.ToString("D"), typeof(FileDeletedActivityImpl) },
+                    { ActivityType.FileUpdated.ToString("D"), typeof(FileUpdatedActivityImpl) },
+                    { ActivityType.GitPushed.ToString("D"), typeof(GitPushedActivityImpl) },
+                    { ActivityType.GitRepositoryCreated.ToString("D"), typeof(GitRepositoryCreatedActivityImpl) },
+                    { ActivityType.IssueCommented.ToString("D"), typeof(IssueCommentedActivityImpl) },
+                    { ActivityType.IssueCreated.ToString("D"), typeof(IssueCreatedActivityImpl) },
+                    { ActivityType.IssueDeleted.ToString("D"), typeof(IssueDeletedActivityImpl) },
+                    { ActivityType.IssueMultiUpdated.ToString("D"), typeof(IssueMultiUpdatedActivityImpl) },
+                    { ActivityType.IssueUpdated.ToString("D"), typeof(IssueUpdatedActivityImpl) },
+                    { ActivityType.NotifyAdded.ToString("D"), typeof(NotificationAddedActivityImpl) },
+                    { ActivityType.ProjectUserAdded.ToString("D"), typeof(ProjectUserAddedActivityImpl) },
+                    { ActivityType.ProjectUserRemoved.ToString("D"), typeof(ProjectUserRemovedActivityImpl) },
+                    { ActivityType.PullRequestAdded.ToString("D"), typeof(PullRequestAddedActivityImpl) },
+                    { ActivityType.PullRequestCommented.ToString("D"), typeof(PullRequestCommentedActivityImpl) },
+                    { ActivityType.PullRequestUpdated.ToString("D"), typeof(PullRequestUpdatedActivityImpl) },
+                    { ActivityType.SvnCommitted.ToString("D"), typeof(SvnCommittedActivityImpl) },
+                    { ActivityType.WikiCreated.ToString("D"), typeof(WikiCreatedActivityImpl) },
+                    { ActivityType.WikiDeleted.ToString("D"), typeof(WikiDeletedActivityImpl) },
+                    { ActivityType.WikiUpdated.ToString("D"), typeof(WikiUpdatedActivityImpl) },
+                }, typeof(UndefinedActivityImpl))
             {
             }
         }

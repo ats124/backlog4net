@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.Activities
 {
-    public class IssueCommentedActivity : ActivityJsonImpl<IssueCommentedContent>
+    public class IssueCommentedActivityImpl : ActivityJsonImpl<IssueCommentedContentImpl>, IssueCommentedActivity
     {
         public override ActivityType Type => ActivityType.IssueCommented;
+
+        IssueCommentedContent IssueCommentedActivity.Content => this.Content;
     }
 
-    public class IssueCommentedContent : Content
+    public class IssueCommentedContentImpl : IssueCommentedContent
     {
         [JsonProperty]
         public long Id { get; private set; }
@@ -28,12 +30,13 @@ namespace Backlog4net.Internal.Json.Activities
         public Comment Comment { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(ChangeJsonImpl.JsonConverter))]
-        public List<Change> Changes { get; private set; }
+        public IList<Change> Changes { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(AttachmentJsonImpl.JsonConverter))]
-        public List<Attachment> Attachments { get; private set; }
+        public IList<Attachment> Attachments { get; private set; }
 
         [JsonProperty("shared_files", ItemConverterType = typeof(SharedFileJsonImpl.JsonConverter))]
-        public List<SharedFile> SharedFiles { get; private set; }
+        public IList<SharedFile> SharedFiles { get; private set; }
+
     }
 }

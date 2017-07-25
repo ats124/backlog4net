@@ -1,7 +1,8 @@
+
 # Backlog4net
 
+![Build Status on VSTS](https://ats124.visualstudio.com/_apis/public/build/definitions/6d2503dc-7657-4a46-937e-3fac285bb430/1/badge)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![]({https://ats124.visualstudio.com/_apis/public/build/definitions/6d2503dc-7657-4a46-937e-3fac285bb430/1/badge})
 
 Backlog4net is a port of Backlog4j.
 

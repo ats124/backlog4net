@@ -409,5 +409,25 @@ namespace Backlog4net.Test
             Assert.AreEqual(gitRepoCreated.Content.Repository.Description, "test repository");
         }
 
+        [TestMethod]
+        public void ProjectActivitiesUserTest()
+        {
+            var userActivities = JsonConvert.DeserializeObject<Activity[]>(File.ReadAllText(@"TestData\activity-user.json"), new ActivityJsonImplBase.JsonConverter());
+
+            var userAdded = (ProjectUserAddedActivity)userActivities.First(x => x.Id == 18062024);
+            Assert.AreEqual(userAdded.Type, ActivityType.ProjectUserAdded);
+            Assert.AreEqual(userAdded.Content.Users[0].Id, 128937L);
+            Assert.AreEqual(userAdded.Content.Users[0].UserId, "ats124_2");
+            Assert.AreEqual(userAdded.Content.Users[0].RoleType, UserRoleType.User);
+            Assert.AreEqual(userAdded.Content.Users[0].MailAddress, "ats124+2@section-9.tech");
+
+            var userRemoved = (ProjectUserRemovedActivity)userActivities.First(x => x.Id == 18062025);
+            Assert.AreEqual(userRemoved.Type, ActivityType.ProjectUserRemoved);
+            Assert.AreEqual(userRemoved.Content.Users[0].Id, 128937L);
+            Assert.AreEqual(userRemoved.Content.Users[0].UserId, "ats124_2");
+            Assert.AreEqual(userRemoved.Content.Users[0].RoleType, UserRoleType.User);
+            Assert.AreEqual(userRemoved.Content.Users[0].MailAddress, "ats124+2@section-9.tech");
+
+        }
     }
 }

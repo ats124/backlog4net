@@ -7,7 +7,7 @@ namespace Backlog4net.Api.Option
 {
     public class AddSingleListCustomFieldParams : AddCustomFieldParams
     {
-        public AddSingleListCustomFieldParams(object projectIdOrKey, CustomFieldType fieldType, string name) 
+        public AddSingleListCustomFieldParams(object projectIdOrKey, string name) 
             : base(projectIdOrKey, CustomFieldType.SingleList, name)
         {
         }

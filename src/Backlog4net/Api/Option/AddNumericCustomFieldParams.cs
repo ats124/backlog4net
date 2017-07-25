@@ -10,7 +10,7 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddNumericCustomFieldParams : AddCustomFieldParams
     {
-        public AddNumericCustomFieldParams(object projectIdOrKey, CustomFieldType fieldType, string name) 
+        public AddNumericCustomFieldParams(object projectIdOrKey, string name) 
             : base(projectIdOrKey, CustomFieldType.Numeric, name)
         {
         }

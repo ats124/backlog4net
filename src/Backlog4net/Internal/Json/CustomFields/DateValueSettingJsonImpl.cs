@@ -5,15 +5,17 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class ListItem
+    public class DateValueSettingJsonImpl : DateValueSetting
     {
+        internal class JsonConverter : InterfaceConverter<DateValueSetting, DateValueSettingJsonImpl> { }
+
         [JsonProperty]
         public long Id { get; private set; }
 
         [JsonProperty]
-        public string Name { get; private set; }
+        public DateTime Date { get; private set; }
 
         [JsonProperty]
-        public int DisplayOrder { get; private set; }
+        public int Shift { get; private set; }
     }
 }

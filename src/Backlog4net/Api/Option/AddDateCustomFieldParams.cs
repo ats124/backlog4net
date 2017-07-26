@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Backlog4net.Api.Option
-{
-    using Internal.Json.CustomFields;
-    
+{    
     /// <summary>
     /// Parameters for add date type custom field API.
     /// </summary>

@@ -21,8 +21,8 @@ namespace Backlog4net.Test
 
             var obj = JsonConvert.DeserializeObject<CustomField>(json, new CustomFieldJsonImpl.JsonConverter());
             Assert.IsNotNull(obj);
-            Assert.IsTrue(obj is CheckBoxCustomField);
-            var c = (CheckBoxCustomField)obj;
+            Assert.IsTrue(obj is CheckBoxCustomFieldJsonImpl);
+            var c = (CheckBoxCustomFieldJsonImpl)obj;
             Assert.AreEqual(c.Id, 1);
             Assert.AreEqual(c.FieldType, CustomFieldType.CheckBox);
             Assert.AreEqual(c.Name, "radio1");

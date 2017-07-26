@@ -5,17 +5,15 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class RadioCustomFieldSetting : CustomFieldSettingJsonImpl
+    public class RadioCustomFieldJsonImpl : CustomFieldJsonImpl, RadioCustomField
     {
         public override CustomFieldType FieldType => CustomFieldType.Radio;
 
         [JsonProperty]
-        public List<ListItemSetting> Items { get; private set; }
+        [JsonConverter(typeof(ListItemJsonImpl.JsonConverter))]
+        public ListItem Value { get; private set; }
 
         [JsonProperty]
-        public bool IsAllowInput { get; private set; }
-
-        [JsonProperty]
-        public bool IsAllowAddItem { get; private set; }
+        public string OtherValue { get; private set; }
     }
 }

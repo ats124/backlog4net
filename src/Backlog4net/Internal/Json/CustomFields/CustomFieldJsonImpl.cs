@@ -12,14 +12,14 @@ namespace Backlog4net.Internal.Json.CustomFields
             public JsonConverter() : 
                 base("fieldTypeId", new Dictionary<string, Type>
                 {
-                    { CustomFieldType.Text.ToString("D"), typeof(TextCustomField) },
-                    { CustomFieldType.TextArea.ToString("D"), typeof(TextAreaCustomField) },
-                    { CustomFieldType.Numeric.ToString("D"), typeof(NumericCustomField) },
-                    { CustomFieldType.Date.ToString("D"), typeof(DateCustomField) },
-                    { CustomFieldType.SingleList.ToString("D"), typeof(SingleListCustomField) },
-                    { CustomFieldType.MultipleList.ToString("D"), typeof(MultipleListCustomField) },
-                    { CustomFieldType.CheckBox.ToString("D"), typeof(CheckBoxCustomField) },
-                    { CustomFieldType.Radio.ToString("D"), typeof(RadioCustomField) },
+                    { CustomFieldType.Text.ToString("D"), typeof(TextCustomFieldJsonImpl) },
+                    { CustomFieldType.TextArea.ToString("D"), typeof(TextAreaCustomFieldJsonImpl) },
+                    { CustomFieldType.Numeric.ToString("D"), typeof(NumericCustomFieldJsonImpl) },
+                    { CustomFieldType.Date.ToString("D"), typeof(DateCustomFieldJsonImpl) },
+                    { CustomFieldType.SingleList.ToString("D"), typeof(SingleListCustomFieldJsonImpl) },
+                    { CustomFieldType.MultipleList.ToString("D"), typeof(MultipleListCustomFieldJsonImpl) },
+                    { CustomFieldType.CheckBox.ToString("D"), typeof(CheckBoxCustomFieldJsonImpl) },
+                    { CustomFieldType.Radio.ToString("D"), typeof(RadioCustomFieldJsonImpl) },
                 })
             {
             }

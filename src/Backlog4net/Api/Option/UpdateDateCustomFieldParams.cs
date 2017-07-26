@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Backlog4net.Api.Option
 {
-    using Internal.Json.CustomFields;
-
     public class UpdateDateCustomFieldParams : UpdateCustomFieldParams
     {
         public UpdateDateCustomFieldParams(object projectIdOrKey, object customFiledId)

@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class SingleListCustomFieldSetting : CustomFieldSettingJsonImpl
+    public class SingleListCustomFieldSettingJsonImpl : CustomFieldSettingJsonImpl, SingleListCustomFieldSetting
     {
         public override CustomFieldType FieldType => CustomFieldType.SingleList;
 
-        [JsonProperty]
-        public List<ListItemSetting> Items { get; private set; }
+        [JsonProperty(ItemConverterType = typeof(ListItemSettingJsonImpl.JsonConverter))]
+        public IList<ListItemSetting> Items { get; private set; }
 
         [JsonProperty]
         public bool IsAllowAddItem { get; private set; }

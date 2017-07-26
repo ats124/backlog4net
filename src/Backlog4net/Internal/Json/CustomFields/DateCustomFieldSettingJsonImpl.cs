@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class DateCustomFieldSetting : CustomFieldSettingJsonImpl
+    public class DateCustomFieldSettingJsonImpl : CustomFieldSettingJsonImpl, DateCustomFieldSetting
     {
         public override CustomFieldType FieldType => CustomFieldType.Date;
 
@@ -15,14 +15,7 @@ namespace Backlog4net.Internal.Json.CustomFields
         [JsonProperty]
         public DateTime Max { get; private set; }
 
-        [JsonProperty]
+        [JsonProperty(ItemConverterType = typeof(DateValueSettingJsonImpl.JsonConverter))]
         public DateValueSetting InitialDate { get; private set; }
-    }
-
-    public enum DateCustomFieldInitialValueType
-    {
-        Today = 1,
-        TodayPlusShiftDays = 2,
-        FixedDate = 3,
     }
 }

@@ -15,13 +15,13 @@ namespace Backlog4net.Api.Option
         {
         }
 
-        public string Min { set => AddNewParamValue(value); }
+        public DateTime? Min { set => AddNewParamValue(ToDateString(value)); }
 
-        public string Max { set => AddNewParamValue(value); }
+        public DateTime? Max { set => AddNewParamValue(ToDateString(value)); }
 
         public DateCustomFieldInitialValueType InitialValueType { set => AddNewParamValue(value.ToString("D")); }
 
-        public string InitialDate { set => AddNewParamValue(value); }
+        public DateTime? InitialDate { set => AddNewParamValue(ToDateString(value)); }
 
         public int InitialShift { set => AddNewParamValue(value); }
     }

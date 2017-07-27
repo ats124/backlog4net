@@ -10,6 +10,6 @@ namespace Backlog4net.Internal.Json.CustomFields
         public override CustomFieldType FieldType => CustomFieldType.Date;
 
         [JsonProperty]
-        public DateTime Value { get; private set; }
+        public DateTime? Value { get; private set; }
     }
 }

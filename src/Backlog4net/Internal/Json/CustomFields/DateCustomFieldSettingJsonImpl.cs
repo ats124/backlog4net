@@ -10,10 +10,10 @@ namespace Backlog4net.Internal.Json.CustomFields
         public override CustomFieldType FieldType => CustomFieldType.Date;
 
         [JsonProperty]
-        public DateTime Min { get; private set; }
+        public DateTime? Min { get; private set; }
 
         [JsonProperty]
-        public DateTime Max { get; private set; }
+        public DateTime? Max { get; private set; }
 
         [JsonProperty(ItemConverterType = typeof(DateValueSettingJsonImpl.JsonConverter))]
         public DateValueSetting InitialDate { get; private set; }

@@ -71,7 +71,7 @@ namespace Backlog4net.Api.Option
             {
                 foreach (var val in values) AddNewParam(name, val);
             }
-            if (values != null && values.Any())
+            else
             {
                 if (isEmptySetBlank) AddNewParam(name, "");
             }

@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class TextAreaCustomFieldSetting : CustomFieldSettingJsonImpl
+    public class TextAreaCustomFieldSettingJsonImpl : CustomFieldSettingJsonImpl, TextAreaCustomFieldSetting
     {
         public override CustomFieldType FieldType => CustomFieldType.TextArea;
     }

@@ -9,7 +9,7 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddMultipleListCustomFieldParams : AddCustomFieldParams
     {
-        public AddMultipleListCustomFieldParams(object projectIdOrKey, CustomFieldType fieldType, string name) 
+        public AddMultipleListCustomFieldParams(object projectIdOrKey, string name) 
             : base(projectIdOrKey, CustomFieldType.MultipleList, name)
         {
         }

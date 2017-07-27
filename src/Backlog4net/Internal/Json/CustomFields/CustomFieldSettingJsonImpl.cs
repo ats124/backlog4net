@@ -9,16 +9,16 @@ namespace Backlog4net.Internal.Json.CustomFields
         internal class JsonConverter : MultiTypeConverter<CustomFieldSetting>
         {
             public JsonConverter() :
-                base("fieldTypeId", new Dictionary<string, Type>
+                base("typeId", new Dictionary<string, Type>
                 {
-                    { CustomFieldType.Text.ToString("D"), typeof(TextCustomFieldSetting) },
-                    { CustomFieldType.TextArea.ToString("D"), typeof(TextAreaCustomFieldSetting) },
-                    { CustomFieldType.Numeric.ToString("D"), typeof(NumericCustomFieldSetting) },
-                    { CustomFieldType.Date.ToString("D"), typeof(DateCustomFieldSetting) },
-                    { CustomFieldType.SingleList.ToString("D"), typeof(SingleListCustomFieldSetting) },
-                    { CustomFieldType.MultipleList.ToString("D"), typeof(MultipleListCustomFieldSetting) },
-                    { CustomFieldType.CheckBox.ToString("D"), typeof(CheckBoxCustomFieldSetting) },
-                    { CustomFieldType.Radio.ToString("D"), typeof(RadioCustomFieldSetting) },
+                    { CustomFieldType.Text.ToString("D"), typeof(TextCustomFieldSettingJsonImpl) },
+                    { CustomFieldType.TextArea.ToString("D"), typeof(TextAreaCustomFieldSettingJsonImpl) },
+                    { CustomFieldType.Numeric.ToString("D"), typeof(NumericCustomFieldSettingJsonImpl) },
+                    { CustomFieldType.Date.ToString("D"), typeof(DateCustomFieldSettingJsonImpl) },
+                    { CustomFieldType.SingleList.ToString("D"), typeof(SingleListCustomFieldSettingJsonImpl) },
+                    { CustomFieldType.MultipleList.ToString("D"), typeof(MultipleListCustomFieldSettingJsonImpl) },
+                    { CustomFieldType.CheckBox.ToString("D"), typeof(CheckBoxCustomFieldSettingJsonImpl) },
+                    { CustomFieldType.Radio.ToString("D"), typeof(RadioCustomFieldSettingJsonImpl) },
                 })
             {
             }
@@ -39,10 +39,10 @@ namespace Backlog4net.Internal.Json.CustomFields
         [JsonProperty]
         public string Description { get; private set; }
 
-        [JsonProperty]
+        [JsonProperty("required")]
         public bool IsRequired { get; private set; }
 
-        [JsonProperty("fieldTypeId")]
+        [JsonProperty("typeId")]
         public abstract CustomFieldType FieldType { get; }
     }
 }

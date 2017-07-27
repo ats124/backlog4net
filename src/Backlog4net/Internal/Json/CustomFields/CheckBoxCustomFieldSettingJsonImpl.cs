@@ -5,17 +5,17 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class CheckBoxCustomFieldSetting : CustomFieldSettingJsonImpl
+    public class CheckBoxCustomFieldSettingJsonImpl : CustomFieldSettingJsonImpl, CheckBoxCustomFieldSetting
     {
         public override CustomFieldType FieldType => CustomFieldType.CheckBox;
 
-        [JsonProperty]
-        public List<ListItemSetting> Items { get; private set; }
+        [JsonProperty(ItemConverterType = typeof(ListItemSettingJsonImpl.JsonConverter))]
+        public IList<ListItemSetting> Items { get; private set; }
 
-        [JsonProperty]
+        [JsonProperty("allowInput")]
         public bool IsAllowInput { get; private set; }
 
-        [JsonProperty]
+        [JsonProperty("allowAddItem")]
         public bool IsAllowAddItem { get; private set; }
     }
 }

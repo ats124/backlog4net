@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace Backlog4net.Api
 {
     using Option;
-    using Internal.Json.CustomFields;
 
     /// <summary>
     /// Executes Backlog Project APIs.

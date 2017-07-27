@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Backlog4net.Api.Option
 {
-    using Internal.Json.CustomFields;
-
     public class UpdateDateCustomFieldParams : UpdateCustomFieldParams
     {
         public UpdateDateCustomFieldParams(object projectIdOrKey, object customFiledId)
@@ -13,14 +11,14 @@ namespace Backlog4net.Api.Option
         {
         }
 
-        public string Min { set => AddNewParamValue(value); }
+        public DateTime? Min { set => AddNewParamValue(ToDateString(value)); }
 
-        public string Max { set => AddNewParamValue(value); }
+        public DateTime? Max { set => AddNewParamValue(ToDateString(value)); }
 
         public DateCustomFieldInitialValueType InitialValueType { set => AddNewParamValue(value.ToString("D")); }
 
-        public string InitialDate { set => AddNewParamValue(value); }
+        public DateTime? InitialDate { set => AddNewParamValue(ToDateString(value)); }
 
-        public int InitialShift { set => AddNewParamValue(value); }
+        public int? InitialShift { set => AddNewParamValue(value); }
     }
 }

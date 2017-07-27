@@ -52,7 +52,7 @@ namespace Backlog4net
         public async Task<CustomFieldSetting> AddListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, string name, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("name", name)};
-            using (var response = await Patch(BuildEndpoint($"projects/{projectIdOrKey}/customFields/{customFieldId}"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{projectIdOrKey}/customFields/{customFieldId}/items"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateCustomFieldAsync(response);

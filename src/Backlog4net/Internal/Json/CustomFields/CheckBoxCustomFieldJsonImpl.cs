@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class CheckBoxCustomField : CustomFieldJsonImpl
+    public class CheckBoxCustomFieldJsonImpl : CustomFieldJsonImpl, CheckBoxCustomField
     {
         public override CustomFieldType FieldType => CustomFieldType.CheckBox;
 
-        [JsonProperty]
-        public List<ListItem> Value { get; private set; }
+        [JsonProperty(ItemConverterType = typeof(ListItemJsonImpl.JsonConverter))]
+        public IList<ListItem> Value { get; private set; }
 
         [JsonProperty]
         public string OtherValue { get; private set; }

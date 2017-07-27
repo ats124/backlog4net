@@ -5,8 +5,10 @@ using Newtonsoft.Json;
 
 namespace Backlog4net.Internal.Json.CustomFields
 {
-    public class ListItemSetting
+    public class ListItemSettingJsonImpl : ListItemSetting
     {
+        internal class JsonConverter : InterfaceConverter<ListItemSetting, ListItemSettingJsonImpl> { }
+
         [JsonProperty]
         public long Id { get; private set; }
 

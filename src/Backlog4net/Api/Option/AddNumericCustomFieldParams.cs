@@ -10,16 +10,16 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddNumericCustomFieldParams : AddCustomFieldParams
     {
-        public AddNumericCustomFieldParams(object projectIdOrKey, CustomFieldType fieldType, string name) 
+        public AddNumericCustomFieldParams(object projectIdOrKey, string name) 
             : base(projectIdOrKey, CustomFieldType.Numeric, name)
         {
         }
 
-        public float Min { set => AddNewParamValue(value); }
+        public decimal Min { set => AddNewParamValue(value); }
 
-        public float Max { set => AddNewParamValue(value); }
+        public decimal Max { set => AddNewParamValue(value); }
 
-        public float InitialValue { set => AddNewParamValue(value); }
+        public decimal InitialValue { set => AddNewParamValue(value); }
 
         public string Unit { set => AddNewParamValue(value); }
     }

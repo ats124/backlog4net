@@ -10,6 +10,6 @@ namespace Backlog4net.Internal.Json.CustomFields
         public override CustomFieldType FieldType => CustomFieldType.Numeric;
 
         [JsonProperty]
-        public decimal Value { get; private set; }
+        public decimal? Value { get; private set; }
     }
 }

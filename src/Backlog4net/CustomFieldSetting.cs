@@ -41,16 +41,16 @@ namespace Backlog4net
     {
         long Id { get; }
 
-        DateTime Date { get; }
+        DateTime? Date { get; }
 
-        int Shift { get; }
+        int? Shift { get; }
     }
 
     public interface DateCustomFieldSetting : CustomFieldSetting
     {
-        DateTime Min { get; }
+        DateTime? Min { get; }
 
-        DateTime Max { get; }
+        DateTime? Max { get; }
 
         DateValueSetting InitialDate { get; }
     }
@@ -64,11 +64,11 @@ namespace Backlog4net
 
     public interface NumericCustomFieldSetting : CustomFieldSetting
     {
-        decimal Min { get; }
+        decimal? Min { get; }
 
-        decimal Max { get; }
+        decimal? Max { get; }
 
-        decimal InitialValue { get; }
+        decimal? InitialValue { get; }
 
         string Unit { get; }
     }

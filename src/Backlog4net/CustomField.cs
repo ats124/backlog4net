@@ -41,7 +41,7 @@ namespace Backlog4net
 
     public interface DateCustomField : CustomField
     {
-        DateTime Value { get; }
+        DateTime? Value { get; }
     }
 
     public interface MultipleListCustomField : CustomField
@@ -51,7 +51,7 @@ namespace Backlog4net
 
     public interface NumericCustomField : CustomField
     {
-        decimal Value { get; }
+        decimal? Value { get; }
     }
 
     public interface RadioCustomField : CustomField

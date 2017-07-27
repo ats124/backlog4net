@@ -13,9 +13,9 @@ namespace Backlog4net.Internal.Json.CustomFields
         public long Id { get; private set; }
 
         [JsonProperty]
-        public DateTime Date { get; private set; }
+        public DateTime? Date { get; private set; }
 
         [JsonProperty]
-        public int Shift { get; private set; }
+        public int? Shift { get; private set; }
     }
 }

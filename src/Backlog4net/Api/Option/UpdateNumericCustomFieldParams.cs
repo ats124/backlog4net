@@ -11,11 +11,11 @@ namespace Backlog4net.Api.Option
         {
         }
 
-        public float Min { set => AddNewParamValue(value); }
+        public decimal Min { set => AddNewParamValue(value); }
 
-        public float Max { set => AddNewParamValue(value); }
+        public decimal Max { set => AddNewParamValue(value); }
 
-        public float InitialValue { set => AddNewParamValue(value); }
+        public decimal InitialValue { set => AddNewParamValue(value); }
 
         public string Unit { set => AddNewParamValue(value); }
     }

@@ -9,8 +9,8 @@ namespace Backlog4net.Internal.Json.CustomFields
     {
         internal class JsonConverter : InterfaceConverter<DateValueSetting, DateValueSettingJsonImpl> { }
 
-        [JsonProperty]
-        public long Id { get; private set; }
+        [JsonProperty("id")]
+        public DateCustomFieldInitialValueType ValueType { get; private set; }
 
         [JsonProperty]
         public DateTime? Date { get; private set; }

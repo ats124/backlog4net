@@ -39,7 +39,7 @@ namespace Backlog4net
 
     public interface DateValueSetting
     {
-        long Id { get; }
+        DateCustomFieldInitialValueType ValueType { get; }
 
         DateTime? Date { get; }
 

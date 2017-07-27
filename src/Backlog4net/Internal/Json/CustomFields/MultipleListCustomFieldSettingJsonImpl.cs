@@ -12,7 +12,7 @@ namespace Backlog4net.Internal.Json.CustomFields
         [JsonProperty(ItemConverterType = typeof(ListItemSettingJsonImpl.JsonConverter))]
         public IList<ListItemSetting> Items { get; private set; }
 
-        [JsonProperty]
+        [JsonProperty("allowAddItem")]
         public bool IsAllowAddItem { get; private set; }
     }
 }

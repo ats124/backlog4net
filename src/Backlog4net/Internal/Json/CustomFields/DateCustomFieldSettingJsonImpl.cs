@@ -15,7 +15,8 @@ namespace Backlog4net.Internal.Json.CustomFields
         [JsonProperty]
         public DateTime? Max { get; private set; }
 
-        [JsonProperty(ItemConverterType = typeof(DateValueSettingJsonImpl.JsonConverter))]
+        [JsonProperty]
+        [JsonConverter(typeof(DateValueSettingJsonImpl.JsonConverter))]
         public DateValueSetting InitialDate { get; private set; }
     }
 }

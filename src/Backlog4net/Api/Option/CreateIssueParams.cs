@@ -18,17 +18,13 @@ namespace Backlog4net.Api.Option
 
         public string Description { set => AddNewParamValue(value); }
 
-        public string StartDate { set => AddNewParamValue(value); }
+        public DateTime? StartDate { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDate { set => AddNewParamValue(value); }
+        public DateTime? DueDate { set => AddNewParamValue(ToDateString(value)); }
 
-        public float EstimatedHours { set => AddNewParamValue(value); }
+        public decimal? EstimatedHours { set => AddNewParamValue(value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2"): ""); }
 
-        public decimal? EstimatedHoursDecimal { set => AddNewParam("estimatedHours", value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2"): ""); }
-
-        public float ActualHours { set => AddNewParamValue(value); }
-
-        public decimal? ActualHoursDecimal { set => AddNewParam("actualHours", value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2") : ""); }
+        public decimal? ActualHours { set => AddNewParamValue(value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2") : ""); }
 
         public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value); }
 

@@ -230,5 +230,31 @@ namespace Backlog4net.Test
             Assert.IsFalse(getIssues.Any(x => x.Id == createChild.Id));
 
         }
+
+        [TestMethod]
+        public async Task DeleteIssueAttachmentTestAsync()
+        {
+            var issueType1 = issueTypes.First();
+            var issueType2 = issueTypes.Skip(1).First();
+
+            Attachment attachment;
+            using (var @params = new PostAttachmentParams("Test.txt", new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes("TEST"))))
+            {
+                attachment = await client.PostAttachmentAsync(@params);
+            }
+
+            var create = await client.CreateIssueAsync(new CreateIssueParams(projectId, "ParentIssueTestSummary", issueType1.Id, IssuePriorityType.High)
+            {
+                AttachmentIds = new object[] { attachment.Id }
+            });
+
+            var attachmentDeleted = await client.DeleteIssueAttachmentAsync(create.Id, create.Attachments[0].Id);
+            Assert.AreEqual(attachmentDeleted.Id, create.Attachments[0].Id);
+
+            var getIssue = await client.GetIssueAsync(create.Id);
+            Assert.IsFalse(getIssue.Attachments.Any());
+
+            await client.DeleteIssueAsync(create.Id);
+        }
     }
 }

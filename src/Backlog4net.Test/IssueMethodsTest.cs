@@ -21,6 +21,8 @@ namespace Backlog4net.Test
         private static GeneralConfig generalConfig;
         private static string projectKey;
         private static object projectId;
+        private static IssuesConfig issuesConfig;
+        private static long[] notifiedNumericUserIds;
         private static IList<IssueType> issueTypes;
         private static Version testVersion1;
         private static Version testVersion2;
@@ -29,7 +31,6 @@ namespace Backlog4net.Test
         private static User ownUser;
         private static Category testCategory1;
         private static Category testCategory2;
-        private static long numericAnotherUserId;
         private static CheckBoxCustomFieldSetting testCustomFieldSetting1;
         private static DateCustomFieldSetting testCustomFieldSetting2;
 
@@ -38,6 +39,7 @@ namespace Backlog4net.Test
         {
             generalConfig = GeneralConfig.Instance.Value;
             projectKey = generalConfig.ProjectKey;
+            issuesConfig = IssuesConfig.Instance.Value;
             var conf = new BacklogJpConfigure(generalConfig.SpaceKey);
             conf.ApiKey = generalConfig.ApiKey;
             client = new BacklogClientFactory(conf).NewClient();
@@ -48,8 +50,10 @@ namespace Backlog4net.Test
 
             ownUser = await client.GetMyselfAsync();
 
-            var users = await client.GetUsersAsync();
-            numericAnotherUserId = users.First(x => x.UserId == generalConfig.AnotherUserId).Id;
+            var numericUserIds = (await client.GetUsersAsync()).ToDictionary(x => x.UserId, x => x.Id);
+            notifiedNumericUserIds = new[] { issuesConfig.NotifiedUserId1, issuesConfig.NotifiedUserId2, issuesConfig.NotifiedUserId3 }
+                .Select(x => numericUserIds[x])
+                .ToArray();
 
             testVersion1 = await client.AddVersionAsync(new AddVersionParams(projectKey, "TestVersion1"));
             testVersion2 = await client.AddVersionAsync(new AddVersionParams(projectKey, "TestVersion2"));

@@ -33,7 +33,7 @@ namespace Backlog4net.Test
             conf.ApiKey = generalConfig.ApiKey;
             client = new BacklogClientFactory(conf).NewClient();
             var users = await client.GetUsersAsync();
-            numericAnotherUserId = users.First(x => x.UserId == generalConfig.AnotherUserId).Id;
+            numericAnotherUserId = users.First(x => x.UserId == projectConfig.AnotherUserId).Id;
         }
 
         [TestMethod]
@@ -77,19 +77,19 @@ namespace Backlog4net.Test
         public async Task ProjectUserAsyncTest()
         {
             var user = await client.AddProjectUserAsync(generalConfig.ProjectKey, numericAnotherUserId);
-            Assert.AreEqual(user.UserId, generalConfig.AnotherUserId);
+            Assert.AreEqual(user.UserId, projectConfig.AnotherUserId);
             Assert.IsFalse(string.IsNullOrEmpty(user.Name));
             Assert.IsFalse(string.IsNullOrEmpty(user.MailAddress));
 
             var users = await client.GetProjectUsersAsync(generalConfig.ProjectKey);
             Assert.IsTrue(users.Count > 1);
-            Assert.IsTrue(users.Any(x => x.Id == numericAnotherUserId && x.UserId == generalConfig.AnotherUserId));
+            Assert.IsTrue(users.Any(x => x.Id == numericAnotherUserId && x.UserId == projectConfig.AnotherUserId));
 
             var deleteUser = await client.RemoveProjectUserAsync(generalConfig.ProjectKey, numericAnotherUserId);
-            Assert.AreEqual(deleteUser.UserId, generalConfig.AnotherUserId);
+            Assert.AreEqual(deleteUser.UserId, projectConfig.AnotherUserId);
 
             users = await client.GetProjectUsersAsync(generalConfig.ProjectKey);
-            Assert.IsFalse(users.Any(x => x.Id == numericAnotherUserId && x.UserId == generalConfig.AnotherUserId));
+            Assert.IsFalse(users.Any(x => x.Id == numericAnotherUserId && x.UserId == projectConfig.AnotherUserId));
         }
 
         [TestMethod]
@@ -479,18 +479,18 @@ namespace Backlog4net.Test
             await client.AddProjectUserAsync(generalConfig.ProjectKey, numericAnotherUserId);
 
             var administrator = await client.AddProjectAdministratorAsync(generalConfig.ProjectKey, numericAnotherUserId);
-            Assert.AreEqual(administrator.UserId, generalConfig.AnotherUserId);
+            Assert.AreEqual(administrator.UserId, projectConfig.AnotherUserId);
             Assert.IsFalse(string.IsNullOrEmpty(administrator.Name));
             Assert.IsFalse(string.IsNullOrEmpty(administrator.MailAddress));
 
             var administrators = await client.GetProjectAdministratorsAsync(generalConfig.ProjectKey);
-            Assert.IsTrue(administrators.Any(x => x.Id == numericAnotherUserId && x.UserId == generalConfig.AnotherUserId));
+            Assert.IsTrue(administrators.Any(x => x.Id == numericAnotherUserId && x.UserId == projectConfig.AnotherUserId));
 
             var deleteaAministrator = await client.RemoveProjectAdministratorAsync(generalConfig.ProjectKey, numericAnotherUserId);
-            Assert.AreEqual(deleteaAministrator.UserId, generalConfig.AnotherUserId);
+            Assert.AreEqual(deleteaAministrator.UserId, projectConfig.AnotherUserId);
 
             administrators = await client.GetProjectAdministratorsAsync(generalConfig.ProjectKey);
-            Assert.IsFalse(administrators.Any(x => x.Id == numericAnotherUserId && x.UserId == generalConfig.AnotherUserId));
+            Assert.IsFalse(administrators.Any(x => x.Id == numericAnotherUserId && x.UserId == projectConfig.AnotherUserId));
 
             await client.RemoveProjectUserAsync(generalConfig.ProjectKey, numericAnotherUserId);
         }

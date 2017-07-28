@@ -14,9 +14,6 @@ namespace Backlog4net.Test.TestConfig
         public static Lazy<ProjectsConfig> Instance { get; } = new Lazy<ProjectsConfig>(() => JsonConvert.DeserializeObject<ProjectsConfig>(File.ReadAllText(@"TestConfig\projects.json")));
 
         [JsonProperty]
-        public string AnotherUserId { get; private set; }
-
-        [JsonProperty]
         public string SharedFileDirectory { get; private set; }
 
         [JsonProperty]

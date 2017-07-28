@@ -38,6 +38,8 @@ namespace Backlog4net.Api.Option
 
         public object IssueTypeId { set => AddNewParamValue(value); }
 
+        public IssuePriorityType Priority { set => AddNewParamValue(value.ToString("D")); }
+
         public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value, isEmptySetBlank: true); }
 
         public IList<object> VersionIds { set => AddNewArrayParams("versionId[]", value, isEmptySetBlank: true); }

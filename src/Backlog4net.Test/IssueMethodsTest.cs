@@ -330,5 +330,30 @@ namespace Backlog4net.Test
 
             await client.DeleteIssueAsync(issue.Id);
         }
+
+        [TestMethod]
+        public async Task IssueSharedFileTestAsync()
+        {
+            var issueType1 = issueTypes.First();
+
+            var sharedFiles = await client.GetSharedFilesAsync(generalConfig.ProjectKey, issuesConfig.SharedFileDirectory);
+            var file1 = sharedFiles.First(x => x.Name == issuesConfig.SharedFile1);
+            var file2 = sharedFiles.First(x => x.Name == issuesConfig.SharedImageFile1);
+
+            var issue = await client.CreateIssueAsync(new CreateIssueParams(projectId, "TestSummary", issueType1.Id, IssuePriorityType.High));
+            var linkedShareFiles = await client.LinkIssueSharedFileAsync(issue.Id, new object[] { file1.Id, file2.Id });
+            Assert.AreEqual(linkedShareFiles.Count, 2);
+            Assert.IsTrue(linkedShareFiles.Any(x => x.Id == file1.Id && x.Dir == file1.Dir && x.Name == file1.Name && x.Size == file1.Size));
+            Assert.IsTrue(linkedShareFiles.Any(x => x.Id == file2.Id));
+
+            var sharedFileUnlinked = await client.UnlinkIssueSharedFileAsync(issue.Id, linkedShareFiles[0].Id);
+            Assert.AreEqual(sharedFileUnlinked.Id, linkedShareFiles[0].Id);
+
+            var getIssue = await client.GetIssueAsync(issue.Id);
+            Assert.AreEqual(getIssue.SharedFiles.Length, 1);
+            Assert.AreEqual(getIssue.SharedFiles[0].Id, file2.Id);
+
+            await client.DeleteIssueAsync(issue.Id);
+        }
     }
 }

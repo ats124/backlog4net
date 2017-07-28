@@ -24,9 +24,9 @@ namespace Backlog4net.Api.Option
 
         public string Description { set => AddNewParamValue(value); }
 
-        public IssueStatusType Status { set => AddNewParamValue(value.ToString("D")); }
+        public IssueStatusType Status { set => AddNewParam("statusId", value.ToString("D")); }
 
-        public IssueResolutionType? Resolution { set => AddNewParamValue(value.HasValue ? value.Value.ToString("D") : ""); }
+        public IssueResolutionType? Resolution { set => AddNewParam("resolutionId", value.HasValue ? value.Value.ToString("D") : ""); }
 
         public DateTime? StartDate { set => AddNewParamValue(ToDateString(value)); }
 
@@ -38,7 +38,7 @@ namespace Backlog4net.Api.Option
 
         public object IssueTypeId { set => AddNewParamValue(value); }
 
-        public IssuePriorityType Priority { set => AddNewParamValue(value.ToString("D")); }
+        public IssuePriorityType Priority { set => AddNewParam("priorityId", value.ToString("D")); }
 
         public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value, isEmptySetBlank: true); }
 

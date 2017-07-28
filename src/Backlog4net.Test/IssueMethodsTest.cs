@@ -260,5 +260,75 @@ namespace Backlog4net.Test
 
             await client.DeleteIssueAsync(create.Id);
         }
+
+        [TestMethod]
+        public async Task IssueCommentTestAsync()
+        {
+            var issueType1 = issueTypes.First();
+
+            var issue = await client.CreateIssueAsync(new CreateIssueParams(projectId, "TestSummary", issueType1.Id, IssuePriorityType.High));
+
+            Attachment attachment;
+            using (var @params = new PostAttachmentParams("Test.txt", new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes("TEST"))))
+            {
+                attachment = await client.PostAttachmentAsync(@params);
+            }
+
+            var issueComment = await client.AddIssueCommentAsync(new AddIssueCommentParams(issue.Id, "TestComment")
+            {
+                NotifiedUserIds = new object[] { notifiedNumericUserIds[0], notifiedNumericUserIds[1] },
+                AttachmentIds = new object[] { attachment.Id }
+            });
+            Assert.AreEqual(issueComment.Content, "TestComment");
+            Assert.AreEqual(issueComment.CreatedUser.Id, ownUser.Id);
+            Assert.IsNotNull(issueComment.Created);
+            Assert.IsTrue(issueComment.Notifications.Any(x => x.User.Id == notifiedNumericUserIds[0]));
+            Assert.IsTrue(issueComment.Notifications.Any(x => x.User.Id == notifiedNumericUserIds[1]));
+            Assert.AreEqual(issueComment.ChangeLog[0].AttachmentInfo.Name, attachment.Name);
+
+            var issueCommentAddNotifi = await client.AddIssueCommentNotificationAsync(new AddIssueCommentNotificationParams(issue.Id, issueComment.Id, new object[] { notifiedNumericUserIds[2] }));
+            Assert.IsTrue(issueCommentAddNotifi.Notifications.Any(x => x.User.Id == notifiedNumericUserIds[2]));
+
+            var notifications = await client.GetIssueCommentNotificationsAsync(issue.Id, issueComment.Id);
+            Assert.IsTrue(notifications.Any(x => x.User.Id == notifiedNumericUserIds[0]));
+            Assert.IsTrue(notifications.Any(x => x.User.Id == notifiedNumericUserIds[1]));
+            Assert.IsTrue(notifications.Any(x => x.User.Id == notifiedNumericUserIds[2]));
+
+            var issueCommentUpdated = await client.UpdateIssueCommentAsync(new UpdateIssueCommentParams(issue.Id, issueComment.Id, "TestCommentUpdated"));
+            Assert.AreEqual(issueCommentUpdated.Content, "TestCommentUpdated");
+
+            var getIssueComment = await client.GetIssueCommentAsync(issue.Id, issueCommentUpdated.Id);
+            Assert.AreEqual(getIssueComment.Id, issueCommentUpdated.Id);
+            Assert.AreEqual(getIssueComment.Content, "TestCommentUpdated");
+            Assert.AreEqual(getIssueComment.CreatedUser.Id, ownUser.Id);
+            Assert.IsNotNull(getIssueComment.Created);
+            Assert.IsNotNull(getIssueComment.Updated);
+            Assert.IsTrue(getIssueComment.Notifications.Any(x => x.User.Id == notifiedNumericUserIds[0]));
+            Assert.IsTrue(getIssueComment.Notifications.Any(x => x.User.Id == notifiedNumericUserIds[1]));
+            Assert.IsTrue(getIssueComment.Notifications.Any(x => x.User.Id == notifiedNumericUserIds[2]));
+            Assert.IsTrue(getIssueComment.ChangeLog.Any(x => x.AttachmentInfo?.Name == attachment.Name));
+
+            var issueComment2 = await client.AddIssueCommentAsync(new AddIssueCommentParams(issue.Id, "TestComment2"));
+
+            var issueCount = await client.GetIssueCommentCountAsync(issue.Id);
+            Assert.AreEqual(issueCount, 2);
+
+            var issueComments = await client.GetIssueCommentsAsync(issue.Id, new QueryParams() { Count = 1 });
+            Assert.AreEqual(issueComments.Count, 1);
+            issueComments = await client.GetIssueCommentsAsync(issue.Id, new QueryParams() { Order = Order.Asc });
+            Assert.AreEqual(issueComments.Count, 2);
+            Assert.AreEqual(issueComments[0].Id, issueCommentUpdated.Id);
+            issueComments = await client.GetIssueCommentsAsync(issue.Id, new QueryParams() { Order = Order.Desc });
+            Assert.AreEqual(issueComments.Count, 2);
+            Assert.AreEqual(issueComments[0].Id, issueComment2.Id);
+            issueComments = await client.GetIssueCommentsAsync(issue.Id, new QueryParams() { MaxId = issueCommentUpdated.Id + 1 });
+            Assert.AreEqual(issueComments.Count, 1);
+            Assert.AreEqual(issueComments[0].Id, issueCommentUpdated.Id);
+            issueComments = await client.GetIssueCommentsAsync(issue.Id, new QueryParams() { MinId = issueComment2.Id - 1 });
+            Assert.AreEqual(issueComments.Count, 1);
+            Assert.AreEqual(issueComments[0].Id, issueComment2.Id);
+
+            await client.DeleteIssueAsync(issue.Id);
+        }
     }
 }

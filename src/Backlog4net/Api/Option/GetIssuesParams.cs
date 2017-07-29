@@ -30,7 +30,7 @@ namespace Backlog4net.Api.Option
 
         public IList<IssueResolutionType> Resolutions { set => AddNewArrayParams("resolutionId[]", value, x => x.ToString("D")); }
 
-        public GetIssuesParentChildType ParentChildType { set => AddNewParamValue(value); }
+        public GetIssuesParentChildType ParentChildType { set => AddNewParam("parentChild", value.ToString("D")); }
 
         public bool Attachment { set => AddNewParamValue(value); }
 

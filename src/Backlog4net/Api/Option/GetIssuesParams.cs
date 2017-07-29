@@ -44,21 +44,21 @@ namespace Backlog4net.Api.Option
 
         public long Count { set => AddNewParamValue(value); }
 
-        public string CreatedSince { set => AddNewParamValue(value); }
+        public DateTime CreatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string CreatedUntil { set => AddNewParamValue(value); }
+        public DateTime CreatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedSince { set => AddNewParamValue(value); }
+        public DateTime UpdatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedUntil { set => AddNewParamValue(value); }
+        public DateTime UpdatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateSince { set => AddNewParamValue(value); }
+        public DateTime StartDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateUntil { set => AddNewParamValue(value); }
+        public DateTime StartDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateSince { set => AddNewParamValue(value); }
+        public DateTime DueDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateUntil { set => AddNewParamValue(value); }
+        public DateTime DueDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
         public IList<object> Ids { set => AddNewArrayParams("id[]", value); }
 
@@ -91,13 +91,13 @@ namespace Backlog4net.Api.Option
 
         public string KeywordByCustomFiled { set => AddNewParamValueCustomField(value, ""); }
 
-        public float MinNumOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
+        public decimal MinNumOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
 
-        public float MaxNumOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
+        public decimal MaxNumOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
 
-        public string MinDateOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
+        public DateTime MinDateOfCustomField { set => AddNewParamValueCustomField(ToDateString(value), "_min"); }
 
-        public string MaxDateOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
+        public DateTime MaxDateOfCustomField { set => AddNewParamValueCustomField(ToDateString(value), "_max"); }
 
         public IList<object> ItemsOfCustomField { set => AddNewArrayParams("customField_" + CustomFieldId + "[]", value); }
 

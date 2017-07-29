@@ -36,21 +36,21 @@ namespace Backlog4net.Api.Option
 
         public bool SharedFile { set => AddNewParamValue(value); }
 
-        public string CreatedSince { set => AddNewParamValue(value); }
+        public DateTime CreatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string CreatedUntil { set => AddNewParamValue(value); }
+        public DateTime CreatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedSince { set => AddNewParamValue(value); }
+        public DateTime UpdatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedUntil { set => AddNewParamValue(value); }
+        public DateTime UpdatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateSince { set => AddNewParamValue(value); }
+        public DateTime StartDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateUntil { set => AddNewParamValue(value); }
+        public DateTime StartDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateSince { set => AddNewParamValue(value); }
+        public DateTime DueDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateUntil { set => AddNewParamValue(value); }
+        public DateTime DueDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
         public IList<object> Ids { set => AddNewArrayParams("id[]", value); }
 

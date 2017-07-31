@@ -23,6 +23,7 @@ namespace Backlog4net.Test
         private static object projectId;
         private static IssuesConfig issuesConfig;
         private static long[] notifiedNumericUserIds;
+        private static long[] assigneeUserIds;
         private static IList<IssueType> issueTypes;
         private static Version testVersion1;
         private static Version testVersion2;
@@ -52,6 +53,10 @@ namespace Backlog4net.Test
 
             var numericUserIds = (await client.GetUsersAsync()).ToDictionary(x => x.UserId, x => x.Id);
             notifiedNumericUserIds = new[] { issuesConfig.NotifiedUserId1, issuesConfig.NotifiedUserId2, issuesConfig.NotifiedUserId3 }
+                .Select(x => numericUserIds[x])
+                .ToArray();
+
+            assigneeUserIds = new[] { issuesConfig.AssigneeUserId1, issuesConfig.AssigneeUserId2, issuesConfig.AssigneeUserId3 }
                 .Select(x => numericUserIds[x])
                 .ToArray();
 
@@ -122,7 +127,7 @@ namespace Backlog4net.Test
                 CustomFields = new CustomField[]
                 {
                     CustomField.MultipleList(testCustomFieldSetting1.Id, testCustomFieldSetting1.Items.Select(x => x.Id).ToArray()),
-                    CustomField.Date(testCustomFieldSetting2.Id, new DateTime(2017, 7, 1)), 
+                    CustomField.Date(testCustomFieldSetting2.Id, new DateTime(2017, 7, 1)),
                 }
             });
             Assert.AreEqual(create.Summary, "ParentIssueTestSummary");
@@ -354,6 +359,208 @@ namespace Backlog4net.Test
             Assert.AreEqual(getIssue.SharedFiles[0].Id, file2.Id);
 
             await client.DeleteIssueAsync(issue.Id);
+        }
+
+        [TestMethod]
+        public async Task GetIssuesTestAsync()
+        {
+            var issueType1 = issueTypes.First();
+            var issueType2 = issueTypes.Skip(1).First();
+
+            Attachment attachment1;
+            using (var @params = new PostAttachmentParams("Test.txt", new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes("TEST"))))
+            {
+                attachment1 = await client.PostAttachmentAsync(@params);
+            }
+            Attachment attachment2;
+            using (var @params = new PostAttachmentParams("Test2.txt", new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes("TEST2"))))
+            {
+                attachment2 = await client.PostAttachmentAsync(@params);
+            }
+
+            var issue1 = await client.CreateIssueAsync(new CreateIssueParams(projectId, "TestSummary1", issueType1.Id, IssuePriorityType.High)
+            {
+                VersionIds = new object[] { testVersion1.Id },
+                MilestoneIds = new object[] { testMilestone1.Id },
+                CategoryIds = new object[] { testCategory1.Id },
+                StartDate = new DateTime(2017, 7, 1),
+                DueDate = new DateTime(2017, 8, 1),     
+                AssigneeId = assigneeUserIds[0],
+                AttachmentIds = new object[] { attachment1.Id },
+            });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+            var issue2 = await client.CreateIssueAsync(new CreateIssueParams(projectId, "TestSummary2", issueType2.Id, IssuePriorityType.High)
+            {
+                CategoryIds = new object[] { testCategory2.Id },
+                ParentIssueId = issue1.Id,
+                StartDate = new DateTime(2017, 7, 2),
+                DueDate = new DateTime(2017, 8, 2),
+                AssigneeId = assigneeUserIds[1],
+                AttachmentIds = new object[] { attachment2.Id },
+            });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+            var issue3 = await client.CreateIssueAsync(new CreateIssueParams(projectId, "TestSummary3", issueType1.Id, IssuePriorityType.Low)
+            {
+                Description = "ABC",
+                VersionIds = new object[] { testVersion2.Id },
+                StartDate = new DateTime(2017, 7, 3),
+                DueDate = new DateTime(2017, 8, 3),
+                AssigneeId = assigneeUserIds[2]
+            });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+            var issue4 = await client.CreateIssueAsync(new CreateIssueParams(projectId, "TestSummary4", issueType1.Id, IssuePriorityType.Normal)
+            {
+                Description = "KeywordForTest",
+                MilestoneIds = new object[] { testMilestone2.Id },
+                ParentIssueId = issue3.Id,
+                StartDate = new DateTime(2017, 7, 4),
+                DueDate = new DateTime(2017, 8, 4),
+            });
+            var issueIds = new object[] { issue1.Id, issue2.Id, issue3.Id, issue4.Id };
+
+            var getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Count = 1 });
+            Assert.AreEqual(getIssues.Count, 1);
+
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Order = Order.Asc });
+            Assert.IsTrue(getIssues[0].Id < getIssues[1].Id);
+
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Count = 2, Offset = 2, Order = Order.Desc });
+            Assert.AreEqual(getIssues[0].Id, issue2.Id);
+
+            var getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = new object[] { issue1.Id, issue2.Id } });
+            Assert.AreEqual(getIssuesCount, 2);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = new object[] { issue1.Id, issue2.Id } });
+            Assert.AreEqual(getIssues.Count, 2);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue1.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { ParentIssueIds = new object[] { issue1.Id, issue4.Id } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { ParentIssueIds = new object[] { issue1.Id, issue4.Id } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
+
+            //日本時間のタイムゾーン情報
+            var jstTimeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Tokyo Standard Time");
+            var date = TimeZoneInfo.ConvertTimeFromUtc(issue1.Created.Value, jstTimeZoneInfo).Date;
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { CreatedSince = date, CreatedUntil = date.AddDays(1) });
+            Assert.IsTrue(getIssuesCount >= 4);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { CreatedSince = date, CreatedUntil = date.AddDays(1) });
+            Assert.IsTrue(getIssues.Count >= 4);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue1.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue3.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue4.Id));
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { UpdatedSince = date, UpdatedUntil = date.AddDays(1) });
+            Assert.IsTrue(getIssuesCount >= 4);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { UpdatedSince = date, UpdatedUntil = date.AddDays(1) });
+            Assert.IsTrue(getIssues.Count >= 4);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue1.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue3.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue4.Id));
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, IssueTypeIds = new object[] { issueType2.Id } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, IssueTypeIds = new object[] { issueType2.Id } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue2.Id);
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, CategoryIds = new object[] { testCategory2.Id } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, CategoryIds = new object[] { testCategory2.Id } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue2.Id);
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, VersionIds = new object[] { testVersion2.Id } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, VersionIds = new object[] { testVersion2.Id } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue3.Id);
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, MilestoneIds = new object[] { testMilestone2.Id } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, MilestoneIds = new object[] { testMilestone2.Id } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue4.Id);
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, MilestoneIds = new object[] { testMilestone2.Id } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, MilestoneIds = new object[] { testMilestone2.Id } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue4.Id);
+
+            await client.UpdateIssueAsync(new UpdateIssueParams(issue4.Id)
+            {
+                Status = IssueStatusType.Resolved,
+                Resolution = IssueResolutionType.Fixed,
+            });
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, Statuses = new[] { IssueStatusType.Resolved} });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, Statuses = new[] { IssueStatusType.Resolved } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue4.Id);
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, Priorities = new[] { IssuePriorityType.Low } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, Priorities = new[] { IssuePriorityType.Low } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue3.Id);
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, AssigneeIds = new object[] { assigneeUserIds[0], assigneeUserIds[1] } });
+            Assert.AreEqual(getIssuesCount, 2);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, AssigneeIds = new object[] { assigneeUserIds[0], assigneeUserIds[1] } });
+            Assert.AreEqual(getIssues.Count, 2);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue1.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, Resolutions = new[] { IssueResolutionType.Fixed } });
+            Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, Resolutions = new[] { IssueResolutionType.Fixed } });
+            Assert.AreEqual(getIssues.Count, 1);
+            Assert.AreEqual(getIssues[0].Id, issue4.Id);
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, ParentChildType = GetIssuesParentChildType.Child });
+            Assert.AreEqual(getIssuesCount, 2);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, ParentChildType = GetIssuesParentChildType.Child });
+            Assert.AreEqual(getIssues.Count, 2);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue4.Id));
+
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, Attachment = true});
+            Assert.AreEqual(getIssuesCount, 2);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, Attachment = true });
+            Assert.AreEqual(getIssues.Count, 2);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue1.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
+
+            var sharedFiles = await client.GetSharedFilesAsync(generalConfig.ProjectKey, issuesConfig.SharedFileDirectory);
+            var file1 = sharedFiles.First(x => x.Name == issuesConfig.SharedFile1);
+            var file2 = sharedFiles.First(x => x.Name == issuesConfig.SharedImageFile1);
+            await client.LinkIssueSharedFileAsync(issue3.Id, new object[] { file1.Id });
+            await client.LinkIssueSharedFileAsync(issue4.Id, new object[] { file2.Id });
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, SharedFile = true });
+            Assert.AreEqual(getIssuesCount, 2);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, SharedFile = true });
+            Assert.AreEqual(getIssues.Count, 2);
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue3.Id));
+            Assert.IsTrue(getIssues.Any(x => x.Id == issue4.Id));
+
+            // キーワードのインデックスをつくるのにしばらく時間かかるっぽく
+            // CIに組み込むのは厳しいのでエラーがでないかだけチェック
+            getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId) { Ids = issueIds, Keyword = "KeywordForTest" });
+            //Assert.AreEqual(getIssuesCount, 1);
+            getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) { Ids = issueIds, Keyword = "KeywordForTest" });
+            //Assert.AreEqual(getIssues.Count, 1);
+            //Assert.AreEqual(getIssues[0].Id, issue4.Id);
+
+            await client.DeleteIssueAsync(issue4.Id);
+            await client.DeleteIssueAsync(issue3.Id);
+            await client.DeleteIssueAsync(issue2.Id);
+            await client.DeleteIssueAsync(issue1.Id);
         }
     }
 }

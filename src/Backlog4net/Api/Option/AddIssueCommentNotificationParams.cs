@@ -19,7 +19,7 @@ namespace Backlog4net.Api.Option
         {
             this.issueIdOrKey = issueIdOrKey;
             this.commentId = commentId;
-            AddNewArrayParamValues(notifiedUserIds);
+            AddNewArrayParams("notifiedUserId[]", notifiedUserIds);
         }
 
         /// <summary>

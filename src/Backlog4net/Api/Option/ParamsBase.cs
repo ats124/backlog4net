@@ -105,7 +105,7 @@ namespace Backlog4net.Api.Option
             return sb.ToString();
         }
 
-        protected static string ToDateString(DateTime? date)
+        internal static string ToDateString(DateTime? date)
             => date.HasValue ? date.Value.ToString("yyyy-MM-dd") : string.Empty;
     }
 }

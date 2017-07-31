@@ -24,23 +24,21 @@ namespace Backlog4net.Api.Option
 
         public string Description { set => AddNewParamValue(value); }
 
-        public IssueStatusType Status { set => AddNewParamValue(value.ToString("D")); }
+        public IssueStatusType Status { set => AddNewParam("statusId", value.ToString("D")); }
 
-        public IssueResolutionType? Resolution { set => AddNewParamValue(value.HasValue ? value.Value.ToString("D") : ""); }
+        public IssueResolutionType? Resolution { set => AddNewParam("resolutionId", value.HasValue ? value.Value.ToString("D") : ""); }
 
-        public string StartDate { set => AddNewParamValue(value); }
+        public DateTime? StartDate { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDate { set => AddNewParamValue(value); }
+        public DateTime? DueDate { set => AddNewParamValue(ToDateString(value)); }
 
-        public float EstimatedHours { set => AddNewParamValue(value); }
+        public decimal? EstimatedHours { set => AddNewParamValue(value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2"): ""); }
 
-        public decimal? EstimatedHoursDecimal { set => AddNewParam("estimatedHours", value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2"): ""); }
-
-        public float ActualHours { set => AddNewParamValue(value); }
-
-        public decimal? ActualHoursDecimal { set => AddNewParam("actualHours", value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2") : ""); }
+        public decimal? ActualHours { set => AddNewParamValue(value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2") : ""); }
 
         public object IssueTypeId { set => AddNewParamValue(value); }
+
+        public IssuePriorityType Priority { set => AddNewParam("priorityId", value.ToString("D")); }
 
         public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value, isEmptySetBlank: true); }
 

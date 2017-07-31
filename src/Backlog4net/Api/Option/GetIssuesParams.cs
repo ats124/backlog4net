@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace Backlog4net.Api.Option
@@ -24,13 +25,13 @@ namespace Backlog4net.Api.Option
 
         public IList<IssuePriorityType> Priorities { set => AddNewArrayParams("priorityId[]", value, x => x.ToString("D")); }
 
-        public IList<object> AssignerIds { set => AddNewArrayParams("assignerId[]", value); }
+        public IList<object> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
 
         public IList<object> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
 
         public IList<IssueResolutionType> Resolutions { set => AddNewArrayParams("resolutionId[]", value, x => x.ToString("D")); }
 
-        public GetIssuesParentChildType ParentChildType { set => AddNewParamValue(value); }
+        public GetIssuesParentChildType ParentChildType { set => AddNewParam("parentChild", value.ToString("D")); }
 
         public bool Attachment { set => AddNewParamValue(value); }
 
@@ -44,21 +45,21 @@ namespace Backlog4net.Api.Option
 
         public long Count { set => AddNewParamValue(value); }
 
-        public string CreatedSince { set => AddNewParamValue(value); }
+        public DateTime CreatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string CreatedUntil { set => AddNewParamValue(value); }
+        public DateTime CreatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedSince { set => AddNewParamValue(value); }
+        public DateTime UpdatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedUntil { set => AddNewParamValue(value); }
+        public DateTime UpdatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateSince { set => AddNewParamValue(value); }
+        public DateTime StartDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateUntil { set => AddNewParamValue(value); }
+        public DateTime StartDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateSince { set => AddNewParamValue(value); }
+        public DateTime DueDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateUntil { set => AddNewParamValue(value); }
+        public DateTime DueDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
         public IList<object> Ids { set => AddNewArrayParams("id[]", value); }
 
@@ -82,25 +83,41 @@ namespace Backlog4net.Api.Option
     {
         public object CustomFieldId { get; private set; }
 
-        public GetIssuesCustomField(object customFieldId)
+        private GetIssuesCustomField(object customFieldId)
         {
             this.CustomFieldId = customFieldId;
         }
-
         private void AddNewParamValueCustomField(object value, string postfix) => AddNewParam("customField_" + CustomFieldId + postfix, value);
 
-        public string KeywordByCustomFiled { set => AddNewParamValueCustomField(value, ""); }
+        public static GetIssuesCustomField ByKeyword(object customFieldId, string value)
+        {
+            var obj = new GetIssuesCustomField(customFieldId);
+            obj.AddNewParamValueCustomField(value, "");
+            return obj;
+        }
 
-        public float MinNumOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
+        public static GetIssuesCustomField ByNumeric(object customFieldId, decimal? minValue = null, decimal? maxValue = null)
+        {
+            var obj = new GetIssuesCustomField(customFieldId);
+            if (minValue.HasValue) obj.AddNewParamValueCustomField(minValue.Value, "_min");
+            if (maxValue.HasValue) obj.AddNewParamValueCustomField(maxValue.Value, "_max");
+            return obj;
+        }
 
-        public float MaxNumOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
+        public static GetIssuesCustomField ByDate(object customFieldId, DateTime? minValue = null, DateTime? maxValue = null)
+        {
+            var obj = new GetIssuesCustomField(customFieldId);
+            if (minValue.HasValue) obj.AddNewParamValueCustomField(ToDateString(minValue), "_min");
+            if (maxValue.HasValue) obj.AddNewParamValueCustomField(ToDateString(maxValue), "_max");
+            return obj;
+        }
 
-        public string MinDateOfCustomField { set => AddNewParamValueCustomField(value, "_min"); }
-
-        public string MaxDateOfCustomField { set => AddNewParamValueCustomField(value, "_max"); }
-
-        public IList<object> ItemsOfCustomField { set => AddNewArrayParams("customField_" + CustomFieldId + "[]", value); }
-
+        public static GetIssuesCustomField ByItems(object customFieldId, params long[] itemIds)
+        {
+            var obj = new GetIssuesCustomField(customFieldId);
+            obj.AddNewArrayParams("customField_" + customFieldId + "[]", itemIds);
+            return obj;
+        }
     }
 
     public enum GetIssuesSortKey

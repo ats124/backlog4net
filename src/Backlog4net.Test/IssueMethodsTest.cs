@@ -383,6 +383,12 @@ namespace Backlog4net.Test
                                                     x.Size == file1.Size));
             Assert.IsTrue(linkedShareFiles.Any(x => x.Id == file2.Id));
 
+            var getGetIssueSharedFiles = await client.GetIssueSharedFilesAsync(issue.Id);
+            Assert.AreEqual(getGetIssueSharedFiles.Count, 2);
+            Assert.IsTrue(getGetIssueSharedFiles.Any(x => x.Id == file1.Id && x.Dir == file1.Dir && x.Name == file1.Name &&
+                                                    x.Size == file1.Size));
+            Assert.IsTrue(getGetIssueSharedFiles.Any(x => x.Id == file2.Id));
+
             var sharedFileUnlinked = await client.UnlinkIssueSharedFileAsync(issue.Id, linkedShareFiles[0].Id);
             Assert.AreEqual(sharedFileUnlinked.Id, linkedShareFiles[0].Id);
 

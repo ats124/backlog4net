@@ -24,7 +24,7 @@ namespace Backlog4net.Api.Option
 
         public IList<IssuePriorityType> Priorities { set => AddNewArrayParams("priorityId[]", value, x => x.ToString("D")); }
 
-        public IList<object> AssignerIds { set => AddNewArrayParams("assignerId[]", value); }
+        public IList<object> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
 
         public IList<object> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
 

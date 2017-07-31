@@ -20,19 +20,17 @@ namespace Backlog4net.Api.Option
 
         public static CustomFieldValue TextArea(long customFieldId, string customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue);
 
-        public static CustomFieldValue Numeric(long customFieldId, float customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue);
+        public static CustomFieldValue Numeric(long customFieldId, decimal? customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue);
 
-        public static CustomFieldValue Numeric(long customFieldId, decimal customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue);
-
-        public static CustomFieldValue Date(long customFieldId, string customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue);
+        public static CustomFieldValue Date(long customFieldId, DateTime? customFieldValue) => new CustomFieldValue(customFieldId, ParamsBase.ToDateString(customFieldValue));
 
         public static CustomFieldItem SingleList(long customFieldId, long customFieldItemId) => new CustomFieldItem(customFieldId, customFieldItemId);
 
         public static CustomFieldItem Radio(long customFieldId, long customFieldItemId) => new CustomFieldItem(customFieldId, customFieldItemId);
 
-        public static CustomFieldItems MultipleList(long customFieldId, IList<long> customFieldItemId) => new CustomFieldItems(customFieldId, customFieldItemId.Cast<object>().ToArray());
+        public static CustomFieldItems MultipleList(long customFieldId, params long[] customFieldItemIds) => new CustomFieldItems(customFieldId, customFieldItemIds.Cast<object>().ToArray());
 
-        public static CustomFieldItems CheckBox(long customFieldId, IList<long> customFieldItemId) => new CustomFieldItems(customFieldId, customFieldItemId.Cast<object>().ToArray());
+        public static CustomFieldItems CheckBox(long customFieldId, params long[] customFieldItemIds) => new CustomFieldItems(customFieldId, customFieldItemIds.Cast<object>().ToArray());
 
         public static CustomFieldValue OtherValue(long customFieldId, object customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue, isOtherValue: true);
     }

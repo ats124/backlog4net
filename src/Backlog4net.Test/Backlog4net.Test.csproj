@@ -69,6 +69,7 @@
     <Compile Include="ProjectMethodsTest.cs" />
     <Compile Include="IssueMethodsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestConfig\IssuesConfig.cs" />
     <Compile Include="TestConfig\ProjectsConfig.cs" />
     <Compile Include="TestConfig\GeneralConfig.cs" />
   </ItemGroup>
@@ -76,6 +77,10 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="TestConfig\ForCIAndSample\general.json" />
+    <None Include="TestConfig\ForCIAndSample\issues.json" />
+    <None Include="TestConfig\issues.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestConfig\projects.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

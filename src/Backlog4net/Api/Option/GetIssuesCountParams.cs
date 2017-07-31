@@ -24,33 +24,33 @@ namespace Backlog4net.Api.Option
 
         public IList<IssuePriorityType> Priorities { set => AddNewArrayParams("priorityId[]", value, x => x.ToString("D")); }
 
-        public IList<object> AssignerIds { set => AddNewArrayParams("assignerId[]", value); }
+        public IList<object> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
 
         public IList<object> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
 
         public IList<IssueResolutionType> Resolutions { set => AddNewArrayParams("resolutionId[]", value, x => x.ToString("D")); }
 
-        public GetIssuesParentChildType ParentChildType { set => AddNewParamValue(value); }
+        public GetIssuesParentChildType ParentChildType { set => AddNewParam("parentChild", value.ToString("D")); }
 
         public bool Attachment { set => AddNewParamValue(value); }
 
         public bool SharedFile { set => AddNewParamValue(value); }
 
-        public string CreatedSince { set => AddNewParamValue(value); }
+        public DateTime CreatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string CreatedUntil { set => AddNewParamValue(value); }
+        public DateTime CreatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedSince { set => AddNewParamValue(value); }
+        public DateTime UpdatedSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string UpdatedUntil { set => AddNewParamValue(value); }
+        public DateTime UpdatedUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateSince { set => AddNewParamValue(value); }
+        public DateTime StartDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string StartDateUntil { set => AddNewParamValue(value); }
+        public DateTime StartDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateSince { set => AddNewParamValue(value); }
+        public DateTime DueDateSince { set => AddNewParamValue(ToDateString(value)); }
 
-        public string DueDateUntil { set => AddNewParamValue(value); }
+        public DateTime DueDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
         public IList<object> Ids { set => AddNewArrayParams("id[]", value); }
 

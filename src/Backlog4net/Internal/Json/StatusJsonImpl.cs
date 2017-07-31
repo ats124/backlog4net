@@ -12,9 +12,6 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public int Id { get; private set; }
 
-        [JsonIgnore]
-        public string IdAsString => Id.ToString();
-
         [JsonProperty]
         public string Name { get; private set; }
 

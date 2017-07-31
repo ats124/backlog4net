@@ -6,7 +6,6 @@ namespace Backlog4net
     public interface CustomField
     {
         long Id { get; }
-        string IdAsString { get; }
         string Name { get; }
         CustomFieldType FieldType { get; }
     }

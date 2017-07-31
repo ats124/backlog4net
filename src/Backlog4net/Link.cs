@@ -8,11 +8,7 @@ namespace Backlog4net
     {
         long Id { get; }
 
-        string IdAsString { get; }
-
         long KeyId { get; }
-
-        String KeyIdAsString { get; }
 
         string Title { get; }
     }

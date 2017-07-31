@@ -12,8 +12,6 @@ namespace Backlog4net
 
         long OwnerId { get; }
 
-        string OwnerIdAsString { get; }
-
         string Lang { get; }
 
         string Timezone { get; }

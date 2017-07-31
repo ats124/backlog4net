@@ -13,9 +13,6 @@ namespace Backlog4net.Internal.Json
 		[JsonProperty]
 		public long Id { get; private set; }
 
-        [JsonIgnore]
-		public string IdAsString => Id.ToString();
-
 		[JsonProperty]
         public string Name { get; private set; }
 
@@ -36,9 +33,6 @@ namespace Backlog4net.Internal.Json
 
         [JsonProperty]
         public long ProjectId { get; private set; }
-
-        [JsonIgnore]
-        public string ProjectIdAsString => ProjectId.ToString();
 
         [JsonProperty, JsonConverter(typeof(UserJsonImpl.JsonConverter))]
         public User CreatedUser { get; private set; }

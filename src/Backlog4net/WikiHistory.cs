@@ -8,8 +8,6 @@ namespace Backlog4net
     {
         long PageId { get; }
 
-        string PageIdAsString { get; }
-
         int Version { get; }
 
         string Name { get; }

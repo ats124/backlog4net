@@ -8,8 +8,6 @@ namespace Backlog4net
     {
         long Id { get; }
 
-        string IdAsString { get; }
-
         bool IsAlreadyRead { get; }
 
         Reason Reason { get; }

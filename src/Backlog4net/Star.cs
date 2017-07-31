@@ -5,8 +5,6 @@ namespace Backlog4net
     {
         long Id { get; }
 
-        string IdAsString { get; }
-
         string Comment { get; }
 
         string Url { get; }

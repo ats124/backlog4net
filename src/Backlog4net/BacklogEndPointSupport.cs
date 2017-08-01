@@ -33,7 +33,7 @@ namespace Backlog4net
         /// <summary>
         /// the endpoint of shared file.
         /// </summary>
-        public string SharedFileEndpoint(IdOrKey projectIdOrKey, object sharedFileId) => BuildEndpoint($"projects/{projectIdOrKey}/files/{sharedFileId}");
+        public string SharedFileEndpoint(IdOrKey projectIdOrKey, long sharedFileId) => BuildEndpoint($"projects/{projectIdOrKey}/files/{sharedFileId}");
 
         /// <summary>
         /// the endpoint of attachment file.

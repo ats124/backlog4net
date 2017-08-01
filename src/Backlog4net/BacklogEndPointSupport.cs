@@ -23,32 +23,32 @@ namespace Backlog4net
         /// <summary>
         /// the endpoint of project icon.
         /// </summary>
-        public string ProjectIconEndpoint(object projectIdOrKey) => BuildEndpoint($"projects/{projectIdOrKey}/image");
+        public string ProjectIconEndpoint(IdOrKey projectIdOrKey) => BuildEndpoint($"projects/{projectIdOrKey}/image");
 
         /// <summary>
         /// the endpoint of user icon.
         /// </summary>
-        public string UserIconEndpoint(object numericUserId) => BuildEndpoint($"users/{numericUserId}/icon");
+        public string UserIconEndpoint(long numericUserId) => BuildEndpoint($"users/{numericUserId}/icon");
 
         /// <summary>
         /// the endpoint of shared file.
         /// </summary>
-        public string SharedFileEndpoint(object projectIdOrKey, object sharedFileId) => BuildEndpoint($"projects/{projectIdOrKey}/files/{sharedFileId}");
+        public string SharedFileEndpoint(IdOrKey projectIdOrKey, object sharedFileId) => BuildEndpoint($"projects/{projectIdOrKey}/files/{sharedFileId}");
 
         /// <summary>
         /// the endpoint of attachment file.
         /// </summary>
-        public string IssueAttachmentEndpoint(object issueIdOrKey, object attachmentId) => BuildEndpoint($"issues/{issueIdOrKey}/attachments/{attachmentId}");
+        public string IssueAttachmentEndpoint(IdOrKey issueIdOrKey, long attachmentId) => BuildEndpoint($"issues/{issueIdOrKey}/attachments/{attachmentId}");
 
         /// <summary>
         /// endpoint of Wiki page's attachment file.
         /// </summary>
-        public string WikiAttachmentEndpoint(object wikiId, object attachmentId) => BuildEndpoint($"wikis/{wikiId}/attachments/{attachmentId}");
+        public string WikiAttachmentEndpoint(long wikiId, long attachmentId) => BuildEndpoint($"wikis/{wikiId}/attachments/{attachmentId}");
 
         /// <summary>
         /// the endpoint of attachment file.
         /// </summary>
-        public string PullRequestAttachmentEndpoint(object projectIdOrKey, object repoIdOrName, object number, object attachmentId)
+        public string PullRequestAttachmentEndpoint(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, long attachmentId)
             => BuildEndpoint($"projects/{projectIdOrKey}/git/repositories/{repoIdOrName}/pullRequests/{number}/attachments/{attachmentId}");
 
         protected virtual string BuildEndpoint(string connection) => Configure.RestBaseUrl + "/" + connection;

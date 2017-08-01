@@ -31,7 +31,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Project</returns>
-        Task<Project> GetProjectAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<Project> GetProjectAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing project.
@@ -45,14 +45,14 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the deleted Project</returns>
-        Task<Project> DeleteProjectAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<Project> DeleteProjectAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the project icon.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Icon</returns>
-        Task<Icon> GetProjectIconAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<Icon> GetProjectIconAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the activities on the project.
@@ -60,7 +60,7 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="query">the query parameters</param>
         /// <returns>the activities in a list</returns>
-        Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, ActivityQueryParams query = null, CancellationToken? token = null);
+        Task<ResponseList<Activity>> GetProjectActivitiesAsync(IdOrKey projectIdOrKey, ActivityQueryParams query = null, CancellationToken? token = null);
 
         /// <summary>
         /// Adds the user to the project.
@@ -68,14 +68,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="userId">the user identifier</param>
         /// <returns>the added User</returns>
-        Task<User> AddProjectUserAsync(object projectIdOrKey, object userId, CancellationToken? token = null);
+        Task<User> AddProjectUserAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the users in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the users in a list.</returns>
-        Task<ResponseList<User>> GetProjectUsersAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<User>> GetProjectUsersAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Removes the user from the project.
@@ -83,7 +83,7 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="userId">the user identifier</param>
         /// <returns>the removed User</returns>
-        Task<User> RemoveProjectUserAsync(object projectIdOrKey, object userId, CancellationToken? token = null);
+        Task<User> RemoveProjectUserAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds the project administrators.
@@ -91,14 +91,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="userId">the user identifier</param>
         /// <returns>the removed User</returns>
-        Task<User> AddProjectAdministratorAsync(object projectIdOrKey, object userId, CancellationToken? token = null);
+        Task<User> AddProjectAdministratorAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the project administrators.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the project administrators</returns>
-        Task<ResponseList<User>> GetProjectAdministratorsAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<User>> GetProjectAdministratorsAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes the project administrators.
@@ -106,14 +106,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="userId">the user identifier</param>
         /// <returns>the removed User</returns>
-        Task<User> RemoveProjectAdministratorAsync(object projectIdOrKey, object userId, CancellationToken? token = null);
+        Task<User> RemoveProjectAdministratorAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the issue types in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the issue types in a list</returns>
-        Task<ResponseList<IssueType>> GetIssueTypesAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<IssueType>> GetIssueTypesAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a issue type to the project.
@@ -136,14 +136,14 @@ namespace Backlog4net.Api
         /// <param name="issueTypeId">the issue type identifier</param>
         /// <param name="substituteIssueTypeId">the substitute issue type identifier</param>
         /// <returns>the removed IssueType</returns>
-        Task<IssueType> RemoveIssueTypeAsync(object projectIdOrKey, object issueTypeId, object substituteIssueTypeId, CancellationToken? token = null);
+        Task<IssueType> RemoveIssueTypeAsync(IdOrKey projectIdOrKey, long issueTypeId, long substituteIssueTypeId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the Categories in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Categories in a list</returns>
-        Task<ResponseList<Category>> GetCategoriesAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Category>> GetCategoriesAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a Category to the project.
@@ -165,14 +165,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="categoryId">the Category identifier</param>
         /// <returns>the removed Category</returns>
-        Task<Category> RemoveCategoryAsync(object projectIdOrKey, object categoryId, CancellationToken? token = null);
+        Task<Category> RemoveCategoryAsync(IdOrKey projectIdOrKey, long categoryId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the versions in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the versions in a list</returns>
-        Task<ResponseList<Version>> GetVersionsAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Version>> GetVersionsAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a version to the project.
@@ -194,14 +194,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="versionId">the version identifier</param>
         /// <returns>the removed version</returns>
-        Task<Version> RemoveVersionAsync(object projectIdOrKey, object versionId, CancellationToken? token = null);
+        Task<Version> RemoveVersionAsync(IdOrKey projectIdOrKey, long versionId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the Milestones in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Milestones in a list</returns>
-        Task<ResponseList<Milestone>> GetMilestonesAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Milestone>> GetMilestonesAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a Milestone to the project.
@@ -223,14 +223,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="MilestoneId">the Milestone identifier</param>
         /// <returns></returns>
-        Task<Milestone> RemoveMilestoneAsync(object projectIdOrKey, object MilestoneId, CancellationToken? token = null);
+        Task<Milestone> RemoveMilestoneAsync(IdOrKey projectIdOrKey, long MilestoneId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the Custom fields in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Custom fields in a list</returns>
-        Task<ResponseList<CustomFieldSetting>> GetCustomFieldsAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<CustomFieldSetting>> GetCustomFieldsAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a text type Custom field to the project.
@@ -350,7 +350,7 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="customFieldId">the Custom field identifier</param>
         /// <returns>the removed Custom filed</returns>
-        Task<CustomFieldSetting> RemoveCustomFieldAsync(object projectIdOrKey, object customFieldId, CancellationToken? token = null);
+        Task<CustomFieldSetting> RemoveCustomFieldAsync(IdOrKey projectIdOrKey, long customFieldId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a item to the list type Custom field.
@@ -359,7 +359,7 @@ namespace Backlog4net.Api
         /// <param name="customFieldId">the Custom field identifier</param>
         /// <param name="name">name of the adding item</param>
         /// <returns>the added Custom filed item</returns>
-        Task<CustomFieldSetting> AddListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, string name, CancellationToken? token = null);
+        Task<CustomFieldSetting> AddListCustomFieldItemAsync(IdOrKey projectIdOrKey, long customFieldId, string name, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing item of list type Custom field.
@@ -369,7 +369,7 @@ namespace Backlog4net.Api
         /// <param name="itemId">the item identifier</param>
         /// <param name="name">name of the updating item</param>
         /// <returns>the updated CustomFieldSetting</returns>
-        Task<CustomFieldSetting> UpdateListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, object itemId, string name, CancellationToken? token = null);
+        Task<CustomFieldSetting> UpdateListCustomFieldItemAsync(IdOrKey projectIdOrKey, long customFieldId, long itemId, string name, CancellationToken? token = null);
 
         /// <summary>
         /// Removes the item of list type Custom field.
@@ -378,7 +378,7 @@ namespace Backlog4net.Api
         /// <param name="customFieldId">the Custom field identifier</param>
         /// <param name="itemId">the item identifier</param>
         /// <returns>the removed CustomFieldSetting</returns>
-        Task<CustomFieldSetting> RemoveListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, object itemId, CancellationToken? token = null);
+        Task<CustomFieldSetting> RemoveListCustomFieldItemAsync(IdOrKey projectIdOrKey, long customFieldId, long itemId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the shared files in the project.
@@ -387,7 +387,7 @@ namespace Backlog4net.Api
         /// <param name="path">path of the shared file directory</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the shared files in a list</returns>
-        Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, QueryParams queryParams = null, CancellationToken? token = null);
+        Task<ResponseList<SharedFile>> GetSharedFilesAsync(IdOrKey projectIdOrKey, string path, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the shared file data in the project.
@@ -395,14 +395,14 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="sharedFileId">the shared file identifier</param>
         /// <returns>the SharedFileData</returns>
-        Task<SharedFileData> DownloadSharedFileAsync(object projectIdOrKey, object sharedFileId, CancellationToken? token = null);
+        Task<SharedFileData> DownloadSharedFileAsync(IdOrKey projectIdOrKey, long sharedFileId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the disk usage of the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the DiskUsageDetail</returns>
-        Task<DiskUsageDetail> GetProjectDiskUsageAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<DiskUsageDetail> GetProjectDiskUsageAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
     }
 }

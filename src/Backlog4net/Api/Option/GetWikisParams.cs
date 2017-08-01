@@ -9,7 +9,7 @@ namespace Backlog4net.Api.Option
         private GetWikisSortKey sort;
         private Order order;
 
-        public GetWikisParams(object projectIdOrKey)
+        public GetWikisParams(IdOrKey projectIdOrKey)
         {
             AddNewParam("projectIdOrKey", projectIdOrKey);
         }

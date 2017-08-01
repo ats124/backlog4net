@@ -9,30 +9,23 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddPullRequestCommentParams : PostParams
     {
-        private object projectIdOrKey;
-        private object repoIdOrName;
-        private object number;
-
-        public AddPullRequestCommentParams(object projectIdOrKey, object repoIdOrName, object number, string content)
+        public AddPullRequestCommentParams(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, string content)
         {
-            this.projectIdOrKey = projectIdOrKey;
-            this.repoIdOrName = repoIdOrName;
-            this.number = number;
+            this.ProjectIdOrKey = projectIdOrKey;
+            this.RepoIdOrName = repoIdOrName;
+            this.Number = number;
             AddNewParam("content", content);
         }
 
-        /// <summary>
-        /// Returns the project identifier string.
-        /// </summary>
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
-        public string RepoIdOrName => repoIdOrName.ToString();
+        public IdOrKey RepoIdOrName { get; private set; }
 
-        public string Number => number.ToString();
+        public long Number { get; private set; }
 
         /// <summary>
         /// Sets the notified users.
         /// </summary>
-        public IList<object> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
+        public IList<long> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
     }
 }

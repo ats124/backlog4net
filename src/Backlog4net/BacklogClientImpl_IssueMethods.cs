@@ -15,7 +15,7 @@ namespace Backlog4net
     {
         public async Task<IssueComment> AddIssueCommentAsync(AddIssueCommentParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/comments"), @params, token))
+            using (var response = await Post(BuildEndpoint($"issues/{@params.IssueIdOrKey}/comments"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateIssueCommentAsync(response);
@@ -24,7 +24,7 @@ namespace Backlog4net
 
         public async Task<IssueComment> AddIssueCommentNotificationAsync(AddIssueCommentNotificationParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/comments/{@params.CommentId}/notifications"), @params, token))
+            using (var response = await Post(BuildEndpoint($"issues/{@params.IssueIdOrKey}/comments/{@params.CommentId}/notifications"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateIssueCommentAsync(response);
@@ -166,7 +166,7 @@ namespace Backlog4net
 
         public async Task<Issue> UpdateIssueAsync(UpdateIssueParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKey}"), @params, token: token))
             using (var content = response.Content)
             {
                 return (await Factory.CreateIssueAsync(response));
@@ -175,7 +175,7 @@ namespace Backlog4net
 
         public async Task<IssueComment> UpdateIssueCommentAsync(UpdateIssueCommentParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/comments/{@params.CommentId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKey}/comments/{@params.CommentId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return (await Factory.CreateIssueCommentAsync(response));

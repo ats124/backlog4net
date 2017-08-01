@@ -22,7 +22,7 @@ namespace Backlog4net
 
         public async Task<Issue> ImportUpdateIssueAsync(ImportUpdateIssueParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKeyString}/import"), @params, token))
+            using (var response = await Patch(BuildEndpoint($"issues/{@params.IssueIdOrKey}/import"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateIssueAsync(response);

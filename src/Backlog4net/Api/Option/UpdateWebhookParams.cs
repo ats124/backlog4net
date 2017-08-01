@@ -6,18 +6,15 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateWebhookParams : PatchParams
     {
-        private object projectIdOrKey;
-        private object webhookId;
-
-        public UpdateWebhookParams(object projectIdOrKey, long webhookId)
+        public UpdateWebhookParams(IdOrKey projectIdOrKey, long webhookId)
         {
-            this.projectIdOrKey = projectIdOrKey;
-            this.webhookId = webhookId;
+            this.ProjectIdOrKey = projectIdOrKey;
+            this.WebhookId = webhookId;
         }
 
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
-        public string WebhookId => webhookId.ToString();
+        public long WebhookId { get; private set; }
 
         public string Name { set => AddNewParamValue(value); }
 

@@ -35,7 +35,7 @@ namespace Backlog4net
 
         public async Task<Watch> UpdateWatchAsync(UpdateWatchParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"watchings/{@params.WatchingIdString}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"watchings/{@params.WatchingId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateWatchAsync(response);

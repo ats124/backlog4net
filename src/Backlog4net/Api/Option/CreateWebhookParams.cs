@@ -6,16 +6,14 @@ namespace Backlog4net.Api.Option
 {
     public class CreateWebhookParams : PostParams
     {
-        private object projectIdOrKey;
-
-        public CreateWebhookParams(object projectIdOrKey, string name, string hookUrl)
+        public CreateWebhookParams(IdOrKey projectIdOrKey, string name, string hookUrl)
         {
-            this.projectIdOrKey = projectIdOrKey;
+            this.ProjectIdOrKey = projectIdOrKey;
             AddNewParam("name", name ?? "");
             AddNewParam("hookUrl", hookUrl ?? "");
         }
 
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
         public string Description { set => AddNewParamValue(value); }
 

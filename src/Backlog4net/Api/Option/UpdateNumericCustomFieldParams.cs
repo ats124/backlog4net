@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateNumericCustomFieldParams : UpdateCustomFieldParams
     {
-        public UpdateNumericCustomFieldParams(object projectIdOrKey, object customFiledId)
+        public UpdateNumericCustomFieldParams(IdOrKey projectIdOrKey, long customFiledId)
             : base(projectIdOrKey, customFiledId)
         {
         }

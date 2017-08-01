@@ -8,26 +8,26 @@ namespace Backlog4net.Api.Option
 {
     public class GetIssuesParams : GetParams
     {
-        public GetIssuesParams(params object[] projectIds)
+        public GetIssuesParams(params long[] projectIds)
         {
             AddNewArrayParams("projectId[]", projectIds);
         }
 
-        public IList<object> IssueTypeIds { set => AddNewArrayParams("issueTypeId[]", value); }
+        public IList<long> IssueTypeIds { set => AddNewArrayParams("issueTypeId[]", value); }
 
-        public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value); }
+        public IList<long> CategoryIds { set => AddNewArrayParams("categoryId[]", value); }
 
-        public IList<object> VersionIds { set => AddNewArrayParams("versionId[]", value); }
+        public IList<long> VersionIds { set => AddNewArrayParams("versionId[]", value); }
 
-        public IList<object> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value); }
+        public IList<long> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value); }
 
         public IList<IssueStatusType> Statuses { set => AddNewArrayParams("statusId[]", value, x => x.ToString("D")); }
 
         public IList<IssuePriorityType> Priorities { set => AddNewArrayParams("priorityId[]", value, x => x.ToString("D")); }
 
-        public IList<object> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
+        public IList<long> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
 
-        public IList<object> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
+        public IList<long> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
 
         public IList<IssueResolutionType> Resolutions { set => AddNewArrayParams("resolutionId[]", value, x => x.ToString("D")); }
 
@@ -61,9 +61,9 @@ namespace Backlog4net.Api.Option
 
         public DateTime DueDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public IList<object> Ids { set => AddNewArrayParams("id[]", value); }
+        public IList<long> Ids { set => AddNewArrayParams("id[]", value); }
 
-        public IList<object> ParentIssueIds { set => AddNewArrayParams("parentIssueId[]", value); }
+        public IList<long> ParentIssueIds { set => AddNewArrayParams("parentIssueId[]", value); }
 
         public string Keyword { set => AddNewParamValue(value); }
 
@@ -81,22 +81,23 @@ namespace Backlog4net.Api.Option
 
     public class GetIssuesCustomField : ParamsBase
     {
-        public object CustomFieldId { get; private set; }
-
-        private GetIssuesCustomField(object customFieldId)
+        private GetIssuesCustomField(long customFieldId)
         {
             this.CustomFieldId = customFieldId;
         }
+
         private void AddNewParamValueCustomField(object value, string postfix) => AddNewParam("customField_" + CustomFieldId + postfix, value);
 
-        public static GetIssuesCustomField ByKeyword(object customFieldId, string value)
+        public long CustomFieldId { get; private set; }
+
+        public static GetIssuesCustomField ByKeyword(long customFieldId, string value)
         {
             var obj = new GetIssuesCustomField(customFieldId);
             obj.AddNewParamValueCustomField(value, "");
             return obj;
         }
 
-        public static GetIssuesCustomField ByNumeric(object customFieldId, decimal? minValue = null, decimal? maxValue = null)
+        public static GetIssuesCustomField ByNumeric(long customFieldId, decimal? minValue = null, decimal? maxValue = null)
         {
             var obj = new GetIssuesCustomField(customFieldId);
             if (minValue.HasValue) obj.AddNewParamValueCustomField(minValue.Value, "_min");
@@ -104,7 +105,7 @@ namespace Backlog4net.Api.Option
             return obj;
         }
 
-        public static GetIssuesCustomField ByDate(object customFieldId, DateTime? minValue = null, DateTime? maxValue = null)
+        public static GetIssuesCustomField ByDate(long customFieldId, DateTime? minValue = null, DateTime? maxValue = null)
         {
             var obj = new GetIssuesCustomField(customFieldId);
             if (minValue.HasValue) obj.AddNewParamValueCustomField(ToDateString(minValue), "_min");
@@ -112,7 +113,7 @@ namespace Backlog4net.Api.Option
             return obj;
         }
 
-        public static GetIssuesCustomField ByItems(object customFieldId, params long[] itemIds)
+        public static GetIssuesCustomField ByItems(long customFieldId, params long[] itemIds)
         {
             var obj = new GetIssuesCustomField(customFieldId);
             obj.AddNewArrayParams("customField_" + customFieldId + "[]", itemIds);

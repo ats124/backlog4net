@@ -6,18 +6,15 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateIssueCommentParams : PatchParams
     {
-        private object issueIdOrKey;
-        private object commentId;
-
-        public UpdateIssueCommentParams(object issueIdOrKey, object commentId, string content)
+        public UpdateIssueCommentParams(IdOrKey issueIdOrKey, long commentId, string content)
         {
-            this.issueIdOrKey = issueIdOrKey;
-            this.commentId = commentId;
+            this.IssueIdOrKey = issueIdOrKey;
+            this.CommentId = commentId;
             AddNewParam("content", content);
         }
 
-        public string IssueIdOrKeyString => issueIdOrKey.ToString();
+        public IdOrKey IssueIdOrKey { get; private set; }
 
-        public string CommentId => commentId.ToString();
+        public long CommentId { get; private set; }
     }
 }

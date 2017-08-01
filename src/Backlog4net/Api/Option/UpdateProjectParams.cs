@@ -6,14 +6,12 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateProjectParams : PatchParams
     {
-        private object projectIdOrKey;
-
-        public UpdateProjectParams(object projectIdOrKey)
+        public UpdateProjectParams(IdOrKey projectIdOrKey)
         {
-            this.projectIdOrKey = projectIdOrKey;
+            this.ProjectIdOrKey = projectIdOrKey;
         }
 
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
         public string Name { set => AddNewParamValue(value); }
 

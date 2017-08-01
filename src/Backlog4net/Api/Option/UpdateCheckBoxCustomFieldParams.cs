@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateCheckBoxCustomFieldParams : UpdateCustomFieldParams
     {
-        public UpdateCheckBoxCustomFieldParams(object projectIdOrKey, object customFiledId)
+        public UpdateCheckBoxCustomFieldParams(IdOrKey projectIdOrKey, long customFiledId)
             : base(projectIdOrKey, customFiledId)
         {
         }

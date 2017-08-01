@@ -6,13 +6,9 @@ namespace Backlog4net.Api.Option
 {
     public class GetRepositoriesParams : GetParams
     {
-        public GetRepositoriesParams(long projectId)
+        public GetRepositoriesParams(IdOrKey projectIdOrKey)
         {
-            AddNewParam("projectIdOrKey", projectId);
-        }
-        public GetRepositoriesParams(string projectKey)
-        {
-            AddNewParam("projectIdOrKey", projectKey);
+            AddNewParam("projectIdOrKey", projectIdOrKey);
         }
     }
 }

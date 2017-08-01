@@ -18,7 +18,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">projectIdOrKey</param>
         /// <returns>the Wiki pages in a list</returns>
-        Task<ResponseList<Wiki>> GetWikisAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Wiki>> GetWikisAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns Wiki pages in the project.
@@ -32,14 +32,14 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Wiki pages count</returns>
-        Task<int> GetWikiCountAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<int> GetWikiCountAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns Wiki page's tags in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Wiki page's tags in a list</returns>
-        Task<ResponseList<WikiTag>> GetWikiTagsAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<WikiTag>> GetWikiTagsAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Create a Wiki page in the project.

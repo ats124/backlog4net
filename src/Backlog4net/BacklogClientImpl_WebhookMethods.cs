@@ -22,7 +22,7 @@ namespace Backlog4net
 
         public async Task<Webhook> CreateWebhookAsync(CreateWebhookParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/webhooks"), @params, token: token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/webhooks"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateWebhookAsync(response);
@@ -40,7 +40,7 @@ namespace Backlog4net
 
         public async Task<Webhook> UpdateWebhookAsync(UpdateWebhookParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/webhooks/{@params.WebhookId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/webhooks/{@params.WebhookId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateWebhookAsync(response);

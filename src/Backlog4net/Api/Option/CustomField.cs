@@ -7,14 +7,12 @@ namespace Backlog4net.Api.Option
 {
     public abstract class CustomField
     {
-        private object customFieldId;
-
-        public CustomField(object customFieldId)
+        protected CustomField(long customFieldId)
         {
-            this.customFieldId = customFieldId;
+            this.CustomFieldId = customFieldId;
         }
 
-        public string CustomFieldId => customFieldId.ToString();
+        public long CustomFieldId { get; private set; }
 
         public static CustomFieldValue Text(long customFieldId, string customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue);
 
@@ -28,30 +26,28 @@ namespace Backlog4net.Api.Option
 
         public static CustomFieldItem Radio(long customFieldId, long customFieldItemId) => new CustomFieldItem(customFieldId, customFieldItemId);
 
-        public static CustomFieldItems MultipleList(long customFieldId, params long[] customFieldItemIds) => new CustomFieldItems(customFieldId, customFieldItemIds.Cast<object>().ToArray());
+        public static CustomFieldItems MultipleList(long customFieldId, params long[] customFieldItemIds) => new CustomFieldItems(customFieldId, customFieldItemIds);
 
-        public static CustomFieldItems CheckBox(long customFieldId, params long[] customFieldItemIds) => new CustomFieldItems(customFieldId, customFieldItemIds.Cast<object>().ToArray());
+        public static CustomFieldItems CheckBox(long customFieldId, params long[] customFieldItemIds) => new CustomFieldItems(customFieldId, customFieldItemIds);
 
         public static CustomFieldValue OtherValue(long customFieldId, object customFieldValue) => new CustomFieldValue(customFieldId, customFieldValue, isOtherValue: true);
     }
 
     public sealed class CustomFieldItem : CustomField
     {
-        private object customFieldItemId;
-
-        internal CustomFieldItem(object customFieldId, object customFieldItemId)
+        internal CustomFieldItem(long customFieldId, long? customFieldItemId)
             : base(customFieldId)
         {
-            this.customFieldItemId = customFieldItemId;
+            this.CustomFieldItemId = customFieldItemId;
         }
 
 
-        public string CustomFieldItemId => customFieldItemId == null ? "" : customFieldItemId.ToString();
+        public long? CustomFieldItemId { get; private set; }
     }
 
     public sealed class CustomFieldItems : CustomField
     {
-        internal CustomFieldItems(object customFieldId, IList<object> customFieldItemIds)
+        internal CustomFieldItems(long customFieldId, IList<long> customFieldItemIds)
             : base(customFieldId)
         {
             this.CustomFieldItemIds = new List<string>(customFieldItemIds.Select(x => x.ToString()));
@@ -63,15 +59,14 @@ namespace Backlog4net.Api.Option
 
     public sealed class CustomFieldValue : CustomField
     {
-        private object customFieldValue;
-        internal CustomFieldValue(object customFieldId, object customFieldValue, bool isOtherValue = false)
+        internal CustomFieldValue(long customFieldId, object customFieldValue, bool isOtherValue = false)
             : base(customFieldId)
         {
-            this.customFieldValue = customFieldValue;
+            this.Value = customFieldValue;
             this.IsOtherValue = isOtherValue;
         }
 
-        public object Value => customFieldValue;
+        public object Value { get; private set; }
 
         public bool IsOtherValue { get; private set; }
     }

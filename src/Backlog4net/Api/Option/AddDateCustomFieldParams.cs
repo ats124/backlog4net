@@ -10,7 +10,7 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddDateCustomFieldParams : AddCustomFieldParams
     {
-        public AddDateCustomFieldParams(object projectIdOrKey, string name) 
+        public AddDateCustomFieldParams(IdOrKey projectIdOrKey, string name) 
             : base(projectIdOrKey, CustomFieldType.Date, name)
         {
         }

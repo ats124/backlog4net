@@ -9,19 +9,14 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public abstract class AddCustomFieldParams : PostParams
     {
-        private object projectIdOrKey;
-
-        public AddCustomFieldParams(object projectIdOrKey, CustomFieldType fieldType, string name)
+        protected AddCustomFieldParams(IdOrKey projectIdOrKey, CustomFieldType fieldType, string name)
         {
-            this.projectIdOrKey = projectIdOrKey;
+            this.ProjectIdOrKey = projectIdOrKey;
             AddNewParam("typeId", fieldType.ToString("D"));
             AddNewParam("name", name);
         }
 
-        /// <summary>
-        /// Returns the project identifier string.
-        /// </summary>
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
         public IList<long> ApplicableIssueTypes { set => AddNewArrayParamValues(value); }
 

@@ -14,7 +14,7 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<ResponseList<Wiki>> GetWikisAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public Task<ResponseList<Wiki>> GetWikisAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
             => GetWikisAsync(new GetWikisParams(projectIdOrKey), token);
 
         public async Task<ResponseList<Wiki>> GetWikisAsync(GetWikisParams @params, CancellationToken? token = default(CancellationToken?))
@@ -47,7 +47,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<int> GetWikiCountAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetWikiCountAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint("wikis/count"), new GetWikisParams(projectIdOrKey), token: token))
             using (var content = response.Content)
@@ -56,7 +56,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<WikiTag>> GetWikiTagsAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<WikiTag>> GetWikiTagsAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint("wikis/tags"), new GetWikisParams(projectIdOrKey), token: token))
             using (var content = response.Content)

@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class GetWikiTagsParams : GetParams
     {
-        public GetWikiTagsParams(object projectIdOrKey)
+        public GetWikiTagsParams(IdOrKey projectIdOrKey)
         {
             AddNewParam("projectIdOrKey", projectIdOrKey);
         }

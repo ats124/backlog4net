@@ -10,7 +10,7 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddCheckBoxCustomFieldParams : AddCustomFieldParams
     {
-        public AddCheckBoxCustomFieldParams(object projectIdOrKey, string name) 
+        public AddCheckBoxCustomFieldParams(IdOrKey projectIdOrKey, string name) 
             : base(projectIdOrKey, CustomFieldType.CheckBox, name)
         {
         }

@@ -7,17 +7,15 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateGroupParams : PatchParams
     {
-        private object groupId;
-
-        public UpdateGroupParams(object groupId) 
+        public UpdateGroupParams(long groupId) 
         {
-            this.groupId = groupId;
+            this.GroupId = groupId;
         }
 
-        public string GroupId => groupId.ToString();
+        public long GroupId { get; private set; }
 
         public string Name { set => AddNewParamValue(value); }
 
-        public IList<object> Members { set => AddNewArrayParamValues(value); }
+        public IList<long> Members { set => AddNewArrayParamValues(value); }
     }
 }

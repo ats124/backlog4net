@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class CreateIssueParams : PostParams
     {
-        public CreateIssueParams(object projectId, string summary, object issueTypeId, IssuePriorityType priority)
+        public CreateIssueParams(IdOrKey projectId, string summary, long issueTypeId, IssuePriorityType priority)
         {
             AddNewParam("projectId", projectId);
             AddNewParam("summary", summary);
@@ -14,7 +14,7 @@ namespace Backlog4net.Api.Option
             AddNewParam("priorityId", priority.ToString("D"));
         }
 
-        public object ParentIssueId { set => AddNewParamValue(value); }
+        public long ParentIssueId { set => AddNewParamValue(value); }
 
         public string Description { set => AddNewParamValue(value); }
 
@@ -26,23 +26,23 @@ namespace Backlog4net.Api.Option
 
         public decimal? ActualHours { set => AddNewParamValue(value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2") : ""); }
 
-        public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value); }
+        public IList<long> CategoryIds { set => AddNewArrayParams("categoryId[]", value); }
 
-        public IList<object> VersionIds { set => AddNewArrayParams("versionId[]", value); }
+        public IList<long> VersionIds { set => AddNewArrayParams("versionId[]", value); }
 
-        public IList<object> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value); }
+        public IList<long> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value); }
 
-        public object AssigneeId { set => AddNewParamValue(value); }
+        public long AssigneeId { set => AddNewParamValue(value); }
 
         /// <summary>
         /// Sets the notified users.
         /// </summary>
-        public IList<object> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
+        public IList<long> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
 
         /// <summary>
         /// Sets the attachment files.
         /// </summary>
-        public IList<object> AttachmentIds { set => AddNewArrayParams("attachmentId[]", value); }
+        public IList<long> AttachmentIds { set => AddNewArrayParams("attachmentId[]", value); }
 
         public IList<CustomField> CustomFields
         {

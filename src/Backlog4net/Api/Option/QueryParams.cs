@@ -8,9 +8,9 @@ namespace Backlog4net.Api.Option
 
     public class QueryParams : GetParams
     {
-        public object MinId { set => AddNewParamValue(value); }
+        public long MinId { set => AddNewParamValue(value); }
 
-        public object MaxId { set => AddNewParamValue(value); }
+        public long MaxId { set => AddNewParamValue(value); }
 
         public int Count { set => AddNewParamValue(value); }
 

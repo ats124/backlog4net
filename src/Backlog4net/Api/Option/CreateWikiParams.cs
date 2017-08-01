@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class CreateWikiParams : PostParams
     {
-        public CreateWikiParams(object projectId, string name, string content)
+        public CreateWikiParams(long projectId, string name, string content)
         {
             AddNewParam("projectId", projectId);
             AddNewParam("name", name);

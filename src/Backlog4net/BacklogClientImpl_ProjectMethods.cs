@@ -19,7 +19,7 @@ namespace Backlog4net
     {
         public async Task<Category> AddCategoryAsync(AddCategoryParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/categories"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/categories"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateCategoryAsync(response);
@@ -27,7 +27,7 @@ namespace Backlog4net
         }
         private async Task<T> AddCustomFieldAsync<T>(AddCustomFieldParams @params, CancellationToken? token = default(CancellationToken?)) where T : CustomFieldSetting
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/customFields"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/customFields"), @params, token))
             using (var content = response.Content)
             {
                 return (T)await Factory.CreateCustomFieldAsync(response);
@@ -42,7 +42,7 @@ namespace Backlog4net
 
         public async Task<IssueType> AddIssueTypeAsync(AddIssueTypeParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/issueTypes"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/issueTypes"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateIssueTypeAsync(response);
@@ -61,7 +61,7 @@ namespace Backlog4net
 
         public async Task<Milestone> AddMilestoneAsync(AddMilestoneParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateMilestoneAsync(response);
@@ -109,7 +109,7 @@ namespace Backlog4net
 
         public async Task<Version> AddVersionAsync(AddVersionParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateVersionAsync(response);
@@ -332,7 +332,7 @@ namespace Backlog4net
 
         public async Task<Category> UpdateCategoryAsync(UpdateCategoryParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/categories/{@params.CategoryId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/categories/{@params.CategoryId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateCategoryAsync(response);
@@ -341,7 +341,7 @@ namespace Backlog4net
 
         private async Task<T> UpdateCustomFieldAsync<T>(UpdateCustomFieldParams @params, CancellationToken? token = default(CancellationToken?)) where T : CustomFieldSetting
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/customFields/{@params.CustomFiledId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/customFields/{@params.CustomFiledId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return (T)await Factory.CreateCustomFieldAsync(response);
@@ -356,7 +356,7 @@ namespace Backlog4net
 
         public async Task<IssueType> UpdateIssueTypeAsync(UpdateIssueTypeParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/issueTypes/{@params.IssueTypeId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/issueTypes/{@params.IssueTypeId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateIssueTypeAsync(response);
@@ -375,7 +375,7 @@ namespace Backlog4net
 
         public async Task<Milestone> UpdateMilestoneAsync(UpdateMilestoneParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions/{@params.VersionId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions/{@params.VersionId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateMilestoneAsync(response);
@@ -390,7 +390,7 @@ namespace Backlog4net
 
         public async Task<Project> UpdateProjectAsync(UpdateProjectParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateProjectAsync(response);
@@ -411,7 +411,7 @@ namespace Backlog4net
 
         public async Task<Version> UpdateVersionAsync(UpdateVersionParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions/{@params.VersionId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions/{@params.VersionId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateVersionAsync(response);

@@ -6,18 +6,15 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateCustomFieldParams : PatchParams
     {
-        private object projectIdOrKey;
-        private object customFiledId;
-
-        public UpdateCustomFieldParams(object projectIdOrKey, object customFiledId)
+        public UpdateCustomFieldParams(IdOrKey projectIdOrKey, long customFiledId)
         {
-            this.projectIdOrKey = projectIdOrKey;
-            this.customFiledId = customFiledId;
+            this.ProjectIdOrKey = projectIdOrKey;
+            this.CustomFiledId = customFiledId;
         }
 
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
-        public string CustomFiledId => customFiledId.ToString();
+        public long CustomFiledId { get; private set; }
 
         public string Name { set => AddNewParamValue(value); }
 

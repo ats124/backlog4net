@@ -34,7 +34,7 @@ namespace Backlog4net
 
         public async Task<PullRequest> AddPullRequestAsync(AddPullRequestParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/git/repositories/{@params.RepoIdOrName}/pullRequests");
+            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKey}/git/repositories/{@params.RepoIdOrName}/pullRequests");
             using (var response = await Post(url, @params, token))
             using (var content = response.Content)
             {
@@ -44,7 +44,7 @@ namespace Backlog4net
 
         public async Task<PullRequest> UpdatePullRequestAsync(UpdatePullRequestParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/git/repositories/{@params.RepoIdOrName}/pullRequests/{@params.Number}");
+            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKey}/git/repositories/{@params.RepoIdOrName}/pullRequests/{@params.Number}");
             using (var response = await Patch(url, @params, token))
             using (var content = response.Content)
             {
@@ -84,7 +84,7 @@ namespace Backlog4net
 
         public async Task<PullRequestComment> AddPullRequestCommentAsync(AddPullRequestCommentParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/git/repositories/{@params.RepoIdOrName}/pullRequests/{@params.Number}/comments");
+            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKey}/git/repositories/{@params.RepoIdOrName}/pullRequests/{@params.Number}/comments");
             using (var response = await Post(url, @params, token))
             using (var content = response.Content)
             {
@@ -94,7 +94,7 @@ namespace Backlog4net
 
         public async Task<PullRequestComment> UpdatePullRequestCommentAsync(UpdatePullRequestCommentParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/git/repositories/{@params.RepoIdOrName}/pullRequests/{@params.Number}/comments/{@params.CommentId}");
+            var url = BuildEndpoint($"projects/{@params.ProjectIdOrKey}/git/repositories/{@params.RepoIdOrName}/pullRequests/{@params.Number}/comments/{@params.CommentId}");
             using (var response = await Patch(url, @params, token))
             using (var content = response.Content)
             {

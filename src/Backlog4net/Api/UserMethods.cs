@@ -24,7 +24,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="numericUserId">the user identifier</param>
         /// <returns>the User</returns>
-        Task<User> GetUserAsync(object numericUserId, CancellationToken? token = null);
+        Task<User> GetUserAsync(long numericUserId, CancellationToken? token = null);
 
         /// <summary>
         /// Creates a user in the space.
@@ -38,7 +38,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="numericUserId">the user identifier</param>
         /// <returns>the deleted user</returns>
-        Task<User> DeleteUserAsync(object numericUserId, CancellationToken? token = null);
+        Task<User> DeleteUserAsync(long numericUserId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the own information.
@@ -51,7 +51,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="numericUserId">the user identifier</param>
         /// <returns>the Icon</returns>
-        Task<Icon> GetUserIconAsync(object numericUserId, CancellationToken? token = null);
+        Task<Icon> GetUserIconAsync(long numericUserId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the user recently updates
@@ -59,7 +59,7 @@ namespace Backlog4net.Api
         /// <param name="numericUserId">the user identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the updates in a list</returns>
-        Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, ActivityQueryParams queryParams = null, CancellationToken? token = null);
+        Task<ResponseList<Activity>> GetUserActivitiesAsync(long numericUserId, ActivityQueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the received stars
@@ -67,7 +67,7 @@ namespace Backlog4net.Api
         /// <param name="numericUserId">the user identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the stars in a list</returns>
-        Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, QueryParams queryParams = null, CancellationToken? token = null);
+        Task<ResponseList<Star>> GetUserStarsAsync(long numericUserId, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the received star count
@@ -75,7 +75,7 @@ namespace Backlog4net.Api
         /// <param name="numericUserId">the user identifier</param>
         /// <param name="params">star count parameters</param>
         /// <returns>the count of received star</returns>
-        Task<int> GetUserStarCountAsync(object numericUserId, GetStarsParams @params, CancellationToken? token = null);
+        Task<int> GetUserStarCountAsync(long numericUserId, GetStarsParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the recently viewed issues
@@ -104,13 +104,13 @@ namespace Backlog4net.Api
         /// <param name="numericUserId">the user identifier</param>
         /// <param name="params">watch count parameters</param>
         /// <returns>the count of received watch</returns>
-        Task<int> GetUserWatchCountAsync(object numericUserId, GetWatchesParams @params, CancellationToken? token = null);
+        Task<int> GetUserWatchCountAsync(long numericUserId, GetWatchesParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the received watchings
         /// </summary>
         /// <param name="numericUserId">the user identifier</param>
         /// <returns>the watchings in a list</returns>
-        Task<ResponseList<Watch>> GetUserWatchesAsync(object numericUserId, CancellationToken? token = null);
+        Task<ResponseList<Watch>> GetUserWatchesAsync(long numericUserId, CancellationToken? token = null);
     }
 }

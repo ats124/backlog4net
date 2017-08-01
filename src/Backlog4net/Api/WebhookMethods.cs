@@ -18,7 +18,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">the project key</param>
         /// <returns>the webhooks in a list.</returns>
-        Task<ResponseList<Webhook>> GetWebhooksAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Webhook>> GetWebhooksAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Create a webhook.
@@ -33,7 +33,7 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="webhookId">the webhook identifier</param>
         /// <returns>the Webhook</returns>
-        Task<Webhook> GetWebhookAsync(object projectIdOrKey, object webhookId, CancellationToken? token = null);
+        Task<Webhook> GetWebhookAsync(IdOrKey projectIdOrKey, long webhookId, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing webhook.
@@ -48,6 +48,6 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project key</param>
         /// <param name="webhookId">the webhook identifier</param>
         /// <returns>the deleted webhook</returns>
-        Task<Webhook> DeleteWebhookAsync(object projectIdOrKey, object webhookId, CancellationToken? token = null);
+        Task<Webhook> DeleteWebhookAsync(IdOrKey projectIdOrKey, long webhookId, CancellationToken? token = null);
     }
 }

@@ -11,7 +11,7 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public async Task<ResponseList<Webhook>> GetWebhooksAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Webhook>> GetWebhooksAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/webhooks"), token: token))
             using (var content = response.Content)
@@ -29,7 +29,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Webhook> GetWebhookAsync(object projectIdOrKey, object webhookId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Webhook> GetWebhookAsync(IdOrKey projectIdOrKey, long webhookId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/webhooks/{webhookId}"), token: token))
             using (var content = response.Content)
@@ -47,7 +47,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Webhook> DeleteWebhookAsync(object projectIdOrKey, object webhookId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Webhook> DeleteWebhookAsync(IdOrKey projectIdOrKey, long webhookId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/webhooks/{webhookId}"), token: token))
             using (var content = response.Content)

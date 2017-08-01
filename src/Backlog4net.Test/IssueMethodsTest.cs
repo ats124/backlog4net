@@ -377,7 +377,7 @@ namespace Backlog4net.Test
 
             var issue = await client.CreateIssueAsync(
                 new CreateIssueParams(projectId, "TestSummary", issueType1.Id, IssuePriorityType.High));
-            var linkedShareFiles = await client.LinkIssueSharedFileAsync(issue.Id, new object[] {file1.Id, file2.Id});
+            var linkedShareFiles = await client.LinkIssueSharedFileAsync(issue.Id, new[] {file1.Id, file2.Id});
             Assert.AreEqual(linkedShareFiles.Count, 2);
             Assert.IsTrue(linkedShareFiles.Any(x => x.Id == file1.Id && x.Dir == file1.Dir && x.Name == file1.Name &&
                                                     x.Size == file1.Size));
@@ -655,8 +655,8 @@ namespace Backlog4net.Test
                 await client.GetSharedFilesAsync(generalConfig.ProjectKey, issuesConfig.SharedFileDirectory);
             var file1 = sharedFiles.First(x => x.Name == issuesConfig.SharedFile1);
             var file2 = sharedFiles.First(x => x.Name == issuesConfig.SharedImageFile1);
-            await client.LinkIssueSharedFileAsync(issue3.Id, new object[] {file1.Id});
-            await client.LinkIssueSharedFileAsync(issue4.Id, new object[] {file2.Id});
+            await client.LinkIssueSharedFileAsync(issue3.Id, new[] {file1.Id});
+            await client.LinkIssueSharedFileAsync(issue4.Id, new[] {file2.Id});
             getIssuesCount =
                 await client.GetIssuesCountAsync(
                     new GetIssuesCountParams(projectId) {Ids = issueIds, SharedFile = true});

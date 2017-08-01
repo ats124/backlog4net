@@ -26,7 +26,7 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="note">note</param>
         /// <returns></returns>
-        Task<Watch> AddWatchToIssueAsync(object issueIdOrKey, String note, CancellationToken? token = null);
+        Task<Watch> AddWatchToIssueAsync(IdOrKey issueIdOrKey, String note, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing watching.
@@ -40,12 +40,12 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="watchingId">the watching identifier</param>
         /// <returns>the deleted watching</returns>
-        Task<Watch> DeleteWatchAsync(object watchingId, CancellationToken? token = null);
+        Task<Watch> DeleteWatchAsync(long watchingId, CancellationToken? token = null);
 
         /// <summary>
         /// Marks the watching as already read.
         /// </summary>
         /// <param name="numericUserId">Marks the watching as already read.</param>
-        Task MarkAsCheckedUserWatchesAsync(object numericUserId, CancellationToken? token = null);
+        Task MarkAsCheckedUserWatchesAsync(long numericUserId, CancellationToken? token = null);
     }
 }

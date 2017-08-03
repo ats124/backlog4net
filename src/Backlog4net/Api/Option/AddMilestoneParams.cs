@@ -9,15 +9,13 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddMilestoneParams : PostParams
     {
-        private object projectIdOrKey;
-
-        public AddMilestoneParams(object projectIdOrKey, string name)
+        public AddMilestoneParams(IdOrKey projectIdOrKey, string name)
         {
-            this.projectIdOrKey = projectIdOrKey;
+            this.ProjectIdOrKey = projectIdOrKey;
             AddNewParam("name", name);
         }
 
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
         public string Description { set => AddNewParamValue(value); }
 

@@ -8,11 +8,7 @@ namespace Backlog4net
     {
         long Id { get; }
 
-        string IdAsString { get; }
-
         long ProjectId { get; }
-
-        string ProjectIdAsString { get; }
 
         string Name { get; }
 

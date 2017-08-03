@@ -6,15 +6,13 @@ namespace Backlog4net.Api.Option
 {
     public class AddVersionParams : PostParams
     {
-        private object projectIdOrKey;
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
-        public AddVersionParams(object projectIdOrKey, string name)
+        public AddVersionParams(IdOrKey projectIdOrKey, string name)
         {
-            this.projectIdOrKey = projectIdOrKey;
+            this.ProjectIdOrKey = projectIdOrKey;
             AddNewParam("name", name);
         }
-
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
 
         public string Description { set => AddNewParamValue(value); }
 

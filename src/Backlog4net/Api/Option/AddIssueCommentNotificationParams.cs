@@ -9,27 +9,18 @@ namespace Backlog4net.Api.Option
     /// </summary>
     public class AddIssueCommentNotificationParams : PostParams
     {
-        private object issueIdOrKey;
-        private object commentId;
-
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="commentId">the comment identifier</param>
         /// <param name="notifiedUserIds">the user identifiers for notification</param>
-        public AddIssueCommentNotificationParams(object issueIdOrKey, object commentId, IList<object> notifiedUserIds)
+        public AddIssueCommentNotificationParams(IdOrKey issueIdOrKey, long commentId, IList<long> notifiedUserIds)
         {
-            this.issueIdOrKey = issueIdOrKey;
-            this.commentId = commentId;
+            this.IssueIdOrKey = issueIdOrKey;
+            this.CommentId = commentId;
             AddNewArrayParams("notifiedUserId[]", notifiedUserIds);
         }
 
-        /// <summary>
-        /// Returns the comment identifier.
-        /// </summary>
-        public string CommentId => commentId.ToString();
+        public IdOrKey IssueIdOrKey { get; private set; }
 
-        /// <summary>
-        /// Returns the issue identifier string.
-        /// </summary>
-        public string IssueIdOrKeyString => issueIdOrKey.ToString();
+        public long CommentId { get; private set; }
     }
 }

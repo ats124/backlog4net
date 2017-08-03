@@ -6,22 +6,18 @@ namespace Backlog4net.Api.Option
 {
     public class UpdatePullRequestParams : PatchParams
     {
-        private object projectIdOrKey;
-        private object repoIdOrName;
-        private object number;
-
-        public UpdatePullRequestParams(object projectIdOrKey, object repoIdOrName, object number)
+        public UpdatePullRequestParams(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number)
         {
-            this.projectIdOrKey = projectIdOrKey;
-            this.repoIdOrName = repoIdOrName;
-            this.number = number;
+            this.ProjectIdOrKey = projectIdOrKey;
+            this.RepoIdOrName = repoIdOrName;
+            this.Number = number;
         }
 
-        public string ProjectIdOrKeyString => projectIdOrKey.ToString();
+        public IdOrKey ProjectIdOrKey { get; private set; }
 
-        public string RepoIdOrName => repoIdOrName.ToString();
+        public IdOrKey RepoIdOrName { get; private set; }
 
-        public string Number => number.ToString();
+        public long Number { get; private set; }
 
         public string Summary { set => AddNewParamValue(value); }
 

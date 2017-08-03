@@ -29,7 +29,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task MarkAsReadNotificationAsync(object notificationId, CancellationToken? token = default(CancellationToken?))
+        public async Task MarkAsReadNotificationAsync(long notificationId, CancellationToken? token = default(CancellationToken?))
         {
             (await Post(BuildEndpoint($"notifications/{notificationId}/markAsRead"), token: token)).Dispose();
         }

@@ -6,14 +6,12 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateWatchParams : PatchParams
     {
-        private object watchingId;
-
-        public UpdateWatchParams(object watchingId)
+        public UpdateWatchParams(long watchingId)
         {
-            this.watchingId = watchingId;
+            this.WatchingId = watchingId;
         }
 
-        public string WatchingIdString => watchingId.ToString();
+        public long WatchingId { get; private set; }
 
         public string Note { set => AddNewParamValue(value); }
     }

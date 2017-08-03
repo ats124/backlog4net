@@ -7,26 +7,26 @@ namespace Backlog4net.Api.Option
 {
     public class GetIssuesCountParams : GetParams
     {
-        public GetIssuesCountParams(params object[] projectIds)
+        public GetIssuesCountParams(params long[] projectIds)
         {
             AddNewArrayParams("projectId[]", projectIds);
         }
 
-        public IList<object> IssueTypeIds { set => AddNewArrayParams("issueTypeId[]", value); }
+        public IList<long> IssueTypeIds { set => AddNewArrayParams("issueTypeId[]", value); }
 
-        public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value); }
+        public IList<long> CategoryIds { set => AddNewArrayParams("categoryId[]", value); }
 
-        public IList<object> VersionIds { set => AddNewArrayParams("versionId[]", value); }
+        public IList<long> VersionIds { set => AddNewArrayParams("versionId[]", value); }
 
-        public IList<object> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value); }
+        public IList<long> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value); }
 
         public IList<IssueStatusType> Statuses { set => AddNewArrayParams("statusId[]", value, x => x.ToString("D")); }
 
         public IList<IssuePriorityType> Priorities { set => AddNewArrayParams("priorityId[]", value, x => x.ToString("D")); }
 
-        public IList<object> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
+        public IList<long> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
 
-        public IList<object> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
+        public IList<long> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
 
         public IList<IssueResolutionType> Resolutions { set => AddNewArrayParams("resolutionId[]", value, x => x.ToString("D")); }
 
@@ -52,9 +52,9 @@ namespace Backlog4net.Api.Option
 
         public DateTime DueDateUntil { set => AddNewParamValue(ToDateString(value)); }
 
-        public IList<object> Ids { set => AddNewArrayParams("id[]", value); }
+        public IList<long> Ids { set => AddNewArrayParams("id[]", value); }
 
-        public IList<object> ParentIssueIds { set => AddNewArrayParams("parentIssueId[]", value); }
+        public IList<long> ParentIssueIds { set => AddNewArrayParams("parentIssueId[]", value); }
 
         public string Keyword { set => AddNewParamValue(value); }
 

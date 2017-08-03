@@ -17,7 +17,7 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the git repositories in a list.</returns>
         /// <exception cref="BacklogException"></exception>
-        Task<ResponseList<Repository>> GetGitRepositoriesAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Repository>> GetGitRepositoriesAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the git repository.
@@ -25,6 +25,6 @@ namespace Backlog4net.Api
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <param name="repoIdOrName">the repository name</param>
         /// <returns></returns>
-        Task<Repository> GetGitRepositoryAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = null);
+        Task<Repository> GetGitRepositoryAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, CancellationToken? token = null);
     }
 }

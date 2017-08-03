@@ -6,17 +6,15 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateIssueParams : PatchParams
     {
-        private object issueIdOrKey;
-
-        public UpdateIssueParams(object issueIdOrKey)
+        public UpdateIssueParams(IdOrKey issueIdOrKey)
         {
-            this.issueIdOrKey = issueIdOrKey;
+            this.IssueIdOrKey = issueIdOrKey;
         }
 
         /// <summary>
         /// Returns the issue identifier string.
         /// </summary>
-        public string IssueIdOrKeyString => issueIdOrKey.ToString();
+        public IdOrKey IssueIdOrKey { get; private set; }
 
         public string Summary { set => AddNewParamValue(value); }
 
@@ -36,34 +34,27 @@ namespace Backlog4net.Api.Option
 
         public decimal? ActualHours { set => AddNewParamValue(value != null ? Math.Round(value.Value, 2, MidpointRounding.AwayFromZero).ToString("F2") : ""); }
 
-        public object IssueTypeId { set => AddNewParamValue(value); }
+        public long IssueTypeId { set => AddNewParamValue(value); }
 
         public IssuePriorityType Priority { set => AddNewParam("priorityId", value.ToString("D")); }
 
-        public IList<object> CategoryIds { set => AddNewArrayParams("categoryId[]", value, isEmptySetBlank: true); }
+        public IList<long> CategoryIds { set => AddNewArrayParams("categoryId[]", value, isEmptySetBlank: true); }
 
-        public IList<object> VersionIds { set => AddNewArrayParams("versionId[]", value, isEmptySetBlank: true); }
+        public IList<long> VersionIds { set => AddNewArrayParams("versionId[]", value, isEmptySetBlank: true); }
 
-        public IList<object> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value, isEmptySetBlank: true); }
+        public IList<long> MilestoneIds { set => AddNewArrayParams("milestoneId[]", value, isEmptySetBlank: true); }
 
-        public object AssigneeId
-        {
-            set => AddNewParamValue(value is int i 
-                ? i <= 0 
-                    ? ""
-                    : i.ToString()
-                : value);
-        }
+        public long? AssigneeId { set => AddNewParamValue(value); }
 
         /// <summary>
         /// Sets the notified users.
         /// </summary>
-        public IList<object> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
+        public IList<long> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
 
         /// <summary>
         /// Sets the attachment files.
         /// </summary>
-        public IList<object> AttachmentIds { set => AddNewArrayParams("attachmentId[]", value); }
+        public IList<long> AttachmentIds { set => AddNewArrayParams("attachmentId[]", value); }
 
         public IList<CustomField> CustomFields
         {

@@ -42,9 +42,6 @@ namespace Backlog4net.Internal.Json.Activities
         public long Id { get; private set; }
 
         [JsonIgnore]
-        public string IdAsString => Id.ToString();
-
-        [JsonIgnore]
         Content Activity.Content => this.InternalContent;
 
         [JsonIgnore]

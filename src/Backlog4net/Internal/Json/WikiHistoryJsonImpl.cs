@@ -9,9 +9,6 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public long PageId { get; private set; }
 
-        [JsonIgnore]
-        public string PageIdAsString => PageId.ToString();
-
         [JsonProperty]
         public int Version { get; private set; }
 

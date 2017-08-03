@@ -8,8 +8,6 @@ namespace Backlog4net
     {
         int Id { get; }
 
-        string IdAsString { get; }
-
         string Name { get; }
 
         IssueStatusType StatusType { get; }

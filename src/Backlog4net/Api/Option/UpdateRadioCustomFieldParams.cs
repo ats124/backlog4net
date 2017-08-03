@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateRadioCustomFieldParams : UpdateCustomFieldParams
     {
-        public UpdateRadioCustomFieldParams(object projectIdOrKey, object customFiledId)
+        public UpdateRadioCustomFieldParams(IdOrKey projectIdOrKey, long customFiledId)
             : base(projectIdOrKey, customFiledId)
         {
         }

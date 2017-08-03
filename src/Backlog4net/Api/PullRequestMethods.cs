@@ -20,7 +20,7 @@ namespace Backlog4net.Api
         /// <param name="repoIdOrName">the repository name</param>
         /// <param name="params">the finding pull request parameters.</param>
         /// <returns>the git pull requests in a list.</returns>
-        Task<ResponseList<PullRequest>> GetPullRequestsAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = null);
+        Task<ResponseList<PullRequest>> GetPullRequestsAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the count of the pull requests.
@@ -29,7 +29,7 @@ namespace Backlog4net.Api
         /// <param name="repoIdOrName">the repository name</param>
         /// <param name="params">the finding pull request parameters.</param>
         /// <returns>the git pull request.</returns>
-        Task<int> GetPullRequestCountAsync(object projectIdOrKey, object repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = null);
+        Task<int> GetPullRequestCountAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, PullRequestQueryParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Add a pull request.
@@ -52,7 +52,7 @@ namespace Backlog4net.Api
         /// <param name="repoIdOrName">the repository name</param>
         /// <param name="number">the pull request identifier</param>
         /// <returns>the git pull requests in a list.</returns>
-        Task<PullRequest> GetPullRequestAsync(object projectIdOrKey, object repoIdOrName, object number, CancellationToken? token = null);
+        Task<PullRequest> GetPullRequestAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the comments of pull requests.
@@ -62,7 +62,7 @@ namespace Backlog4net.Api
         /// <param name="number">the pull request identifier</param>
         /// <param name="params">the finding pull request comments parameters.</param>
         /// <returns>the git pull requests in a list.</returns>
-        Task<ResponseList<PullRequestComment>> GetPullRequestCommentsAsync(object projectIdOrKey, object repoIdOrName, object number, QueryParams @params, CancellationToken? token = null);
+        Task<ResponseList<PullRequestComment>> GetPullRequestCommentsAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, QueryParams @params, CancellationToken? token = null);
 
         /// <summary>
         /// Add a comment on the pull request.
@@ -78,7 +78,7 @@ namespace Backlog4net.Api
         /// <param name="repoIdOrName">the repository name</param>
         /// <param name="number">the pull request identifier</param>
         /// <returns>the pull request comment count</returns>
-        Task<int> GetPullRequestCommentCountAsync(object projectIdOrKey, object repoIdOrName, object number, CancellationToken? token = null);
+        Task<int> GetPullRequestCommentCountAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the pull request comment.
@@ -94,7 +94,7 @@ namespace Backlog4net.Api
         /// <param name="repoIdOrName">the repository name</param>
         /// <param name="number">the pull request identifier</param>
         /// <returns>the pull request attachment list</returns>
-        Task<ResponseList<Attachment>> GetPullRequestAttachmentsAsync(object projectIdOrKey, object repoIdOrName, object number, CancellationToken? token = null);
+        Task<ResponseList<Attachment>> GetPullRequestAttachmentsAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the attachment file data on the pull request.
@@ -104,7 +104,7 @@ namespace Backlog4net.Api
         /// <param name="number">the pull request identifier</param>
         /// <param name="attachmentId">the pull request attachment identifier</param>
         /// <returns>the attachment file data</returns>
-        Task<AttachmentData> DownloadPullRequestAttachmentAsync(object projectIdOrKey, object repoIdOrName, object number, object attachmentId, CancellationToken? token = null);
+        Task<AttachmentData> DownloadPullRequestAttachmentAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, long attachmentId, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes the attachment file on the pull request.
@@ -114,6 +114,6 @@ namespace Backlog4net.Api
         /// <param name="number">the pull request identifier</param>
         /// <param name="attachmentId">the pull request attachment identifier</param>
         /// <returns>Attachmentreturns>
-        Task<Attachment> DeletePullRequestAttachmentAsync(object projectIdOrKey, object repoIdOrName, object number, object attachmentId, CancellationToken? token = null);
+        Task<Attachment> DeletePullRequestAttachmentAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, long number, long attachmentId, CancellationToken? token = null);
     }
 }

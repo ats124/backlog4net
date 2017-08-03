@@ -13,23 +13,14 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public long Id { get; private set; }
 
-        [JsonIgnore]
-        public string IdAsString => Id.ToString();
-
         [JsonProperty]
         public string IssueKey { get; private set; }
 
         [JsonProperty]
         public long KeyId { get; private set; }
 
-        [JsonIgnore]
-        public string KeyIdAsString => KeyId.ToString();
-
         [JsonProperty]
         public long ProjectId { get; private set; }
-
-        [JsonIgnore]
-        public string ProjectIdAsString => ProjectId.ToString();
 
         [JsonProperty, JsonConverter(typeof(IssueTypeJsonImpl.JsonConverter))]
         public IssueType IssueType { get; private set; }

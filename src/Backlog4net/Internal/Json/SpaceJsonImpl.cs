@@ -19,9 +19,6 @@ namespace Backlog4net.Internal.Json
         public long OwnerId { get; private set; }
 
         [JsonProperty]
-        public string OwnerIdAsString { get; private set; }
-
-        [JsonProperty]
         public string Lang { get; private set; }
 
         [JsonProperty]

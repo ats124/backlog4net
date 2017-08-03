@@ -13,8 +13,6 @@ namespace Backlog4net
     {
         long Id { get; }
 
-        string IdAsString { get; }
-
         string Name { get; }
 
         bool IsImage { get; }

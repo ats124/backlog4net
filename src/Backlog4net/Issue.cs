@@ -8,17 +8,11 @@ namespace Backlog4net
     {
 		long Id { get; }
 
-		string IdAsString { get; }
-
         string IssueKey { get; }
 
         long KeyId { get; }
 
-        string KeyIdAsString { get; }
-
         long ProjectId { get; }
-
-        string ProjectIdAsString { get; }
 
         IssueType IssueType { get; }
 

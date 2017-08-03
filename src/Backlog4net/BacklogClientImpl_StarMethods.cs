@@ -12,7 +12,7 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public async Task AddStarToIssueAsync(object issueId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToIssueAsync(long issueId, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("issueId", issueId.ToString()) };
             using (var response = await Post("stars", @params, token))
@@ -21,7 +21,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task AddStarToCommentAsync(object commentId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToCommentAsync(long commentId, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("commentId", commentId.ToString()) };
             using (var response = await Post("stars", @params, token))
@@ -30,7 +30,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task AddStarToWikiAsync(object wikiId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToWikiAsync(long wikiId, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("wikiId", wikiId.ToString()) };
             using (var response = await Post("stars", @params, token))
@@ -39,7 +39,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task AddStarToPullRequestAsync(object pullRequestId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToPullRequestAsync(long pullRequestId, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("pullRequestId", pullRequestId.ToString()) };
             using (var response = await Post("stars", @params, token))
@@ -48,7 +48,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task AddStarToPullRequestCommentAsync(object pullRequestCommentId, CancellationToken? token = default(CancellationToken?))
+        public async Task AddStarToPullRequestCommentAsync(long pullRequestCommentId, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("pullRequestCommentId", pullRequestCommentId.ToString()) };
             using (var response = await Post("stars", @params, token))

@@ -20,7 +20,7 @@ namespace Backlog4net.Test
         private static BacklogClient client;
         private static GeneralConfig generalConfig;
         private static string projectKey;
-        private static object projectId;
+        private static long projectId;
         private static IssuesConfig issuesConfig;
         private static long[] notifiedNumericUserIds;
         private static long[] assigneeUserIds;
@@ -124,12 +124,12 @@ namespace Backlog4net.Test
                     DueDate = new DateTime(2017, 7, 2),
                     EstimatedHours = 1.3m,
                     ActualHours = 1.5m,
-                    CategoryIds = new object[] {testCategory1.Id, testCategory2.Id},
+                    CategoryIds = new[] {testCategory1.Id, testCategory2.Id},
                     AssigneeId = ownUser.Id,
-                    VersionIds = new object[] {testVersion1.Id, testVersion2.Id},
-                    MilestoneIds = new object[] {testMilestone1.Id, testMilestone2.Id},
-                    NotifiedUserIds = new object[] {ownUser.Id},
-                    AttachmentIds = new object[] {attachment1.Id, attachment2.Id},
+                    VersionIds = new[] { testVersion1.Id, testVersion2.Id},
+                    MilestoneIds = new[] { testMilestone1.Id, testMilestone2.Id},
+                    NotifiedUserIds = new[] { ownUser.Id},
+                    AttachmentIds = new[] { attachment1.Id, attachment2.Id},
                     CustomFields = new CustomField[]
                     {
                         CustomField.MultipleList(testCustomFieldSetting1.Id,
@@ -199,12 +199,12 @@ namespace Backlog4net.Test
                 DueDate = new DateTime(2017, 7, 4),
                 EstimatedHours = 1.3m,
                 ActualHours = 1.5m,
-                CategoryIds = new object[] {testCategory1.Id, testCategory2.Id},
+                CategoryIds = new[] {testCategory1.Id, testCategory2.Id},
                 AssigneeId = ownUser.Id,
-                VersionIds = new object[] {testVersion1.Id, testVersion2.Id},
-                MilestoneIds = new object[] {testMilestone1.Id, testMilestone2.Id},
-                NotifiedUserIds = new object[] {ownUser.Id},
-                AttachmentIds = new object[] {attachment1.Id, attachment2.Id},
+                VersionIds = new[] {testVersion1.Id, testVersion2.Id},
+                MilestoneIds = new[] {testMilestone1.Id, testMilestone2.Id},
+                NotifiedUserIds = new[] {ownUser.Id},
+                AttachmentIds = new[] {attachment1.Id, attachment2.Id},
                 CustomFields = new CustomField[]
                 {
                     CustomField.MultipleList(testCustomFieldSetting1.Id,
@@ -275,7 +275,7 @@ namespace Backlog4net.Test
             var create = await client.CreateIssueAsync(
                 new CreateIssueParams(projectId, "ParentIssueTestSummary", issueType1.Id, IssuePriorityType.High)
                 {
-                    AttachmentIds = new object[] {attachment.Id}
+                    AttachmentIds = new[] {attachment.Id}
                 });
 
             var attachmentDeleted = await client.DeleteIssueAttachmentAsync(create.Id, create.Attachments[0].Id);
@@ -304,8 +304,8 @@ namespace Backlog4net.Test
 
             var issueComment = await client.AddIssueCommentAsync(new AddIssueCommentParams(issue.Id, "TestComment")
             {
-                NotifiedUserIds = new object[] {notifiedNumericUserIds[0], notifiedNumericUserIds[1]},
-                AttachmentIds = new object[] {attachment.Id}
+                NotifiedUserIds = new[] {notifiedNumericUserIds[0], notifiedNumericUserIds[1]},
+                AttachmentIds = new[] {attachment.Id}
             });
             Assert.AreEqual(issueComment.Content, "TestComment");
             Assert.AreEqual(issueComment.CreatedUser.Id, ownUser.Id);
@@ -316,7 +316,7 @@ namespace Backlog4net.Test
 
             var issueCommentAddNotifi =
                 await client.AddIssueCommentNotificationAsync(new AddIssueCommentNotificationParams(issue.Id,
-                    issueComment.Id, new object[] {notifiedNumericUserIds[2]}));
+                    issueComment.Id, new[] {notifiedNumericUserIds[2]}));
             Assert.IsTrue(issueCommentAddNotifi.Notifications.Any(x => x.User.Id == notifiedNumericUserIds[2]));
 
             var notifications = await client.GetIssueCommentNotificationsAsync(issue.Id, issueComment.Id);
@@ -377,7 +377,7 @@ namespace Backlog4net.Test
 
             var issue = await client.CreateIssueAsync(
                 new CreateIssueParams(projectId, "TestSummary", issueType1.Id, IssuePriorityType.High));
-            var linkedShareFiles = await client.LinkIssueSharedFileAsync(issue.Id, new object[] {file1.Id, file2.Id});
+            var linkedShareFiles = await client.LinkIssueSharedFileAsync(issue.Id, new[] {file1.Id, file2.Id});
             Assert.AreEqual(linkedShareFiles.Count, 2);
             Assert.IsTrue(linkedShareFiles.Any(x => x.Id == file1.Id && x.Dir == file1.Dir && x.Name == file1.Name &&
                                                     x.Size == file1.Size));
@@ -421,31 +421,31 @@ namespace Backlog4net.Test
             var issue1 = await client.CreateIssueAsync(
                 new CreateIssueParams(projectId, "TestSummary1", issueType1.Id, IssuePriorityType.High)
                 {
-                    VersionIds = new object[] {testVersion1.Id},
-                    MilestoneIds = new object[] {testMilestone1.Id},
-                    CategoryIds = new object[] {testCategory1.Id},
+                    VersionIds = new[] {testVersion1.Id},
+                    MilestoneIds = new[] {testMilestone1.Id},
+                    CategoryIds = new[] {testCategory1.Id},
                     StartDate = new DateTime(2017, 7, 1),
                     DueDate = new DateTime(2017, 8, 1),
                     AssigneeId = assigneeUserIds[0],
-                    AttachmentIds = new object[] {attachment1.Id},
+                    AttachmentIds = new[] {attachment1.Id},
                 });
             await Task.Delay(TimeSpan.FromSeconds(1.1));
             var issue2 = await client.CreateIssueAsync(
                 new CreateIssueParams(projectId, "TestSummary2", issueType2.Id, IssuePriorityType.High)
                 {
-                    CategoryIds = new object[] {testCategory2.Id},
+                    CategoryIds = new[] {testCategory2.Id},
                     ParentIssueId = issue1.Id,
                     StartDate = new DateTime(2017, 7, 2),
                     DueDate = new DateTime(2017, 8, 2),
                     AssigneeId = assigneeUserIds[1],
-                    AttachmentIds = new object[] {attachment2.Id},
+                    AttachmentIds = new[] {attachment2.Id},
                 });
             await Task.Delay(TimeSpan.FromSeconds(1.1));
             var issue3 = await client.CreateIssueAsync(
                 new CreateIssueParams(projectId, "TestSummary3", issueType1.Id, IssuePriorityType.Low)
                 {
                     Description = "ABC",
-                    VersionIds = new object[] {testVersion2.Id},
+                    VersionIds = new[] {testVersion2.Id},
                     StartDate = new DateTime(2017, 7, 3),
                     DueDate = new DateTime(2017, 8, 3),
                     AssigneeId = assigneeUserIds[2]
@@ -455,12 +455,12 @@ namespace Backlog4net.Test
                 new CreateIssueParams(projectId, "TestSummary4", issueType1.Id, IssuePriorityType.Normal)
                 {
                     Description = "KeywordForTest",
-                    MilestoneIds = new object[] {testMilestone2.Id},
+                    MilestoneIds = new[] {testMilestone2.Id},
                     ParentIssueId = issue3.Id,
                     StartDate = new DateTime(2017, 7, 4),
                     DueDate = new DateTime(2017, 8, 4),
                 });
-            var issueIds = new object[] {issue1.Id, issue2.Id, issue3.Id, issue4.Id};
+            var issueIds = new[] {issue1.Id, issue2.Id, issue3.Id, issue4.Id};
 
             var getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId) {Count = 1});
             Assert.AreEqual(getIssues.Count, 1);
@@ -474,20 +474,20 @@ namespace Backlog4net.Test
 
             var getIssuesCount =
                 await client.GetIssuesCountAsync(
-                    new GetIssuesCountParams(projectId) {Ids = new object[] {issue1.Id, issue2.Id}});
+                    new GetIssuesCountParams(projectId) {Ids = new[] {issue1.Id, issue2.Id}});
             Assert.AreEqual(getIssuesCount, 2);
             getIssues = await client.GetIssuesAsync(
-                new GetIssuesParams(projectId) {Ids = new object[] {issue1.Id, issue2.Id}});
+                new GetIssuesParams(projectId) {Ids = new[] {issue1.Id, issue2.Id}});
             Assert.AreEqual(getIssues.Count, 2);
             Assert.IsTrue(getIssues.Any(x => x.Id == issue1.Id));
             Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
 
             getIssuesCount =
                 await client.GetIssuesCountAsync(
-                    new GetIssuesCountParams(projectId) {ParentIssueIds = new object[] {issue1.Id, issue4.Id}});
+                    new GetIssuesCountParams(projectId) {ParentIssueIds = new[] {issue1.Id, issue4.Id}});
             Assert.AreEqual(getIssuesCount, 1);
             getIssues = await client.GetIssuesAsync(
-                new GetIssuesParams(projectId) {ParentIssueIds = new object[] {issue1.Id, issue4.Id}});
+                new GetIssuesParams(projectId) {ParentIssueIds = new[] {issue1.Id, issue4.Id}});
             Assert.AreEqual(getIssues.Count, 1);
             Assert.IsTrue(getIssues.Any(x => x.Id == issue2.Id));
 
@@ -521,10 +521,10 @@ namespace Backlog4net.Test
 
             getIssuesCount =
                 await client.GetIssuesCountAsync(
-                    new GetIssuesCountParams(projectId) {Ids = issueIds, IssueTypeIds = new object[] {issueType2.Id}});
+                    new GetIssuesCountParams(projectId) {Ids = issueIds, IssueTypeIds = new[] {issueType2.Id}});
             Assert.AreEqual(getIssuesCount, 1);
             getIssues = await client.GetIssuesAsync(
-                new GetIssuesParams(projectId) {Ids = issueIds, IssueTypeIds = new object[] {issueType2.Id}});
+                new GetIssuesParams(projectId) {Ids = issueIds, IssueTypeIds = new[] {issueType2.Id}});
             Assert.AreEqual(getIssues.Count, 1);
             Assert.AreEqual(getIssues[0].Id, issue2.Id);
 
@@ -533,20 +533,20 @@ namespace Backlog4net.Test
                     new GetIssuesCountParams(projectId)
                     {
                         Ids = issueIds,
-                        CategoryIds = new object[] {testCategory2.Id}
+                        CategoryIds = new[] {testCategory2.Id}
                     });
             Assert.AreEqual(getIssuesCount, 1);
             getIssues = await client.GetIssuesAsync(
-                new GetIssuesParams(projectId) {Ids = issueIds, CategoryIds = new object[] {testCategory2.Id}});
+                new GetIssuesParams(projectId) {Ids = issueIds, CategoryIds = new[] {testCategory2.Id}});
             Assert.AreEqual(getIssues.Count, 1);
             Assert.AreEqual(getIssues[0].Id, issue2.Id);
 
             getIssuesCount =
                 await client.GetIssuesCountAsync(
-                    new GetIssuesCountParams(projectId) {Ids = issueIds, VersionIds = new object[] {testVersion2.Id}});
+                    new GetIssuesCountParams(projectId) {Ids = issueIds, VersionIds = new[] {testVersion2.Id}});
             Assert.AreEqual(getIssuesCount, 1);
             getIssues = await client.GetIssuesAsync(
-                new GetIssuesParams(projectId) {Ids = issueIds, VersionIds = new object[] {testVersion2.Id}});
+                new GetIssuesParams(projectId) {Ids = issueIds, VersionIds = new[] {testVersion2.Id}});
             Assert.AreEqual(getIssues.Count, 1);
             Assert.AreEqual(getIssues[0].Id, issue3.Id);
 
@@ -555,11 +555,11 @@ namespace Backlog4net.Test
                     new GetIssuesCountParams(projectId)
                     {
                         Ids = issueIds,
-                        MilestoneIds = new object[] {testMilestone2.Id}
+                        MilestoneIds = new[] {testMilestone2.Id}
                     });
             Assert.AreEqual(getIssuesCount, 1);
             getIssues = await client.GetIssuesAsync(
-                new GetIssuesParams(projectId) {Ids = issueIds, MilestoneIds = new object[] {testMilestone2.Id}});
+                new GetIssuesParams(projectId) {Ids = issueIds, MilestoneIds = new[] {testMilestone2.Id}});
             Assert.AreEqual(getIssues.Count, 1);
             Assert.AreEqual(getIssues[0].Id, issue4.Id);
 
@@ -568,11 +568,11 @@ namespace Backlog4net.Test
                     new GetIssuesCountParams(projectId)
                     {
                         Ids = issueIds,
-                        MilestoneIds = new object[] {testMilestone2.Id}
+                        MilestoneIds = new[] {testMilestone2.Id}
                     });
             Assert.AreEqual(getIssuesCount, 1);
             getIssues = await client.GetIssuesAsync(
-                new GetIssuesParams(projectId) {Ids = issueIds, MilestoneIds = new object[] {testMilestone2.Id}});
+                new GetIssuesParams(projectId) {Ids = issueIds, MilestoneIds = new[] {testMilestone2.Id}});
             Assert.AreEqual(getIssues.Count, 1);
             Assert.AreEqual(getIssues[0].Id, issue4.Id);
 
@@ -603,13 +603,13 @@ namespace Backlog4net.Test
             getIssuesCount = await client.GetIssuesCountAsync(new GetIssuesCountParams(projectId)
             {
                 Ids = issueIds,
-                AssigneeIds = new object[] {assigneeUserIds[0], assigneeUserIds[1]}
+                AssigneeIds = new[] {assigneeUserIds[0], assigneeUserIds[1]}
             });
             Assert.AreEqual(getIssuesCount, 2);
             getIssues = await client.GetIssuesAsync(new GetIssuesParams(projectId)
             {
                 Ids = issueIds,
-                AssigneeIds = new object[] {assigneeUserIds[0], assigneeUserIds[1]}
+                AssigneeIds = new[] {assigneeUserIds[0], assigneeUserIds[1]}
             });
             Assert.AreEqual(getIssues.Count, 2);
             Assert.IsTrue(getIssues.Any(x => x.Id == issue1.Id));
@@ -655,8 +655,8 @@ namespace Backlog4net.Test
                 await client.GetSharedFilesAsync(generalConfig.ProjectKey, issuesConfig.SharedFileDirectory);
             var file1 = sharedFiles.First(x => x.Name == issuesConfig.SharedFile1);
             var file2 = sharedFiles.First(x => x.Name == issuesConfig.SharedImageFile1);
-            await client.LinkIssueSharedFileAsync(issue3.Id, new object[] {file1.Id});
-            await client.LinkIssueSharedFileAsync(issue4.Id, new object[] {file2.Id});
+            await client.LinkIssueSharedFileAsync(issue3.Id, new[] {file1.Id});
+            await client.LinkIssueSharedFileAsync(issue4.Id, new[] {file2.Id});
             getIssuesCount =
                 await client.GetIssuesCountAsync(
                     new GetIssuesCountParams(projectId) {Ids = issueIds, SharedFile = true});

@@ -8,10 +8,10 @@ namespace Backlog4net.Api.Option
     {
         public IList<PullRequestStatusType> StatusType { set => AddNewArrayParams("statusId[]", value, x => x.ToString("D")); }
 
-        public IList<object> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
+        public IList<long> AssigneeIds { set => AddNewArrayParams("assigneeId[]", value); }
 
-        public IList<object> IssueIds { set => AddNewArrayParams("issueId[]", value); }
+        public IList<long> IssueIds { set => AddNewArrayParams("issueId[]", value); }
 
-        public IList<object> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
+        public IList<long> CreatedUserIds { set => AddNewArrayParams("createdUserId[]", value); }
     }
 }

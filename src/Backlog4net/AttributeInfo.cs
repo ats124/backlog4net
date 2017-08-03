@@ -10,8 +10,6 @@ namespace Backlog4net
     {
         long Id { get; }
 
-        string IdAsString { get; }
-
         string Type { get; }
     }
 }

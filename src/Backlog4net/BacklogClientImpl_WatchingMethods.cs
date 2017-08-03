@@ -21,7 +21,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Watch> AddWatchToIssueAsync(object issueIdOrKey, string note, CancellationToken? token = default(CancellationToken?))
+        public async Task<Watch> AddWatchToIssueAsync(IdOrKey issueIdOrKey, string note, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new List<NameValuePair>();
             @params.Add(new NameValuePair("issueIdOrKey", issueIdOrKey.ToString()));
@@ -35,14 +35,14 @@ namespace Backlog4net
 
         public async Task<Watch> UpdateWatchAsync(UpdateWatchParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"watchings/{@params.WatchingIdString}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"watchings/{@params.WatchingId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateWatchAsync(response);
             }
         }
 
-        public async Task<Watch> DeleteWatchAsync(object watchingId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Watch> DeleteWatchAsync(long watchingId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"watchings/{watchingId}"), token: token))
             using (var content = response.Content)
@@ -51,7 +51,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task MarkAsCheckedUserWatchesAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task MarkAsCheckedUserWatchesAsync(long numericUserId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Post(BuildEndpoint($"users/{numericUserId}/watchings/markAsChecked"), token: token))
             {

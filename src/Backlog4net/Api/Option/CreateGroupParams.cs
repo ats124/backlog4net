@@ -12,6 +12,6 @@ namespace Backlog4net.Api.Option
             AddNewParam("name", name);
         }
 
-        public IList<object> Members { set => AddNewArrayParamValues(value); }
+        public IList<long> Members { set => AddNewArrayParamValues(value); }
     }
 }

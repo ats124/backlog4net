@@ -18,7 +18,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">projectIdOrKey</param>
         /// <returns>the Wiki pages in a list</returns>
-        Task<ResponseList<Wiki>> GetWikisAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Wiki>> GetWikisAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns Wiki pages in the project.
@@ -32,14 +32,14 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Wiki pages count</returns>
-        Task<int> GetWikiCountAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<int> GetWikiCountAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns Wiki page's tags in the project.
         /// </summary>
         /// <param name="projectIdOrKey">the project identifier</param>
         /// <returns>the Wiki page's tags in a list</returns>
-        Task<ResponseList<WikiTag>> GetWikiTagsAsync(object projectIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<WikiTag>> GetWikiTagsAsync(IdOrKey projectIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Create a Wiki page in the project.
@@ -53,7 +53,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <returns>the Wiki page</returns>
-        Task<Wiki> GetWikiAsync(object wikiId, CancellationToken? token = null);
+        Task<Wiki> GetWikiAsync(long wikiId, CancellationToken? token = null);
 
         /// <summary>
         /// Updates an existing Wiki page in the project.
@@ -68,14 +68,14 @@ namespace Backlog4net.Api
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <param name="mailNotify">mailNotify</param>
         /// <returns>the deleted Wiki page</returns>
-        Task<Wiki> DeleteWikiAsync(object wikiId, bool mailNotify, CancellationToken? token = null);
+        Task<Wiki> DeleteWikiAsync(long wikiId, bool mailNotify, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the Wiki page's attachment files.
         /// </summary>
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <returns>the Wiki page identifier</returns>
-        Task<ResponseList<Attachment>> GetWikiAttachmentsAsync(object wikiId, CancellationToken? token = null);
+        Task<ResponseList<Attachment>> GetWikiAttachmentsAsync(long wikiId, CancellationToken? token = null);
 
         /// <summary>
         /// Attaches the files to the Wiki page.
@@ -90,7 +90,7 @@ namespace Backlog4net.Api
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <param name="attachmentId">the attachment file identifier</param>
         /// <returns>downloaded file data</returns>
-        Task<AttachmentData> DownloadWikiAttachmentAsync(object wikiId, object attachmentId, CancellationToken? token = null);
+        Task<AttachmentData> DownloadWikiAttachmentAsync(long wikiId, long attachmentId, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes the Wiki page's attachment file
@@ -98,14 +98,14 @@ namespace Backlog4net.Api
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <param name="attachmentId">the attachment file identifier</param>
         /// <returns>deleted Wiki page's attachment file</returns>
-        Task<Attachment> DeleteWikiAttachmentAsync(object wikiId, object attachmentId, CancellationToken? token = null);
+        Task<Attachment> DeleteWikiAttachmentAsync(long wikiId, long attachmentId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the Wiki page's shared files.
         /// </summary>
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <returns>the Wiki page's shared files in a list</returns>
-        Task<ResponseList<SharedFile>> GetWikiSharedFilesAsync(object wikiId, CancellationToken? token = null);
+        Task<ResponseList<SharedFile>> GetWikiSharedFilesAsync(long wikiId, CancellationToken? token = null);
 
         /// <summary>
         /// Links the shared files to Wiki.
@@ -113,7 +113,7 @@ namespace Backlog4net.Api
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <param name="fileIds">the shared file identifiers</param>
         /// <returns>the linked shared files</returns>
-        Task<ResponseList<SharedFile>> LinkWikiSharedFileAsync(object wikiId, object[] fileIds, CancellationToken? token = null);
+        Task<ResponseList<SharedFile>> LinkWikiSharedFileAsync(long wikiId, long[] fileIds, CancellationToken? token = null);
 
         /// <summary>
         /// Removes link to shared Files from the Wiki.
@@ -121,7 +121,7 @@ namespace Backlog4net.Api
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <param name="fileId">the shared file identifier</param>
         /// <returns>the removed link shared file</returns>
-        Task<SharedFile> UnlinkWikiSharedFileAsync(object wikiId, object fileId, CancellationToken? token = null);
+        Task<SharedFile> UnlinkWikiSharedFileAsync(long wikiId, long fileId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns history of the Wiki page.
@@ -129,13 +129,13 @@ namespace Backlog4net.Api
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the wiki histories in a list</returns>
-        Task<ResponseList<WikiHistory>> GetWikiHistoriesAsync(object wikiId, QueryParams queryParams = null, CancellationToken? token = null);
+        Task<ResponseList<WikiHistory>> GetWikiHistoriesAsync(long wikiId, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns list of stars received on the Wiki page.
         /// </summary>
         /// <param name="wikiId">the Wiki page identifier</param>
         /// <returns>the wiki stars in a list</returns>
-        Task<ResponseList<Star>> GetWikiStarsAsync(object wikiId, CancellationToken? token = null);
+        Task<ResponseList<Star>> GetWikiStarsAsync(long wikiId, CancellationToken? token = null);
     }
 }

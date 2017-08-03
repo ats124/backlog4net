@@ -21,7 +21,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<User> GetUserAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> GetUserAsync(long numericUserId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"users/{numericUserId}"), token: token))
             using (var content = response.Content)
@@ -39,7 +39,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<User> DeleteUserAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> DeleteUserAsync(long numericUserId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"users/{numericUserId}"), token: token))
             using (var content = response.Content)
@@ -57,13 +57,13 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Icon> GetUserIconAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Icon> GetUserIconAsync(long numericUserId, CancellationToken? token = default(CancellationToken?))
         {
             var response = await Get(BacklogEndPointSupport.UserIconEndpoint(numericUserId));
             return await IconImpl.CreateaAsync(response);
         }
 
-        public async Task<ResponseList<Activity>> GetUserActivitiesAsync(object numericUserId, ActivityQueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Activity>> GetUserActivitiesAsync(long numericUserId, ActivityQueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"users/{numericUserId}/activities"), queryParams, token: token))
             using (var content = response.Content)
@@ -72,7 +72,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Star>> GetUserStarsAsync(object numericUserId, QueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Star>> GetUserStarsAsync(long numericUserId, QueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"users/{numericUserId}/stars"), queryParams, token: token))
             using (var content = response.Content)
@@ -81,7 +81,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<int> GetUserStarCountAsync(object numericUserId, GetStarsParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetUserStarCountAsync(long numericUserId, GetStarsParams @params, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"users/{numericUserId}/stars/count"), @params, token: token))
             using (var content = response.Content)
@@ -118,7 +118,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<int> GetUserWatchCountAsync(object numericUserId, GetWatchesParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetUserWatchCountAsync(long numericUserId, GetWatchesParams @params, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"users/{numericUserId}/watchings/count"), @params, token: token))
             using (var content = response.Content)
@@ -127,7 +127,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Watch>> GetUserWatchesAsync(object numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Watch>> GetUserWatchesAsync(long numericUserId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"users/{numericUserId}/watchings"), token: token))
             using (var content = response.Content)

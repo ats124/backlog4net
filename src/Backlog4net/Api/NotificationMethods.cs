@@ -37,6 +37,6 @@ namespace Backlog4net.Api
         /// Marks the notification as already read.
         /// </summary>
         /// <param name="notificationId">the notification identifier</param>
-        Task MarkAsReadNotificationAsync(object notificationId, CancellationToken? token = null);
+        Task MarkAsReadNotificationAsync(long notificationId, CancellationToken? token = null);
     }
 }

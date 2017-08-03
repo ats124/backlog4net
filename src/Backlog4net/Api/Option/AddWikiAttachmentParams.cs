@@ -6,14 +6,12 @@ namespace Backlog4net.Api.Option
 {
     public class AddWikiAttachmentParams : PostParams
     {
-        private object wikiId;
-
-        public AddWikiAttachmentParams(object wikiId, IList<object> attachmentIds)
+        public AddWikiAttachmentParams(long wikiId, IList<long> attachmentIds)
         {
-            this.wikiId = wikiId;
+            this.WikiId = wikiId;
             AddNewArrayParams("attachmentId[]", attachmentIds);
         }
 
-        public string WikiId => wikiId.ToString();
+        public long WikiId { get; private set; }
     }
 }

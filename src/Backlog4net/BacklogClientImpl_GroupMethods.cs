@@ -20,7 +20,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Group> DeleteGroupAsync(object groupId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Group> DeleteGroupAsync(long groupId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"groups/{groupId}"), token: token))
             using (var content = response.Content)
@@ -29,7 +29,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Group> GetGroupAsync(object groupId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Group> GetGroupAsync(long groupId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"groups/{groupId}"), token: token))
             using (var content = response.Content)

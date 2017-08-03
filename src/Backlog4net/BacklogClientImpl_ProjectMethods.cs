@@ -19,7 +19,7 @@ namespace Backlog4net
     {
         public async Task<Category> AddCategoryAsync(AddCategoryParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/categories"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/categories"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateCategoryAsync(response);
@@ -27,7 +27,7 @@ namespace Backlog4net
         }
         private async Task<T> AddCustomFieldAsync<T>(AddCustomFieldParams @params, CancellationToken? token = default(CancellationToken?)) where T : CustomFieldSetting
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/customFields"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/customFields"), @params, token))
             using (var content = response.Content)
             {
                 return (T)await Factory.CreateCustomFieldAsync(response);
@@ -42,14 +42,14 @@ namespace Backlog4net
 
         public async Task<IssueType> AddIssueTypeAsync(AddIssueTypeParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/issueTypes"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/issueTypes"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateIssueTypeAsync(response);
             }
         }
 
-        public async Task<CustomFieldSetting> AddListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, string name, CancellationToken? token = default(CancellationToken?))
+        public async Task<CustomFieldSetting> AddListCustomFieldItemAsync(IdOrKey projectIdOrKey, long customFieldId, string name, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("name", name)};
             using (var response = await Post(BuildEndpoint($"projects/{projectIdOrKey}/customFields/{customFieldId}/items"), @params, token))
@@ -61,7 +61,7 @@ namespace Backlog4net
 
         public async Task<Milestone> AddMilestoneAsync(AddMilestoneParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateMilestoneAsync(response);
@@ -75,7 +75,7 @@ namespace Backlog4net
         public Task<NumericCustomFieldSetting> AddNumericCustomFieldAsync(AddNumericCustomFieldParams @params, CancellationToken? token = default(CancellationToken?))
             => AddCustomFieldAsync<NumericCustomFieldSetting>(@params, token);
 
-        public async Task<User> AddProjectAdministratorAsync(object projectIdOrKey, object userId, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> AddProjectAdministratorAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("userId", userId.ToString()) };
             using (var response = await Post(BuildEndpoint($"projects/{projectIdOrKey}/administrators"), @params, token))
@@ -85,7 +85,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<User> AddProjectUserAsync(object projectIdOrKey, object userId, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> AddProjectUserAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("userId", userId.ToString()) };
             using (var response = await Post(BuildEndpoint($"projects/{projectIdOrKey}/users"), @params, token))
@@ -109,7 +109,7 @@ namespace Backlog4net
 
         public async Task<Version> AddVersionAsync(AddVersionParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions"), @params, token))
+            using (var response = await Post(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions"), @params, token))
             using (var content = response.Content)
             {
                 return await Factory.CreateVersionAsync(response);
@@ -125,7 +125,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Project> DeleteProjectAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<Project> DeleteProjectAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}"), token: token))
             using (var content = response.Content)
@@ -134,13 +134,13 @@ namespace Backlog4net
             }
         }
 
-        public async Task<SharedFileData> DownloadSharedFileAsync(object projectIdOrKey, object sharedFileId, CancellationToken? token = default(CancellationToken?))
+        public async Task<SharedFileData> DownloadSharedFileAsync(IdOrKey projectIdOrKey, long sharedFileId, CancellationToken? token = default(CancellationToken?))
         {
             var response = await Get(BacklogEndPointSupport.SharedFileEndpoint(projectIdOrKey, sharedFileId));
             return await SharedFileDataImpl.CreateaAsync(response);
         }
 
-        public async Task<ResponseList<Category>> GetCategoriesAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Category>> GetCategoriesAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/categories"), token: token))
             using (var content = response.Content)
@@ -149,7 +149,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<CustomFieldSetting>> GetCustomFieldsAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<CustomFieldSetting>> GetCustomFieldsAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/customFields"), token: token))
             using (var content = response.Content)
@@ -158,7 +158,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<IssueType>> GetIssueTypesAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<IssueType>> GetIssueTypesAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/issueTypes"), token: token))
             using (var content = response.Content)
@@ -167,7 +167,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Milestone>> GetMilestonesAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Milestone>> GetMilestonesAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/versions"), token: token))
             using (var content = response.Content)
@@ -176,7 +176,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Activity>> GetProjectActivitiesAsync(object projectIdOrKey, ActivityQueryParams query = null, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Activity>> GetProjectActivitiesAsync(IdOrKey projectIdOrKey, ActivityQueryParams query = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/activities"), query, token: token))
             using (var content = response.Content)
@@ -185,7 +185,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<User>> GetProjectAdministratorsAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<User>> GetProjectAdministratorsAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/administrators"), token: token))
             using (var content = response.Content)
@@ -194,7 +194,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Project> GetProjectAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<Project> GetProjectAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}"), token: token))
             using (var content = response.Content)
@@ -203,7 +203,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<DiskUsageDetail> GetProjectDiskUsageAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<DiskUsageDetail> GetProjectDiskUsageAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/diskUsage"), token: token))
             using (var content = response.Content)
@@ -212,7 +212,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Icon> GetProjectIconAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<Icon> GetProjectIconAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             var response = await Get(BacklogEndPointSupport.ProjectIconEndpoint(projectIdOrKey));
             return await IconImpl.CreateaAsync(response);
@@ -227,7 +227,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<User>> GetProjectUsersAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<User>> GetProjectUsersAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/users"), token: token))
             using (var content = response.Content)
@@ -236,7 +236,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<SharedFile>> GetSharedFilesAsync(object projectIdOrKey, string path, QueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<SharedFile>> GetSharedFilesAsync(IdOrKey projectIdOrKey, string path, QueryParams queryParams = null, CancellationToken? token = default(CancellationToken?))
         {
             var encodedPath = WebUtility.UrlEncode(path);
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/files/metadata/{encodedPath}"), queryParams, token: token))
@@ -246,7 +246,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Version>> GetVersionsAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Version>> GetVersionsAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/versions"), token: token))
             using (var content = response.Content)
@@ -255,7 +255,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Category> RemoveCategoryAsync(object projectIdOrKey, object categoryId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Category> RemoveCategoryAsync(IdOrKey projectIdOrKey, long categoryId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/categories/{categoryId}"), token: token))
             using (var content = response.Content)
@@ -264,7 +264,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<CustomFieldSetting> RemoveCustomFieldAsync(object projectIdOrKey, object customFieldId, CancellationToken? token = default(CancellationToken?))
+        public async Task<CustomFieldSetting> RemoveCustomFieldAsync(IdOrKey projectIdOrKey, long customFieldId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/customFields/{customFieldId}"), token: token))
             using (var content = response.Content)
@@ -273,7 +273,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<IssueType> RemoveIssueTypeAsync(object projectIdOrKey, object issueTypeId, object substituteIssueTypeId, CancellationToken? token = default(CancellationToken?))
+        public async Task<IssueType> RemoveIssueTypeAsync(IdOrKey projectIdOrKey, long issueTypeId, long substituteIssueTypeId, CancellationToken? token = default(CancellationToken?))
         {
             var param = new NameValuePair("substituteIssueTypeId", substituteIssueTypeId.ToString());
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/issueTypes/{issueTypeId}"), param, token: token))
@@ -283,7 +283,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<CustomFieldSetting> RemoveListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, object itemId, CancellationToken? token = default(CancellationToken?))
+        public async Task<CustomFieldSetting> RemoveListCustomFieldItemAsync(IdOrKey projectIdOrKey, long customFieldId, long itemId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/customFields/{customFieldId}/items/{itemId}"), token: token))
             using (var content = response.Content)
@@ -292,7 +292,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Milestone> RemoveMilestoneAsync(object projectIdOrKey, object MilestoneId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Milestone> RemoveMilestoneAsync(IdOrKey projectIdOrKey, long MilestoneId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/versions/{MilestoneId}"), token: token))
             using (var content = response.Content)
@@ -301,7 +301,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<User> RemoveProjectAdministratorAsync(object projectIdOrKey, object userId, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> RemoveProjectAdministratorAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = default(CancellationToken?))
         {
             var param = new NameValuePair("userId", userId.ToString());
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/administrators"), param, token: token))
@@ -311,7 +311,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<User> RemoveProjectUserAsync(object projectIdOrKey, object userId, CancellationToken? token = default(CancellationToken?))
+        public async Task<User> RemoveProjectUserAsync(IdOrKey projectIdOrKey, long userId, CancellationToken? token = default(CancellationToken?))
         {
             var param = new NameValuePair("userId", userId.ToString());
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/users"), param, token: token))
@@ -321,7 +321,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Version> RemoveVersionAsync(object projectIdOrKey, object versionId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Version> RemoveVersionAsync(IdOrKey projectIdOrKey, long versionId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"projects/{projectIdOrKey}/versions/{versionId}"), token: token))
             using (var content = response.Content)
@@ -332,7 +332,7 @@ namespace Backlog4net
 
         public async Task<Category> UpdateCategoryAsync(UpdateCategoryParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/categories/{@params.CategoryId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/categories/{@params.CategoryId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateCategoryAsync(response);
@@ -341,7 +341,7 @@ namespace Backlog4net
 
         private async Task<T> UpdateCustomFieldAsync<T>(UpdateCustomFieldParams @params, CancellationToken? token = default(CancellationToken?)) where T : CustomFieldSetting
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/customFields/{@params.CustomFiledId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/customFields/{@params.CustomFiledId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return (T)await Factory.CreateCustomFieldAsync(response);
@@ -356,14 +356,14 @@ namespace Backlog4net
 
         public async Task<IssueType> UpdateIssueTypeAsync(UpdateIssueTypeParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/issueTypes/{@params.IssueTypeId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/issueTypes/{@params.IssueTypeId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateIssueTypeAsync(response);
             }
         }
 
-        public async Task<CustomFieldSetting> UpdateListCustomFieldItemAsync(object projectIdOrKey, object customFieldId, object itemId, string name, CancellationToken? token = default(CancellationToken?))
+        public async Task<CustomFieldSetting> UpdateListCustomFieldItemAsync(IdOrKey projectIdOrKey, long customFieldId, long itemId, string name, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new[] { new NameValuePair("name", name) };
             using (var response = await Patch(BuildEndpoint($"projects/{projectIdOrKey}/customFields/{customFieldId}/items/{itemId}"), @params, token: token))
@@ -375,7 +375,7 @@ namespace Backlog4net
 
         public async Task<Milestone> UpdateMilestoneAsync(UpdateMilestoneParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions/{@params.VersionId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions/{@params.VersionId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateMilestoneAsync(response);
@@ -390,7 +390,7 @@ namespace Backlog4net
 
         public async Task<Project> UpdateProjectAsync(UpdateProjectParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateProjectAsync(response);
@@ -411,7 +411,7 @@ namespace Backlog4net
 
         public async Task<Version> UpdateVersionAsync(UpdateVersionParams @params, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKeyString}/versions/{@params.VersionId}"), @params, token: token))
+            using (var response = await Patch(BuildEndpoint($"projects/{@params.ProjectIdOrKey}/versions/{@params.VersionId}"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateVersionAsync(response);

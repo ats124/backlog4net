@@ -14,7 +14,7 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public Task<ResponseList<Wiki>> GetWikisAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public Task<ResponseList<Wiki>> GetWikisAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
             => GetWikisAsync(new GetWikisParams(projectIdOrKey), token);
 
         public async Task<ResponseList<Wiki>> GetWikisAsync(GetWikisParams @params, CancellationToken? token = default(CancellationToken?))
@@ -47,7 +47,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<int> GetWikiCountAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetWikiCountAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint("wikis/count"), new GetWikisParams(projectIdOrKey), token: token))
             using (var content = response.Content)
@@ -56,7 +56,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<WikiTag>> GetWikiTagsAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<WikiTag>> GetWikiTagsAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint("wikis/tags"), new GetWikisParams(projectIdOrKey), token: token))
             using (var content = response.Content)
@@ -74,7 +74,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Wiki> GetWikiAsync(object wikiId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Wiki> GetWikiAsync(long wikiId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"wikis/{wikiId}"), token: token))
             using (var content = response.Content)
@@ -92,7 +92,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Wiki> DeleteWikiAsync(object wikiId, bool mailNotify, CancellationToken? token = default(CancellationToken?))
+        public async Task<Wiki> DeleteWikiAsync(long wikiId, bool mailNotify, CancellationToken? token = default(CancellationToken?))
         {
             var param = new NameValuePair("mailNotify", mailNotify.ToString());
             using (var response = await Delete(BuildEndpoint($"wikis/{wikiId}"), param, token: token))
@@ -102,7 +102,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Attachment>> GetWikiAttachmentsAsync(object wikiId, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Attachment>> GetWikiAttachmentsAsync(long wikiId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"wikis/{wikiId}/attachments"), token: token))
             using (var content = response.Content)
@@ -120,13 +120,13 @@ namespace Backlog4net
             }
         }
 
-        public async Task<AttachmentData> DownloadWikiAttachmentAsync(object wikiId, object attachmentId, CancellationToken? token = default(CancellationToken?))
+        public async Task<AttachmentData> DownloadWikiAttachmentAsync(long wikiId, long attachmentId, CancellationToken? token = default(CancellationToken?))
         {
             var response = await Get(BacklogEndPointSupport.WikiAttachmentEndpoint(wikiId, attachmentId));
             return await AttachmentDataImpl.CreateaAsync(response);
         }
 
-        public async Task<Attachment> DeleteWikiAttachmentAsync(object wikiId, object attachmentId, CancellationToken? token = default(CancellationToken?))
+        public async Task<Attachment> DeleteWikiAttachmentAsync(long wikiId, long attachmentId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"wikis/{wikiId}/attachments/{attachmentId}"), token: token))
             using (var content = response.Content)
@@ -135,7 +135,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<SharedFile>> GetWikiSharedFilesAsync(object wikiId, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<SharedFile>> GetWikiSharedFilesAsync(long wikiId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"wikis/{wikiId}/sharedFiles"), token: token))
             using (var content = response.Content)
@@ -144,7 +144,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<SharedFile>> LinkWikiSharedFileAsync(object wikiId, object[] fileIds, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<SharedFile>> LinkWikiSharedFileAsync(long wikiId, long[] fileIds, CancellationToken? token = default(CancellationToken?))
         {
             var @params = fileIds.Select(x => new NameValuePair("fileId[]", x.ToString())).ToArray();
             using (var response = await Post(BuildEndpoint($"wikis/{wikiId}/sharedFiles"), @params, token: token))
@@ -154,7 +154,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<SharedFile> UnlinkWikiSharedFileAsync(object wikiId, object fileId, CancellationToken? token = default(CancellationToken?))
+        public async Task<SharedFile> UnlinkWikiSharedFileAsync(long wikiId, long fileId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Delete(BuildEndpoint($"wikis/{wikiId}/sharedFiles/{fileId}"), token: token))
             using (var content = response.Content)
@@ -163,7 +163,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<WikiHistory>> GetWikiHistoriesAsync(object wikiId, QueryParams queryParams, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<WikiHistory>> GetWikiHistoriesAsync(long wikiId, QueryParams queryParams, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"wikis/{wikiId}/history"), queryParams, token: token))
             using (var content = response.Content)
@@ -172,7 +172,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Star>> GetWikiStarsAsync(object wikiId, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Star>> GetWikiStarsAsync(long wikiId, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"wikis/{wikiId}/stars"), token: token))
             using (var content = response.Content)

@@ -6,14 +6,12 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateWikiParams : PatchParams
     {
-        private object wikiId;
-
-        public UpdateWikiParams(object wikiId)
+        public UpdateWikiParams(long wikiId)
         {
-            this.wikiId = wikiId;
+            this.WikiId = wikiId;
         }
 
-        public string WikiId => wikiId.ToString();
+        public long WikiId { get; private set; }
 
         public string Name { set => AddNewParamValue(value); }
 

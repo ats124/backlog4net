@@ -32,7 +32,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="groupId">the group identifier</param>
         /// <returns>the Group.</returns>
-        Task<Group> GetGroupAsync(object groupId, CancellationToken? token = null);
+        Task<Group> GetGroupAsync(long groupId, CancellationToken? token = null);
 
         /// <summary>
         /// Updates the existing group.
@@ -46,6 +46,6 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="groupId">the group identifier</param>
         /// <returns>the deleted Group.</returns>
-        Task<Group> DeleteGroupAsync(object groupId, CancellationToken? token = null);
+        Task<Group> DeleteGroupAsync(long groupId, CancellationToken? token = null);
     }
 }

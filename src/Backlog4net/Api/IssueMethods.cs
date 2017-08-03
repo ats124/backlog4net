@@ -39,7 +39,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <returns>the Issue</returns>
-        Task<Issue> GetIssueAsync(object issueIdOrKey, CancellationToken? token = null);
+        Task<Issue> GetIssueAsync(IdOrKey issueIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Updates an existing issue.
@@ -53,7 +53,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <returns>the deleted Issue</returns>
-        Task<Issue> DeleteIssueAsync(object issueIdOrKey, CancellationToken? token = null);
+        Task<Issue> DeleteIssueAsync(IdOrKey issueIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the issue comments.
@@ -61,7 +61,7 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="queryParams">the query parameters</param>
         /// <returns>the issue's comments in a list.</returns>
-        Task<ResponseList<IssueComment>> GetIssueCommentsAsync(object issueIdOrKey, QueryParams queryParams = null, CancellationToken? token = null);
+        Task<ResponseList<IssueComment>> GetIssueCommentsAsync(IdOrKey issueIdOrKey, QueryParams queryParams = null, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a issue comment.
@@ -75,7 +75,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <returns>count of the issue comments.</returns>
-        Task<int> GetIssueCommentCountAsync(object issueIdOrKey, CancellationToken? token = null);
+        Task<int> GetIssueCommentCountAsync(IdOrKey issueIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the issue comment.
@@ -83,7 +83,7 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="commentId">the comment identifier</param>
         /// <returns>the issue comment</returns>
-        Task<IssueComment> GetIssueCommentAsync(object issueIdOrKey, object commentId, CancellationToken? token = null);
+        Task<IssueComment> GetIssueCommentAsync(IdOrKey issueIdOrKey, long commentId, CancellationToken? token = null);
 
         /// <summary>
         /// Updates an existing issue comment.
@@ -98,7 +98,7 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="commentId">the comment identifier</param>
         /// <returns>the issue comment notifications</returns>
-        Task<ResponseList<Notification>> GetIssueCommentNotificationsAsync(object issueIdOrKey, object commentId, CancellationToken? token = null);
+        Task<ResponseList<Notification>> GetIssueCommentNotificationsAsync(IdOrKey issueIdOrKey, long commentId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a issue comment notification.
@@ -112,7 +112,7 @@ namespace Backlog4net.Api
         /// </summary>
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <returns>the attachments in a list.</returns>
-        Task<ResponseList<Attachment>> GetIssueAttachmentsAsync(object issueIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<Attachment>> GetIssueAttachmentsAsync(IdOrKey issueIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the attachment file data on the issue.
@@ -120,7 +120,7 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="attachmentId">the attachment identifier</param>
         /// <returns>the AttachmentData</returns>
-        Task<AttachmentData> DownloadIssueAttachmentAsync(object issueIdOrKey, object attachmentId, CancellationToken? token = null);
+        Task<AttachmentData> DownloadIssueAttachmentAsync(IdOrKey issueIdOrKey, long attachmentId, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes the attachment file on the issue.
@@ -128,14 +128,14 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="attachmentId">the attachment identifier</param>
         /// <returns>the Attachment</returns>
-        Task<Attachment> DeleteIssueAttachmentAsync(object issueIdOrKey, object attachmentId, CancellationToken? token = null);
+        Task<Attachment> DeleteIssueAttachmentAsync(IdOrKey issueIdOrKey, long attachmentId, CancellationToken? token = null);
 
         /// <summary>
         /// Returns all the shared files on the issue.
         /// </summary>
         /// <param name="issueIdOrKey"the issue identifier></param>
         /// <returns>shared files in a list.</returns>
-        Task<ResponseList<SharedFile>> GetIssueSharedFilesAsync(object issueIdOrKey, CancellationToken? token = null);
+        Task<ResponseList<SharedFile>> GetIssueSharedFilesAsync(IdOrKey issueIdOrKey, CancellationToken? token = null);
 
         /// <summary>
         /// links the shared files to the issue.
@@ -143,7 +143,7 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">issueIdOrKey the issue identifier</param>
         /// <param name="fileIds">fileIds  the file identifiers in a list</param>
         /// <returns>the linked shared files in a list.</returns>
-        Task<ResponseList<SharedFile>> LinkIssueSharedFileAsync(Object issueIdOrKey, object[] fileIds, CancellationToken? token = null);
+        Task<ResponseList<SharedFile>> LinkIssueSharedFileAsync(IdOrKey issueIdOrKey, long[] fileIds, CancellationToken? token = null);
 
         /// <summary>
         /// Deletes link of the shared file from the issue.
@@ -151,6 +151,6 @@ namespace Backlog4net.Api
         /// <param name="issueIdOrKey">the issue identifier</param>
         /// <param name="fileId">the file identifiers</param>
         /// <returns>the unlinked SharedFile</returns>
-        Task<SharedFile> UnlinkIssueSharedFileAsync(object issueIdOrKey, object fileId, CancellationToken? token = null);
+        Task<SharedFile> UnlinkIssueSharedFileAsync(IdOrKey issueIdOrKey, long fileId, CancellationToken? token = null);
     }
 }

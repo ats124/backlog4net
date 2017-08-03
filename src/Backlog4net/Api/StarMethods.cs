@@ -15,30 +15,30 @@ namespace Backlog4net.Api
         /// Adds a star to the issue.
         /// </summary>
         /// <param name="issueId">the issue identifier</param>
-        Task AddStarToIssueAsync(object issueId, CancellationToken? token = null);
+        Task AddStarToIssueAsync(long issueId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the issue comment.
         /// </summary>
         /// <param name="commentId">comment identifier</param>
-        Task AddStarToCommentAsync(object commentId, CancellationToken? token = null);
+        Task AddStarToCommentAsync(long commentId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the wiki.
         /// </summary>
         /// <param name="wikiId">the wiki identifier</param>
-        Task AddStarToWikiAsync(object wikiId, CancellationToken? token = null);
+        Task AddStarToWikiAsync(long wikiId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the pull request.
         /// </summary>
         /// <param name="pullRequestId">the pull request identifier</param>
-        Task AddStarToPullRequestAsync(object pullRequestId, CancellationToken? token = null);
+        Task AddStarToPullRequestAsync(long pullRequestId, CancellationToken? token = null);
 
         /// <summary>
         /// Adds a star to the pull request comment.
         /// </summary>
         /// <param name="pullRequestCommentId">the pull request comment identifier</param>
-        Task AddStarToPullRequestCommentAsync(object pullRequestCommentId, CancellationToken? token = null);
+        Task AddStarToPullRequestCommentAsync(long pullRequestCommentId, CancellationToken? token = null);
     }
 }

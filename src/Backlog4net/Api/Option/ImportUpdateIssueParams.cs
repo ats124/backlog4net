@@ -6,9 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class ImportUpdateIssueParams : UpdateIssueParams
     {
-        public ImportUpdateIssueParams(long issueId) : base(issueId) { }
-
-        public ImportUpdateIssueParams(string issueKey) : base(issueKey) { }
+        public ImportUpdateIssueParams(IdOrKey issueIdOrKey) : base(issueIdOrKey) { }
 
         public long CreatedUserId { set => AddNewParamValue(value); }
 

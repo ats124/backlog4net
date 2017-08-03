@@ -7,7 +7,7 @@ namespace Backlog4net.Api.Option
 {
     public class AddRadioCustomFieldParams : AddCustomFieldParams
     {
-        public AddRadioCustomFieldParams(object projectIdOrKey, string name) 
+        public AddRadioCustomFieldParams(IdOrKey projectIdOrKey, string name) 
             : base(projectIdOrKey, CustomFieldType.Radio, name)
         {
         }

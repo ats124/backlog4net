@@ -11,7 +11,7 @@ namespace Backlog4net
 
     partial class BacklogClientImpl
     {
-        public async Task<ResponseList<Repository>> GetGitRepositoriesAsync(object projectIdOrKey, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Repository>> GetGitRepositoriesAsync(IdOrKey projectIdOrKey, CancellationToken? token = default(CancellationToken?))
         {
             var @params = new GetRepositoriesParams(projectIdOrKey.ToString());
             using (var response = await Get(BuildEndpoint("git/repositories"), @params, token: token))
@@ -21,7 +21,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<Repository> GetGitRepositoryAsync(object projectIdOrKey, object repoIdOrName, CancellationToken? token = default(CancellationToken?))
+        public async Task<Repository> GetGitRepositoryAsync(IdOrKey projectIdOrKey, IdOrKey repoIdOrName, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"projects/{projectIdOrKey}/git/repositories/{repoIdOrName}"), token: token))
             using (var content = response.Content)

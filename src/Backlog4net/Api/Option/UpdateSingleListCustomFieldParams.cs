@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class UpdateSingleListCustomFieldParams : UpdateCustomFieldParams
     {
-        public UpdateSingleListCustomFieldParams(object projectIdOrKey, object customFiledId)
+        public UpdateSingleListCustomFieldParams(IdOrKey projectIdOrKey, long customFiledId)
             : base(projectIdOrKey, customFiledId)
         {
         }

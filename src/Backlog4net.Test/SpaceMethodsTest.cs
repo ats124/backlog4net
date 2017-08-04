@@ -60,5 +60,21 @@ namespace Backlog4net.Test
             var spaceNotification = await client.GetSpaceNotificationAsync();
             Assert.AreEqual(spaceNotification.Content, content);
         }
+
+        [TestMethod]
+        public async Task GetSpaceIconTestAsync()
+        {
+            using (var icon = await client.GetSpaceIconAsync())
+            {
+                Assert.IsFalse(string.IsNullOrEmpty(icon.FileName));
+                byte[] iconData;
+                using (var memStream = new MemoryStream())
+                {
+                    await icon.Content.CopyToAsync(memStream);
+                    iconData = memStream.ToArray();
+                }
+                Assert.AreNotEqual(iconData.Length, 0);
+            }            
+        }
     }
 }

@@ -248,4 +248,40 @@ namespace Backlog4net
 
         IList<SharedFile> SharedFiles { get; }
     }
+
+    public interface MilestoneCreatedContent : Content
+    {
+        long Id { get; }
+
+        string Name { get; }
+
+        DateTime? StartDate { get; }
+
+        DateTime? ReferenceDate { get; }
+
+        string Description { get; }
+    }
+
+    public interface MilestoneUpdatedContent : Content
+    {
+        long Id { get; }
+
+        string Name { get; }
+
+        IList<Change> Changes { get; }
+    }
+
+
+    public interface MilestoneDeletedContent : Content
+    {
+        long Id { get; }
+
+        string Name { get; }
+
+        DateTime? StartDate { get; }
+
+        DateTime? ReferenceDate { get; }
+
+        string Description { get; }
+    }
 }

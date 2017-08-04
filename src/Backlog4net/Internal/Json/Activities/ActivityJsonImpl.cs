@@ -33,6 +33,9 @@ namespace Backlog4net.Internal.Json.Activities
                     { ActivityType.WikiCreated.ToString("D"), typeof(WikiCreatedActivityImpl) },
                     { ActivityType.WikiDeleted.ToString("D"), typeof(WikiDeletedActivityImpl) },
                     { ActivityType.WikiUpdated.ToString("D"), typeof(WikiUpdatedActivityImpl) },
+                    { ActivityType.MilestoneCreated.ToString("D"), typeof(MilestoneCreatedActivityImpl) },
+                    { ActivityType.MilestoneDeleted.ToString("D"), typeof(MilestoneDeletedActivityImpl) },
+                    { ActivityType.MilestoneUpdated.ToString("D"), typeof(MilestoneUpdatedActivityImpl) },
                 }, typeof(UndefinedActivityImpl))
             {
             }

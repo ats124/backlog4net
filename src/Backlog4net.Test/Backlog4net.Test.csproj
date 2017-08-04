@@ -108,7 +108,10 @@
     <None Include="TestData\activity-issue.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\diskUsage.json">
+    <None Include="TestData\space-diskUsage.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\project-diskUsage.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\space.json">

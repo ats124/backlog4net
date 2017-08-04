@@ -141,5 +141,11 @@ namespace Backlog4net.Test
             Assert.AreEqual(diskUsage.Details[0].Subversion, 3L);
             Assert.AreEqual(diskUsage.Details[0].Git, 4L);
         }
+
+        [TestMethod]
+        public async Task PostAttachmentAsync()
+        {
+            // IssueMethodsTest で実施済み
+        }
     }
 }

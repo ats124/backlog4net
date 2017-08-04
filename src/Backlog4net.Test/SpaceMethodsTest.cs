@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -30,6 +31,23 @@ namespace Backlog4net.Test
             conf.ApiKey = generalConfig.ApiKey;
             client = new BacklogClientFactory(conf).NewClient();
             var users = await client.GetUsersAsync();
+        }
+
+        [TestMethod]
+        public async Task GetSpaceTestAsync()
+        {
+            var space = await client.GetSpaceAsync();
+            Assert.AreEqual(space.SpaceKey, generalConfig.SpaceKey);
+
+            space = JsonConvert.DeserializeObject<SpaceJsonImp>(File.ReadAllText(@"TestData\space.json"));
+            Assert.AreEqual(space.SpaceKey, "test-4net");
+            Assert.AreEqual(space.Name, "test-4net-name");
+            Assert.AreEqual(space.OwnerId, 137752L);
+            Assert.AreEqual(space.Lang, "ja");
+            Assert.AreEqual(space.Timezone, "Asia/Tokyo");
+            Assert.AreEqual(space.ReportSendTime, "18:00:00");
+            Assert.AreEqual(space.Created, new DateTime(2017, 8, 1, 7, 9, 49, DateTimeKind.Utc));
+            Assert.AreEqual(space.Updated, new DateTime(2017, 8, 2, 7, 9, 49, DateTimeKind.Utc));
         }
 
         [TestMethod]

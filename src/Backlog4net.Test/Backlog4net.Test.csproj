@@ -90,6 +90,9 @@
     </None>
     <None Include="TestConfig\ForCIAndSample\projects.json" />
     <None Include="TestConfig\SetApiKey.ps1" />
+    <None Include="TestData\activity-milestone.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\activity-user.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

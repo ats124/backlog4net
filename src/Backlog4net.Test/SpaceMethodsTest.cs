@@ -51,6 +51,50 @@ namespace Backlog4net.Test
         }
 
         [TestMethod]
+        public async Task GetSpaceActivitiesTestAsync()
+        {
+            var activities = await client.GetSpaceActivitiesAsync();
+            Assert.AreNotEqual(activities.Count, 0);
+
+            var milestoneActivities = JsonConvert.DeserializeObject<Activity[]>(File.ReadAllText(@"TestData\activity-milestone.json"), new ActivityJsonImplBase.JsonConverter());
+
+            var milestoneCreated = (MilestoneCreatedActivity)milestoneActivities.First(x => x.Id == 18935655L);
+            Assert.AreEqual(milestoneCreated.Type, ActivityType.MilestoneCreated);
+            Assert.AreEqual(milestoneCreated.Project.ProjectKey, "BLG4NT");
+            Assert.AreEqual(milestoneCreated.Content.Id, 75042);
+            Assert.AreEqual(milestoneCreated.Content.Name, "TestMilestone");
+            Assert.AreEqual(milestoneCreated.Content.Description, "TestDescription");
+            Assert.AreEqual(milestoneCreated.Content.StartDate, new DateTime(2017, 7, 1));
+            Assert.AreEqual(milestoneCreated.Content.ReferenceDate, new DateTime(2017, 7, 2));
+            Assert.AreEqual(milestoneCreated.CreatedUser.Id, 137752L);
+            Assert.AreEqual(milestoneCreated.Created, new DateTime(2017, 8, 4, 4, 3, 54, DateTimeKind.Utc));
+
+            var milestoneUpdated = (MilestoneUpdatedActivity)milestoneActivities.First(x => x.Id == 18935657);
+            Assert.AreEqual(milestoneUpdated.Type, ActivityType.MilestoneUpdated);
+            Assert.AreEqual(milestoneUpdated.Project.ProjectKey, "BLG4NT");
+            Assert.AreEqual(milestoneUpdated.Content.Id, 75042);
+            Assert.AreEqual(milestoneUpdated.Content.Name, "TestMilestoneUpdate");
+            Assert.IsTrue(milestoneUpdated.Content.Changes.Any(x => x.Field == "name" && x.NewValue == "TestMilestoneUpdate" && x.OldValue == "TestMilestone"));
+            Assert.IsTrue(milestoneUpdated.Content.Changes.Any(x => x.Field == "startDate" && x.NewValue == "2017-07-11" && x.OldValue == "2017-07-01"));
+            Assert.IsTrue(milestoneUpdated.Content.Changes.Any(x => x.Field == "referenceDate" && x.NewValue == "" && x.OldValue == "2017-07-02"));
+            Assert.IsTrue(milestoneUpdated.Content.Changes.Any(x => x.Field == "description" && x.NewValue == "TestDescriptionUpdated" && x.OldValue == "TestDescription"));
+            Assert.AreEqual(milestoneUpdated.CreatedUser.Id, 137752L);
+            Assert.AreEqual(milestoneUpdated.Created, new DateTime(2017, 8, 4, 4, 3, 54, DateTimeKind.Utc));
+
+            var milestoneDeleted = (MilestoneDeletedActivity)milestoneActivities.First(x => x.Id == 18935658L);
+            Assert.AreEqual(milestoneDeleted.Type, ActivityType.MilestoneDeleted);
+            Assert.AreEqual(milestoneDeleted.Project.ProjectKey, "BLG4NT");
+            Assert.AreEqual(milestoneDeleted.Content.Id, 75042);
+            Assert.AreEqual(milestoneDeleted.Content.Name, "TestMilestoneUpdate");
+            Assert.AreEqual(milestoneDeleted.Content.Description, "TestDescriptionUpdated");
+            Assert.AreEqual(milestoneDeleted.Content.StartDate, new DateTime(2017, 7, 11));
+            Assert.AreEqual(milestoneDeleted.Content.ReferenceDate, null);
+            Assert.AreEqual(milestoneDeleted.CreatedUser.Id, 137752L);
+            Assert.AreEqual(milestoneDeleted.Created, new DateTime(2017, 8, 4, 4, 3, 54, DateTimeKind.Utc));
+
+        }
+
+        [TestMethod]
         public async Task SpaceNotificationTestAsync()
         {
             var content = $"TestNotification{DateTime.Now}";

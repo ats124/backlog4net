@@ -31,5 +31,16 @@ namespace Backlog4net.Test
             client = new BacklogClientFactory(conf).NewClient();
             var users = await client.GetUsersAsync();
         }
+
+        [TestMethod]
+        public async Task SpaceNotificationTestAsync()
+        {
+            var content = $"TestNotification{DateTime.Now}";
+            var spaceNotificationUpdate = await client.UpdateSpaceNotificationAsync(content);
+            Assert.AreEqual(spaceNotificationUpdate.Content, content);
+
+            var spaceNotification = await client.GetSpaceNotificationAsync();
+            Assert.AreEqual(spaceNotification.Content, content);
+        }
     }
 }

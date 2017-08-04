@@ -120,5 +120,26 @@ namespace Backlog4net.Test
                 Assert.AreNotEqual(iconData.Length, 0);
             }            
         }
+
+        [TestMethod]
+        public async Task GetSpaceDiskUsageTestAsync()
+        {
+            var diskUsage = await client.GetSpaceDiskUsageAsync();
+            Assert.AreNotEqual(diskUsage.Capacity, 0L);
+
+            diskUsage = JsonConvert.DeserializeObject<DiskUsageJsonImpl>(File.ReadAllText(@"TestData\space-diskUsage.json"));
+            Assert.AreEqual(diskUsage.Capacity, 107374182400L);
+            Assert.AreEqual(diskUsage.Issue, 10L);
+            Assert.AreEqual(diskUsage.Wiki, 20L);
+            Assert.AreEqual(diskUsage.File, 21430L);
+            Assert.AreEqual(diskUsage.Subversion, 30L);
+            Assert.AreEqual(diskUsage.Git, 40L);
+            Assert.AreEqual(diskUsage.Details[0].ProjectId, 61932L);
+            Assert.AreEqual(diskUsage.Details[0].Issue, 1L);
+            Assert.AreEqual(diskUsage.Details[0].Wiki, 2L);
+            Assert.AreEqual(diskUsage.Details[0].File, 21430L);
+            Assert.AreEqual(diskUsage.Details[0].Subversion, 3L);
+            Assert.AreEqual(diskUsage.Details[0].Git, 4L);
+        }
     }
 }

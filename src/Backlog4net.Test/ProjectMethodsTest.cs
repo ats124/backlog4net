@@ -465,7 +465,7 @@ namespace Backlog4net.Test
             var diskUsage = await client.GetProjectDiskUsageAsync(generalConfig.ProjectKey);
             Assert.AreNotEqual(diskUsage.ProjectId, 0L);
 
-            diskUsage = JsonConvert.DeserializeObject<DiskUsageDetail>(File.ReadAllText(@"TestData\diskUsage.json"), new DiskUsageDetailJsonImpl.JsonConverter());
+            diskUsage = JsonConvert.DeserializeObject<DiskUsageDetail>(File.ReadAllText(@"TestData\project-diskUsage.json"), new DiskUsageDetailJsonImpl.JsonConverter());
             Assert.AreEqual(diskUsage.Issue, 1L);
             Assert.AreEqual(diskUsage.Wiki, 2L);
             Assert.AreEqual(diskUsage.File, 3L);

@@ -66,6 +66,7 @@
     <Compile Include="ApiOptionsTest.cs" />
     <Compile Include="ActivityJsonImplTest.cs" />
     <Compile Include="CustomFieldsJsonImplTest.cs" />
+    <Compile Include="SpaceMethodsTest.cs" />
     <Compile Include="ProjectMethodsTest.cs" />
     <Compile Include="IssueMethodsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +90,9 @@
     </None>
     <None Include="TestConfig\ForCIAndSample\projects.json" />
     <None Include="TestConfig\SetApiKey.ps1" />
+    <None Include="TestData\activity-milestone.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\activity-user.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -104,7 +108,13 @@
     <None Include="TestData\activity-issue.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="TestData\diskUsage.json">
+    <None Include="TestData\space-diskUsage.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\project-diskUsage.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\space.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

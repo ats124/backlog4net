@@ -28,7 +28,7 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public long Git { get; private set; }
 
-        [JsonProperty, JsonConverter(typeof(DiskUsageDetailJsonImpl.JsonConverter))]
+        [JsonProperty(ItemConverterType = typeof(DiskUsageDetailJsonImpl.JsonConverter))]
         public DiskUsageDetail[] Details { get; private set; }
     }
 }

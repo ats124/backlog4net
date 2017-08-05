@@ -1,0 +1,20 @@
+﻿{
+  "capacity": 107374182400,
+  "issue": 10,
+  "wiki": 20,
+  "file": 21430,
+  "subversion": 30,
+  "git": 40,
+  "pullRequest": 50,
+  "details": [
+    {
+      "projectId": 61932,
+      "issue": 1,
+      "wiki": 2,
+      "file": 21430,
+      "subversion": 3,
+      "git": 4,
+      "pullRequest": 5
+    }
+  ]
+}

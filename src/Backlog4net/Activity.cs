@@ -48,6 +48,9 @@ namespace Backlog4net
         PullRequestUpdated = 19,
         PullRequestCommented = 20,
         PullRequestMerged = 21,
+        MilestoneCreated = 22,
+        MilestoneUpdated = 23,
+        MilestoneDeleted = 24,
     }
 
     public interface UndefinedActivity : Activity
@@ -153,5 +156,20 @@ namespace Backlog4net
     public interface WikiUpdatedActivity : Activity
     {
         new WikiUpdatedContent Content { get; }
+    }
+
+    public interface MilestoneCreatedActivity : Activity
+    {
+        new MilestoneCreatedContent Content { get; }
+    }
+
+    public interface MilestoneUpdatedActivity : Activity
+    {
+        new MilestoneUpdatedContent Content { get; }
+    }
+
+    public interface MilestoneDeletedActivity : Activity
+    {
+        new MilestoneDeletedContent Content { get; }
     }
 }

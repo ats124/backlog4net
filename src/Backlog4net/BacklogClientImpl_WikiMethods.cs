@@ -94,7 +94,7 @@ namespace Backlog4net
 
         public async Task<Wiki> DeleteWikiAsync(long wikiId, bool mailNotify, CancellationToken? token = default(CancellationToken?))
         {
-            var param = new NameValuePair("mailNotify", mailNotify.ToString());
+            var param = new NameValuePair("mailNotify", mailNotify ? "true" : "false");
             using (var response = await Delete(BuildEndpoint($"wikis/{wikiId}"), param, token: token))
             using (var content = response.Content)
             {

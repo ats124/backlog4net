@@ -72,6 +72,47 @@ namespace Backlog4net.Test
             Assert.AreEqual(wikiDeleted.Content, "TestContentUpdated");
         }
 
+        [TestMethod]
+        public async Task WikiAttachmentTestAsync()
+        {
+            var wikiName = $"Test({DateTime.Now:yyyy/MM/dd HH:mm:ss})";
+            var wiki = await client.CreateWikiAsync(new CreateWikiParams(projectId, wikiName, "TestContent")
+            {
+                MailNotify = false,
+            });
 
+            Attachment attachment;
+            using (var @params = new PostAttachmentParams("Test.txt",
+                new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes("TEST"))))
+            {
+                attachment = await client.PostAttachmentAsync(@params);
+            }
+
+            var attachments =  await client.AddWikiAttachmentAsync(new AddWikiAttachmentParams(wiki.Id, attachment.Id));
+            Assert.AreEqual(attachments[0].Name, "Test.txt");
+
+            var wikiGet = await client.GetWikiAsync(wiki.Id);
+            Assert.AreEqual(wikiGet.Attachments[0].Id, attachments[0].Id);
+            Assert.AreEqual(wikiGet.Attachments[0].Name, "Test.txt");
+
+            using (var attachmentData = await client.DownloadWikiAttachmentAsync(wiki.Id, attachments[0].Id))
+            {
+                Assert.AreEqual(attachmentData.FileName, "Test.txt");
+                using (var memoryStream = new MemoryStream())
+                {
+                    await attachmentData.Content.CopyToAsync(memoryStream);
+                    var text = System.Text.Encoding.UTF8.GetString(memoryStream.ToArray());
+                    Assert.AreEqual(text, "TEST");
+                }
+            }
+
+            var attachmentDeleted = await client.DeleteWikiAttachmentAsync(wiki.Id, attachments[0].Id);
+            Assert.AreEqual(attachmentDeleted.Name, "Test.txt");
+
+            wikiGet = await client.GetWikiAsync(wiki.Id);
+            Assert.AreEqual(wikiGet.Attachments.Length, 0);
+
+            await client.DeleteWikiAsync(wiki.Id, false);
+        }
     }
 }

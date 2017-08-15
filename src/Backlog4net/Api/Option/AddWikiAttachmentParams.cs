@@ -12,6 +12,11 @@ namespace Backlog4net.Api.Option
             AddNewArrayParams("attachmentId[]", attachmentIds);
         }
 
+        public AddWikiAttachmentParams(long wikiId, params long[] attachmentIds) 
+            : this(wikiId, (IList<long>)attachmentIds)
+        {
+        }
+
         public long WikiId { get; private set; }
     }
 }

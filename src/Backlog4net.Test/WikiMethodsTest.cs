@@ -179,5 +179,78 @@ namespace Backlog4net.Test
 
             await client.DeleteWikiAsync(wiki.Id, false);
         }
+
+        [TestMethod]
+        public async Task GetWikisCountTestAsync()
+        {
+            var wikiC = await client.CreateWikiAsync(new CreateWikiParams(projectId, "WikiTestC", "Content")
+            {
+                MailNotify = false,
+            });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+
+            var wikiB = await client.CreateWikiAsync(new CreateWikiParams(projectId, "WikiTestB", "Content")
+            {
+                MailNotify = false,
+            });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+
+            var wikiA = await client.CreateWikiAsync(new CreateWikiParams(projectId, "WikiTestA", "Content")
+            {
+                MailNotify = false,
+            });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+
+            await client.UpdateWikiAsync(new UpdateWikiParams(wikiA.Id) { Name = "WikiTestAUpdated" });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+
+            await client.UpdateWikiAsync(new UpdateWikiParams(wikiB.Id) { Name = "WikiTestBUpdated" });
+            await Task.Delay(TimeSpan.FromSeconds(1.1));
+
+            await client.UpdateWikiAsync(new UpdateWikiParams(wikiC.Id) { Name = "WikiTestCUpdated" });
+
+            var count = await client.GetWikiCountAsync(projectId);
+            Assert.IsTrue(count >= 3);
+
+            var wikis = await client.GetWikisAsync(new GetWikisParams(projectId) { Sort = GetWikisSortKey.Name, Order = Order.Asc });
+            Assert.IsTrue(wikis
+                .Select(x => x.Id)
+                .Where(x => x == wikiA.Id || x == wikiB.Id || x == wikiC.Id)
+                .SequenceEqual(new[] { wikiA.Id, wikiB.Id, wikiC.Id }));
+
+            wikis = await client.GetWikisAsync(new GetWikisParams(projectId) { Sort = GetWikisSortKey.Name, Order = Order.Desc });
+            Assert.IsTrue(wikis
+                .Select(x => x.Id)
+                .Where(x => x == wikiA.Id || x == wikiB.Id || x == wikiC.Id)
+                .SequenceEqual(new[] { wikiC.Id, wikiB.Id, wikiA.Id }));
+
+            wikis = await client.GetWikisAsync(new GetWikisParams(projectId) { Sort = GetWikisSortKey.Created, Order = Order.Asc });
+            Assert.IsTrue(wikis
+                .Select(x => x.Id)
+                .Where(x => x == wikiA.Id || x == wikiB.Id || x == wikiC.Id)
+                .SequenceEqual(new[] { wikiC.Id, wikiB.Id, wikiA.Id }));
+
+            wikis = await client.GetWikisAsync(new GetWikisParams(projectId) { Sort = GetWikisSortKey.Created, Order = Order.Desc });
+            Assert.IsTrue(wikis
+                .Select(x => x.Id)
+                .Where(x => x == wikiA.Id || x == wikiB.Id || x == wikiC.Id)
+                .SequenceEqual(new[] { wikiA.Id, wikiB.Id, wikiC.Id }));
+
+            wikis = await client.GetWikisAsync(new GetWikisParams(projectId) { Sort = GetWikisSortKey.Updated, Order = Order.Asc });
+            Assert.IsTrue(wikis
+                .Select(x => x.Id)
+                .Where(x => x == wikiA.Id || x == wikiB.Id || x == wikiC.Id)
+                .SequenceEqual(new[] { wikiA.Id, wikiB.Id, wikiC.Id }));
+
+            wikis = await client.GetWikisAsync(new GetWikisParams(projectId) { Sort = GetWikisSortKey.Updated, Order = Order.Desc });
+            Assert.IsTrue(wikis
+                .Select(x => x.Id)
+                .Where(x => x == wikiA.Id || x == wikiB.Id || x == wikiC.Id)
+                .SequenceEqual(new[] { wikiC.Id, wikiB.Id, wikiA.Id }));
+
+            await client.DeleteWikiAsync(wikiA.Id, false);
+            await client.DeleteWikiAsync(wikiB.Id, false);
+            await client.DeleteWikiAsync(wikiC.Id, false);
+        }
     }
 }

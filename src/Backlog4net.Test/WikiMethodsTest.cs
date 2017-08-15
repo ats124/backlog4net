@@ -24,6 +24,7 @@ namespace Backlog4net.Test
         private static GeneralConfig generalConfig;
         private static string projectKey;
         private static long projectId;
+        private static WikiConfig wikiConfig;
 
         [ClassInitialize]
         public static async Task SetupClient(TestContext context)
@@ -37,6 +38,8 @@ namespace Backlog4net.Test
             projectKey = generalConfig.ProjectKey;
             var project = await client.GetProjectAsync(projectKey);
             projectId = project.Id;
+
+            wikiConfig = WikiConfig.Instance.Value;
         }
 
         [TestMethod]
@@ -111,6 +114,33 @@ namespace Backlog4net.Test
 
             wikiGet = await client.GetWikiAsync(wiki.Id);
             Assert.AreEqual(wikiGet.Attachments.Length, 0);
+
+            await client.DeleteWikiAsync(wiki.Id, false);
+        }
+
+        [TestMethod]
+        public async Task SharedFileTestAsync()
+        {
+            var wiki = await client.CreateWikiAsync(new CreateWikiParams(projectId, "SharedFileTest", "SharedFileTestContent")
+            {
+                MailNotify = false,
+            });
+
+            var sharedFiles =await client.GetSharedFilesAsync(generalConfig.ProjectKey, wikiConfig.SharedFileDirectory);
+            var file1 = sharedFiles.First(x => x.Name == wikiConfig.SharedFile1);
+            var file2 = sharedFiles.First(x => x.Name == wikiConfig.SharedImageFile1);
+
+            var linkSharedFiles = await client.LinkWikiSharedFileAsync(wiki.Id, new[] { file1.Id, file2.Id });
+            Assert.AreEqual(linkSharedFiles.Count, 2);
+            Assert.AreEqual(linkSharedFiles[0].Name, wikiConfig.SharedFile1);
+            Assert.AreEqual(linkSharedFiles[1].Name, wikiConfig.SharedImageFile1);
+
+            var sharedFileDeleted = await client.UnlinkWikiSharedFileAsync(wiki.Id, linkSharedFiles[0].Id);
+            Assert.AreEqual(sharedFileDeleted.Name, wikiConfig.SharedFile1);
+
+            var getSharedFiles = await client.GetWikiSharedFilesAsync(wiki.Id);
+            Assert.AreEqual(getSharedFiles.Count, 1);
+            Assert.AreEqual(getSharedFiles[0].Name, wikiConfig.SharedImageFile1);
 
             await client.DeleteWikiAsync(wiki.Id, false);
         }

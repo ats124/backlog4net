@@ -25,6 +25,7 @@ namespace Backlog4net.Test
         private static string projectKey;
         private static long projectId;
         private static WikiConfig wikiConfig;
+        private static User ownUser;
 
         [ClassInitialize]
         public static async Task SetupClient(TestContext context)
@@ -40,6 +41,8 @@ namespace Backlog4net.Test
             projectId = project.Id;
 
             wikiConfig = WikiConfig.Instance.Value;
+
+            ownUser = await client.GetMyselfAsync();
         }
 
         [TestMethod]
@@ -160,5 +163,21 @@ namespace Backlog4net.Test
             await client.DeleteWikiAsync(wiki.Id, false);
         }
 
+        [TestMethod]
+        public async Task GetWikiStarsTestAsync()
+        {
+            var wiki = await client.CreateWikiAsync(new CreateWikiParams(projectId, "WikiStarsTest", "WikiStarsTestContent")
+            {
+                MailNotify = false,
+            });
+
+            await client.AddStarToWikiAsync(wiki.Id);
+
+            var stars = await client.GetWikiStarsAsync(wiki.Id);
+            Assert.AreEqual(stars[0].Presenter.Id, ownUser.Id);
+            Assert.AreEqual(stars[0].Presenter.Name, ownUser.Name);
+
+            await client.DeleteWikiAsync(wiki.Id, false);
+        }
     }
 }

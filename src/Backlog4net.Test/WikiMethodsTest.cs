@@ -144,5 +144,21 @@ namespace Backlog4net.Test
 
             await client.DeleteWikiAsync(wiki.Id, false);
         }
+
+        [TestMethod]
+        public async Task GetWikiTagsTestAsync()
+        {
+            var wiki = await client.CreateWikiAsync(new CreateWikiParams(projectId, "[TagTest]TagTest", "TagTestContent")
+            {
+                MailNotify = false,
+            });
+
+            var wikiTags = await client.GetWikiTagsAsync(projectId);
+            Assert.IsTrue(wikiTags.All(x => x.Id != 0));
+            Assert.IsTrue(wikiTags.Any(x => x.Name == "TagTest"));
+
+            await client.DeleteWikiAsync(wiki.Id, false);
+        }
+
     }
 }

@@ -21,7 +21,7 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public string HookUrl { get; private set; }
 
-        [JsonProperty]
+        [JsonProperty("allEvent")]
         public bool IsAllEvent { get; private set; }
 
         [JsonProperty]

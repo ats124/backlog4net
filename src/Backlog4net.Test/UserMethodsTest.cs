@@ -38,5 +38,30 @@ namespace Backlog4net.Test
             var project = await client.GetProjectAsync(projectKey);
             projectId = project.Id;
         }
+
+        [TestMethod]
+        public async Task UserAsyncTest()
+        {
+            var testUser1 = await client.CreateUserAsync(new CreateUserParams("testuser1", "password", "tesetuser1name", "testuser1@exsample.com", UserRoleType.Admin));
+            Assert.AreNotEqual(testUser1.Id, 0L);
+            Assert.AreEqual(testUser1.UserId, "testuser1");
+            Assert.AreEqual(testUser1.Name, "tesetuser1name");
+            Assert.AreEqual(testUser1.MailAddress, "testuser1@exsample.com");
+            Assert.AreEqual(testUser1.RoleType, UserRoleType.Admin);
+
+            var testUser1Get = await client.GetUserAsync(testUser1.Id);
+            Assert.AreEqual(testUser1Get.Id, testUser1.Id);
+            Assert.AreEqual(testUser1Get.UserId, testUser1.UserId);
+            Assert.AreEqual(testUser1Get.Name, testUser1.Name);
+            Assert.AreEqual(testUser1Get.MailAddress, testUser1.MailAddress);
+            Assert.AreEqual(testUser1Get.RoleType, testUser1.RoleType);
+
+            var users = await client.GetUsersAsync();
+            Assert.IsTrue(users.Any(x => x.Id == testUser1.Id && x.UserId == testUser1.UserId));
+
+            var userDeleted = await client.DeleteUserAsync(testUser1.Id);
+            Assert.AreEqual(userDeleted.Id, testUser1.Id);
+            Assert.AreEqual(userDeleted.UserId, testUser1.UserId);
+        }
     }
 }

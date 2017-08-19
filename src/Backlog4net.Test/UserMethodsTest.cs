@@ -70,5 +70,18 @@ namespace Backlog4net.Test
             var ownuser = await client.GetMyselfAsync();
             Assert.AreEqual(ownuser.UserId, generalConfig.OwnUserId);
         }
+
+        [TestMethod]
+        public async Task GetUserIconTestAsync()
+        {
+            var ownuser = await client.GetMyselfAsync();
+            using (var icon = await client.GetUserIconAsync(ownuser.Id))
+            using (var content = icon.Content)
+            {
+                var memstream = new MemoryStream();
+                await content.CopyToAsync(memstream);
+                Assert.AreNotEqual(memstream.Length, 0);
+            }
+        }
     }
 }

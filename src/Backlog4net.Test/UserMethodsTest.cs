@@ -63,5 +63,12 @@ namespace Backlog4net.Test
             Assert.AreEqual(userDeleted.Id, testUser1.Id);
             Assert.AreEqual(userDeleted.UserId, testUser1.UserId);
         }
+
+        [TestMethod]
+        public async Task GetMyselfTestAsync()
+        {
+            var ownuser = await client.GetMyselfAsync();
+            Assert.AreEqual(ownuser.UserId, generalConfig.OwnUserId);
+        }
     }
 }

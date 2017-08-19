@@ -41,5 +41,36 @@ namespace Backlog4net.Test
 
             ownUser = await client.GetMyselfAsync();
         }
+
+        [TestMethod]
+        public async Task WatchingTestAsync()
+        {
+            var issueTypes = await client.GetIssueTypesAsync(projectId);
+            var issue = await client.CreateIssueAsync(new CreateIssueParams(projectId, "WatchingTestIssue", issueTypes.First().Id, IssuePriorityType.High));
+
+            var watch = await client.AddWatchToIssueAsync(issue.Id, "Note");
+            Assert.AreNotEqual(watch.Id, 0);
+            Assert.AreEqual(watch.Issue.Id, issue.Id);
+            Assert.AreEqual(watch.Note, "Note");
+            Assert.IsNotNull(watch.Created);
+            Assert.IsNotNull(watch.Updated);
+
+            await client.MarkAsCheckedUserWatchesAsync(ownUser.Id);
+
+            var watchGet = await client.GetWatchAsync(watch.Id);
+            Assert.AreEqual(watchGet.Id, watch.Id);
+            Assert.AreEqual(watchGet.Note, watch.Note);
+            Assert.AreEqual(watchGet.Issue.Id, watch.Issue.Id);
+
+            var watchUpdated = await client.UpdateWatchAsync(new UpdateWatchParams(watch.Id) { Note = "NoteUpdated" });
+            Assert.AreEqual(watchUpdated.Id, watch.Id);
+            Assert.AreEqual(watchUpdated.Note, "NoteUpdated");
+
+            var watchDeleted =  await client.DeleteWatchAsync(watch.Id);
+            Assert.AreEqual(watchDeleted.Id, watchUpdated.Id);
+            Assert.AreEqual(watchDeleted.Note, watchUpdated.Note);
+
+            await client.DeleteIssueAsync(issue.Id);
+        }
     }
 }

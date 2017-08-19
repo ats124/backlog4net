@@ -10,8 +10,6 @@ namespace Backlog4net
 
         bool AlreadyRead { get; }
 
-        string AlreadyReadAsString { get; }
-
         string Note { get; }
 
         string Type { get; }

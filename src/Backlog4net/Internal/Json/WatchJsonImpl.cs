@@ -15,9 +15,6 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public bool AlreadyRead { get; private set; }
 
-        [JsonIgnore]
-        public string AlreadyReadAsString { get; private set; }
-
         [JsonProperty]
         public string Note { get; private set; }
 

@@ -135,5 +135,15 @@ namespace Backlog4net.Test
             Assert.AreEqual(viewedProjects[0].Project.Id, 61932L);
             Assert.AreEqual(viewedProjects[0].Updated, new DateTime(2017, 8, 1, 7, 56, 12, DateTimeKind.Utc));
         }
+
+        [TestMethod]
+        public async Task GetRecentlyViewedWikisTestAsync()
+        {
+            await client.GetRecentlyViewedWikisAsync(new OffsetParams() { Count = 1, Offset = 2, Order = Order.Asc });
+
+            var viewedWikis = JsonConvert.DeserializeObject<ViewedWiki[]>(File.ReadAllText(@"TestData\viewed-wikis.json"), new ViewedWikiJsonImpl.JsonConverter());
+            Assert.AreEqual(viewedWikis[0].Page.Id, 182111L);
+            Assert.AreEqual(viewedWikis[0].Updated, new DateTime(2017, 8, 15, 17, 6, 6, DateTimeKind.Utc));
+        }
     }
 }

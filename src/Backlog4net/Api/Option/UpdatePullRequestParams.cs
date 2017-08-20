@@ -23,16 +23,10 @@ namespace Backlog4net.Api.Option
 
         public string Description { set => AddNewParamValue(value); }
 
-        public string Base { set => AddNewParamValue(value); }
-
-        public string Branch { set => AddNewParamValue(value); }
-
         public long IssueId { set => AddNewParamValue(value); }
 
         public long AssigneeId { set => AddNewParamValue(value); }
 
-        public IList<object> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
-
-        public IList<object> AttachmentIds { set => AddNewArrayParams("attachmentId[]", value); }
+        public IList<long> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
     }
 }

@@ -41,5 +41,20 @@ namespace Backlog4net.Test
 
             ownUser = await client.GetMyselfAsync();
         }
+
+        [TestMethod]
+        public async Task AddStarToIssueAndCommentAsync()
+        {
+            var issueTypes = await client.GetIssueTypesAsync(projectId);
+            var issue = await client.CreateIssueAsync(new CreateIssueParams(projectId, "StarTestIssue", issueTypes.First().Id, IssuePriorityType.High));
+
+            await client.AddStarToIssueAsync(issue.Id);
+
+            var issueComment = await client.AddIssueCommentAsync(new AddIssueCommentParams(issue.Id, "Comment"));
+
+            await client.AddStarToCommentAsync(issueComment.Id);
+
+            await client.DeleteIssueAsync(issue.Id);
+        }
     }
 }

@@ -96,5 +96,24 @@ namespace Backlog4net.Test
             Assert.IsTrue(activities.Any(x => x is IssueCreatedActivity issueCreated && issueCreated.Content.Id == issue.Id));
 
         }
+
+        [TestMethod]
+        public async Task GetUserStarsAndCountTestAsync()
+        {
+            var ownuser = await client.GetMyselfAsync();
+
+            var issueTypes = await client.GetIssueTypesAsync(projectId);
+            var issue = await client.CreateIssueAsync(new CreateIssueParams(projectId, "GetUsersStarsTest", issueTypes.First().Id, IssuePriorityType.High));
+
+            await client.AddStarToIssueAsync(issue.Id);
+
+            var count = await client.GetUserStarCountAsync(ownuser.Id, new GetStarsParams() { Since = DateTime.UtcNow.AddDays(-1).Date, Until = DateTime.UtcNow.Date });
+            Assert.IsTrue(count > 0);
+
+            var stars = await client.GetUserStarsAsync(ownuser.Id, new QueryParams() { Count = 1, Order = Order.Asc });
+            Assert.IsTrue(stars.Any());
+
+            await client.DeleteIssueAsync(issue.Id);
+        }
     }
 }

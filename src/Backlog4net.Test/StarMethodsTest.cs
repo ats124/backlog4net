@@ -69,5 +69,18 @@ namespace Backlog4net.Test
 
             await client.DeleteWikiAsync(wiki.Id, false);
         }
+
+        [TestMethod]
+        public async Task AddStarToPullRequestAndCommentTestAsync()
+        {
+            var gitrepos = await client.GetGitRepositoriesAsync(projectId);
+            var pullRequests = await client.GetPullRequestsAsync(projectId, gitrepos.First().Id);
+
+            await client.AddStarToPullRequestAsync(pullRequests.First().Id);
+
+            var pullRequestComments = await client.GetPullRequestCommentsAsync(projectId, gitrepos.First().Id, pullRequests.First().Number, new QueryParams() { });
+
+            await client.AddStarToPullRequestCommentAsync(pullRequestComments.First().Id);
+        }
     }
 }

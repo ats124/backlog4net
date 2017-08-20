@@ -66,6 +66,8 @@
     <Compile Include="ApiOptionsTest.cs" />
     <Compile Include="ActivityJsonImplTest.cs" />
     <Compile Include="CustomFieldsJsonImplTest.cs" />
+    <Compile Include="GitPullRequestMethodsTest.cs" />
+    <Compile Include="TestConfig\GitConfig.cs" />
     <Compile Include="TestConfig\WikiConfig.cs" />
     <Compile Include="UserMethodsTest.cs" />
     <Compile Include="StatusResolutionPriorityMethodsTest.cs" />
@@ -85,8 +87,14 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="TestConfig\ForCIAndSample\general.json" />
+    <None Include="TestConfig\ForCIAndSample\git.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestConfig\ForCIAndSample\wiki.json" />
     <None Include="TestConfig\ForCIAndSample\issues.json" />
+    <None Include="TestConfig\git.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestConfig\issues.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -117,6 +125,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\activity-issue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\repository.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\space-diskUsage.json">

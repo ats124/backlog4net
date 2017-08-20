@@ -1,0 +1,31 @@
+﻿{
+  "id": 16272,
+  "projectId": 61932,
+  "name": "test",
+  "description": "test-description",
+  "hookUrl": "test-hook-url",
+  "httpUrl": "https://test-4net.backlog.jp/git/BLG4NT/test.git",
+  "sshUrl": "test-4net@test-4net.git.backlog.jp:/BLG4NT/test.git",
+  "displayOrder": 2147483646,
+  "pushedAt": "2017-08-20T10:29:08Z",
+  "createdUser": {
+    "id": 137752,
+    "userId": "ats124",
+    "name": "ats124",
+    "roleType": 1,
+    "lang": null,
+    "mailAddress": "ats124@section-9.tech",
+    "nulabAccount": null
+  },
+  "created": "2017-08-20T10:25:48Z",
+  "updatedUser": {
+    "id": 137752,
+    "userId": "ats124",
+    "name": "ats124",
+    "roleType": 1,
+    "lang": null,
+    "mailAddress": "ats124@section-9.tech",
+    "nulabAccount": null
+  },
+  "updated": "2017-08-20T10:25:48Z"
+}

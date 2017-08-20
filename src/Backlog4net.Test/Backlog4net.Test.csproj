@@ -67,6 +67,7 @@
     <Compile Include="ActivityJsonImplTest.cs" />
     <Compile Include="CustomFieldsJsonImplTest.cs" />
     <Compile Include="TestConfig\WikiConfig.cs" />
+    <Compile Include="UserMethodsTest.cs" />
     <Compile Include="WebhookMethodsTest.cs" />
     <Compile Include="WatchingMethodsTest.cs" />
     <Compile Include="WikiMethodsTest.cs" />
@@ -123,6 +124,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\space.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\viewed-wikis.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\viewed-projects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\viewed-issues.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

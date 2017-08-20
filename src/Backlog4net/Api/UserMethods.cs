@@ -104,13 +104,13 @@ namespace Backlog4net.Api
         /// <param name="numericUserId">the user identifier</param>
         /// <param name="params">watch count parameters</param>
         /// <returns>the count of received watch</returns>
-        Task<int> GetUserWatchCountAsync(long numericUserId, GetWatchesParams @params, CancellationToken? token = null);
+        Task<int> GetUserWatchCountAsync(long numericUserId, GetWatchCountParams @params = null, CancellationToken? token = null);
 
         /// <summary>
         /// Returns the received watchings
         /// </summary>
         /// <param name="numericUserId">the user identifier</param>
         /// <returns>the watchings in a list</returns>
-        Task<ResponseList<Watch>> GetUserWatchesAsync(long numericUserId, CancellationToken? token = null);
+        Task<ResponseList<Watch>> GetUserWatchesAsync(long numericUserId, GetWatchesParams @params = null, CancellationToken? token = null);
     }
 }

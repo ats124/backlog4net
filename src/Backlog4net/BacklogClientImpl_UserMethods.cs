@@ -118,7 +118,7 @@ namespace Backlog4net
             }
         }
 
-        public async Task<int> GetUserWatchCountAsync(long numericUserId, GetWatchesParams @params, CancellationToken? token = default(CancellationToken?))
+        public async Task<int> GetUserWatchCountAsync(long numericUserId, GetWatchCountParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
             using (var response = await Get(BuildEndpoint($"users/{numericUserId}/watchings/count"), @params, token: token))
             using (var content = response.Content)
@@ -127,9 +127,9 @@ namespace Backlog4net
             }
         }
 
-        public async Task<ResponseList<Watch>> GetUserWatchesAsync(long numericUserId, CancellationToken? token = default(CancellationToken?))
+        public async Task<ResponseList<Watch>> GetUserWatchesAsync(long numericUserId, GetWatchesParams @params = null, CancellationToken? token = default(CancellationToken?))
         {
-            using (var response = await Get(BuildEndpoint($"users/{numericUserId}/watchings"), token: token))
+            using (var response = await Get(BuildEndpoint($"users/{numericUserId}/watchings"), @params, token: token))
             using (var content = response.Content)
             {
                 return await Factory.CreateWatchListAsync(response);

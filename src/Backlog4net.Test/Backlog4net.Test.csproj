@@ -126,6 +126,9 @@
     <None Include="TestData\space.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\viewed-projects.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\viewed-issues.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -125,5 +125,15 @@ namespace Backlog4net.Test
             Assert.AreEqual(viewedIssues[0].Issue.Id, 2941432L);
             Assert.AreEqual(viewedIssues[0].Updated, new DateTime(2017, 8, 20, 4, 2, 27, DateTimeKind.Utc));
         }
+
+        [TestMethod]
+        public async Task GetRecentlyViewedProjectsTestAsync()
+        {
+            await client.GetRecentlyViewedProjectsAsync(new OffsetParams() { Count = 1, Offset = 2, Order = Order.Asc });
+
+            var viewedProjects = JsonConvert.DeserializeObject<ViewedProject[]>(File.ReadAllText(@"TestData\viewed-projects.json"), new ViewedProjectJsonImpl.JsonConverter());
+            Assert.AreEqual(viewedProjects[0].Project.Id, 61932L);
+            Assert.AreEqual(viewedProjects[0].Updated, new DateTime(2017, 8, 1, 7, 56, 12, DateTimeKind.Utc));
+        }
     }
 }

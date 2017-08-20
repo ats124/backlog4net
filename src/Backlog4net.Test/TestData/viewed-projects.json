@@ -1,0 +1,17 @@
+﻿[
+  {
+    "project": {
+      "id": 61932,
+      "projectKey": "BLG4NT",
+      "name": "Backlog4net-Test",
+      "chartEnabled": true,
+      "subtaskingEnabled": true,
+      "projectLeaderCanEditProjectLeader": false,
+      "useWikiTreeView": true,
+      "textFormattingRule": "backlog",
+      "archived": false,
+      "displayOrder": 2147483646
+    },
+    "updated": "2017-08-01T07:56:12Z"
+  }
+]

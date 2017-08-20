@@ -83,5 +83,18 @@ namespace Backlog4net.Test
                 Assert.AreNotEqual(memstream.Length, 0);
             }
         }
+
+        [TestMethod]
+        public async Task GetUserActivitiesTestAsync()
+        {
+            var issueTypes = await client.GetIssueTypesAsync(projectId);
+            var issue = await client.CreateIssueAsync(new CreateIssueParams(projectId, "GetUserActivitiesTest", issueTypes.First().Id, IssuePriorityType.High));
+            await client.DeleteIssueAsync(issue.Id);
+
+            var ownuser = await client.GetMyselfAsync();
+            var activities = await client.GetUserActivitiesAsync(ownuser.Id, new ActivityQueryParams() { ActivityType = new[] { ActivityType.IssueCreated } });
+            Assert.IsTrue(activities.Any(x => x is IssueCreatedActivity issueCreated && issueCreated.Content.Id == issue.Id));
+
+        }
     }
 }

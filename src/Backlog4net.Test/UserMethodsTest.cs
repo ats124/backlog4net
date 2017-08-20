@@ -145,5 +145,34 @@ namespace Backlog4net.Test
             Assert.AreEqual(viewedWikis[0].Page.Id, 182111L);
             Assert.AreEqual(viewedWikis[0].Updated, new DateTime(2017, 8, 15, 17, 6, 6, DateTimeKind.Utc));
         }
+
+        [TestMethod]
+        public async Task UserWatchsAndCountTestAsync()
+        {
+            var ownuser = await client.GetMyselfAsync();
+
+            await client.GetUserWatchCountAsync(ownuser.Id, new GetWatchCountParams() { AlreadyRead = true });
+            await client.GetUserWatchCountAsync(ownuser.Id, new GetWatchCountParams() { ResourceAlreadyRead = true });
+
+            var issueTypes = await client.GetIssueTypesAsync(projectId);
+            var issue = await client.CreateIssueAsync(new CreateIssueParams(projectId, "WatchingTestIssue", issueTypes.First().Id, IssuePriorityType.High));
+
+            var watch = await client.AddWatchToIssueAsync(issue.Id, "Note");
+
+            var count = await client.GetUserWatchCountAsync(ownuser.Id);
+            Assert.AreNotEqual(count, 0);
+
+            var watches = await client.GetUserWatchesAsync(ownuser.Id, new GetWatchesParams()
+            {
+                Count = 100,
+                ResourceAlreadyRead = true,
+                Sort = GetWatchsSortKey.Created,
+                Order = Order.Asc,
+                IssueIds = new[] { issue.Id }
+            });
+            Assert.IsTrue(watches.Any(x => x.Issue.Id == issue.Id));
+
+            await client.DeleteIssueAsync(issue.Id);
+        }
     }
 }

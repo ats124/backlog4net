@@ -297,3 +297,4 @@ src/Backlog4net.Test/TestConfig/general.json
 src/Backlog4net.Test/TestConfig/projects.json
 src/Backlog4net.Test/TestConfig/issues.json
 src/Backlog4net.Test/TestConfig/wiki.json
+src/Backlog4net.Test/TestConfig/git.json

@@ -1,0 +1,11 @@
+﻿{
+  "repoName": "test",
+  "base": "master",
+  "branch": "pr-test",
+  "notifiedUserId1": "ats124_3",
+  "notifiedUserId2": "ats124_4",
+  "notifiedUserId3": "ats124_5",
+  "assigneeUserId1": "ats124_3",
+  "assigneeUserId2": "ats124_4",
+  "assigneeUserId3": "ats124_5"
+}

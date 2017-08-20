@@ -1,0 +1,52 @@
+﻿[
+    {
+      "page": {
+        "id": 182111,
+        "projectId": 61932,
+        "name": "Home",
+        "content": "* BacklogのWikiへようこそ！\nWikiを利用することで複数のユーザーでドキュメントを編集し、記録を残していくことができます。\nプロジェクトの概要や必要な情報をWikiの最初のページにまとめておけば、新しいメンバーがスムーズにプロジェクトに参加できるようになるでしょう。\n\n以下のようなドキュメントを作ってみましょう！\n\n* このプロジェクトの概要\nプロジェクトの簡単な説明を記載します。\n\n* 期間\nおおまかなスケジュールや重要なイベント、最終的な期限を記載します。\n\n* 事前準備\nこのプロジェクトに参加する方は、以下の事前準備を行ってください。\n- 概要説明を受ける\n- 各種アカウントを発行する\n- 環境を構築する\n-- 手順1\n-- 手順2\n\n* 運用ポリシー\n課題はメンバーの誰が作ってもOKです。\n課題が完了したら、状態を「処理済み」に変更してxxxさんを担当に設定してください。\nxxxさんは確認後、問題なしと判断したら課題を「完了」としてください。\n\n* ドキュメント\n- ドキュメント1\n- ドキュメント2\n\n* 参考リンク\n[[backlog:http://www.backlog.jp]]\n\n* テキスト整形のルール\n\n** 見出し\n見出しでテキストを階層化することで、ドキュメントを理解しやすくできます。\n\n* 見出し1\n** 見出し2\n*** 見出し3\n**** 見出し4\n***** 見出し5\n\n** テキスト整形\n文字を整形して、強調したい部分を目立たせたり、整えることができます。ツールバーを使用することもできます。\n\n引用や絵文字を使うこともできます。\n\n{quote}\n引用した\n文章です。\n{/quote}\n\nプログラムのソースコードを見やすく貼り付けることもできます。\n\n{code}\npackage helloworld;\npublic class Hello {\n  public String sayHello {\n    return \"Hello\";\n  }\n}\n{/code}\n\n** リストとテーブル\n箇条書き、数字付きの箇条書きやテーブルを使って、情報を整理することができます。\n\n*** 箇条書き\n- やること 1\n- やること 2\n- やること 3\n\n*** 箇条書き（数字）\n+ 手順 1\n+ 手順 2\n+ 手順 3\n\n*** テーブル\n| 項目名 1 | 項目名 2 | 項目名 3 |\n| タイトル | 概要 | 詳細 |\n| タイトル | 概要 | 詳細 |\n\n** リンク\nhtmlを知らなくても、簡単にリンクを貼ることができます。\n\n- http://www.backlog.jp/\n- [[Backlog:http://www.backlog.jp/]]\n\n** ファイル添付\n関連するファイルを添付することができます。\n\n更に詳細なテキスト整形のルールを知りたい場合は、右上の「テキスト整形のルール」をご確認下さい。",
+        "tags": [],
+        "attachments": [],
+        "sharedFiles": [],
+        "stars": [
+          {
+            "id": 423664,
+            "comment": null,
+            "url": "https://test-4net.backlog.jp/alias/wiki/182111",
+            "title": "[BLG4NT] Home",
+            "presenter": {
+              "id": 137752,
+              "userId": "ats124",
+              "name": "ats124",
+              "roleType": 1,
+              "lang": null,
+              "mailAddress": "ats124@section-9.tech",
+              "nulabAccount": null
+            },
+            "created": "2017-08-15T14:27:10Z"
+          }
+        ],
+        "createdUser": {
+          "id": 137752,
+          "userId": "ats124",
+          "name": "ats124",
+          "roleType": 1,
+          "lang": null,
+          "mailAddress": "ats124@section-9.tech",
+          "nulabAccount": null
+        },
+        "created": "2017-08-01T07:11:07Z",
+        "updatedUser": {
+          "id": 137752,
+          "userId": "ats124",
+          "name": "ats124",
+          "roleType": 1,
+          "lang": null,
+          "mailAddress": "ats124@section-9.tech",
+          "nulabAccount": null
+        },
+        "updated": "2017-08-01T07:11:07Z"
+      },
+        "updated": "2017-08-15T17:06:06Z"
+    }
+]

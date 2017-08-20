@@ -22,7 +22,5 @@ namespace Backlog4net.Api.Option
         public long Number { get; private set; }
 
         public long CommentId { get; private set; }
-
-        public IList<long> NotifiedUserIds { set => AddNewArrayParams("notifiedUserId[]", value); }
     }
 }

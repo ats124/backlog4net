@@ -33,7 +33,7 @@ namespace Backlog4net.Internal.Json
         [JsonProperty(ItemConverterType = typeof(StarJsonImpl.JsonConverter))]
         public Star[] Stars { get; private set; }
 
-        [JsonProperty(ItemConverterType = typeof(NotificationInfoJsonImpl.JsonConverter))]
+        [JsonProperty(ItemConverterType = typeof(NotificationJsonImpl.JsonConverter))]
         public Notification[] Notifications { get; private set; }
     }
 }

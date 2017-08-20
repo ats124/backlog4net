@@ -115,5 +115,15 @@ namespace Backlog4net.Test
 
             await client.DeleteIssueAsync(issue.Id);
         }
+
+        [TestMethod]
+        public async Task GetRecentlyViewedIssuesTestAsync()
+        {
+            await client.GetRecentlyViewedIssuesAsync(new OffsetParams() { Count = 1, Offset = 2, Order = Order.Asc });
+
+            var viewedIssues = JsonConvert.DeserializeObject<ViewedIssue[]>(File.ReadAllText(@"TestData\viewed-issues.json"), new ViewedIssueJsonImpl.JsonConverter());
+            Assert.AreEqual(viewedIssues[0].Issue.Id, 2941432L);
+            Assert.AreEqual(viewedIssues[0].Updated, new DateTime(2017, 8, 20, 4, 2, 27, DateTimeKind.Utc));
+        }
     }
 }

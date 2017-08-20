@@ -56,5 +56,18 @@ namespace Backlog4net.Test
 
             await client.DeleteIssueAsync(issue.Id);
         }
+
+        [TestMethod]
+        public async Task AddStarToWikiTestAsync()
+        {
+            var wiki = await client.CreateWikiAsync(new CreateWikiParams(projectId, "StarTest", "StarTestContent")
+            {
+                MailNotify = false,
+            });
+
+            await client.AddStarToWikiAsync(wiki.Id);
+
+            await client.DeleteWikiAsync(wiki.Id, false);
+        }
     }
 }

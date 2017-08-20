@@ -4,10 +4,19 @@ using System.Text;
 
 namespace Backlog4net.Api.Option
 {
-    public class GetWatchesParams : GetParams
+    public class GetWatchesParams : QueryParams
     {
-        public bool AlreadyRead { set => AddNewParamValue(value); }
+        public GetWatchsSortKey Sort { set => AddNewParamValue(value.ToString().ToLowerInvariant()); }
 
         public bool ResourceAlreadyRead { set => AddNewParamValue(value); }
+
+        public IList<long> IssueIds { set => AddNewArrayParams("issueId[]", value); }
+    }
+
+    public enum GetWatchsSortKey
+    {
+        Created,
+        Updated,
+        IssueUpdated,
     }
 }

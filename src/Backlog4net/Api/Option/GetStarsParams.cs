@@ -6,8 +6,8 @@ namespace Backlog4net.Api.Option
 {
     public class GetStarsParams : GetParams
     {
-        public string Since { set => AddNewParamValue(value); }
+        public DateTime Since { set => AddNewParamValue(ToDateString(value)); }
 
-        public string Until { set => AddNewParamValue(value); }
+        public DateTime Until { set => AddNewParamValue(ToDateString(value)); }
     }
 }

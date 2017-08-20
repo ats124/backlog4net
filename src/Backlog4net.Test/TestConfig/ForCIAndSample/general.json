@@ -1,5 +1,6 @@
 ﻿{
   "apiKey": "APIKEY",
   "spaceKey": "test-4net",
-  "projectKey": "BLG4NT"
+  "projectKey": "BLG4NT",
+  "ownUserId" : "ats124"
 }

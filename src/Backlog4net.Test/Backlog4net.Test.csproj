@@ -69,6 +69,7 @@
     <Compile Include="TestConfig\WikiConfig.cs" />
     <Compile Include="UserMethodsTest.cs" />
     <Compile Include="StatusResolutionPriorityMethodsTest.cs" />
+    <Compile Include="StarMethodsTest.cs" />
     <Compile Include="WebhookMethodsTest.cs" />
     <Compile Include="WatchingMethodsTest.cs" />
     <Compile Include="WikiMethodsTest.cs" />

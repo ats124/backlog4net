@@ -107,5 +107,12 @@ namespace Backlog4net.Api.Option
 
         internal static string ToDateString(DateTime? date)
             => date.HasValue ? date.Value.ToString("yyyy-MM-dd") : string.Empty;
+
+        internal static string ToDateTimeString(DateTime? date)
+            => date.HasValue 
+                ? date.Value.Kind == DateTimeKind.Local
+                    ? date.Value.ToString("yyyy-MM-ddTHH:mm:sszzzz") 
+                    : date.Value.ToString("yyyy-MM-ddTHH:mm:ss'Z'")
+                : string.Empty;
     }
 }

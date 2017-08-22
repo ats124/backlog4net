@@ -14,6 +14,8 @@ namespace Backlog4net.Test.TestConfig
         [JsonProperty]
         public string ApiKey { get; private set; }
         [JsonProperty]
+        public string ApiKey2 { get; private set; }
+        [JsonProperty]
         public string SpaceKey { get; private set; }
         [JsonProperty]
         public string ProjectKey { get; private set; }

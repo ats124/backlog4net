@@ -13,10 +13,10 @@ namespace Backlog4net.Api.Option
 
         public long CreatedUserId { set => AddNewParamValue(value); }
 
-        public string Created { set => AddNewParamValue(value); }
+        public DateTime Created { set => AddNewParamValue(ToDateTimeString(value)); }
 
         public long UpdatedUserId { set => AddNewParamValue(value); }
 
-        public string Updated { set => AddNewParamValue(value); }
+        public DateTime Updated { set => AddNewParamValue(ToDateTimeString(value)); }
     }
 }

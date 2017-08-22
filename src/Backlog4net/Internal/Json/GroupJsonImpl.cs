@@ -16,7 +16,7 @@ namespace Backlog4net.Internal.Json
         [JsonProperty]
         public string Name { get; private set; }
 
-        [JsonProperty, JsonConverter(typeof(UserJsonImpl.JsonConverter))]
+        [JsonProperty(ItemConverterType = typeof(UserJsonImpl.JsonConverter))]
         public User[] Members { get; private set; }
 
         [JsonProperty]

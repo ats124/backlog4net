@@ -78,5 +78,21 @@ namespace Backlog4net.Test
 
             await client.DeleteIssueAsync(issue.Id);
         }
+
+        [TestMethod]
+        public async Task ImportWikiTestAsync()
+        {
+            var wiki = await client.ImportWikiAsync(new ImportWikiParams(projectId, "ImportWikiTest", "ImportWikiTestContent")
+            {
+                CreatedUserId = anotherUser.Id,
+                Created = new DateTime(2017, 8, 1, 10, 5, 10, DateTimeKind.Utc),
+                UpdatedUserId = anotherUser.Id,
+                Updated = new DateTime(2017, 8, 2, 10, 5, 10, DateTimeKind.Utc),
+            });
+            Assert.AreEqual(wiki.CreatedUser.Id, anotherUser.Id);
+            Assert.AreEqual(wiki.Created, new DateTime(2017, 8, 1, 10, 5, 10, DateTimeKind.Utc));
+
+            await client.DeleteWikiAsync(wiki.Id, false);
+        }
     }
 }

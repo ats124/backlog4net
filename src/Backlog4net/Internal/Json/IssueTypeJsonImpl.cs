@@ -20,5 +20,8 @@ namespace Backlog4net.Internal.Json
 
         [JsonProperty]
         public string Color { get; private set; }
+
+        [JsonProperty]
+        public long DisplayOrder { get; private set; }
     }
 }

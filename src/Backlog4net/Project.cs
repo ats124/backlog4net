@@ -23,7 +23,6 @@ namespace Backlog4net
 
         TextFormattingRule TextFormattingRule { get; }
 
-        [JsonProperty("archived")]
         bool IsArchived { get; }
 
         long DisplayOrder { get; }

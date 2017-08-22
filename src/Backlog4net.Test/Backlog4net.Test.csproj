@@ -72,6 +72,7 @@
     <Compile Include="UserMethodsTest.cs" />
     <Compile Include="StatusResolutionPriorityMethodsTest.cs" />
     <Compile Include="StarMethodsTest.cs" />
+    <Compile Include="NotificationMethodsTest.cs" />
     <Compile Include="WebhookMethodsTest.cs" />
     <Compile Include="WatchingMethodsTest.cs" />
     <Compile Include="WikiMethodsTest.cs" />
@@ -125,6 +126,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\activity-issue.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\notification.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="TestData\repository.json">

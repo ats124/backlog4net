@@ -13,5 +13,7 @@ namespace Backlog4net
         string Name { get; }
 
         string Color { get; }
+
+        long DisplayOrder { get; }
     }
 }

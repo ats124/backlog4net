@@ -1,0 +1,266 @@
+﻿{
+    "id": 14150866,
+    "alreadyRead": true,
+    "reason": 13,
+    "resourceAlreadyRead": true,
+  "project": {
+    "id": 61932,
+    "projectKey": "BLG4NT",
+    "name": "Backlog4net-Test",
+    "chartEnabled": true,
+    "subtaskingEnabled": true,
+    "projectLeaderCanEditProjectLeader": true,
+    "useWikiTreeView": true,
+    "textFormattingRule": "backlog",
+    "archived": true,
+    "displayOrder": 2147483646
+  },
+  "issue": {
+    "id": 2954451,
+    "projectId": 61932,
+    "issueKey": "BLG4NT-381",
+    "keyId": 381,
+    "issueType": {
+      "id": 281519,
+      "projectId": 61932,
+      "name": "タスク",
+      "color": "#7ea800",
+      "displayOrder": 3
+    },
+    "summary": "NotificationTestIssue",
+    "description": "Description",
+    "resolution": null,
+    "priority": {
+      "id": 2,
+      "name": "高"
+    },
+    "status": {
+      "id": 1,
+      "name": "未対応"
+    },
+    "assignee": {
+      "id": 2,
+      "name": "eguchi",
+      "roleType": 2,
+      "lang": null,
+      "mailAddress": "eguchi@nulab.example"
+    }, 
+    "category": [],
+    "versions": [],
+    "milestone": [],
+    "startDate": null,
+    "dueDate": null,
+    "estimatedHours": null,
+    "actualHours": null,
+    "parentIssueId": null,
+    "createdUser": {
+      "id": 137785,
+      "userId": "ats124_5",
+      "name": "ats124_5",
+      "roleType": 2,
+      "lang": null,
+      "mailAddress": "ats124+5@section-9.tech",
+      "nulabAccount": null
+    },
+    "created": "2017-08-21T13:54:23Z",
+    "updatedUser": {
+      "id": 137785,
+      "userId": "ats124_5",
+      "name": "ats124_5",
+      "roleType": 2,
+      "lang": null,
+      "mailAddress": "ats124+5@section-9.tech",
+      "nulabAccount": null
+    },
+    "updated": "2017-08-21T13:54:23Z",
+    "customFields": [],
+    "attachments": [],
+    "sharedFiles": [],
+    "stars": []
+  },
+    "comment": {
+        "id": 14197041,
+        "content": null,
+        "changeLog": [
+            {
+                "field": "notification",
+                "newValue": null,
+                "originalValue": null,
+                "attachmentInfo": null,
+                "attributeInfo": null,
+                "notificationInfo": {
+                    "type": "issue.create"
+                }
+            }
+        ],
+        "createdUser": {
+            "id": 137785,
+            "userId": "ats124_5",
+            "name": "ats124_5",
+            "roleType": 2,
+            "lang": null,
+            "mailAddress": "ats124+5@section-9.tech",
+            "nulabAccount": null
+        },
+        "created": "2017-08-21T13:54:23Z",
+        "updated": "2017-08-21T13:54:23Z",
+        "stars": [],
+        "notifications": [
+            {
+                "id": 14222825,
+                "alreadyRead": false,
+                "reason": 3,
+                "user": {
+                    "id": 137752,
+                    "userId": "ats124",
+                    "name": "ats124",
+                    "roleType": 1,
+                    "lang": null,
+                    "mailAddress": "ats124@section-9.tech",
+                    "nulabAccount": null
+                },
+                "resourceAlreadyRead": false
+            }
+        ]
+    },
+  "pullRequest": {
+    "id": 43875,
+    "projectId": 61932,
+    "repositoryId": 16272,
+    "number": 18,
+    "summary": "PRSummaryUpdated",
+    "description": "PRDescription",
+    "base": "master",
+    "branch": "pr-test",
+    "status": {
+      "id": 1,
+      "name": "Open"
+    },
+    "assignee": {
+      "id": 137784,
+      "userId": null,
+      "name": "ats124_4",
+      "roleType": 2,
+      "lang": null,
+      "mailAddress": null,
+      "nulabAccount": null
+    },
+    "issue": null,
+    "baseCommit": null,
+    "branchCommit": null,
+    "closeAt": null,
+    "mergeAt": null,
+    "createdUser": {
+      "id": 137752,
+      "userId": null,
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": null,
+      "nulabAccount": null
+    },
+    "created": "2017-08-20T15:54:53Z",
+    "updatedUser": {
+      "id": 137752,
+      "userId": null,
+      "name": "ats124",
+      "roleType": 1,
+      "lang": null,
+      "mailAddress": null,
+      "nulabAccount": null
+    },
+    "updated": "2017-08-20T15:54:55Z",
+    "attachments": [
+      {
+        "id": 2514,
+        "name": "Test.txt",
+        "size": 4,
+        "createdUser": {
+          "id": 137752,
+          "userId": null,
+          "name": "ats124",
+          "roleType": 1,
+          "lang": null,
+          "mailAddress": null,
+          "nulabAccount": null
+        },
+        "created": "2017-08-20T15:54:53Z"
+      }
+    ],
+    "stars": []
+  },
+    "pullRequestComment": {
+        "id": 129562,
+        "oldBlobId": null,
+        "newBlobId": null,
+        "filePath": null,
+        "position": null,
+        "content": "",
+        "changeLog": [
+            {
+                "field": "summary",
+                "newValue": "PRSummaryUpdated",
+                "originalValue": "PRSummary"
+            },
+            {
+                "field": "assigner",
+                "newValue": "ats124_4",
+                "originalValue": "ats124_3"
+            }
+        ],
+        "createdUser": {
+            "id": 137752,
+            "userId": null,
+            "name": "ats124",
+            "roleType": 1,
+            "lang": null,
+            "mailAddress": null,
+            "nulabAccount": null
+        },
+        "created": "2017-08-20T15:54:55Z",
+        "updated": "2017-08-20T15:54:55Z",
+        "stars": [],
+        "notifications": [
+            {
+                "id": 14150866,
+                "alreadyRead": true,
+                "reason": 13,
+                "user": {
+                    "id": 137785,
+                    "userId": "ats124_5",
+                    "name": "ats124_5",
+                    "roleType": 2,
+                    "lang": null,
+                    "mailAddress": "ats124+5@section-9.tech",
+                    "nulabAccount": null
+                },
+                "resourceAlreadyRead": false
+            },
+            {
+                "id": 14150867,
+                "alreadyRead": false,
+                "reason": 10,
+                "user": {
+                    "id": 137784,
+                    "userId": null,
+                    "name": "ats124_4",
+                    "roleType": 2,
+                    "lang": null,
+                    "mailAddress": null,
+                    "nulabAccount": null
+                },
+                "resourceAlreadyRead": false
+            }
+        ]
+    },
+    "sender": {
+        "id": 137752,
+        "userId": null,
+        "name": "ats124",
+        "roleType": 1,
+        "lang": null,
+        "mailAddress": null,
+        "nulabAccount": null
+    },
+    "created": "2017-08-20T15:54:55Z"
+}

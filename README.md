@@ -9,14 +9,12 @@ Backlog4net is a port of Backlog4j.
 * Backlog4j
   * [https://github.com/nulab/backlog4j](https://github.com/nulab/backlog4j)
 
-**STILL UNDER UNIT TESTING**
-
 ## Installation
 
 Getting started from downloading NuGet packages.
 
 ```
-PM> Install-Package backlog4net -Pre
+PM> Install-Package backlog4net
 ```
 
 ## Usage

@@ -2,18 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
-    <Version>1.0.0-alpha5</Version>
+    <Version>1.0.0</Version>
     <Authors>ats124</Authors>
     <Company />
-    <Description>Backlog4net is a Backlog binding library for .NET. (port of Backlog4j)</Description>
+    <Description>Backlog4net is a Backlog binding library for .NET.</Description>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageTags>backlog</PackageTags>
-    <PackageReleaseNotes>Fix some bugs
-This version is still under unit testing.</PackageReleaseNotes>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/ats124/backlog4net</PackageProjectUrl>
-    <AssemblyVersion>1.0.0.5</AssemblyVersion>
-    <FileVersion>1.0.0.5</FileVersion>
+    <AssemblyVersion>1.0.0.6</AssemblyVersion>
+    <FileVersion>1.0.0.6</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

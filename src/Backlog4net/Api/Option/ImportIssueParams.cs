@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class ImportIssueParams : CreateIssueParams
     {
-        public ImportIssueParams(IdOrKey projectId, string summary, long issueTypeId, IssuePriorityType priority)
+        public ImportIssueParams(long projectId, string summary, long issueTypeId, IssuePriorityType priority)
             : base(projectId, summary, issueTypeId, priority)
         {
         }

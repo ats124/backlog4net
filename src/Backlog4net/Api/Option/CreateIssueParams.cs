@@ -6,7 +6,7 @@ namespace Backlog4net.Api.Option
 {
     public class CreateIssueParams : PostParams
     {
-        public CreateIssueParams(IdOrKey projectId, string summary, long issueTypeId, IssuePriorityType priority)
+        public CreateIssueParams(long projectId, string summary, long issueTypeId, IssuePriorityType priority)
         {
             AddNewParam("projectId", projectId);
             AddNewParam("summary", summary);

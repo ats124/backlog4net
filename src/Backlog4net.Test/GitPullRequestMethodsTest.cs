@@ -74,8 +74,8 @@ namespace Backlog4net.Test
             Assert.AreEqual(repository.Name, "test");
             Assert.AreEqual(repository.Description, "test-description");
             Assert.AreEqual(repository.HookUrl, "test-hook-url");
-            Assert.AreEqual(repository.HttpUrl, "https://test-4net.backlog.jp/git/BLG4NT/test.git");
-            Assert.AreEqual(repository.SshUrl, "test-4net@test-4net.git.backlog.jp:/BLG4NT/test.git");
+            Assert.AreEqual(repository.HttpUrl, "https://test-4net.backlog.com/git/BLG4NT/test.git");
+            Assert.AreEqual(repository.SshUrl, "test-4net@test-4net.git.backlog.com:/BLG4NT/test.git");
             Assert.AreEqual(repository.DisplayOrder, 2147483646L);
             Assert.AreEqual(repository.PushedAt, new DateTime(2017, 8, 20, 10, 29 , 8, DateTimeKind.Utc));
             Assert.AreEqual(repository.CreatedUser.Id, 137752L);
